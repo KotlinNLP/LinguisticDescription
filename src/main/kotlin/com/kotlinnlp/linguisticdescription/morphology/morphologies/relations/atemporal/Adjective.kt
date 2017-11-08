@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -17,50 +18,154 @@ sealed class Adjective : Atemporal {
   /**
    * The 'demonstrative adjective' morphology.
    */
-  class Demonstrative : Adjective()
+  class Demonstrative : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjDemons
+  }
 
   /**
    * The 'qualifying adjective' morphology.
    */
-  class Qualifying : Adjective(), ContentWord
+  class Qualifying : Adjective(), ContentWord {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjQualif
+  }
+
+  /**
+   * The 'qualifying postpositive adjective' morphology.
+   */
+  class QualifyingPostpositive : Adjective(), ContentWord {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjQualifPost
+  }
 
   /**
    * The 'relative adjective' morphology.
    */
-  class Relative : Adjective()
+  class Relative : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjRelat
+  }
 
   /**
    * The 'exclamative adjective' morphology.
    */
-  class Exclamative : Adjective()
+  class Exclamative : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjExclam
+  }
 
   /**
    * The 'indefinite adjective' morphology.
    */
-  class Indefinite : Adjective()
+  class Indefinite : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjIndef
+  }
+
+  /**
+   * The 'indefinite distributive adjective' morphology.
+   */
+  class IndefiniteDistributive : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjIndefDistr
+  }
+
+  /**
+   * The 'indefinite quantifying adjective' morphology.
+   */
+  class IndefiniteQuantifying : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjIndefQuant
+  }
+
+  /**
+   * The 'indefinite subordinating adjective' morphology.
+   */
+  class IndefiniteSubordinating : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjIndefSubord
+  }
 
   /**
    * The 'interrogative adjective' morphology.
    */
-  class Interrogative : Adjective()
+  class Interrogative : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjInterr
+  }
 
   /**
    * The 'possessive adjective' morphology.
    */
-  class Possessive : Adjective()
+  class Possessive : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjPoss
+  }
 
   /**
    * The 'ordinal adjective' morphology.
    */
-  class Ordinal : Adjective()
+  class Ordinal : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjOrdin
+  }
 
   /**
    * The 'comparative adjective' morphology.
    */
-  class Comparative : Adjective()
+  class Comparative : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjCompar
+  }
 
   /**
    * The 'deictic adjective' morphology.
    */
-  class Deictic : Adjective()
+  class Deictic : Adjective() {
+
+    /**
+     * The label associated to this morphology.
+     */
+    override val label = Label.AdjDeict
+  }
 }
