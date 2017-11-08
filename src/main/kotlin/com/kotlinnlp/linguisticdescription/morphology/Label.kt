@@ -19,7 +19,7 @@ enum class Label(val annotation: String) {
   VerbAux("VERB-AUX"),
 
   Adj("ADJ"),
-  AdjDeitt("ADJ-DEITT"),
+  AdjDeict("ADJ-DEITT"),
   AdjDemons("ADJ-DEMONS"),
   AdjDemonsAntec("ADJ-DEMONS-ANTEC"),
   AdjDemonsSucc("ADJ-DEMONS-SUCC"),
@@ -51,7 +51,7 @@ enum class Label(val annotation: String) {
   AdvStrengNeg("ADV-STRENG-NEG"),
   AdvTime("ADV-TIME"),
   AdvConcess("ADV-CONCESS"),
-  AdvDeitt("ADV-DEITT"),
+  AdvDeict("ADV-DEITT"),
 
   Art("ART"),
   ArtDef("ART-DEF"),
