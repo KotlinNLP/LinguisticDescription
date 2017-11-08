@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 /**
  * The 'non-finite verb' morphology.
  */
-sealed class NonFiniteVerb : Atemporal, ContentWord {
+sealed class NonFiniteVerb : Relation, ContentWord {
 
   /**
    * The 'non-finite verb' morphology.

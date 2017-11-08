@@ -5,14 +5,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.Label
 
 /**
  * The 'conjunction' morphology.
  */
-sealed class Conjunction : Atemporal {
+sealed class Conjunction : Relation {
 
   /**
    * The 'comparative conjunction' morphology.
@@ -22,7 +22,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'comparative conjunction' morphology.
      */
-    class Base : Conjunction.Comparative() {
+    class Base : Comparative() {
 
       override val label = Label.ConjCompar
     }
@@ -30,7 +30,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'antecedent comparative conjunction' morphology.
      */
-    class Antecedent : Conjunction.Comparative() {
+    class Antecedent : Comparative() {
 
       override val label = Label.ConjComparAntec
     }
@@ -38,7 +38,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'successive comparative conjunction' morphology.
      */
-    class Successive : Conjunction.Comparative() {
+    class Successive : Comparative() {
 
       override val label = Label.ConjComparSucc
     }
@@ -60,7 +60,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'coordinating conjunction' morphology.
      */
-    class Base : Conjunction.Coordinating() {
+    class Base : Coordinating() {
 
       override val label = Label.ConjCoord
     }
@@ -68,7 +68,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'adversative coordinating conjunction' morphology.
      */
-    class Adversative : Conjunction.Coordinating() {
+    class Adversative : Coordinating() {
 
       override val label = Label.ConjCoordAdvers
     }
@@ -76,7 +76,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'disjunctive coordinating conjunction' morphology.
      */
-    class Disjunctive : Conjunction.Coordinating() {
+    class Disjunctive : Coordinating() {
 
       override val label = Label.ConjCoordDisj
     }
@@ -84,7 +84,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'explicit coordinating conjunction' morphology.
      */
-    class Explicit : Conjunction.Coordinating() {
+    class Explicit : Coordinating() {
 
       override val label = Label.ConjCoordExplic
     }
@@ -92,7 +92,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'negative coordinating conjunction' morphology.
      */
-    class Negative : Conjunction.Coordinating() {
+    class Negative : Coordinating() {
 
       override val label = Label.ConjCoordNeg
     }
@@ -106,7 +106,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'correlating conjunction' morphology.
      */
-    class Base : Conjunction.Correlating() {
+    class Base : Correlating() {
 
       override val label = Label.ConjCorrel
     }
@@ -114,7 +114,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'successive correlating conjunction' morphology.
      */
-    class Successive : Conjunction.Correlating() {
+    class Successive : Correlating() {
 
       override val label = Label.ConjCorrelSucc
     }
@@ -122,7 +122,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'antecedent correlating conjunction' morphology.
      */
-    class Antecedent : Conjunction.Correlating() {
+    class Antecedent : Correlating() {
 
       override val label = Label.ConjCorrelAntec
     }
@@ -136,7 +136,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'subordinating conjunction' morphology.
      */
-    class Base : Conjunction.Subordinating() {
+    class Base : Subordinating() {
 
       override val label = Label.ConjSubord
     }
@@ -144,7 +144,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'adversative subordinating conjunction' morphology.
      */
-    class Adversative : Conjunction.Subordinating() {
+    class Adversative : Subordinating() {
 
       override val label = Label.ConjSubordAdvers
     }
@@ -152,7 +152,7 @@ sealed class Conjunction : Atemporal {
     /**
      * The 'interrogativesubordinating ' morphology.
      */
-    class Interrogative : Conjunction.Subordinating() {
+    class Interrogative : Subordinating() {
 
       override val label = Label.ConjSubordInterr
     }

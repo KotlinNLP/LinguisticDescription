@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 /**
  * The 'adjective' morphology.
  */
-sealed class Adjective : Atemporal {
+sealed class Adjective : Relation {
 
   /**
    * The 'demonstrative adjective' morphology.
@@ -31,7 +31,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'qualifying adjective' morphology.
      */
-    class Base : Adjective.Qualifying() {
+    class Base : Qualifying() {
 
       override val label = Label.AdjQualif
     }
@@ -39,7 +39,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'postpositive qualifying adjective' morphology.
      */
-    class Postpositive : Adjective.Qualifying() {
+    class Postpositive : Qualifying() {
 
       override val label = Label.AdjQualifPost
     }
@@ -69,7 +69,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'indefinite adjective' morphology.
      */
-    class Base : Adjective.Indefinite() {
+    class Base : Indefinite() {
 
       override val label = Label.AdjIndef
     }
@@ -77,7 +77,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'distributive indefinite adjective' morphology.
      */
-    class Distributive : Adjective.Indefinite() {
+    class Distributive : Indefinite() {
 
       override val label = Label.AdjIndefDistr
     }
@@ -85,7 +85,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'quantifying indefinite adjective' morphology.
      */
-    class Quantifying : Adjective.Indefinite() {
+    class Quantifying : Indefinite() {
 
       override val label = Label.AdjIndefQuant
     }
@@ -93,7 +93,7 @@ sealed class Adjective : Atemporal {
     /**
      * The 'subordinating indefinite adjective' morphology.
      */
-    class Subordinating : Adjective.Indefinite() {
+    class Subordinating : Indefinite() {
 
       override val label = Label.AdjIndefSubord
     }

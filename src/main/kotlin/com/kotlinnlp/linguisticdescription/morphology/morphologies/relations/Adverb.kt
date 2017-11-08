@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 /**
  * The 'adverb' morphology.
  */
-sealed class Adverb : Atemporal {
+sealed class Adverb : Relation {
 
   /**
    * The 'modal adverb' morphology.
@@ -103,7 +103,7 @@ sealed class Adverb : Atemporal {
     /**
      * The 'strength adverb' morphology.
      */
-    class Base : Adverb.Strength() {
+    class Base : Strength() {
 
       override val label = Label.AdvStreng
     }
@@ -111,7 +111,7 @@ sealed class Adverb : Atemporal {
     /**
      * The 'negative strength adverb' morphology.
      */
-    class Negative : Adverb.Strength() {
+    class Negative : Strength() {
 
       override val label = Label.AdvStrengNeg
     }

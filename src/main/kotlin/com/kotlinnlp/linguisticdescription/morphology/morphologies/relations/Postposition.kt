@@ -5,14 +5,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.Label
 
 /**
  * The 'postposition' morphology.
  */
-sealed class Postposition : Atemporal {
+sealed class Postposition : Relation {
 
   /**
    * The 'postposition' morphology.
