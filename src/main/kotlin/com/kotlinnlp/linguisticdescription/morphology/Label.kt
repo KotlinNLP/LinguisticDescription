@@ -78,11 +78,11 @@ enum class Label(val annotation: String) {
   Noun("NOUN"),
   NounCommon("NOUN-COMMON"),
   NounCommonQuant("NOUN-COMMON-QUANT"),
+  NounCommonGerund("NOUN-COMMON-GERUND"),
   NounProper("NOUN-PROPER"),
   NounProperPer("NOUN-PROPER-PER"),
   NounProperOrg("NOUN-PROPER-ORG"),
   NounProperLoc("NOUN-PROPER-LOC"),
-  NounCommonGerund("NOUN-COMMON-GERUND"),
 
   Pron("PRON"),
   PronExclam("PRON-EXCLAM"),
@@ -105,8 +105,6 @@ enum class Label(val annotation: String) {
   PronRelatDouble("PRON-RELAT-DOUBLE"),
 
   Prep("PREP"),
-  PrepMono("PREP-MONO"),
-  PrepMonoVariant("PREP-MONO-VARIANT"),
   PrepPoss("PREP-POSS"),
   PrepArt("PREPART"),
 
