@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
 /**
- *
+ * The 'preposition' morphology.
  */
 class Preposition : Atemporal

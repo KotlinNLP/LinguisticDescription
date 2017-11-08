@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 /**
- *
+ * The 'predeterminer' morphology.
  */
 class Predeterminer : Thing

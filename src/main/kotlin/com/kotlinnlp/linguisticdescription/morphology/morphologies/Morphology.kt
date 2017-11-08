@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies
 
 /**
- *
+ * The base interface implemented by all morphologies.
  */
 interface Morphology

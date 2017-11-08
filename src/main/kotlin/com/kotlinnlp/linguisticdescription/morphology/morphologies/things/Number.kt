@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 /**
- *
+ * The 'number' morphology.
  */
 class Number : Thing

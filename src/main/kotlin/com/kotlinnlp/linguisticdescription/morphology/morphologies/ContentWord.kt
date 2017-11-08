@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies
 
 /**
- *
+ * The interface implemented by all content words morphologies.
  */
 interface ContentWord : Morphology

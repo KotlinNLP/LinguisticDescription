@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.te
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
- *
+ * The 'finite-verb' morphology.
  */
 class FiniteVerb : Temporal, ContentWord

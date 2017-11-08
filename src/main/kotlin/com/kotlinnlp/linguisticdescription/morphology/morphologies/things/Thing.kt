@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
- *
+ * The interface implemented by all morphologies of type 'thing'.
  */
 interface Thing : Morphology

@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.te
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Relation
 
 /**
- *
+ * The interface implemented by all morphologies of type 'temporal relation'.
  */
 interface Temporal : Relation

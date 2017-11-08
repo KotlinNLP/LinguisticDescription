@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
- *
+ * The 'noun' morphology.
  */
 class Noun : Thing, ContentWord

@@ -7,4 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
+/**
+ * The 'phrase' morphology.
+ */
 class Phrase : Discourse

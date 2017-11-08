@@ -10,7 +10,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.at
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
- *
+ * The 'adjective' morphology.
  */
 sealed class Adjective : Atemporal {
 

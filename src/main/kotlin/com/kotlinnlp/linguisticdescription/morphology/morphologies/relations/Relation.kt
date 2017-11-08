@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
- *
+ * The interface implemented by all morphologies of type 'relation'.
  */
 interface Relation : Morphology

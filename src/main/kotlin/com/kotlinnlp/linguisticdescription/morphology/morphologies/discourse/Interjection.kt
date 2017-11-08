@@ -7,4 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
+/**
+ * The 'interjection' morphology.
+ */
 class Interjection : Discourse

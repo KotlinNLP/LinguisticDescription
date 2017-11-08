@@ -7,4 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
+/**
+ * The 'punctuation' morphology.
+ */
 class Punctuation : Discourse

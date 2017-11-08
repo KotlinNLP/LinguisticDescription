@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.at
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Relation
 
 /**
- *
+ * The interface implemented by all morphologies of type 'atemporal relation'.
  */
 interface Atemporal : Relation

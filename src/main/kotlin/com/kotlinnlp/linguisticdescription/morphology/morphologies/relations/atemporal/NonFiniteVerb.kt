@@ -10,6 +10,6 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.at
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
- *
+ * The 'non-finite verb' morphology.
  */
 class NonFiniteVerb : Atemporal, ContentWord

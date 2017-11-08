@@ -9,4 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
+/**
+ * The interface implemented by all morphologies of type 'discourse'.
+ */
 interface Discourse : Morphology

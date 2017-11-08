@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
 /**
- *
+ * The 'postposition' morphology.
  */
 class Postposition : Atemporal
