@@ -7,7 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The 'interjection' morphology.
  */
-class Interjection : Discourse
+class Interjection : Discourse {
+
+  override val label = Label.Interj
+}

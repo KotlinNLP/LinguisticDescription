@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -17,65 +18,120 @@ sealed class Adverb : Atemporal {
   /**
    * The 'modal adverb' morphology.
    */
-  class Modal : Adverb(), ContentWord
+  class Modal : Adverb(), ContentWord {
+
+    override val label = Label.AdvModal
+  }
 
   /**
    * The 'comparative adverb' morphology.
    */
-  class Comparative : Adverb()
+  class Comparative : Adverb() {
+
+    override val label = Label.AdvCompar
+  }
 
   /**
    * The 'indefinite adverb' morphology.
    */
-  class Indefinite : Adverb()
+  class Indefinite : Adverb() {
+
+    override val label = Label.AdvIndef
+  }
+
+  /**
+   * The 'indefinite subordinating adverb' morphology.
+   */
+  class IndefiniteSubordinating : Adverb() {
+
+    override val label = Label.AdvIndefSubord
+  }
 
   /**
    * The 'interrogative adverb' morphology.
    */
-  class Interrogative : Adverb()
+  class Interrogative : Adverb() {
+
+    override val label = Label.AdvInterr
+  }
 
   /**
    * The 'limiting adverb' morphology.
    */
-  class Limiting : Adverb()
+  class Limiting : Adverb() {
+
+    override val label = Label.AdvLimit
+  }
 
   /**
    * The 'locative adverb' morphology.
    */
-  class Locative : Adverb()
+  class Locative : Adverb() {
+
+    override val label = Label.AdvLoc
+  }
 
   /**
    * The 'negative adverb' morphology.
    */
-  class Negative : Adverb()
+  class Negative : Adverb() {
+
+    override val label = Label.AdvNeg
+  }
 
   /**
    * The 'adverbial phrase' morphology.
    */
-  class Phrase : Adverb()
+  class Phrase : Adverb() {
+
+    override val label = Label.AdvPhras
+  }
 
   /**
    * The 'quantitative adverb' morphology.
    */
-  class Quantitative : Adverb()
+  class Quantitative : Adverb() {
+
+    override val label = Label.AdvQuant
+  }
 
   /**
    * The 'strength adverb' morphology.
    */
-  class Strength : Adverb()
+  class Strength : Adverb() {
+
+    override val label = Label.AdvStreng
+  }
+
+  /**
+   * The 'strength negative adverb' morphology.
+   */
+  class StrengthNegative : Adverb() {
+
+    override val label = Label.AdvStrengNeg
+  }
 
   /**
    * The 'time adverb' morphology.
    */
-  class Time : Adverb()
+  class Time : Adverb() {
+
+    override val label = Label.AdvTime
+  }
 
   /**
    * The 'concessive adverb' morphology.
    */
-  class Concessive : Adverb()
+  class Concessive : Adverb() {
+
+    override val label = Label.AdvConcess
+  }
 
   /**
    * The 'deictic adverb' morphology.
    */
-  class Deictic : Adverb()
+  class Deictic : Adverb() {
+
+    override val label = Label.AdvDeict
+  }
 }

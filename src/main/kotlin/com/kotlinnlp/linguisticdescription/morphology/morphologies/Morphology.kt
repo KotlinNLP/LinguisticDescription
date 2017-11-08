@@ -7,7 +7,15 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The base interface implemented by all morphologies.
  */
-interface Morphology
+interface Morphology {
+
+  /**
+   * The label associated to this morphology.
+   */
+  val label: Label
+}
