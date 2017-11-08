@@ -113,12 +113,16 @@ enum class Label(val annotation: String) {
   Postpos("POSTPOS"),
   PostposPoss("POSTPOS-POSS"),
 
-  Date("DATE"),
-  Hour("HOUR"),
   Interj("INTERJ"),
-  Num("NUM"),
   Phras("PHRAS"),
   PhrasExclam("PHRAS-EXCLAM"),
-  Predet("PREDET"),
-  Punct("PUNCT")
+  PhrasAff("PHRAS-AFF"),
+  PhrasNeg("PHRAS-NEG"),
+  PhrasInterr("PHRAS-INTERR"),
+  Punct("PUNCT"),
+
+  Date("DATE"),
+  Hour("HOUR"),
+  Num("NUM"),
+  Predet("PREDET")
 }
