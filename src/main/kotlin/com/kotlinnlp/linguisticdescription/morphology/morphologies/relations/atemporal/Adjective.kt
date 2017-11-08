@@ -15,52 +15,52 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 sealed class Adjective : Atemporal {
 
   /**
-   *
+   * The 'demonstrative adjective' morphology.
    */
   class Demonstrative : Adjective()
 
   /**
-   *
+   * The 'qualifying adjective' morphology.
    */
-  class Qualificative : Adjective(), ContentWord
+  class Qualifying : Adjective(), ContentWord
 
   /**
-   *
+   * The 'relative adjective' morphology.
    */
   class Relative : Adjective()
 
   /**
-   *
+   * The 'exclamative adjective' morphology.
    */
   class Exclamative : Adjective()
 
   /**
-   *
+   * The 'indefinite adjective' morphology.
    */
   class Indefinite : Adjective()
 
   /**
-   *
+   * The 'interrogative adjective' morphology.
    */
   class Interrogative : Adjective()
 
   /**
-   *
+   * The 'possessive adjective' morphology.
    */
   class Possessive : Adjective()
 
   /**
-   *
+   * The 'ordinal adjective' morphology.
    */
   class Ordinal : Adjective()
 
   /**
-   *
+   * The 'comparative adjective' morphology.
    */
   class Comparative : Adjective()
 
   /**
-   *
+   * The 'deictic adjective' morphology.
    */
   class Deictic : Adjective()
 }
