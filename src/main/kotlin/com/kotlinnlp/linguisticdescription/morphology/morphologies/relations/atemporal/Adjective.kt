@@ -26,17 +26,23 @@ sealed class Adjective : Atemporal {
   /**
    * The 'qualifying adjective' morphology.
    */
-  class Qualifying : Adjective(), ContentWord {
+  sealed class Qualifying : Adjective(), ContentWord {
 
-    override val label = Label.AdjQualif
-  }
+    /**
+     * The 'qualifying adjective' morphology.
+     */
+    class Base : Adjective.Qualifying() {
 
-  /**
-   * The 'qualifying postpositive adjective' morphology.
-   */
-  class QualifyingPostpositive : Adjective(), ContentWord {
+      override val label = Label.AdjQualif
+    }
 
-    override val label = Label.AdjQualifPost
+    /**
+     * The 'postpositive qualifying adjective' morphology.
+     */
+    class Postpositive : Adjective.Qualifying() {
+
+      override val label = Label.AdjQualifPost
+    }
   }
 
   /**
@@ -58,33 +64,39 @@ sealed class Adjective : Atemporal {
   /**
    * The 'indefinite adjective' morphology.
    */
-  class Indefinite : Adjective() {
+  sealed class Indefinite : Adjective() {
 
-    override val label = Label.AdjIndef
-  }
+    /**
+     * The 'indefinite adjective' morphology.
+     */
+    class Base : Adjective.Indefinite() {
 
-  /**
-   * The 'indefinite distributive adjective' morphology.
-   */
-  class IndefiniteDistributive : Adjective() {
+      override val label = Label.AdjIndef
+    }
 
-    override val label = Label.AdjIndefDistr
-  }
+    /**
+     * The 'distributive indefinite adjective' morphology.
+     */
+    class Distributive : Adjective.Indefinite() {
 
-  /**
-   * The 'indefinite quantifying adjective' morphology.
-   */
-  class IndefiniteQuantifying : Adjective() {
+      override val label = Label.AdjIndefDistr
+    }
 
-    override val label = Label.AdjIndefQuant
-  }
+    /**
+     * The 'quantifying indefinite adjective' morphology.
+     */
+    class Quantifying : Adjective.Indefinite() {
 
-  /**
-   * The 'indefinite subordinating adjective' morphology.
-   */
-  class IndefiniteSubordinating : Adjective() {
+      override val label = Label.AdjIndefQuant
+    }
 
-    override val label = Label.AdjIndefSubord
+    /**
+     * The 'subordinating indefinite adjective' morphology.
+     */
+    class Subordinating : Adjective.Indefinite() {
+
+      override val label = Label.AdjIndefSubord
+    }
   }
 
   /**

@@ -98,17 +98,23 @@ sealed class Adverb : Atemporal {
   /**
    * The 'strength adverb' morphology.
    */
-  class Strength : Adverb() {
+  sealed class Strength : Adverb() {
 
-    override val label = Label.AdvStreng
-  }
+    /**
+     * The 'strength adverb' morphology.
+     */
+    class Base : Adverb.Strength() {
 
-  /**
-   * The 'strength negative adverb' morphology.
-   */
-  class StrengthNegative : Adverb() {
+      override val label = Label.AdvStreng
+    }
 
-    override val label = Label.AdvStrengNeg
+    /**
+     * The 'negative strength adverb' morphology.
+     */
+    class Negative : Adverb.Strength() {
+
+      override val label = Label.AdvStrengNeg
+    }
   }
 
   /**
