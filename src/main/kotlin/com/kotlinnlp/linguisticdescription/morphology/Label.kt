@@ -36,7 +36,7 @@ enum class Label(val annotation: String) {
   AdjQualifPost("ADJ-QUALIF-POST"),
   AdjRelat("ADJ-RELAT"),
 
-  Adv("ADV"),
+  AdvModal("ADV"),
   AdvAdvers("ADV-ADVERS"),
   AdvCompar("ADV-COMPAR"),
   AdvIndef("ADV-INDEF"),
