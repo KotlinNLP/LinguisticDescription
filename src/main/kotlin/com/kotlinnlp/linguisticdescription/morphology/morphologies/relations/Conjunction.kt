@@ -15,6 +15,14 @@ import com.kotlinnlp.linguisticdescription.morphology.Label
 sealed class Conjunction : Relation {
 
   /**
+   * The 'conjunction' morphology.
+   */
+  class Base : Conjunction() {
+
+    override val label = Label.Conj
+  }
+
+  /**
    * The 'comparative conjunction' morphology.
    */
   sealed class Comparative : Conjunction() {

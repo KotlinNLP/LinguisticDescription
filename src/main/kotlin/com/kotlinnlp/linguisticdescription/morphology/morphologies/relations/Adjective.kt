@@ -16,6 +16,14 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 sealed class Adjective : Relation {
 
   /**
+   * The 'adjective' morphology.
+   */
+  class Base : Adjective() {
+
+    override val label = Label.Adj
+  }
+
+  /**
    * The 'demonstrative adjective' morphology.
    */
   class Demonstrative : Adjective() {

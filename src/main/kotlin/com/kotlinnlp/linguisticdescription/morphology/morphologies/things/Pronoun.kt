@@ -15,6 +15,14 @@ import com.kotlinnlp.linguisticdescription.morphology.Label
 sealed class Pronoun : Thing {
 
   /**
+   * The 'pronoun' morphology.
+   */
+  class Base : Pronoun() {
+
+    override val label = Label.Pron
+  }
+
+  /**
    * The 'exclamative pronoun' morphology.
    */
   class Exclamative : Pronoun() {

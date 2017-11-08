@@ -15,6 +15,14 @@ import com.kotlinnlp.linguisticdescription.morphology.Label
 sealed class Article : Thing {
 
   /**
+   * The 'article' morphology.
+   */
+  class Base : Article() {
+
+    override val label = Label.Art
+  }
+
+  /**
    * The 'definite article' morphology.
    */
   class Definite : Article() {
