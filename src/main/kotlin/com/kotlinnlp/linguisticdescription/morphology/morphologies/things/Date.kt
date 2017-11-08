@@ -7,7 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The 'date' morphology.
  */
-class Date : Thing
+class Date : Thing {
+
+  override val label = Label.Date
+}

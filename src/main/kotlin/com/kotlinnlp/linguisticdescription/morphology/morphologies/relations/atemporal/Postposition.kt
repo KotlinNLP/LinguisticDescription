@@ -7,7 +7,26 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The 'postposition' morphology.
  */
-class Postposition : Atemporal
+sealed class Postposition : Atemporal {
+
+  /**
+   * The 'postposition' morphology.
+   */
+  class Base : Postposition() {
+
+    override val label = Label.Postpos
+  }
+
+  /**
+   * The 'possessive postposition' morphology.
+   */
+  class Possessive : Postposition() {
+
+    override val label = Label.PostposPoss
+  }
+}

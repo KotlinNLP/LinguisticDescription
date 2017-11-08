@@ -7,9 +7,35 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
  * The 'non-finite verb' morphology.
  */
-class NonFiniteVerb : Atemporal, ContentWord
+sealed class NonFiniteVerb : Atemporal, ContentWord {
+
+  /**
+   * The 'non-finite verb' morphology.
+   */
+  class Verb : NonFiniteVerb() {
+
+    override val label = Label.Verb
+  }
+
+  /**
+   * The 'modal non-finite verb' morphology.
+   */
+  class Modal : NonFiniteVerb() {
+
+    override val label = Label.VerbModal
+  }
+
+  /**
+   * The 'auxiliary non-finite verb' morphology.
+   */
+  class Auxiliary : NonFiniteVerb() {
+
+    override val label = Label.VerbAux
+  }
+}

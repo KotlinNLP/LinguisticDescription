@@ -7,7 +7,40 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The 'article' morphology.
  */
-class Article : Thing
+sealed class Article : Thing {
+
+  /**
+   * The 'definite article' morphology.
+   */
+  class Definite : Article() {
+
+    override val label = Label.ArtDef
+  }
+
+  /**
+   * The 'indefinite article' morphology.
+   */
+  sealed class Indefinite : Article() {
+
+    /**
+     * The 'indefinite article' morphology.
+     */
+    class Base : Article.Indefinite() {
+
+      override val label = Label.ArtIndef
+    }
+
+    /**
+     * The 'indefinite partitive article' morphology.
+     */
+    class Partitive : Article.Indefinite() {
+
+      override val label = Label.ArtIndefPart
+    }
+  }
+}

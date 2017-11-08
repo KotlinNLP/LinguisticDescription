@@ -7,7 +7,34 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.atemporal
 
+import com.kotlinnlp.linguisticdescription.morphology.Label
+
 /**
  * The 'preposition' morphology.
  */
-class Preposition : Atemporal
+sealed class Preposition : Atemporal {
+
+  /**
+   * The 'preposition' morphology.
+   */
+  class Base : Preposition() {
+
+    override val label = Label.Prep
+  }
+
+  /**
+   * The 'possessive preposition' morphology.
+   */
+  class Possessive : Preposition() {
+
+    override val label = Label.PrepPoss
+  }
+
+  /**
+   * The 'articulated preposition' morphology.
+   */
+  class Articulated : Preposition() {
+
+    override val label = Label.PrepArt
+  }
+}
