@@ -20,9 +20,6 @@ sealed class Adjective : Atemporal {
    */
   class Demonstrative : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjDemons
   }
 
@@ -31,9 +28,6 @@ sealed class Adjective : Atemporal {
    */
   class Qualifying : Adjective(), ContentWord {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjQualif
   }
 
@@ -42,9 +36,6 @@ sealed class Adjective : Atemporal {
    */
   class QualifyingPostpositive : Adjective(), ContentWord {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjQualifPost
   }
 
@@ -53,9 +44,6 @@ sealed class Adjective : Atemporal {
    */
   class Relative : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjRelat
   }
 
@@ -64,9 +52,6 @@ sealed class Adjective : Atemporal {
    */
   class Exclamative : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjExclam
   }
 
@@ -75,9 +60,6 @@ sealed class Adjective : Atemporal {
    */
   class Indefinite : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjIndef
   }
 
@@ -86,9 +68,6 @@ sealed class Adjective : Atemporal {
    */
   class IndefiniteDistributive : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjIndefDistr
   }
 
@@ -97,9 +76,6 @@ sealed class Adjective : Atemporal {
    */
   class IndefiniteQuantifying : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjIndefQuant
   }
 
@@ -108,9 +84,6 @@ sealed class Adjective : Atemporal {
    */
   class IndefiniteSubordinating : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjIndefSubord
   }
 
@@ -119,9 +92,6 @@ sealed class Adjective : Atemporal {
    */
   class Interrogative : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjInterr
   }
 
@@ -130,9 +100,6 @@ sealed class Adjective : Atemporal {
    */
   class Possessive : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjPoss
   }
 
@@ -141,9 +108,6 @@ sealed class Adjective : Atemporal {
    */
   class Ordinal : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjOrdin
   }
 
@@ -152,9 +116,6 @@ sealed class Adjective : Atemporal {
    */
   class Comparative : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjCompar
   }
 
@@ -163,9 +124,6 @@ sealed class Adjective : Atemporal {
    */
   class Deictic : Adjective() {
 
-    /**
-     * The label associated to this morphology.
-     */
     override val label = Label.AdjDeict
   }
 }
