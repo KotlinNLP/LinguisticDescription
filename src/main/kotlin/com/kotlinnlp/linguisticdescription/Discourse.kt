@@ -5,9 +5,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
+package com.kotlinnlp.linguisticdescription
 
 /**
- * Define a 'thing' object.
+ * Define a 'discourse' object.
  */
-interface Thing
+interface Discourse
