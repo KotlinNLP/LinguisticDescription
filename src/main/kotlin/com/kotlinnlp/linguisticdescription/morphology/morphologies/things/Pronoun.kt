@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'pronoun' morphology.
@@ -19,7 +19,7 @@ sealed class Pronoun : Thing {
    */
   class Base : Pronoun() {
 
-    override val label = Label.Pron
+    override val type: MorphologyType = MorphologyType.Pron
   }
 
   /**
@@ -27,7 +27,7 @@ sealed class Pronoun : Thing {
    */
   class Exclamative : Pronoun() {
 
-    override val label = Label.PronExclam
+    override val type: MorphologyType = MorphologyType.PronExclam
   }
 
   /**
@@ -35,7 +35,7 @@ sealed class Pronoun : Thing {
    */
   class Ordinal : Pronoun() {
 
-    override val label = Label.PronOrdin
+    override val type: MorphologyType = MorphologyType.PronOrdin
   }
 
   /**
@@ -43,7 +43,7 @@ sealed class Pronoun : Thing {
    */
   class Demonstrative : Pronoun() {
 
-    override val label = Label.PronDemons
+    override val type: MorphologyType = MorphologyType.PronDemons
   }
 
   /**
@@ -56,7 +56,7 @@ sealed class Pronoun : Thing {
      */
     class Base : Pronoun.Indefinite() {
 
-      override val label = Label.PronIndef
+      override val type: MorphologyType = MorphologyType.PronIndef
     }
 
     /**
@@ -64,7 +64,7 @@ sealed class Pronoun : Thing {
      */
     class Subordinating : Pronoun.Indefinite() {
 
-      override val label = Label.PronIndefSubord
+      override val type: MorphologyType = MorphologyType.PronIndefSubord
     }
 
     /**
@@ -72,7 +72,7 @@ sealed class Pronoun : Thing {
      */
     class Distributive : Pronoun.Indefinite() {
 
-      override val label = Label.PronIndefDistr
+      override val type: MorphologyType = MorphologyType.PronIndefDistr
     }
 
     /**
@@ -80,7 +80,7 @@ sealed class Pronoun : Thing {
      */
     class Quantifying : Pronoun.Indefinite() {
 
-      override val label = Label.PronIndefQuant
+      override val type: MorphologyType = MorphologyType.PronIndefQuant
     }
   }
 
@@ -89,7 +89,7 @@ sealed class Pronoun : Thing {
    */
   class Interrogative : Pronoun() {
 
-    override val label = Label.PronInterr
+    override val type: MorphologyType = MorphologyType.PronInterr
   }
 
   /**
@@ -102,7 +102,7 @@ sealed class Pronoun : Thing {
      */
     class Base : Pronoun.Personal() {
 
-      override val label = Label.PronPers
+      override val type: MorphologyType = MorphologyType.PronPers
     }
 
     /**
@@ -110,7 +110,7 @@ sealed class Pronoun : Thing {
      */
     class Reflexive : Pronoun.Personal() {
 
-      override val label = Label.PronPersRefl
+      override val type: MorphologyType = MorphologyType.PronPersRefl
     }
 
     /**
@@ -118,7 +118,7 @@ sealed class Pronoun : Thing {
      */
     class Variant : Pronoun.Personal() {
 
-      override val label = Label.PronPersVariant
+      override val type: MorphologyType = MorphologyType.PronPersVariant
     }
 
     /**
@@ -126,7 +126,7 @@ sealed class Pronoun : Thing {
      */
     class Enclitic : Pronoun.Personal() {
 
-      override val label = Label.PronPersEnclit
+      override val type: MorphologyType = MorphologyType.PronPersEnclit
     }
 
     /**
@@ -139,7 +139,7 @@ sealed class Pronoun : Thing {
        */
       class Base : Pronoun.Personal.Proclitic() {
 
-        override val label = Label.PronPersProclit
+        override val type: MorphologyType = MorphologyType.PronPersProclit
       }
 
       /**
@@ -147,7 +147,7 @@ sealed class Pronoun : Thing {
        */
       class Reflexive : Pronoun.Personal.Proclitic() {
 
-        override val label = Label.PronPersProclitRefl
+        override val type: MorphologyType = MorphologyType.PronPersProclitRefl
       }
 
       /**
@@ -155,7 +155,7 @@ sealed class Pronoun : Thing {
        */
       class Variant : Pronoun.Personal.Proclitic() {
 
-        override val label = Label.PronPersProclitVariant
+        override val type: MorphologyType = MorphologyType.PronPersProclitVariant
       }
     }
   }
@@ -165,7 +165,7 @@ sealed class Pronoun : Thing {
    */
   class Possessive : Pronoun() {
 
-    override val label = Label.PronPoss
+    override val type: MorphologyType = MorphologyType.PronPoss
   }
 
   /**
@@ -178,7 +178,7 @@ sealed class Pronoun : Thing {
      */
     class Base : Pronoun.Relative() {
 
-      override val label = Label.PronRelat
+      override val type: MorphologyType = MorphologyType.PronRelat
     }
 
     /**
@@ -186,7 +186,7 @@ sealed class Pronoun : Thing {
      */
     class Double : Pronoun.Relative() {
 
-      override val label = Label.PronRelatDouble
+      override val type: MorphologyType = MorphologyType.PronRelatDouble
     }
   }
 }

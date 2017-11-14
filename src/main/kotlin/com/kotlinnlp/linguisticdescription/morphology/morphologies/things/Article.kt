@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'article' morphology.
@@ -19,7 +19,7 @@ sealed class Article : Thing {
    */
   class Base : Article() {
 
-    override val label = Label.Art
+    override val type: MorphologyType = MorphologyType.Art
   }
 
   /**
@@ -27,7 +27,7 @@ sealed class Article : Thing {
    */
   class Definite : Article() {
 
-    override val label = Label.ArtDef
+    override val type: MorphologyType = MorphologyType.ArtDef
   }
 
   /**
@@ -40,7 +40,7 @@ sealed class Article : Thing {
      */
     class Base : Article.Indefinite() {
 
-      override val label = Label.ArtIndef
+      override val type: MorphologyType = MorphologyType.ArtIndef
     }
 
     /**
@@ -48,7 +48,7 @@ sealed class Article : Thing {
      */
     class Partitive : Article.Indefinite() {
 
-      override val label = Label.ArtIndefPart
+      override val type: MorphologyType = MorphologyType.ArtIndefPart
     }
   }
 }

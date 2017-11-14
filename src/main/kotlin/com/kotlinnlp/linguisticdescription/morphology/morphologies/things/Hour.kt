@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'hour' morphology.
  */
 class Hour : Thing {
 
-  override val label = Label.Hour
+  override val type: MorphologyType = MorphologyType.Hour
 }

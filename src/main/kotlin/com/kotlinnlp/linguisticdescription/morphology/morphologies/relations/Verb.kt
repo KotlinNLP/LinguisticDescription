@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -20,7 +20,7 @@ sealed class Verb : Relation, ContentWord {
    */
   class Base : Verb() {
 
-    override val label = Label.Verb
+    override val type = MorphologyType.Verb
   }
 
   /**
@@ -28,7 +28,7 @@ sealed class Verb : Relation, ContentWord {
    */
   class Modal : Verb() {
 
-    override val label = Label.VerbModal
+    override val type = MorphologyType.VerbModal
   }
 
   /**
@@ -36,6 +36,6 @@ sealed class Verb : Relation, ContentWord {
    */
   class Auxiliary : Verb() {
 
-    override val label = Label.VerbAux
+    override val type = MorphologyType.VerbAux
   }
 }

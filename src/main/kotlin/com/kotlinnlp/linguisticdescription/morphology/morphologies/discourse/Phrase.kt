@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'phrase' morphology.
@@ -19,7 +19,7 @@ sealed class Phrase : Discourse {
    */
   class Affirmative : Phrase() {
 
-    override val label = Label.PhrasAff
+    override val type: MorphologyType = MorphologyType.PhrasAff
   }
 
   /**
@@ -27,7 +27,7 @@ sealed class Phrase : Discourse {
    */
   class Negative : Phrase() {
 
-    override val label = Label.PhrasNeg
+    override val type: MorphologyType = MorphologyType.PhrasNeg
   }
 
   /**
@@ -35,7 +35,7 @@ sealed class Phrase : Discourse {
    */
   class Interrogative : Phrase() {
 
-    override val label = Label.PhrasInterr
+    override val type: MorphologyType = MorphologyType.PhrasInterr
   }
 
   /**
@@ -43,6 +43,6 @@ sealed class Phrase : Discourse {
    */
   class Exclamative : Phrase() {
 
-    override val label = Label.PhrasExclam
+    override val type: MorphologyType = MorphologyType.PhrasExclam
   }
 }

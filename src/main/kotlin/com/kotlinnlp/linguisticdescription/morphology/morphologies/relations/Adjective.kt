@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -20,7 +20,7 @@ sealed class Adjective : Relation {
    */
   class Base : Adjective() {
 
-    override val label = Label.Adj
+    override val type: MorphologyType = MorphologyType.Adj
   }
 
   /**
@@ -28,7 +28,7 @@ sealed class Adjective : Relation {
    */
   class Demonstrative : Adjective() {
 
-    override val label = Label.AdjDemons
+    override val type: MorphologyType = MorphologyType.AdjDemons
   }
 
   /**
@@ -41,7 +41,7 @@ sealed class Adjective : Relation {
      */
     class Base : Qualifying() {
 
-      override val label = Label.AdjQualif
+      override val type: MorphologyType = MorphologyType.AdjQualif
     }
 
     /**
@@ -49,7 +49,7 @@ sealed class Adjective : Relation {
      */
     class Postpositive : Qualifying() {
 
-      override val label = Label.AdjQualifPost
+      override val type: MorphologyType = MorphologyType.AdjQualifPost
     }
   }
 
@@ -58,7 +58,7 @@ sealed class Adjective : Relation {
    */
   class Relative : Adjective() {
 
-    override val label = Label.AdjRelat
+    override val type: MorphologyType = MorphologyType.AdjRelat
   }
 
   /**
@@ -66,7 +66,7 @@ sealed class Adjective : Relation {
    */
   class Exclamative : Adjective() {
 
-    override val label = Label.AdjExclam
+    override val type: MorphologyType = MorphologyType.AdjExclam
   }
 
   /**
@@ -79,7 +79,7 @@ sealed class Adjective : Relation {
      */
     class Base : Indefinite() {
 
-      override val label = Label.AdjIndef
+      override val type: MorphologyType = MorphologyType.AdjIndef
     }
 
     /**
@@ -87,7 +87,7 @@ sealed class Adjective : Relation {
      */
     class Distributive : Indefinite() {
 
-      override val label = Label.AdjIndefDistr
+      override val type: MorphologyType = MorphologyType.AdjIndefDistr
     }
 
     /**
@@ -95,7 +95,7 @@ sealed class Adjective : Relation {
      */
     class Quantifying : Indefinite() {
 
-      override val label = Label.AdjIndefQuant
+      override val type: MorphologyType = MorphologyType.AdjIndefQuant
     }
 
     /**
@@ -103,7 +103,7 @@ sealed class Adjective : Relation {
      */
     class Subordinating : Indefinite() {
 
-      override val label = Label.AdjIndefSubord
+      override val type: MorphologyType = MorphologyType.AdjIndefSubord
     }
   }
 
@@ -112,7 +112,7 @@ sealed class Adjective : Relation {
    */
   class Interrogative : Adjective() {
 
-    override val label = Label.AdjInterr
+    override val type: MorphologyType = MorphologyType.AdjInterr
   }
 
   /**
@@ -120,7 +120,7 @@ sealed class Adjective : Relation {
    */
   class Possessive : Adjective() {
 
-    override val label = Label.AdjPoss
+    override val type: MorphologyType = MorphologyType.AdjPoss
   }
 
   /**
@@ -128,7 +128,7 @@ sealed class Adjective : Relation {
    */
   class Ordinal : Adjective() {
 
-    override val label = Label.AdjOrdin
+    override val type: MorphologyType = MorphologyType.AdjOrdin
   }
 
   /**
@@ -136,7 +136,7 @@ sealed class Adjective : Relation {
    */
   class Comparative : Adjective() {
 
-    override val label = Label.AdjCompar
+    override val type: MorphologyType = MorphologyType.AdjCompar
   }
 
   /**
@@ -144,6 +144,6 @@ sealed class Adjective : Relation {
    */
   class Deictic : Adjective() {
 
-    override val label = Label.AdjDeict
+    override val type: MorphologyType = MorphologyType.AdjDeict
   }
 }

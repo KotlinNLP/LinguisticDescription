@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'predeterminer' morphology.
  */
 class Predeterminer : Thing {
 
-  override val label = Label.Predet
+  override val type: MorphologyType = MorphologyType.Predet
 }

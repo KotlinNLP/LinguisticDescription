@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'postposition' morphology.
@@ -19,7 +19,7 @@ sealed class Postposition : Relation {
    */
   class Base : Postposition() {
 
-    override val label = Label.Postpos
+    override val type: MorphologyType = MorphologyType.Postpos
   }
 
   /**
@@ -27,6 +27,6 @@ sealed class Postposition : Relation {
    */
   class Possessive : Postposition() {
 
-    override val label = Label.PostposPoss
+    override val type: MorphologyType = MorphologyType.PostposPoss
   }
 }

@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -20,7 +20,7 @@ sealed class Adverb : Relation {
    */
   class Modal : Adverb(), ContentWord {
 
-    override val label = Label.AdvModal
+    override val type: MorphologyType = MorphologyType.AdvModal
   }
 
   /**
@@ -28,7 +28,7 @@ sealed class Adverb : Relation {
    */
   class Comparative : Adverb() {
 
-    override val label = Label.AdvCompar
+    override val type: MorphologyType = MorphologyType.AdvCompar
   }
 
   /**
@@ -36,7 +36,7 @@ sealed class Adverb : Relation {
    */
   class Indefinite : Adverb() {
 
-    override val label = Label.AdvIndef
+    override val type: MorphologyType = MorphologyType.AdvIndef
   }
 
   /**
@@ -44,7 +44,7 @@ sealed class Adverb : Relation {
    */
   class IndefiniteSubordinating : Adverb() {
 
-    override val label = Label.AdvIndefSubord
+    override val type: MorphologyType = MorphologyType.AdvIndefSubord
   }
 
   /**
@@ -52,7 +52,7 @@ sealed class Adverb : Relation {
    */
   class Interrogative : Adverb() {
 
-    override val label = Label.AdvInterr
+    override val type: MorphologyType = MorphologyType.AdvInterr
   }
 
   /**
@@ -60,7 +60,7 @@ sealed class Adverb : Relation {
    */
   class Limiting : Adverb() {
 
-    override val label = Label.AdvLimit
+    override val type: MorphologyType = MorphologyType.AdvLimit
   }
 
   /**
@@ -68,7 +68,7 @@ sealed class Adverb : Relation {
    */
   class Locative : Adverb() {
 
-    override val label = Label.AdvLoc
+    override val type: MorphologyType = MorphologyType.AdvLoc
   }
 
   /**
@@ -76,7 +76,7 @@ sealed class Adverb : Relation {
    */
   class Negative : Adverb() {
 
-    override val label = Label.AdvNeg
+    override val type: MorphologyType = MorphologyType.AdvNeg
   }
 
   /**
@@ -84,7 +84,7 @@ sealed class Adverb : Relation {
    */
   class Phrase : Adverb() {
 
-    override val label = Label.AdvPhras
+    override val type: MorphologyType = MorphologyType.AdvPhras
   }
 
   /**
@@ -92,7 +92,7 @@ sealed class Adverb : Relation {
    */
   class Quantitative : Adverb() {
 
-    override val label = Label.AdvQuant
+    override val type: MorphologyType = MorphologyType.AdvQuant
   }
 
   /**
@@ -105,7 +105,7 @@ sealed class Adverb : Relation {
      */
     class Base : Strength() {
 
-      override val label = Label.AdvStreng
+      override val type: MorphologyType = MorphologyType.AdvStreng
     }
 
     /**
@@ -113,7 +113,7 @@ sealed class Adverb : Relation {
      */
     class Negative : Strength() {
 
-      override val label = Label.AdvStrengNeg
+      override val type: MorphologyType = MorphologyType.AdvStrengNeg
     }
   }
 
@@ -122,7 +122,7 @@ sealed class Adverb : Relation {
    */
   class Time : Adverb() {
 
-    override val label = Label.AdvTime
+    override val type: MorphologyType = MorphologyType.AdvTime
   }
 
   /**
@@ -130,7 +130,7 @@ sealed class Adverb : Relation {
    */
   class Concessive : Adverb() {
 
-    override val label = Label.AdvConcess
+    override val type: MorphologyType = MorphologyType.AdvConcess
   }
 
   /**
@@ -138,6 +138,6 @@ sealed class Adverb : Relation {
    */
   class Deictic : Adverb() {
 
-    override val label = Label.AdvDeict
+    override val type: MorphologyType = MorphologyType.AdvDeict
   }
 }

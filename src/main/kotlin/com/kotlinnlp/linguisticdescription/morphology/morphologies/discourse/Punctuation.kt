@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'punctuation' morphology.
  */
 class Punctuation : Discourse {
 
-  override val label = Label.Punct
+  override val type: MorphologyType = MorphologyType.Punct
 }

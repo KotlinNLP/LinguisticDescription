@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 /**
- * The label associated to each morphology.
+ * The type of a morphology.
  *
- * @property annotation the related label in the annotated files
+ * @property annotation the string used to annotate this type
  */
-enum class Label(val annotation: String) {
+enum class MorphologyType(val annotation: String) {
 
   Verb("VERB"),
   VerbModal("VERB-MODAL"),
@@ -114,9 +114,9 @@ enum class Label(val annotation: String) {
   Interj("INTERJ"),
   Phras("PHRAS"),
   PhrasExclam("PHRAS-EXCLAM"),
-  PhrasAff("PHRAS-AFF"),
-  PhrasNeg("PHRAS-NEG"),
-  PhrasInterr("PHRAS-INTERR"),
+  PhrasAff("PHRAS-AFF"), // new
+  PhrasNeg("PHRAS-NEG"), // new
+  PhrasInterr("PHRAS-INTERR"), // new
   Punct("PUNCT"),
 
   Date("DATE"),

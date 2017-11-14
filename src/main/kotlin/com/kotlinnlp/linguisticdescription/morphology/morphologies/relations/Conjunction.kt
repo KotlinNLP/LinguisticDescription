@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'conjunction' morphology.
@@ -19,7 +19,7 @@ sealed class Conjunction : Relation {
    */
   class Base : Conjunction() {
 
-    override val label = Label.Conj
+    override val type: MorphologyType = MorphologyType.Conj
   }
 
   /**
@@ -32,7 +32,7 @@ sealed class Conjunction : Relation {
      */
     class Base : Comparative() {
 
-      override val label = Label.ConjCompar
+      override val type: MorphologyType = MorphologyType.ConjCompar
     }
 
     /**
@@ -40,7 +40,7 @@ sealed class Conjunction : Relation {
      */
     class Antecedent : Comparative() {
 
-      override val label = Label.ConjComparAntec
+      override val type: MorphologyType = MorphologyType.ConjComparAntec
     }
 
     /**
@@ -48,7 +48,7 @@ sealed class Conjunction : Relation {
      */
     class Successive : Comparative() {
 
-      override val label = Label.ConjComparSucc
+      override val type: MorphologyType = MorphologyType.ConjComparSucc
     }
   }
 
@@ -57,7 +57,7 @@ sealed class Conjunction : Relation {
    */
   class Concessive : Conjunction() {
 
-    override val label = Label.ConjConcess
+    override val type: MorphologyType = MorphologyType.ConjConcess
   }
 
   /**
@@ -70,7 +70,7 @@ sealed class Conjunction : Relation {
      */
     class Base : Coordinating() {
 
-      override val label = Label.ConjCoord
+      override val type: MorphologyType = MorphologyType.ConjCoord
     }
 
     /**
@@ -78,7 +78,7 @@ sealed class Conjunction : Relation {
      */
     class Adversative : Coordinating() {
 
-      override val label = Label.ConjCoordAdvers
+      override val type = MorphologyType.ConjCoordAdvers
     }
 
     /**
@@ -86,7 +86,7 @@ sealed class Conjunction : Relation {
      */
     class Disjunctive : Coordinating() {
 
-      override val label = Label.ConjCoordDisj
+      override val type = MorphologyType.ConjCoordDisj
     }
 
     /**
@@ -94,7 +94,7 @@ sealed class Conjunction : Relation {
      */
     class Explicit : Coordinating() {
 
-      override val label = Label.ConjCoordExplic
+      override val type = MorphologyType.ConjCoordExplic
     }
 
     /**
@@ -102,7 +102,7 @@ sealed class Conjunction : Relation {
      */
     class Negative : Coordinating() {
 
-      override val label = Label.ConjCoordNeg
+      override val type = MorphologyType.ConjCoordNeg
     }
   }
 
@@ -116,7 +116,7 @@ sealed class Conjunction : Relation {
      */
     class Base : Correlating() {
 
-      override val label = Label.ConjCorrel
+      override val type = MorphologyType.ConjCorrel
     }
 
     /**
@@ -124,7 +124,7 @@ sealed class Conjunction : Relation {
      */
     class Successive : Correlating() {
 
-      override val label = Label.ConjCorrelSucc
+      override val type = MorphologyType.ConjCorrelSucc
     }
 
     /**
@@ -132,7 +132,7 @@ sealed class Conjunction : Relation {
      */
     class Antecedent : Correlating() {
 
-      override val label = Label.ConjCorrelAntec
+      override val type = MorphologyType.ConjCorrelAntec
     }
   }
 
@@ -146,7 +146,7 @@ sealed class Conjunction : Relation {
      */
     class Base : Subordinating() {
 
-      override val label = Label.ConjSubord
+      override val type = MorphologyType.ConjSubord
     }
 
     /**
@@ -154,7 +154,7 @@ sealed class Conjunction : Relation {
      */
     class Adversative : Subordinating() {
 
-      override val label = Label.ConjSubordAdvers
+      override val type = MorphologyType.ConjSubordAdvers
     }
 
     /**
@@ -162,7 +162,7 @@ sealed class Conjunction : Relation {
      */
     class Interrogative : Subordinating() {
 
-      override val label = Label.ConjSubordInterr
+      override val type = MorphologyType.ConjSubordInterr
     }
   }
 }

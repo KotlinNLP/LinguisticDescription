@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'preposition' morphology.
@@ -19,7 +19,7 @@ sealed class Preposition : Relation {
    */
   class Base : Preposition() {
 
-    override val label = Label.Prep
+    override val type: MorphologyType = MorphologyType.Prep
   }
 
   /**
@@ -27,7 +27,7 @@ sealed class Preposition : Relation {
    */
   class Possessive : Preposition() {
 
-    override val label = Label.PrepPoss
+    override val type: MorphologyType = MorphologyType.PrepPoss
   }
 
   /**
@@ -35,6 +35,6 @@ sealed class Preposition : Relation {
    */
   class Articulated : Preposition() {
 
-    override val label = Label.PrepArt
+    override val type: MorphologyType = MorphologyType.PrepArt
   }
 }

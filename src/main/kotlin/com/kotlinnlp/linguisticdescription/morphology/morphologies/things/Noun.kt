@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
@@ -20,7 +20,7 @@ sealed class Noun : Thing, ContentWord {
    */
   class Base : Noun() {
 
-    override val label = Label.Noun
+    override val type: MorphologyType = MorphologyType.Noun
   }
 
   /**
@@ -33,7 +33,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Base : Noun.Common() {
 
-      override val label = Label.NounCommon
+      override val type: MorphologyType = MorphologyType.NounCommon
     }
 
     /**
@@ -41,7 +41,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Quantifying : Noun.Common() {
 
-      override val label = Label.NounCommonQuant
+      override val type: MorphologyType = MorphologyType.NounCommonQuant
     }
 
     /**
@@ -49,7 +49,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Gerundive : Noun.Common() {
 
-      override val label = Label.NounCommonGerund
+      override val type: MorphologyType = MorphologyType.NounCommonGerund
     }
   }
 
@@ -63,7 +63,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Base : Noun.Proper() {
 
-      override val label = Label.NounProper
+      override val type: MorphologyType = MorphologyType.NounProper
     }
 
     /**
@@ -71,7 +71,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Person : Noun.Proper() {
 
-      override val label = Label.NounProperPer
+      override val type: MorphologyType = MorphologyType.NounProperPer
     }
 
     /**
@@ -79,7 +79,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Organization : Noun.Proper() {
 
-      override val label = Label.NounProperOrg
+      override val type: MorphologyType = MorphologyType.NounProperOrg
     }
 
     /**
@@ -87,7 +87,7 @@ sealed class Noun : Thing, ContentWord {
      */
     class Location : Noun.Proper() {
 
-      override val label = Label.NounProperLoc
+      override val type: MorphologyType = MorphologyType.NounProperLoc
     }
   }
 }

@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.Label
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 
 /**
  * The 'number' morphology.
  */
 class Number : Thing {
 
-  override val label = Label.Num
+  override val type: MorphologyType = MorphologyType.Num
 }
