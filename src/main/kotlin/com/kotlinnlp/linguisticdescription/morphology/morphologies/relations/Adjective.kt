@@ -26,9 +26,31 @@ sealed class Adjective : Relation {
   /**
    * The 'demonstrative adjective' morphology.
    */
-  class Demonstrative : Adjective() {
+  sealed class Demonstrative : Adjective() {
 
-    override val type: MorphologyType = MorphologyType.AdjDemons
+    /**
+     * The 'qualifying adjective' morphology.
+     */
+    class Base : Demonstrative() {
+
+      override val type: MorphologyType = MorphologyType.AdjDemons
+    }
+
+    /**
+     * The 'antecedent qualifying adjective' morphology.
+     */
+    class Antecedent : Demonstrative() {
+
+      override val type: MorphologyType = MorphologyType.AdjDemonsAntec
+    }
+
+    /**
+     * The 'successive qualifying adjective' morphology.
+     */
+    class Successive : Demonstrative() {
+
+      override val type: MorphologyType = MorphologyType.AdjDemonsSucc
+    }
   }
 
   /**
