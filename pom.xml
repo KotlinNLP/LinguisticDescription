@@ -11,6 +11,8 @@
     <properties>
         <kotlin.version>1.1.51</kotlin.version>
         <spek.version>1.1.4</spek.version>
+        <klaxon.version>0.30</klaxon.version>
+        <progressindicator.version>0.1.0</progressindicator.version>
     </properties>
 
     <build>
@@ -70,6 +72,18 @@
             <artifactId>spek-junit-platform-engine</artifactId>
             <version>${spek.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>klaxon</artifactId>
+            <version>${klaxon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
+            <artifactId>progressindicator</artifactId>
+            <version>${progressindicator.version}</version>
         </dependency>
     </dependencies>
 
