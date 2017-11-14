@@ -5,15 +5,17 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.properties
+package com.kotlinnlp.linguisticdescription.morphology.properties.interfaces
+
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 
 /**
- * The 'gender' morphology property.
- *
- * @property annotation the string used to annotate this property
+ * A morphology with the [Number] property.
  */
-enum class Gender(override val annotation: String) : MorphologyProperty {
-  Masculine("M"),
-  Feminine("F"),
-  Neuter("N")
+interface Numerable {
+
+  /**
+   * The number (singular, plural).
+   */
+  val number: Number
 }

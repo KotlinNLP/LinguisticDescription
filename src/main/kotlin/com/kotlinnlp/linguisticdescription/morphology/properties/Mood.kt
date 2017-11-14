@@ -8,12 +8,17 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'gender' morphology property.
+ * The 'mood' morphology property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Gender(override val annotation: String) : MorphologyProperty {
-  Masculine("M"),
-  Feminine("F"),
-  Neuter("N")
+enum class Mood(override val annotation: String) : MorphologyProperty {
+  Base("BASE"),
+  Indicative("IND"),
+  Conditional("COND"),
+  Subjunctive("SUBJ"),
+  Participle("PART"),
+  Gerund("GERUND"),
+  Infinite("INF"),
+  Imperative("IMPER")
 }

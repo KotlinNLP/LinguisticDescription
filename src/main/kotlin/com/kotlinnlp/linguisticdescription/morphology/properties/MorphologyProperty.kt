@@ -8,12 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'gender' morphology property.
- *
- * @property annotation the string used to annotate this property
+ * A generic morphology property.
  */
-enum class Gender(override val annotation: String) : MorphologyProperty {
-  Masculine("M"),
-  Feminine("F"),
-  Neuter("N")
+interface MorphologyProperty {
+
+  /**
+   * The string used to annotate this property.
+   */
+  val annotation: String
 }

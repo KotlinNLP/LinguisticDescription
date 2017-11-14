@@ -8,12 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'gender' morphology property.
+ * The 'tense' morphology property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Gender(override val annotation: String) : MorphologyProperty {
-  Masculine("M"),
-  Feminine("F"),
-  Neuter("N")
+enum class Tense(override val annotation: String) : MorphologyProperty {
+  Base("BASE"),
+  Present("PRESENT"),
+  Past("PAST"),
+  Future("FUTURE"),
+  Imperfect("IMPERFECT")
 }

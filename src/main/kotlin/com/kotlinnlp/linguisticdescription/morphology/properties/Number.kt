@@ -9,7 +9,11 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
  * The 'number' morphology property.
+ *
+ * @property annotation the string used to annotate this property
  */
-enum class Number {
-  Singular, Plural, Both, Dual
+enum class Number(override val annotation: String) : MorphologyProperty {
+  Singular("SING"),
+  Plural("PL"),
+  Dual("DUAL")
 }
