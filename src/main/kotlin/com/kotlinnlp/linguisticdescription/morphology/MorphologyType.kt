@@ -14,10 +14,6 @@ package com.kotlinnlp.linguisticdescription.morphology
  */
 enum class MorphologyType(val annotation: String) {
 
-  Verb("VERB"),
-  VerbModal("VERB-MODAL"),
-  VerbAux("VERB-AUX"),
-
   Adj("ADJ"),
   AdjDeict("ADJ-DEITT"),
   AdjDemons("ADJ-DEMONS"),
@@ -36,22 +32,22 @@ enum class MorphologyType(val annotation: String) {
   AdjQualifPost("ADJ-QUALIF-POST"),
   AdjRelat("ADJ-RELAT"),
 
-  AdvModal("ADV"),
   AdvAdvers("ADV-ADVERS"),
   AdvCompar("ADV-COMPAR"),
+  AdvConcess("ADV-CONCESS"),
+  AdvDeict("ADV-DEITT"),
   AdvIndef("ADV-INDEF"),
   AdvIndefSubord("ADV-INDEF-SUBORD"),
   AdvInterr("ADV-INTERR"),
   AdvLimit("ADV-LIMIT"),
   AdvLoc("ADV-LOC"),
+  AdvModal("ADV"),
   AdvNeg("ADV-NEG"),
   AdvPhras("ADV-PHRAS"),
   AdvQuant("ADV-QUANT"),
   AdvStreng("ADV-STRENG"),
   AdvStrengNeg("ADV-STRENG-NEG"),
   AdvTime("ADV-TIME"),
-  AdvConcess("ADV-CONCESS"),
-  AdvDeict("ADV-DEITT"),
 
   Art("ART"),
   ArtDef("ART-DEF"),
@@ -77,47 +73,51 @@ enum class MorphologyType(val annotation: String) {
 
   Noun("NOUN"),
   NounCommon("NOUN-COMMON"),
-  NounCommonQuant("NOUN-COMMON-QUANT"),
   NounCommonGerund("NOUN-COMMON-GERUND"),
+  NounCommonQuant("NOUN-COMMON-QUANT"),
   NounProper("NOUN-PROPER"),
-  NounProperPer("NOUN-PROPER-PER"),
-  NounProperOrg("NOUN-PROPER-ORG"),
   NounProperLoc("NOUN-PROPER-LOC"),
+  NounProperOrg("NOUN-PROPER-ORG"),
+  NounProperPer("NOUN-PROPER-PER"),
 
   Pron("PRON"),
-  PronExclam("PRON-EXCLAM"),
-  PronOrdin("PRON-ORDIN"),
   PronDemons("PRON-DEMONS"),
+  PronExclam("PRON-EXCLAM"),
   PronIndef("PRON-INDEF"),
-  PronIndefSubord("PRON-INDEF-SUBORD"),
   PronIndefDistr("PRON-INDEF-DISTR"),
   PronIndefQuant("PRON-INDEF-QUANT"),
+  PronIndefSubord("PRON-INDEF-SUBORD"),
   PronInterr("PRON-INTERR"),
+  PronOrdin("PRON-ORDIN"),
   PronPers("PRON-PERS"),
-  PronPersVariant("PRON-PERS-VARIANT"),
-  PronPersRefl("PRON-PERS-REFL"),
   PronPersEnclit("PRON-PERS-ENCLIT"),
   PronPersProclit("PRON-PERS-PROCLIT"),
   PronPersProclitRefl("PRON-PERS-PROCLIT-REFL"),
   PronPersProclitVariant("PRON-PERS-PROCLIT-VARIANT"),
+  PronPersRefl("PRON-PERS-REFL"),
+  PronPersVariant("PRON-PERS-VARIANT"),
   PronPoss("PRON-POSS"),
   PronRelat("PRON-RELAT"),
   PronRelatDouble("PRON-RELAT-DOUBLE"),
 
   Prep("PREP"),
-  PrepPoss("PREP-POSS"),
   PrepArt("PREPART"),
+  PrepPoss("PREP-POSS"),
 
   Postpos("POSTPOS"),
   PostposPoss("POSTPOS-POSS"),
 
   Interj("INTERJ"),
   Phras("PHRAS"),
-  PhrasExclam("PHRAS-EXCLAM"),
   PhrasAff("PHRAS-AFF"), // new
-  PhrasNeg("PHRAS-NEG"), // new
+  PhrasExclam("PHRAS-EXCLAM"),
   PhrasInterr("PHRAS-INTERR"), // new
+  PhrasNeg("PHRAS-NEG"), // new
   Punct("PUNCT"),
+
+  Verb("VERB"),
+  VerbModal("VERB-MODAL"),
+  VerbAux("VERB-AUX"),
 
   Date("DATE"),
   Hour("HOUR"),
