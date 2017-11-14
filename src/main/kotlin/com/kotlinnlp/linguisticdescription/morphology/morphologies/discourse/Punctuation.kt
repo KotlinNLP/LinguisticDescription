@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'punctuation' morphology.
  */
-class Punctuation : Discourse {
+class Punctuation : Morphology, Discourse {
 
   override val type: MorphologyType = MorphologyType.Punct
 }

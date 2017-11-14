@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'pronoun' morphology.
  */
-sealed class Pronoun : Thing {
+sealed class Pronoun : Morphology, Thing {
 
   /**
    * The 'pronoun' morphology.

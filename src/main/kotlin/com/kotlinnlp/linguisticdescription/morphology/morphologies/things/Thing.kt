@@ -7,9 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
-
 /**
- * The interface implemented by all morphologies of type 'thing'.
+ * Define a 'thing' object.
  */
-interface Thing : Morphology
+interface Thing

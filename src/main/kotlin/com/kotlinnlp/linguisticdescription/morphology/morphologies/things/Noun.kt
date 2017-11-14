@@ -9,11 +9,12 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'noun' morphology.
  */
-sealed class Noun : Thing, ContentWord {
+sealed class Noun : Morphology, Thing, ContentWord {
 
   /**
    * The 'noun' morphology.

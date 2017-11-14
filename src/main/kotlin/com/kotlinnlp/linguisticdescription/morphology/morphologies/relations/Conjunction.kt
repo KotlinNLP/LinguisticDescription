@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'conjunction' morphology.
  */
-sealed class Conjunction : Relation {
+sealed class Conjunction : Morphology, Relation {
 
   /**
    * The 'conjunction' morphology.

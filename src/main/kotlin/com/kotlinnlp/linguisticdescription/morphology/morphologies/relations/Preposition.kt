@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'preposition' morphology.
  */
-sealed class Preposition : Relation {
+sealed class Preposition : Morphology, Relation {
 
   /**
    * The 'preposition' morphology.

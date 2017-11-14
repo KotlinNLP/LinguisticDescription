@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'interjection' morphology.
  */
-class Interjection : Discourse {
+class Interjection : Morphology, Discourse {
 
   override val type: MorphologyType = MorphologyType.Interj
 }

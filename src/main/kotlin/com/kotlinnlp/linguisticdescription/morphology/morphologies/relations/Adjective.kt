@@ -9,11 +9,12 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'adjective' morphology.
  */
-sealed class Adjective : Relation {
+sealed class Adjective : Morphology, Relation {
 
   /**
    * The 'adjective' morphology.

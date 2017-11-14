@@ -7,9 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
-
 /**
- * The interface implemented by all morphologies of type 'relation'.
+ * Define a 'relation' object.
  */
-interface Relation : Morphology
+interface Relation

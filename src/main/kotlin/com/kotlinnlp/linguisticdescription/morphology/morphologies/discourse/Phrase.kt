@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'phrase' morphology.
  */
-sealed class Phrase : Discourse {
+sealed class Phrase : Morphology, Discourse {
 
   /**
    * The 'affirmative phrase' morphology.

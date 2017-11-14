@@ -9,11 +9,12 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'verb' morphology.
  */
-sealed class Verb : Relation, ContentWord {
+sealed class Verb : Morphology, Relation, ContentWord {
 
   /**
    * The 'verb' morphology.

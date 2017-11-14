@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'number' morphology.
  */
-class Number : Thing {
+class Number : Morphology, Thing {
 
   override val type: MorphologyType = MorphologyType.Num
 }

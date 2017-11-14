@@ -8,11 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'article' morphology.
  */
-sealed class Article : Thing {
+sealed class Article : Morphology, Thing {
 
   /**
    * The 'article' morphology.
