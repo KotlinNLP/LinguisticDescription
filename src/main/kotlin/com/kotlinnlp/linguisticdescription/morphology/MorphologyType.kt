@@ -15,6 +15,7 @@ package com.kotlinnlp.linguisticdescription.morphology
 enum class MorphologyType(val annotation: String) {
 
   Adj("ADJ"),
+  AdjCompar("ADJ-COMPAR"),
   AdjDeict("ADJ-DEITT"),
   AdjDemons("ADJ-DEMONS"),
   AdjDemonsAntec("ADJ-DEMONS-ANTEC"),
@@ -27,7 +28,6 @@ enum class MorphologyType(val annotation: String) {
   AdjInterr("ADJ-INTERR"),
   AdjPoss("ADJ-POSS"),
   AdjOrdin("ADJ-ORDIN"),
-  AdjCompar("ADJ-COMPAR"),
   AdjQualif("ADJ-QUALIF"),
   AdjQualifPost("ADJ-QUALIF-POST"),
   AdjRelat("ADJ-RELAT"),
