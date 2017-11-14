@@ -24,6 +24,14 @@ sealed class Adverb : Relation {
   }
 
   /**
+   * The 'adversative adverb' morphology.
+   */
+  class Adversative : Adverb() {
+
+    override val type: MorphologyType = MorphologyType.AdvAdvers
+  }
+
+  /**
    * The 'comparative adverb' morphology.
    */
   class Comparative : Adverb() {
