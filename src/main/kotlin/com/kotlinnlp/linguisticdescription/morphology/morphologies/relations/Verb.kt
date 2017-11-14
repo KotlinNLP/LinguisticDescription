@@ -11,30 +11,30 @@ import com.kotlinnlp.linguisticdescription.morphology.Label
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 
 /**
- * The 'non-finite verb' morphology.
+ * The 'verb' morphology.
  */
-sealed class NonFiniteVerb : Relation, ContentWord {
+sealed class Verb : Relation, ContentWord {
 
   /**
-   * The 'non-finite verb' morphology.
+   * The 'verb' morphology.
    */
-  class Verb : NonFiniteVerb() {
+  class Base : Verb() {
 
     override val label = Label.Verb
   }
 
   /**
-   * The 'modal non-finite verb' morphology.
+   * The 'modal verb' morphology.
    */
-  class Modal : NonFiniteVerb() {
+  class Modal : Verb() {
 
     override val label = Label.VerbModal
   }
 
   /**
-   * The 'auxiliary non-finite verb' morphology.
+   * The 'auxiliary verb' morphology.
    */
-  class Auxiliary : NonFiniteVerb() {
+  class Auxiliary : Verb() {
 
     override val label = Label.VerbAux
   }
