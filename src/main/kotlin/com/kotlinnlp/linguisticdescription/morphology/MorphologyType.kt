@@ -108,7 +108,6 @@ enum class MorphologyType(val annotation: String) {
   PostposPoss("POSTPOS-POSS"),
 
   Interj("INTERJ"),
-  Phras("PHRAS"),
   PhrasAff("PHRAS-AFF"), // new
   PhrasExclam("PHRAS-EXCLAM"),
   PhrasInterr("PHRAS-INTERR"), // new

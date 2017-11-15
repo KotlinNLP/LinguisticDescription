@@ -122,7 +122,6 @@ object MorphologyFactory {
     MorphologyType.PostposPoss to Postposition.Possessive::class,
 
     MorphologyType.Interj to Interjection::class,
-    MorphologyType.Phras to Phrase::class,
     MorphologyType.PhrasAff to Phrase.Affirmative::class,
     MorphologyType.PhrasExclam to Phrase.Exclamative::class,
     MorphologyType.PhrasInterr to Phrase.Interrogative::class,
