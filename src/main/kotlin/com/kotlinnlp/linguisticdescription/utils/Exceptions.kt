@@ -19,6 +19,6 @@ class MissingMorphologyProperty(propertyName: String) : RuntimeException(propert
 /**
  * Raised when trying to get a [MorphologyType] by invalid annotation.
  *
- * @param morphologyTypeName the annotation string of a [MorphologyType]
+ * @param typeAnnotation the annotation string of a [MorphologyType]
  */
-class InvalidMorphologyType(morphologyTypeName: String) : RuntimeException(morphologyTypeName)
+class InvalidMorphologyType(typeAnnotation: String) : RuntimeException(typeAnnotation)
