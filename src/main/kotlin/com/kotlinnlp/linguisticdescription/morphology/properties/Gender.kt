@@ -13,6 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
  * @property annotation the string used to annotate this property
  */
 enum class Gender(override val annotation: String) : MorphologyProperty {
+  Undefined("_"), // all verbs except participles
   Masculine("M"),
   Feminine("F"),
   Neuter("N")
