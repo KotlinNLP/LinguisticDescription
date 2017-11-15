@@ -143,13 +143,13 @@ object MorphologyFactory {
    * Create a new [Morphology] given its [properties].
    *
    * @param type the morphology type
-   * @param properties the map of property names to their values (unnecessary adding properties are ignored)
+   * @param properties the map of property names to their values (optional, unnecessary adding properties are ignored)
    *
    * @throws MissingMorphologyProperty when a required property is missing
    *
    * @return a new morphology
    */
-  operator fun invoke(type: MorphologyType, properties: Map<String, MorphologyProperty>): Morphology {
+  operator fun invoke(type: MorphologyType, properties: Map<String, MorphologyProperty> = mapOf()): Morphology {
 
     val kClass: KClass<*> = morphologyClasses[type]!!
     val constructor: KFunction<Any> = kClass.constructors.last()
