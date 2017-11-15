@@ -13,6 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
  * @property annotation the string used to annotate this property
  */
 enum class Degree(override val annotation: String) : MorphologyProperty {
+  Base("BASE"),
   Positive("POS"),
   Superlative("SUPER"),
   Comparative("COMPAR"),
