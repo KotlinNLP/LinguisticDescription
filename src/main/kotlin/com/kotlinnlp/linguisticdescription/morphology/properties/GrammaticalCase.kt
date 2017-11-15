@@ -19,5 +19,6 @@ enum class GrammaticalCase(override val annotation: String) : MorphologyProperty
   Vocative("VOC"),
   Partitive("PART"),
   Locative("LOC"),
-  Neuter("NEUT")
+  Neuter("NEUT"),
+  Empty("EMPTY")
 }
