@@ -7,11 +7,11 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import com.beust.klaxon.array
-import com.beust.klaxon.string
+import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
+import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
+import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
 import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -23,15 +23,32 @@ import java.io.InputStream
 class MorphologyDictionary {
 
   /**
+   *
+   */
+  enum class MorphologyEntryType { Single, Multiple }
+
+  /**
+   * The morphology entry.
+   * If [type] is [MorphologyEntryType.Single] the list contains only one morphology, otherwise more.
+   */
+  data class MorphologyEntry(
+    val type: MorphologyEntryType,
+    val list: List<Morphology>)
+
+  /**
    * A data entry of the morphology map.
    */
   data class Entry(
     val form: String,
     val multipleForm: List<String>?,
-    val morphologies: MutableList<Morphology>
-  )
+    val morphologies: MutableList<MorphologyEntry>)
 
   companion object {
+
+    /**
+     * The map of morphology types associated by annotation.
+     */
+    private val annotationsMap: Map<String, MorphologyType> = MorphologyType.values().associateBy { it.annotation }
 
     /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
@@ -60,7 +77,9 @@ class MorphologyDictionary {
     }
 
     /**
+     * @param entryObj the JsonObject of a input file entry
      *
+     * @return the list of forms of the given entry
      */
     private fun getForms(entryObj: JsonObject): List<String> = try {
 
@@ -72,10 +91,27 @@ class MorphologyDictionary {
     }
 
     /**
+     * @param entryObj the JsonObject of a input file entry
      *
+     * @throws InvalidMorphologyType when the [entryObj] contains an invalid type annotation
+     *
+     * @return the list of morphologies of the given entry
      */
     private fun getMorphologies(entryObj: JsonObject): List<Morphology> {
-      TODO("not implemented")
+
+      return entryObj.array<JsonObject>("morpho")!!.map {
+
+        val typeAnnotation: String = it.string("type")!!
+
+        if (typeAnnotation !in this.annotationsMap) throw InvalidMorphologyType(typeAnnotation)
+
+        MorphologyFactory(
+          type = this.annotationsMap[typeAnnotation]!!,
+          properties = it.obj("properties")!!.filter { it.value != null && it.key != "lemma" }.mapValues {
+            MorphologyPropertyFactory(propertyType = it.key, valueAnnotation = it.value as String)
+          }
+        )
+      }
     }
 
     /**
@@ -111,7 +147,7 @@ class MorphologyDictionary {
   /**
    * The map of forms to [Entry] objects.
    */
-  private val morphologyMap = mutableMapOf<String, Entry>()
+  private val morphologyMap = mutableMapOf<String, MorphologyDictionary.Entry>()
 
   /**
    * Add a new entry to the morphology map or add new [morphologies] to it if already present.
@@ -121,29 +157,41 @@ class MorphologyDictionary {
    */
   private fun addEntry(forms: List<String>, morphologies: List<Morphology>) {
 
-    val uniqueForm: String = forms.joinToString(" ")
+    val uniqueForm: String = forms.joinToString { " " }
 
     if (uniqueForm !in this.morphologyMap) {
 
       this.morphologyMap[uniqueForm] = Entry(
         form = uniqueForm,
         multipleForm = if (forms.size > 1) forms else null,
-        morphologies = morphologies.toMutableList())
+        morphologies = mutableListOf(this.buildMorphologyEntry(morphologies))
+      )
 
     } else {
-
-      this.addMorphologies(form = uniqueForm, morphologies = morphologies)
+      this.addMorphology(form = uniqueForm, morphologyEntry = this.buildMorphologyEntry(morphologies))
     }
   }
 
   /**
-   * Add the given [morphologies] to the entry with the given [form].
+   * Build a [MorphologyEntry] given a list of [Morphology].
+   *
+   * @param morphologies the list of morphologies
+   *
+   * @return a new morphology entry
+   */
+  private fun buildMorphologyEntry(morphologies: List<Morphology>) = MorphologyEntry(
+    type = if (morphologies.size == 1) MorphologyEntryType.Single else MorphologyEntryType.Multiple,
+    list = morphologies
+  )
+
+  /**
+   * Add the given [morphologyEntry] to the entry with the given [form].
    *
    * @param form a form
-   * @param morphologies the list of morphologies to add
+   * @param morphologyEntry the morphology entry to add
    */
-  private fun addMorphologies(form: String, morphologies: List<Morphology>) {
+  private fun addMorphology(form: String, morphologyEntry: MorphologyEntry) {
 
-    this.morphologyMap[form]!!.morphologies.addAll(morphologies)
+    this.morphologyMap[form]!!.morphologies.add(morphologyEntry)
   }
 }
