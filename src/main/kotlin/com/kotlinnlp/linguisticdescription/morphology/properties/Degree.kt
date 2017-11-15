@@ -15,5 +15,9 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
 enum class Degree(override val annotation: String) : MorphologyProperty {
   Positive("POS"),
   Superlative("SUPER"),
-  Comparative("COMPAR")
+  Comparative("COMPAR"),
+  Diminutive("DIM"),
+  Augmentative("AUG"),
+  Endearment("END"),
+  Pejorative("PEJ")
 }
