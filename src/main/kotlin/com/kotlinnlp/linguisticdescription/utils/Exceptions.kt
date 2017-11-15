@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.utils
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 
 /**
  * Raised when trying to create a Morphology without passing all required parameters.
@@ -22,3 +23,17 @@ class MissingMorphologyProperty(propertyName: String) : RuntimeException(propert
  * @param typeAnnotation the annotation string of a [MorphologyType]
  */
 class InvalidMorphologyType(typeAnnotation: String) : RuntimeException(typeAnnotation)
+
+/**
+ * Raised when trying to get a [MorphologyProperty] by invalid type.
+ *
+ * @param propertyType the type string of a [MorphologyProperty]
+ */
+class InvalidMorphologyPropertyType(propertyType: String) : RuntimeException(propertyType)
+
+/**
+ * Raised when trying to get a [MorphologyProperty] by invalid annotation.
+ *
+ * @param propertyAnnotation the annotation string of a [MorphologyProperty]
+ */
+class InvalidMorphologyPropertyAnnotation(propertyAnnotation: String) : RuntimeException(propertyAnnotation)
