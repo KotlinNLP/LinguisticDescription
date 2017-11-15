@@ -13,6 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
  * @property annotation the string used to annotate this property
  */
 enum class Person(override val annotation: String) : MorphologyProperty {
+  Undefined("_"), // Base, Infinite and Gerund verbs
   First("1"),
   Second("2"),
   Third("3")
