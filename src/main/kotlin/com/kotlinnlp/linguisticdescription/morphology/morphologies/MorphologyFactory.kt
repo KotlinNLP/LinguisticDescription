@@ -10,16 +10,16 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.*
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.utils.MissingMorphologyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter
 
 /**
- * The factory of a new Morphology.
+ * The factory of a new [Morphology].
  */
 object MorphologyFactory {
 
@@ -147,7 +147,7 @@ object MorphologyFactory {
    *
    * @throws MissingMorphologyProperty when a required property is missing
    *
-   * @return a new Morphology
+   * @return a new morphology
    */
   operator fun invoke(type: MorphologyType, properties: Map<String, MorphologyProperty>): Morphology {
 
