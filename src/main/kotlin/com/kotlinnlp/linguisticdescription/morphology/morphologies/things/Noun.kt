@@ -11,16 +11,34 @@ import com.kotlinnlp.linguisticdescription.Thing
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.properties.*
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number
+import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
+
+private typealias PersonProperty = Person // avoid ambiguity with Noun.Person
 
 /**
  * The 'noun' morphology.
+ *
+ * @property gender the 'gender' morphology property
+ * @property number the 'number' morphology property
+ * @property person the 'person' morphology property
+ * @property case the 'grammatical case' morphology property
+ * @property degree the 'degree' morphology property
  */
-sealed class Noun : Morphology, Thing, ContentWord {
+sealed class Noun(
+  override val gender: Gender,
+  override val number: Number,
+  override val person: Person,
+  override val case: GrammaticalCase,
+  override val degree: Degree
+) : Morphology, Thing, ContentWord, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'noun' morphology.
    */
-  class Base : Noun() {
+  class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
 
     override val type: MorphologyType = MorphologyType.Noun
   }
@@ -28,12 +46,14 @@ sealed class Noun : Morphology, Thing, ContentWord {
   /**
    * The 'common noun' morphology.
    */
-  sealed class Common : Noun() {
+  sealed class Common(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
 
     /**
      * The 'common noun' morphology.
      */
-    class Base : Noun.Common() {
+    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommon
     }
@@ -41,7 +61,8 @@ sealed class Noun : Morphology, Thing, ContentWord {
     /**
      * The 'common quantifying noun' morphology.
      */
-    class Quantifying : Noun.Common() {
+    class Quantifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommonQuant
     }
@@ -49,7 +70,8 @@ sealed class Noun : Morphology, Thing, ContentWord {
     /**
      * The 'common gerundive noun' morphology.
      */
-    class Gerundive : Noun.Common() {
+    class Gerundive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommonGerund
     }
@@ -58,12 +80,14 @@ sealed class Noun : Morphology, Thing, ContentWord {
   /**
    * The 'proper noun' morphology.
    */
-  sealed class Proper : Noun() {
+  sealed class Proper(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
+    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
 
     /**
      * The 'proper noun' morphology.
      */
-    class Base : Noun.Proper() {
+    class Base(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
+      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounProper
     }
@@ -71,7 +95,8 @@ sealed class Noun : Morphology, Thing, ContentWord {
     /**
      * The 'person proper noun' morphology.
      */
-    class Person : Noun.Proper() {
+    class Person(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
+      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperPer
     }
@@ -79,7 +104,8 @@ sealed class Noun : Morphology, Thing, ContentWord {
     /**
      * The 'organization proper noun' morphology.
      */
-    class Organization : Noun.Proper() {
+    class Organization(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
+      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperOrg
     }
@@ -87,7 +113,8 @@ sealed class Noun : Morphology, Thing, ContentWord {
     /**
      * The 'location proper noun' morphology.
      */
-    class Location : Noun.Proper() {
+    class Location(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
+      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperLoc
     }

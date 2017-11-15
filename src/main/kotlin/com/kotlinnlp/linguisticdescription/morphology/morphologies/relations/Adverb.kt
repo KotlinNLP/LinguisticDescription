@@ -11,16 +11,20 @@ import com.kotlinnlp.linguisticdescription.Relation
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.properties.*
+import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Gradable
 
 /**
  * The 'adverb' morphology.
+ *
+ * @property degree the 'degree' morphology property
  */
-sealed class Adverb : Morphology, Relation {
+sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradable {
 
   /**
    * The 'modal adverb' morphology.
    */
-  class Modal : Adverb(), ContentWord {
+  class Modal(degree: Degree) : Adverb(degree = degree), ContentWord {
 
     override val type: MorphologyType = MorphologyType.AdvModal
   }
@@ -28,7 +32,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'adversative adverb' morphology.
    */
-  class Adversative : Adverb() {
+  class Adversative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvAdvers
   }
@@ -36,7 +40,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'comparative adverb' morphology.
    */
-  class Comparative : Adverb() {
+  class Comparative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvCompar
   }
@@ -44,7 +48,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'indefinite adverb' morphology.
    */
-  class Indefinite : Adverb() {
+  class Indefinite(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvIndef
   }
@@ -52,7 +56,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'indefinite subordinating adverb' morphology.
    */
-  class IndefiniteSubordinating : Adverb() {
+  class IndefiniteSubordinating(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvIndefSubord
   }
@@ -60,7 +64,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'interrogative adverb' morphology.
    */
-  class Interrogative : Adverb() {
+  class Interrogative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvInterr
   }
@@ -68,7 +72,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'limiting adverb' morphology.
    */
-  class Limiting : Adverb() {
+  class Limiting(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvLimit
   }
@@ -76,7 +80,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'locative adverb' morphology.
    */
-  class Locative : Adverb() {
+  class Locative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvLoc
   }
@@ -84,7 +88,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'negative adverb' morphology.
    */
-  class Negative : Adverb() {
+  class Negative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvNeg
   }
@@ -92,7 +96,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'adverbial phrase' morphology.
    */
-  class Phrase : Adverb() {
+  class Phrase(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvPhras
   }
@@ -100,7 +104,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'quantitative adverb' morphology.
    */
-  class Quantitative : Adverb() {
+  class Quantitative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvQuant
   }
@@ -108,12 +112,12 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'strength adverb' morphology.
    */
-  sealed class Strength : Adverb() {
+  sealed class Strength(degree: Degree) : Adverb(degree = degree) {
 
     /**
      * The 'strength adverb' morphology.
      */
-    class Base : Strength() {
+    class Base(degree: Degree) : Adverb.Strength(degree = degree) {
 
       override val type: MorphologyType = MorphologyType.AdvStreng
     }
@@ -121,7 +125,7 @@ sealed class Adverb : Morphology, Relation {
     /**
      * The 'negative strength adverb' morphology.
      */
-    class Negative : Strength() {
+    class Negative(degree: Degree) : Adverb.Strength(degree = degree) {
 
       override val type: MorphologyType = MorphologyType.AdvStrengNeg
     }
@@ -130,7 +134,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'time adverb' morphology.
    */
-  class Time : Adverb() {
+  class Time(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvTime
   }
@@ -138,7 +142,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'concessive adverb' morphology.
    */
-  class Concessive : Adverb() {
+  class Concessive(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvConcess
   }
@@ -146,7 +150,7 @@ sealed class Adverb : Morphology, Relation {
   /**
    * The 'deictic adverb' morphology.
    */
-  class Deictic : Adverb() {
+  class Deictic(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvDeict
   }
