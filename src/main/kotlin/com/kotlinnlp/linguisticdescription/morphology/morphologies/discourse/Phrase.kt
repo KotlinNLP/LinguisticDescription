@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'phrase' morphology.
  */
-sealed class Phrase : Morphology, Discourse {
+sealed class Phrase : Morphology(), Discourse {
 
   /**
    * The 'affirmative phrase' morphology.

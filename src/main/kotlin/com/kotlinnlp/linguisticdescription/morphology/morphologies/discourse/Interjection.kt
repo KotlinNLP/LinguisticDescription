@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'interjection' morphology.
  */
-class Interjection : Morphology, Discourse {
+class Interjection : Morphology(), Discourse {
 
   override val type: MorphologyType = MorphologyType.Interj
 }

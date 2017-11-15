@@ -28,7 +28,7 @@ sealed class Article(
   override val gender: Gender,
   override val number: Number,
   override val case: GrammaticalCase
-) : Morphology, Thing, Genderable, Numerable, CaseDeclinable {
+) : Morphology(), Thing, Genderable, Numerable, CaseDeclinable {
 
   /**
    * The 'article' morphology.

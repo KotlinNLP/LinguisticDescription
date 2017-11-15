@@ -33,7 +33,7 @@ sealed class Verb(
   override val gender: Gender,
   override val number: Number,
   override val person: Person
-) : Morphology, Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
+) : Morphology(), Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
 
   /**
    * The 'verb' morphology.

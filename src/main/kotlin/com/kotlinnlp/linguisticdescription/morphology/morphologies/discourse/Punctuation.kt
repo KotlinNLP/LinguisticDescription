@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'punctuation' morphology.
  */
-class Punctuation : Morphology, Discourse {
+class Punctuation : Morphology(), Discourse {
 
   override val type: MorphologyType = MorphologyType.Punct
 }

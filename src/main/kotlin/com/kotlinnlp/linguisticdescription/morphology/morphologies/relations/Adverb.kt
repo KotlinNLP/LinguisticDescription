@@ -19,7 +19,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Grad
  *
  * @property degree the 'degree' morphology property
  */
-sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradable {
+sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Gradable {
 
   /**
    * The 'adversative adverb' morphology.

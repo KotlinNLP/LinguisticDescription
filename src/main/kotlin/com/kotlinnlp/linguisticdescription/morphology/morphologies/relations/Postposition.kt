@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'postposition' morphology.
  */
-sealed class Postposition : Morphology, Relation {
+sealed class Postposition : Morphology(), Relation {
 
   /**
    * The 'postposition' morphology.

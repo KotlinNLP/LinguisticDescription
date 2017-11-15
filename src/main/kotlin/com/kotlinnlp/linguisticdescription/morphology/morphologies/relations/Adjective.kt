@@ -30,7 +30,7 @@ sealed class Adjective(
   override val person: Person,
   override val case: GrammaticalCase,
   override val degree: Degree
-) : Morphology, Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
+) : Morphology(), Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'adjective' morphology.

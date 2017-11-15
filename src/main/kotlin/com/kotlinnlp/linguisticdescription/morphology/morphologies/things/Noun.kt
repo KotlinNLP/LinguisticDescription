@@ -32,7 +32,7 @@ sealed class Noun(
   override val person: Person,
   override val case: GrammaticalCase,
   override val degree: Degree
-) : Morphology, Thing, ContentWord, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
+) : Morphology(), Thing, ContentWord, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'noun' morphology.

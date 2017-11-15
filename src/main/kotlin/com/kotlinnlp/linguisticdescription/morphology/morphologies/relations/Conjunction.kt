@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'conjunction' morphology.
  */
-sealed class Conjunction : Morphology, Relation {
+sealed class Conjunction : Morphology(), Relation {
 
   /**
    * The 'conjunction' morphology.

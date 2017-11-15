@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'date' morphology.
  */
-class Date : Morphology, Thing {
+class Date : Morphology(), Thing {
 
   override val type: MorphologyType = MorphologyType.Date
 }

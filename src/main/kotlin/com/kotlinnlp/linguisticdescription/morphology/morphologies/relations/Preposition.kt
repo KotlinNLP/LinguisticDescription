@@ -20,7 +20,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'preposition' morphology.
  */
-sealed class Preposition : Morphology, Relation {
+sealed class Preposition : Morphology(), Relation {
 
   /**
    * The 'preposition' morphology.

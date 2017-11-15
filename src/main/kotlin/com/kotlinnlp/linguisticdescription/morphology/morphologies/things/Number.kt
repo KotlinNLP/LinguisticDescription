@@ -24,7 +24,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 class Number(
   override val gender: Gender,
   override val number: Number
-) : Morphology, Thing, Genderable, Numerable {
+) : Morphology(), Thing, Genderable, Numerable {
 
   override val type: MorphologyType = MorphologyType.Num
 }

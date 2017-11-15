@@ -30,7 +30,7 @@ class Predeterminer(
   override val number: Number,
   override val person: Person,
   override val case: GrammaticalCase
-) : Morphology, Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
+) : Morphology(), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
 
   override val type: MorphologyType = MorphologyType.Predet
 }

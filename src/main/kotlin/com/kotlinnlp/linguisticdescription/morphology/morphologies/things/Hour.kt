@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 /**
  * The 'hour' morphology.
  */
-class Hour : Morphology, Thing {
+class Hour : Morphology(), Thing {
 
   override val type: MorphologyType = MorphologyType.Hour
 }
