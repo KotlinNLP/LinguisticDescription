@@ -13,7 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
  * @property annotation the string used to annotate this property
  */
 enum class GrammaticalCase(override val annotation: String) : MorphologyProperty {
-  Subject("OBJ"),
+  Subject("SUBJ"),
   Object("OBJ"),
   IndirectObject("IOBJ"),
   Vocative("VOC"),
