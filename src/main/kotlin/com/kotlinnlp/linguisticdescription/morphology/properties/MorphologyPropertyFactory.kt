@@ -7,13 +7,16 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
+import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyAnnotation
+import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyType
+
 /**
  * The factory of a new [MorphologyProperty].
  */
 object MorphologyPropertyFactory {
 
   /**
-   * The map of morphology properties labels to maps of annotations to morphology properties.
+   * The map of morphology properties types to maps of annotations to morphology properties.
    */
   private val propertiesMap = mapOf<String, Map<String, MorphologyProperty>>(
     "mood" to Mood.values().associateBy { it.annotation },
@@ -26,13 +29,24 @@ object MorphologyPropertyFactory {
   )
 
   /**
-   * Create a new [MorphologyProperty] given its label and value annotation as strings.
+   * Create a new [MorphologyProperty] given its type and value annotation as strings.
    *
-   * @param label the morphology property label (gender, number, etc...)
+   * @param propertyType the morphology property type (gender, number, etc...)
    * @param valueAnnotation the annotation string of the value
+   *
+   * @throws InvalidMorphologyPropertyType when the [propertyType] is not valid
+   * @throws InvalidMorphologyPropertyAnnotation when the [valueAnnotation] for the given [propertyType] is not valid
    *
    * @return a new morphology property
    */
-  operator fun invoke(label: String, valueAnnotation: String): MorphologyProperty
-    = propertiesMap[label]!![valueAnnotation]!!
+  operator fun invoke(propertyType: String, valueAnnotation: String): MorphologyProperty {
+
+    if (propertyType !in propertiesMap) throw InvalidMorphologyPropertyType(propertyType)
+
+    val valuesMap: Map<String, MorphologyProperty> = propertiesMap[propertyType]!!
+
+    if (valueAnnotation !in valuesMap) throw InvalidMorphologyPropertyAnnotation(valueAnnotation)
+
+    return valuesMap[valueAnnotation]!!
+  }
 }
