@@ -143,7 +143,7 @@ object MorphologyFactory {
    * Create a new [Morphology] given its [properties].
    *
    * @param type the morphology type
-   * @param properties the map of property names to their values
+   * @param properties the map of property names to their values (unnecessary adding properties are ignored)
    *
    * @throws MissingMorphologyProperty when a required property is missing
    *
