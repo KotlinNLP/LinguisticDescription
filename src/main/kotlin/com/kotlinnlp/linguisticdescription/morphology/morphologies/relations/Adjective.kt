@@ -42,6 +42,24 @@ sealed class Adjective(
   }
 
   /**
+   * The 'comparative adjective' morphology.
+   */
+  class Comparative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+
+    override val type: MorphologyType = MorphologyType.AdjCompar
+  }
+
+  /**
+   * The 'deictic adjective' morphology.
+   */
+  class Deictic(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+
+    override val type: MorphologyType = MorphologyType.AdjDeict
+  }
+
+  /**
    * The 'demonstrative adjective' morphology.
    */
   sealed class Demonstrative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
@@ -73,40 +91,6 @@ sealed class Adjective(
 
       override val type: MorphologyType = MorphologyType.AdjDemonsSucc
     }
-  }
-
-  /**
-   * The 'qualifying adjective' morphology.
-   */
-  sealed class Qualifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree), ContentWord {
-
-    /**
-     * The 'qualifying adjective' morphology.
-     */
-    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
-
-      override val type: MorphologyType = MorphologyType.AdjQualif
-    }
-
-    /**
-     * The 'postpositive qualifying adjective' morphology.
-     */
-    class Postpositive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
-
-      override val type: MorphologyType = MorphologyType.AdjQualifPost
-    }
-  }
-
-  /**
-   * The 'relative adjective' morphology.
-   */
-  class Relative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
-
-    override val type: MorphologyType = MorphologyType.AdjRelat
   }
 
   /**
@@ -171,15 +155,6 @@ sealed class Adjective(
   }
 
   /**
-   * The 'possessive adjective' morphology.
-   */
-  class Possessive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
-
-    override val type: MorphologyType = MorphologyType.AdjPoss
-  }
-
-  /**
    * The 'ordinal adjective' morphology.
    */
   class Ordinal(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
@@ -189,20 +164,45 @@ sealed class Adjective(
   }
 
   /**
-   * The 'comparative adjective' morphology.
+   * The 'possessive adjective' morphology.
    */
-  class Comparative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+  class Possessive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
     : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjCompar
+    override val type: MorphologyType = MorphologyType.AdjPoss
   }
 
   /**
-   * The 'deictic adjective' morphology.
+   * The 'qualifying adjective' morphology.
    */
-  class Deictic(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+  sealed class Qualifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree), ContentWord {
+
+    /**
+     * The 'qualifying adjective' morphology.
+     */
+    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
+
+      override val type: MorphologyType = MorphologyType.AdjQualif
+    }
+
+    /**
+     * The 'postpositive qualifying adjective' morphology.
+     */
+    class Postpositive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
+
+      override val type: MorphologyType = MorphologyType.AdjQualifPost
+    }
+  }
+
+  /**
+   * The 'relative adjective' morphology.
+   */
+  class Relative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
     : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjDeict
+    override val type: MorphologyType = MorphologyType.AdjRelat
   }
 }

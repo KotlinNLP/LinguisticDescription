@@ -22,14 +22,6 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Grad
 sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradable {
 
   /**
-   * The 'modal adverb' morphology.
-   */
-  class Modal(degree: Degree) : Adverb(degree = degree), ContentWord {
-
-    override val type: MorphologyType = MorphologyType.AdvModal
-  }
-
-  /**
    * The 'adversative adverb' morphology.
    */
   class Adversative(degree: Degree) : Adverb(degree = degree) {
@@ -43,6 +35,22 @@ sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradabl
   class Comparative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvCompar
+  }
+
+  /**
+   * The 'concessive adverb' morphology.
+   */
+  class Concessive(degree: Degree) : Adverb(degree = degree) {
+
+    override val type: MorphologyType = MorphologyType.AdvConcess
+  }
+
+  /**
+   * The 'deictic adverb' morphology.
+   */
+  class Deictic(degree: Degree) : Adverb(degree = degree) {
+
+    override val type: MorphologyType = MorphologyType.AdvDeict
   }
 
   /**
@@ -83,6 +91,14 @@ sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradabl
   class Locative(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvLoc
+  }
+
+  /**
+   * The 'modal adverb' morphology.
+   */
+  class Modal(degree: Degree) : Adverb(degree = degree), ContentWord {
+
+    override val type: MorphologyType = MorphologyType.AdvModal
   }
 
   /**
@@ -137,21 +153,5 @@ sealed class Adverb(override val degree: Degree) : Morphology, Relation, Gradabl
   class Time(degree: Degree) : Adverb(degree = degree) {
 
     override val type: MorphologyType = MorphologyType.AdvTime
-  }
-
-  /**
-   * The 'concessive adverb' morphology.
-   */
-  class Concessive(degree: Degree) : Adverb(degree = degree) {
-
-    override val type: MorphologyType = MorphologyType.AdvConcess
-  }
-
-  /**
-   * The 'deictic adverb' morphology.
-   */
-  class Deictic(degree: Degree) : Adverb(degree = degree) {
-
-    override val type: MorphologyType = MorphologyType.AdvDeict
   }
 }

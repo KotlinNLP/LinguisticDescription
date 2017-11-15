@@ -25,11 +25,11 @@ sealed class Phrase : Morphology, Discourse {
   }
 
   /**
-   * The 'negative phrase' morphology.
+   * The 'exclamative phrase' morphology.
    */
-  class Negative : Phrase() {
+  class Exclamative : Phrase() {
 
-    override val type: MorphologyType = MorphologyType.PhrasNeg
+    override val type: MorphologyType = MorphologyType.PhrasExclam
   }
 
   /**
@@ -41,10 +41,10 @@ sealed class Phrase : Morphology, Discourse {
   }
 
   /**
-   * The 'exclamative phrase' morphology.
+   * The 'negative phrase' morphology.
    */
-  class Exclamative : Phrase() {
+  class Negative : Phrase() {
 
-    override val type: MorphologyType = MorphologyType.PhrasExclam
+    override val type: MorphologyType = MorphologyType.PhrasNeg
   }
 }

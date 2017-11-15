@@ -39,30 +39,21 @@ sealed class Pronoun(
   }
 
   /**
-   * The 'exclamative pronoun' morphology.
-   */
-  class Exclamative(gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-    : Pronoun(gender, number, person, case) {
-
-    override val type: MorphologyType = MorphologyType.PronExclam
-  }
-
-  /**
-   * The 'ordinal pronoun' morphology.
-   */
-  class Ordinal(gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-    : Pronoun(gender, number, person, case) {
-
-    override val type: MorphologyType = MorphologyType.PronOrdin
-  }
-
-  /**
    * The 'demonstrative pronoun' morphology.
    */
   class Demonstrative(gender: Gender, number: Number, person: Person, case: GrammaticalCase)
     : Pronoun(gender, number, person, case) {
 
     override val type: MorphologyType = MorphologyType.PronDemons
+  }
+
+  /**
+   * The 'exclamative pronoun' morphology.
+   */
+  class Exclamative(gender: Gender, number: Number, person: Person, case: GrammaticalCase)
+    : Pronoun(gender, number, person, case) {
+
+    override val type: MorphologyType = MorphologyType.PronExclam
   }
 
   /**
@@ -115,6 +106,15 @@ sealed class Pronoun(
     : Pronoun(gender, number, person, case) {
 
     override val type: MorphologyType = MorphologyType.PronInterr
+  }
+
+  /**
+   * The 'ordinal pronoun' morphology.
+   */
+  class Ordinal(gender: Gender, number: Number, person: Person, case: GrammaticalCase)
+    : Pronoun(gender, number, person, case) {
+
+    override val type: MorphologyType = MorphologyType.PronOrdin
   }
 
   /**

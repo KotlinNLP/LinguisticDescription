@@ -31,14 +31,6 @@ sealed class Preposition : Morphology, Relation {
   }
 
   /**
-   * The 'possessive preposition' morphology.
-   */
-  class Possessive : Preposition() {
-
-    override val type: MorphologyType = MorphologyType.PrepPoss
-  }
-
-  /**
    * The 'articulated preposition' morphology.
    *
    * @property gender the 'gender' morphology property
@@ -52,5 +44,13 @@ sealed class Preposition : Morphology, Relation {
   ) : Preposition(), Genderable, Numerable, CaseDeclinable {
 
     override val type: MorphologyType = MorphologyType.PrepArt
+  }
+
+  /**
+   * The 'possessive preposition' morphology.
+   */
+  class Possessive : Preposition() {
+
+    override val type: MorphologyType = MorphologyType.PrepPoss
   }
 }
