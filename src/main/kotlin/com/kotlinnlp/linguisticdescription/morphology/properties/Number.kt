@@ -13,6 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
  * @property annotation the string used to annotate this property
  */
 enum class Number(override val annotation: String) : MorphologyProperty {
+  Undefined("_"), // Base, Infinite and Gerund verbs
   Singular("SING"),
   Plural("PL"),
   Dual("DUAL")
