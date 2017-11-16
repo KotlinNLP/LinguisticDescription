@@ -13,9 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFac
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
 import com.kotlinnlp.progressindicator.ProgressIndicatorBar
-import java.io.ByteArrayInputStream
-import java.io.File
-import java.io.InputStream
+import java.io.*
 
 /**
  * The dictionary of morphologies that maps forms to morphologies.
@@ -60,15 +58,17 @@ class MorphologyDictionary {
      */
     fun load(filename: String, verbose: Boolean = true): MorphologyDictionary {
 
-      val file = File(filename)
       val dictionary = MorphologyDictionary()
+
+      val file = File(filename)
+      val jsonParser = Parser()
       val progress = ProgressIndicatorBar(file.getNumOfLines())
 
       file.forEachLine { line ->
 
         if (verbose) progress.tick()
 
-        val entryObj = Parser().parse(line.toInputStream()) as JsonObject
+        val entryObj = jsonParser.parse(line.toInputStream()) as JsonObject
 
         dictionary.addEntry(forms = getForms(entryObj), morphologies = getMorphologies(entryObj))
       }
@@ -126,7 +126,7 @@ class MorphologyDictionary {
 
       var count = 0
 
-      this.reader().forEachLine { count++ }
+      this.forEachLine { count++ }
 
       return count
     }
