@@ -157,7 +157,7 @@ class MorphologyDictionary {
    */
   private fun addEntry(forms: List<String>, morphologies: List<Morphology>) {
 
-    val uniqueForm: String = forms.joinToString { " " }
+    val uniqueForm: String = forms.joinToString(separator = " ")
 
     if (uniqueForm !in this.morphologyMap) {
 
