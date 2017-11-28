@@ -9,11 +9,18 @@
     <version>0.1.0</version>
 
     <properties>
-        <kotlin.version>1.1.51</kotlin.version>
+        <kotlin.version>1.1.60</kotlin.version>
         <spek.version>1.1.4</spek.version>
         <klaxon.version>0.30</klaxon.version>
         <progressindicator.version>0.1.0</progressindicator.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
