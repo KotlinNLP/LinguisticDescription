@@ -2,17 +2,65 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kotlinnlp</groupId>
     <artifactId>linguisticdescription</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>
+        LinguisticDescription is a Kotlin library designed to support linguistic annotations over morphological,
+        syntactic and semantic levels.
+    </description>
+    <url>http://github.com/kotlinnlp/linguisticdescription</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/kotlinnlp/linguisticdescription.git</connection>
+        <developerConnection>scm:git:ssh://github.com:kotlinnlp/linguisticdescription.git</developerConnection>
+        <url>http://github.com/kotlinnlp/linguisticdescription/tree/master</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>KotlinNLP Authors</name>
+            <email>github@kotlinnlp.com</email>
+            <organization>KotlinNLP</organization>
+            <organizationUrl>http://www.kotlinnlp.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <nexus-staging-plugin.version>1.6.7</nexus-staging-plugin.version>
+        <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
+        <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <kotlin.version>1.1.60</kotlin.version>
         <spek.version>1.1.4</spek.version>
+        <dokka.version>0.9.13</dokka.version>
         <klaxon.version>0.30</klaxon.version>
-        <progressindicator.version>0.1.0</progressindicator.version>
+        <progressindicator.version>1.0.0</progressindicator.version>
     </properties>
 
     <repositories>
@@ -21,6 +69,15 @@
             <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
@@ -41,6 +98,68 @@
                     <execution>
                         <id>test-compile</id>
                         <goals> <goal>test-compile</goal> </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jetbrains.dokka</groupId>
+                <artifactId>dokka-maven-plugin</artifactId>
+                <version>${dokka.version}</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>dokka</goal>
+                            <goal>javadoc</goal>
+                            <goal>javadocJar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <file>packages.md</file>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
