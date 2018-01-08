@@ -5,6 +5,20 @@ semantic levels.
 
 LinguisticDescription is part of [KotlinNLP](http://kotlinnlp.com/ "KotlinNLP").
 
+
+## Getting Started
+
+### Import with Maven
+
+```xml
+<dependency>
+    <groupId>com.kotlinnlp</groupId>
+    <artifactId>linguisticdescription</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+
 ## License
 
 This software is released under the terms of the 
