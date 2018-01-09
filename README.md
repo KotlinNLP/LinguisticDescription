@@ -1,4 +1,4 @@
-# LinguisticDescription
+# LinguisticDescription [![GitHub version](https://badge.fury.io/gh/KotlinNLP%2FLinguisticDescription.svg)](https://badge.fury.io/gh/KotlinNLP%2FLinguisticDescription) [![Build Status](https://travis-ci.org/KotlinNLP/LinguisticDescription.svg?branch=master)](https://travis-ci.org/KotlinNLP/LinguisticDescription)
 
 LinguisticDescription is a Kotlin library designed to support linguistic annotations over morphological, syntactic and 
 semantic levels. 
