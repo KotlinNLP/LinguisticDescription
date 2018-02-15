@@ -29,7 +29,7 @@ object MorphologyPropertyFactory {
   )
 
   /**
-   * Create a new [MorphologyProperty] given its type and value annotation as strings.
+   * Build a [MorphologyProperty] given its type and value annotation as strings.
    *
    * @param propertyType the morphology property type (gender, number, etc...)
    * @param valueAnnotation the annotation string of the value
@@ -37,7 +37,7 @@ object MorphologyPropertyFactory {
    * @throws InvalidMorphologyPropertyType when the [propertyType] is not valid
    * @throws InvalidMorphologyPropertyAnnotation when the [valueAnnotation] for the given [propertyType] is not valid
    *
-   * @return a new morphology property
+   * @return a morphology property
    */
   operator fun invoke(propertyType: String, valueAnnotation: String): MorphologyProperty {
 
