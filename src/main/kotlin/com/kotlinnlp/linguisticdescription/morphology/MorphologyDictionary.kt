@@ -100,17 +100,18 @@ class MorphologyDictionary {
      */
     private fun getMorphologies(entryObj: JsonObject): List<Morphology> {
 
-      return entryObj.array<JsonObject>("morpho")!!.map {
+      return entryObj.array<JsonObject>("morpho")!!.map { morphoObj ->
 
-        val typeAnnotation: String = it.string("type")!!
+        val typeAnnotation: String = morphoObj.string("type")!!
 
         if (typeAnnotation !in this.annotationsMap) throw InvalidMorphologyType(typeAnnotation)
 
         MorphologyFactory(
+          lemma = morphoObj.string("lemma")!!,
           type = this.annotationsMap[typeAnnotation]!!,
-          properties = it.obj("properties")!!.filter { it.value != null && it.key != "lemma" }.mapValues {
-            MorphologyPropertyFactory(propertyType = it.key, valueAnnotation = it.value as String)
-          }
+          properties = morphoObj.obj("properties")!!
+            .filter { it.value != null }
+            .mapValues { MorphologyPropertyFactory(propertyType = it.key, valueAnnotation = it.value as String) }
         )
       }
     }

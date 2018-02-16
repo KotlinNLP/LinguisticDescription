@@ -33,6 +33,7 @@ class MorphologyFactorySpec : Spek({
       on("factory of an Indefinite Article with Masculine gender, Singular number and Subject case") {
 
         val morpho = MorphologyFactory(
+          lemma = "x",
           type = MorphologyType.ArtIndef,
           properties = mapOf(
             "gender" to Gender.Masculine,
@@ -64,6 +65,7 @@ class MorphologyFactorySpec : Spek({
           assertFailsWith<MissingMorphologyProperty> {
 
             MorphologyFactory(
+              lemma = "x",
               type = MorphologyType.ArtIndef,
               properties = mapOf(
                 "number" to Number.Singular,
@@ -78,7 +80,7 @@ class MorphologyFactorySpec : Spek({
 
       on("factory of a Comparative Conjunction") {
 
-        val morpho = MorphologyFactory(type = MorphologyType.ConjCompar)
+        val morpho = MorphologyFactory(lemma = "x", type = MorphologyType.ConjCompar)
 
         it("should return a Morphology of the expected type") {
           assertTrue { morpho is Conjunction.Comparative }
@@ -88,6 +90,7 @@ class MorphologyFactorySpec : Spek({
       on("factory of a Comparative Conjunction with extra unnecessary properties") {
 
         val morpho = MorphologyFactory(
+          lemma = "x",
           type = MorphologyType.ConjCompar,
           properties = mapOf(
             "gender" to Gender.Masculine,
@@ -118,7 +121,7 @@ class MorphologyFactorySpec : Spek({
         it("should create Morphologies of the expected type") {
 
           assertTrue(MorphologyType.values().all {
-            MorphologyFactory(type = it, properties = allProperties).type == it }
+            MorphologyFactory(lemma = "x", type = it, properties = allProperties).type == it }
           )
         }
       }

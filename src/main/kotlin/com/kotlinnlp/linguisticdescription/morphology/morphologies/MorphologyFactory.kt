@@ -141,6 +141,7 @@ object MorphologyFactory {
   /**
    * Create a new [Morphology] given its [properties].
    *
+   * @param lemma the lemma of the morphology
    * @param type the morphology type
    * @param properties the map of property names to their values (optional, unnecessary adding properties are ignored)
    *
@@ -148,20 +149,23 @@ object MorphologyFactory {
    *
    * @return a new morphology
    */
-  operator fun invoke(type: MorphologyType, properties: Map<String, MorphologyProperty> = mapOf()): Morphology {
+  operator fun invoke(lemma: String,
+                      type: MorphologyType,
+                      properties: Map<String, MorphologyProperty> = mapOf()): Morphology {
 
     val kClass: KClass<*> = morphologyClasses[type]!!
     val constructor: KFunction<Any> = kClass.constructors.last()
 
-    val params: List<KParameter> = constructor.parameters
-    val passingParams: Array<MorphologyProperty> = params.map {
+    val keywordArgs: Map<KParameter, Any?> = constructor.parameters.associate {
 
-      if (it.name !in properties) throw MissingMorphologyProperty(it.name!!)
+      val propertyName: String = it.name!!
+      val isLemma: Boolean = propertyName == "lemma"
 
-      properties[it.name]!!
+      if (!isLemma && propertyName !in properties) throw MissingMorphologyProperty(propertyName)
 
-    }.toTypedArray()
+      Pair(it, if (isLemma) lemma else properties[propertyName]!!)
+    }
 
-    return constructor.call(*passingParams) as Morphology
+    return constructor.callBy(keywordArgs) as Morphology
   }
 }
