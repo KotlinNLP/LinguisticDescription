@@ -20,6 +20,7 @@ private typealias PersonProperty = Person // avoid ambiguity with Noun.Person
 /**
  * The 'noun' morphology.
  *
+ * @property lemma the lemma
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  * @property person the 'person' morphology property
@@ -27,18 +28,19 @@ private typealias PersonProperty = Person // avoid ambiguity with Noun.Person
  * @property degree the 'degree' morphology property
  */
 sealed class Noun(
+  lemma: String,
   override val gender: Gender,
   override val number: Number,
   override val person: Person,
   override val case: GrammaticalCase,
   override val degree: Degree
-) : Morphology(), Thing, ContentWord, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
+) : Morphology(lemma), Thing, ContentWord, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'noun' morphology.
    */
-  class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Noun(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.Noun
   }
@@ -46,14 +48,15 @@ sealed class Noun(
   /**
    * The 'common noun' morphology.
    */
-  sealed class Common(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
+  sealed class Common(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Noun(lemma, gender, number, person, case, degree) {
 
     /**
      * The 'common noun' morphology.
      */
-    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Noun.Common(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommon
     }
@@ -61,8 +64,9 @@ sealed class Noun(
     /**
      * The 'common quantifying noun' morphology.
      */
-    class Quantifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Quantifying(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Noun.Common(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommonQuant
     }
@@ -70,8 +74,9 @@ sealed class Noun(
     /**
      * The 'common gerundive noun' morphology.
      */
-    class Gerundive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Noun.Common(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Gerundive(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Noun.Common(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounCommonGerund
     }
@@ -80,14 +85,16 @@ sealed class Noun(
   /**
    * The 'proper noun' morphology.
    */
-  sealed class Proper(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
-    : Noun(gender = gender, number = number, person = person, case = case, degree = degree) {
+  sealed class Proper(
+    lemma: String, gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree
+  ) : Noun(lemma, gender, number, person, case, degree) {
 
     /**
      * The 'proper noun' morphology.
      */
-    class Base(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
-      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Base(
+      lemma: String, gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree
+    ) : Noun.Proper(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounProper
     }
@@ -95,8 +102,9 @@ sealed class Noun(
     /**
      * The 'person proper noun' morphology.
      */
-    class Person(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
-      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Person(
+      lemma: String, gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree
+    ) : Noun.Proper(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperPer
     }
@@ -104,8 +112,9 @@ sealed class Noun(
     /**
      * The 'organization proper noun' morphology.
      */
-    class Organization(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
-      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Organization(
+      lemma: String, gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree
+    ) : Noun.Proper(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperOrg
     }
@@ -113,8 +122,9 @@ sealed class Noun(
     /**
      * The 'location proper noun' morphology.
      */
-    class Location(gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree)
-      : Noun.Proper(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Location(
+      lemma: String, gender: Gender, number: Number, person: PersonProperty, case: GrammaticalCase, degree: Degree
+    ) : Noun.Proper(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.NounProperLoc
     }

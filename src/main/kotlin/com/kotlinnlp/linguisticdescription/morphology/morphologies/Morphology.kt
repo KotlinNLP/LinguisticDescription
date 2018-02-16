@@ -15,8 +15,10 @@ import kotlin.reflect.full.primaryConstructor
 
 /**
  * The base interface implemented by all morphologies.
+ *
+ * @property lemma the lemma
  */
-abstract class Morphology {
+abstract class Morphology(val lemma: String) {
 
   /**
    * The type associated to this morphology.
@@ -28,7 +30,10 @@ abstract class Morphology {
    */
   fun getProperties(): Map<String, MorphologyProperty> {
 
-    val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters.map { it.name!! }.toSet()
+    val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters
+      .filter { it.name!! != "lemma" }
+      .map { it.name!! }
+      .toSet()
 
     return this::class.memberProperties
       .filter { it.name in paramsNames }

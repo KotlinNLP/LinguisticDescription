@@ -13,13 +13,15 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'phrase' morphology.
+ *
+ * @property lemma the lemma
  */
-sealed class Phrase : Morphology(), Discourse {
+sealed class Phrase(lemma: String) : Morphology(lemma), Discourse {
 
   /**
    * The 'affirmative phrase' morphology.
    */
-  class Affirmative : Phrase() {
+  class Affirmative(lemma: String) : Phrase(lemma) {
 
     override val type: MorphologyType = MorphologyType.PhrasAff
   }
@@ -27,7 +29,7 @@ sealed class Phrase : Morphology(), Discourse {
   /**
    * The 'exclamative phrase' morphology.
    */
-  class Exclamative : Phrase() {
+  class Exclamative(lemma: String) : Phrase(lemma) {
 
     override val type: MorphologyType = MorphologyType.PhrasExclam
   }
@@ -35,7 +37,7 @@ sealed class Phrase : Morphology(), Discourse {
   /**
    * The 'interrogative phrase' morphology.
    */
-  class Interrogative : Phrase() {
+  class Interrogative(lemma: String) : Phrase(lemma) {
 
     override val type: MorphologyType = MorphologyType.PhrasInterr
   }
@@ -43,7 +45,7 @@ sealed class Phrase : Morphology(), Discourse {
   /**
    * The 'negative phrase' morphology.
    */
-  class Negative : Phrase() {
+  class Negative(lemma: String) : Phrase(lemma) {
 
     override val type: MorphologyType = MorphologyType.PhrasNeg
   }

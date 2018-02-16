@@ -13,8 +13,10 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'date' morphology.
+ *
+ * @property lemma the lemma
  */
-class Date : Morphology(), Thing {
+class Date(lemma: String) : Morphology(lemma), Thing {
 
   override val type: MorphologyType = MorphologyType.Date
 }

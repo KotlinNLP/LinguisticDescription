@@ -13,8 +13,10 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'interjection' morphology.
+ *
+ * @property lemma the lemma
  */
-class Interjection : Morphology(), Discourse {
+class Interjection(lemma: String) : Morphology(lemma), Discourse {
 
   override val type: MorphologyType = MorphologyType.Interj
 }

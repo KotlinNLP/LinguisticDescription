@@ -13,8 +13,10 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'punctuation' morphology.
+ *
+ * @property lemma the lemma
  */
-class Punctuation : Morphology(), Discourse {
+class Punctuation(lemma: String) : Morphology(lemma), Discourse {
 
   override val type: MorphologyType = MorphologyType.Punct
 }

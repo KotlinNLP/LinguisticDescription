@@ -18,6 +18,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 /**
  * The 'adjective' morphology.
  *
+ * @property lemma the lemma
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  * @property person the 'person' morphology property
@@ -25,18 +26,19 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
  * @property degree the 'degree' morphology property
  */
 sealed class Adjective(
+  lemma: String,
   override val gender: Gender,
   override val number: Number,
   override val person: Person,
   override val case: GrammaticalCase,
   override val degree: Degree
-) : Morphology(), Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
+) : Morphology(lemma), Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'adjective' morphology.
    */
-  class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.Adj
   }
@@ -44,8 +46,9 @@ sealed class Adjective(
   /**
    * The 'comparative adjective' morphology.
    */
-  class Comparative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Comparative(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjCompar
   }
@@ -53,8 +56,8 @@ sealed class Adjective(
   /**
    * The 'deictic adjective' morphology.
    */
-  class Deictic(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Deictic(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjDeict
   }
@@ -62,14 +65,15 @@ sealed class Adjective(
   /**
    * The 'demonstrative adjective' morphology.
    */
-  sealed class Demonstrative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  sealed class Demonstrative(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree) {
 
     /**
      * The 'qualifying adjective' morphology.
      */
-    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Demonstrative(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjDemons
     }
@@ -77,8 +81,9 @@ sealed class Adjective(
     /**
      * The 'antecedent qualifying adjective' morphology.
      */
-    class Antecedent(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Demonstrative(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Antecedent(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjDemonsAntec
     }
@@ -86,8 +91,9 @@ sealed class Adjective(
     /**
      * The 'successive qualifying adjective' morphology.
      */
-    class Successive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Demonstrative(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Successive(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjDemonsSucc
     }
@@ -96,8 +102,9 @@ sealed class Adjective(
   /**
    * The 'exclamative adjective' morphology.
    */
-  class Exclamative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Exclamative(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjExclam
   }
@@ -105,14 +112,15 @@ sealed class Adjective(
   /**
    * The 'indefinite adjective' morphology.
    */
-  sealed class Indefinite(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  sealed class Indefinite(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree) {
 
     /**
      * The 'indefinite adjective' morphology.
      */
-    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Indefinite(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjIndef
     }
@@ -120,8 +128,9 @@ sealed class Adjective(
     /**
      * The 'distributive indefinite adjective' morphology.
      */
-    class Distributive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Indefinite(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Distributive(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjIndefDistr
     }
@@ -129,8 +138,9 @@ sealed class Adjective(
     /**
      * The 'quantifying indefinite adjective' morphology.
      */
-    class Quantifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Indefinite(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Quantifying(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjIndefQuant
     }
@@ -138,8 +148,9 @@ sealed class Adjective(
     /**
      * The 'subordinating indefinite adjective' morphology.
      */
-    class Subordinating(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Indefinite(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Subordinating(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjIndefSubord
     }
@@ -148,8 +159,9 @@ sealed class Adjective(
   /**
    * The 'interrogative adjective' morphology.
    */
-  class Interrogative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Interrogative(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjInterr
   }
@@ -157,8 +169,8 @@ sealed class Adjective(
   /**
    * The 'ordinal adjective' morphology.
    */
-  class Ordinal(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Ordinal(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjOrdin
   }
@@ -166,8 +178,8 @@ sealed class Adjective(
   /**
    * The 'possessive adjective' morphology.
    */
-  class Possessive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Possessive(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjPoss
   }
@@ -175,14 +187,15 @@ sealed class Adjective(
   /**
    * The 'qualifying adjective' morphology.
    */
-  sealed class Qualifying(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree), ContentWord {
+  sealed class Qualifying(
+    lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+  ) : Adjective(lemma, gender, number, person, case, degree), ContentWord {
 
     /**
      * The 'qualifying adjective' morphology.
      */
-    class Base(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Base(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+      : Adjective.Qualifying(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjQualif
     }
@@ -190,8 +203,9 @@ sealed class Adjective(
     /**
      * The 'postpositive qualifying adjective' morphology.
      */
-    class Postpositive(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-      : Adjective.Qualifying(gender = gender, number = number, person = person, case = case, degree = degree) {
+    class Postpositive(
+      lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
+    ) : Adjective.Qualifying(lemma, gender, number, person, case, degree) {
 
       override val type: MorphologyType = MorphologyType.AdjQualifPost
     }
@@ -200,8 +214,8 @@ sealed class Adjective(
   /**
    * The 'relative adjective' morphology.
    */
-  class Relative(gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
-    : Adjective(gender = gender, number = number, person = person, case = case, degree = degree) {
+  class Relative(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree)
+    : Adjective(lemma, gender, number, person, case, degree) {
 
     override val type: MorphologyType = MorphologyType.AdjRelat
   }

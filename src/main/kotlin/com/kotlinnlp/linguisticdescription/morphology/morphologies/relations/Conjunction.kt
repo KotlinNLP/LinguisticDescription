@@ -13,13 +13,15 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'conjunction' morphology.
+ *
+ * @property lemma the lemma
  */
-sealed class Conjunction : Morphology(), Relation {
+sealed class Conjunction(lemma: String) : Morphology(lemma), Relation {
 
   /**
    * The 'conjunction' morphology.
    */
-  class Base : Conjunction() {
+  class Base(lemma: String) : Conjunction(lemma) {
 
     override val type: MorphologyType = MorphologyType.Conj
   }
@@ -27,12 +29,12 @@ sealed class Conjunction : Morphology(), Relation {
   /**
    * The 'comparative conjunction' morphology.
    */
-  sealed class Comparative : Conjunction() {
+  sealed class Comparative(lemma: String) : Conjunction(lemma) {
 
     /**
      * The 'comparative conjunction' morphology.
      */
-    class Base : Comparative() {
+    class Base(lemma: String) : Comparative(lemma) {
 
       override val type: MorphologyType = MorphologyType.ConjCompar
     }
@@ -40,7 +42,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'antecedent comparative conjunction' morphology.
      */
-    class Antecedent : Comparative() {
+    class Antecedent(lemma: String) : Comparative(lemma) {
 
       override val type: MorphologyType = MorphologyType.ConjComparAntec
     }
@@ -48,7 +50,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'successive comparative conjunction' morphology.
      */
-    class Successive : Comparative() {
+    class Successive(lemma: String) : Comparative(lemma) {
 
       override val type: MorphologyType = MorphologyType.ConjComparSucc
     }
@@ -57,7 +59,7 @@ sealed class Conjunction : Morphology(), Relation {
   /**
    * The 'concessive conjunction' morphology.
    */
-  class Concessive : Conjunction() {
+  class Concessive(lemma: String) : Conjunction(lemma) {
 
     override val type: MorphologyType = MorphologyType.ConjConcess
   }
@@ -65,12 +67,12 @@ sealed class Conjunction : Morphology(), Relation {
   /**
    * The 'coordinating conjunction' morphology.
    */
-  sealed class Coordinating : Conjunction() {
+  sealed class Coordinating(lemma: String) : Conjunction(lemma) {
 
     /**
      * The 'coordinating conjunction' morphology.
      */
-    class Base : Coordinating() {
+    class Base(lemma: String) : Coordinating(lemma) {
 
       override val type: MorphologyType = MorphologyType.ConjCoord
     }
@@ -78,7 +80,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'adversative coordinating conjunction' morphology.
      */
-    class Adversative : Coordinating() {
+    class Adversative(lemma: String) : Coordinating(lemma) {
 
       override val type = MorphologyType.ConjCoordAdvers
     }
@@ -86,7 +88,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'disjunctive coordinating conjunction' morphology.
      */
-    class Disjunctive : Coordinating() {
+    class Disjunctive(lemma: String) : Coordinating(lemma) {
 
       override val type = MorphologyType.ConjCoordDisj
     }
@@ -94,7 +96,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'explicit coordinating conjunction' morphology.
      */
-    class Explicit : Coordinating() {
+    class Explicit(lemma: String) : Coordinating(lemma) {
 
       override val type = MorphologyType.ConjCoordExplic
     }
@@ -102,7 +104,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'negative coordinating conjunction' morphology.
      */
-    class Negative : Coordinating() {
+    class Negative(lemma: String) : Coordinating(lemma) {
 
       override val type = MorphologyType.ConjCoordNeg
     }
@@ -111,12 +113,12 @@ sealed class Conjunction : Morphology(), Relation {
   /**
    * The 'correlating conjunction' morphology.
    */
-  sealed class Correlating : Conjunction() {
+  sealed class Correlating(lemma: String) : Conjunction(lemma) {
 
     /**
      * The 'correlating conjunction' morphology.
      */
-    class Base : Correlating() {
+    class Base(lemma: String) : Correlating(lemma) {
 
       override val type = MorphologyType.ConjCorrel
     }
@@ -124,7 +126,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'successive correlating conjunction' morphology.
      */
-    class Successive : Correlating() {
+    class Successive(lemma: String) : Correlating(lemma) {
 
       override val type = MorphologyType.ConjCorrelSucc
     }
@@ -132,7 +134,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'antecedent correlating conjunction' morphology.
      */
-    class Antecedent : Correlating() {
+    class Antecedent(lemma: String) : Correlating(lemma) {
 
       override val type = MorphologyType.ConjCorrelAntec
     }
@@ -141,12 +143,12 @@ sealed class Conjunction : Morphology(), Relation {
   /**
    * The 'subordinating conjunction' morphology.
    */
-  sealed class Subordinating : Conjunction() {
+  sealed class Subordinating(lemma: String) : Conjunction(lemma) {
 
     /**
      * The 'subordinating conjunction' morphology.
      */
-    class Base : Subordinating() {
+    class Base(lemma: String) : Subordinating(lemma) {
 
       override val type = MorphologyType.ConjSubord
     }
@@ -154,7 +156,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'adversative subordinating conjunction' morphology.
      */
-    class Adversative : Subordinating() {
+    class Adversative(lemma: String) : Subordinating(lemma) {
 
       override val type = MorphologyType.ConjSubordAdvers
     }
@@ -162,7 +164,7 @@ sealed class Conjunction : Morphology(), Relation {
     /**
      * The 'interrogativesubordinating ' morphology.
      */
-    class Interrogative : Subordinating() {
+    class Interrogative(lemma: String) : Subordinating(lemma) {
 
       override val type = MorphologyType.ConjSubordInterr
     }

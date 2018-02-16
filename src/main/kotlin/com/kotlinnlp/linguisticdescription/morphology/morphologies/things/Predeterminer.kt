@@ -20,17 +20,19 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
 /**
  * The 'predeterminer' morphology.
  *
+ * @property lemma the lemma
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  * @property person the 'person' morphology property
  * @property case the 'grammatical case' morphology property
  */
 class Predeterminer(
+  lemma: String,
   override val gender: Gender,
   override val number: Number,
   override val person: Person,
   override val case: GrammaticalCase
-) : Morphology(), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
+) : Morphology(lemma), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
 
   override val type: MorphologyType = MorphologyType.Predet
 }

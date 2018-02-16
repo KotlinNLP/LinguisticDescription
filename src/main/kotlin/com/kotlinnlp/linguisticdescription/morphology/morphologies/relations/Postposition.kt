@@ -13,13 +13,15 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'postposition' morphology.
+ *
+ * @property lemma the lemma
  */
-sealed class Postposition : Morphology(), Relation {
+sealed class Postposition(lemma: String) : Morphology(lemma), Relation {
 
   /**
    * The 'postposition' morphology.
    */
-  class Base : Postposition() {
+  class Base(lemma: String) : Postposition(lemma) {
 
     override val type: MorphologyType = MorphologyType.Postpos
   }
@@ -27,7 +29,7 @@ sealed class Postposition : Morphology(), Relation {
   /**
    * The 'possessive postposition' morphology.
    */
-  class Possessive : Postposition() {
+  class Possessive(lemma: String) : Postposition(lemma) {
 
     override val type: MorphologyType = MorphologyType.PostposPoss
   }

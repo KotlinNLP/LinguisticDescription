@@ -21,6 +21,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
 /**
  * The 'verb' morphology.
  *
+ * @property lemma the lemma
  * @property mood the 'mood' morphology property
  * @property tense the 'tense' morphology property
  * @property gender the 'gender' morphology property
@@ -28,18 +29,19 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
  * @property person the 'person' morphology property
  */
 sealed class Verb(
+  lemma: String,
   override val mood: Mood,
   override val tense: Tense,
   override val gender: Gender,
   override val number: Number,
   override val person: Person
-) : Morphology(), Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
+) : Morphology(lemma), Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
 
   /**
    * The 'verb' morphology.
    */
-  class Base(mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
-    : Verb(mood = mood, tense = tense, gender = gender, number = number, person = person) {
+  class Base(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+    : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.Verb
   }
@@ -47,8 +49,8 @@ sealed class Verb(
   /**
    * The 'auxiliary verb' morphology.
    */
-  class Auxiliary(mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
-    : Verb(mood = mood, tense = tense, gender = gender, number = number, person = person) {
+  class Auxiliary(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+    : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.VerbAux
   }
@@ -56,8 +58,8 @@ sealed class Verb(
   /**
    * The 'modal verb' morphology.
    */
-  class Modal(mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
-    : Verb(mood = mood, tense = tense, gender = gender, number = number, person = person) {
+  class Modal(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+    : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.VerbModal
   }

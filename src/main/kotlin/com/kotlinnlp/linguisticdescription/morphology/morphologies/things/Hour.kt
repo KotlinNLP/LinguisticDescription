@@ -13,8 +13,10 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 
 /**
  * The 'hour' morphology.
+ *
+ * @property lemma the lemma
  */
-class Hour : Morphology(), Thing {
+class Hour(lemma: String) : Morphology(lemma), Thing {
 
   override val type: MorphologyType = MorphologyType.Hour
 }

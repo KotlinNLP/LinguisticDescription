@@ -17,14 +17,18 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Grad
 /**
  * The 'adverb' morphology.
  *
+ * @property lemma the lemma
  * @property degree the 'degree' morphology property
  */
-sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Gradable {
+sealed class Adverb(
+  lemma: String,
+  override val degree: Degree
+) : Morphology(lemma), Relation, Gradable {
 
   /**
    * The 'adversative adverb' morphology.
    */
-  class Adversative(degree: Degree) : Adverb(degree = degree) {
+  class Adversative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvAdvers
   }
@@ -32,7 +36,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'comparative adverb' morphology.
    */
-  class Comparative(degree: Degree) : Adverb(degree = degree) {
+  class Comparative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvCompar
   }
@@ -40,7 +44,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'concessive adverb' morphology.
    */
-  class Concessive(degree: Degree) : Adverb(degree = degree) {
+  class Concessive(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvConcess
   }
@@ -48,7 +52,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'deictic adverb' morphology.
    */
-  class Deictic(degree: Degree) : Adverb(degree = degree) {
+  class Deictic(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvDeict
   }
@@ -56,7 +60,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'indefinite adverb' morphology.
    */
-  class Indefinite(degree: Degree) : Adverb(degree = degree) {
+  class Indefinite(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvIndef
   }
@@ -64,7 +68,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'indefinite subordinating adverb' morphology.
    */
-  class IndefiniteSubordinating(degree: Degree) : Adverb(degree = degree) {
+  class IndefiniteSubordinating(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvIndefSubord
   }
@@ -72,7 +76,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'interrogative adverb' morphology.
    */
-  class Interrogative(degree: Degree) : Adverb(degree = degree) {
+  class Interrogative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvInterr
   }
@@ -80,7 +84,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'limiting adverb' morphology.
    */
-  class Limiting(degree: Degree) : Adverb(degree = degree) {
+  class Limiting(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvLimit
   }
@@ -88,7 +92,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'locative adverb' morphology.
    */
-  class Locative(degree: Degree) : Adverb(degree = degree) {
+  class Locative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvLoc
   }
@@ -96,7 +100,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'modal adverb' morphology.
    */
-  class Modal(degree: Degree) : Adverb(degree = degree), ContentWord {
+  class Modal(lemma: String, degree: Degree) : Adverb(lemma, degree), ContentWord {
 
     override val type: MorphologyType = MorphologyType.AdvModal
   }
@@ -104,7 +108,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'negative adverb' morphology.
    */
-  class Negative(degree: Degree) : Adverb(degree = degree) {
+  class Negative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvNeg
   }
@@ -112,7 +116,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'adverbial phrase' morphology.
    */
-  class Phrase(degree: Degree) : Adverb(degree = degree) {
+  class Phrase(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvPhras
   }
@@ -120,7 +124,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'quantitative adverb' morphology.
    */
-  class Quantitative(degree: Degree) : Adverb(degree = degree) {
+  class Quantitative(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvQuant
   }
@@ -128,12 +132,12 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'strength adverb' morphology.
    */
-  sealed class Strength(degree: Degree) : Adverb(degree = degree) {
+  sealed class Strength(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     /**
      * The 'strength adverb' morphology.
      */
-    class Base(degree: Degree) : Adverb.Strength(degree = degree) {
+    class Base(lemma: String, degree: Degree) : Adverb.Strength(lemma, degree) {
 
       override val type: MorphologyType = MorphologyType.AdvStreng
     }
@@ -141,7 +145,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
     /**
      * The 'negative strength adverb' morphology.
      */
-    class Negative(degree: Degree) : Adverb.Strength(degree = degree) {
+    class Negative(lemma: String, degree: Degree) : Adverb.Strength(lemma, degree) {
 
       override val type: MorphologyType = MorphologyType.AdvStrengNeg
     }
@@ -150,7 +154,7 @@ sealed class Adverb(override val degree: Degree) : Morphology(), Relation, Grada
   /**
    * The 'time adverb' morphology.
    */
-  class Time(degree: Degree) : Adverb(degree = degree) {
+  class Time(lemma: String, degree: Degree) : Adverb(lemma, degree) {
 
     override val type: MorphologyType = MorphologyType.AdvTime
   }

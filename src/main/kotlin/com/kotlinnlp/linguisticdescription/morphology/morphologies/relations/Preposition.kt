@@ -19,13 +19,15 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 
 /**
  * The 'preposition' morphology.
+ *
+ * @property lemma the lemma
  */
-sealed class Preposition : Morphology(), Relation {
+sealed class Preposition(lemma: String) : Morphology(lemma), Relation {
 
   /**
    * The 'preposition' morphology.
    */
-  class Base : Preposition() {
+  class Base(lemma: String) : Preposition(lemma) {
 
     override val type: MorphologyType = MorphologyType.Prep
   }
@@ -33,15 +35,17 @@ sealed class Preposition : Morphology(), Relation {
   /**
    * The 'articulated preposition' morphology.
    *
+   * @property lemma the lemma
    * @property gender the 'gender' morphology property
    * @property number the 'number' morphology property
    * @property case the 'grammatical case' morphology property
    */
   class Articulated(
+    lemma: String,
     override val gender: Gender,
     override val number: Number,
     override val case: GrammaticalCase
-  ) : Preposition(), Genderable, Numerable, CaseDeclinable {
+  ) : Preposition(lemma), Genderable, Numerable, CaseDeclinable {
 
     override val type: MorphologyType = MorphologyType.PrepArt
   }
@@ -49,7 +53,7 @@ sealed class Preposition : Morphology(), Relation {
   /**
    * The 'possessive preposition' morphology.
    */
-  class Possessive : Preposition() {
+  class Possessive(lemma: String) : Preposition(lemma) {
 
     override val type: MorphologyType = MorphologyType.PrepPoss
   }

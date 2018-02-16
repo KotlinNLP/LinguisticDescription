@@ -18,13 +18,15 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'number' morphology.
  *
+ * @property lemma the lemma
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  */
 class Number(
+  lemma: String,
   override val gender: Gender,
   override val number: Number
-) : Morphology(), Thing, Genderable, Numerable {
+) : Morphology(lemma), Thing, Genderable, Numerable {
 
   override val type: MorphologyType = MorphologyType.Num
 }

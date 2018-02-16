@@ -20,21 +20,23 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'article' morphology.
  *
+ * @property lemma the lemma
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  * @property case the 'grammatical case' morphology property
  */
 sealed class Article(
+  lemma: String,
   override val gender: Gender,
   override val number: Number,
   override val case: GrammaticalCase
-) : Morphology(), Thing, Genderable, Numerable, CaseDeclinable {
+) : Morphology(lemma), Thing, Genderable, Numerable, CaseDeclinable {
 
   /**
    * The 'article' morphology.
    */
-  class Base(gender: Gender, number: Number, case: GrammaticalCase)
-    : Article(gender = gender, number = number, case = case) {
+  class Base(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+    : Article(lemma, gender, number, case) {
 
     override val type: MorphologyType = MorphologyType.Art
   }
@@ -42,8 +44,8 @@ sealed class Article(
   /**
    * The 'definite article' morphology.
    */
-  class Definite(gender: Gender, number: Number, case: GrammaticalCase)
-    : Article(gender = gender, number = number, case = case) {
+  class Definite(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+    : Article(lemma, gender, number, case) {
 
     override val type: MorphologyType = MorphologyType.ArtDef
   }
@@ -51,14 +53,14 @@ sealed class Article(
   /**
    * The 'indefinite article' morphology.
    */
-  sealed class Indefinite(gender: Gender, number: Number, case: GrammaticalCase)
-    : Article(gender = gender, number = number, case = case) {
+  sealed class Indefinite(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+    : Article(lemma, gender, number, case) {
 
     /**
      * The 'indefinite article' morphology.
      */
-    class Base(gender: Gender, number: Number, case: GrammaticalCase)
-      : Article.Indefinite(gender = gender, number = number, case = case) {
+    class Base(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+      : Article.Indefinite(lemma, gender, number, case) {
 
       override val type: MorphologyType = MorphologyType.ArtIndef
     }
@@ -66,8 +68,8 @@ sealed class Article(
     /**
      * The 'indefinite partitive article' morphology.
      */
-    class Partitive(gender: Gender, number: Number, case: GrammaticalCase)
-      : Article.Indefinite(gender = gender, number = number, case = case) {
+    class Partitive(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+      : Article.Indefinite(lemma, gender, number, case) {
 
       override val type: MorphologyType = MorphologyType.ArtIndefPart
     }
