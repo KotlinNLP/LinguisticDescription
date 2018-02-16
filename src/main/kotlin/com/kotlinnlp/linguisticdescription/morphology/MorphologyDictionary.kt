@@ -12,8 +12,10 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
+import com.kotlinnlp.linguisticdescription.utils.forEachLine
+import com.kotlinnlp.linguisticdescription.utils.getNumOfLines
+import com.kotlinnlp.linguisticdescription.utils.toInputStream
 import com.kotlinnlp.progressindicator.ProgressIndicatorBar
-import java.io.*
 
 /**
  * The dictionary of morphologies that maps forms to morphologies.
@@ -60,17 +62,16 @@ class MorphologyDictionary {
 
       val dictionary = MorphologyDictionary()
 
-      val file = File(filename)
       val jsonParser = Parser()
-      val progress = ProgressIndicatorBar(file.getNumOfLines())
+      val progress = ProgressIndicatorBar(getNumOfLines(filename))
 
-      file.forEachLine { line ->
-
-        if (verbose) progress.tick()
+      forEachLine(filename) { line ->
 
         val entryObj = jsonParser.parse(line.toInputStream()) as JsonObject
 
         dictionary.addEntry(forms = getForms(entryObj), morphologies = getMorphologies(entryObj))
+
+        if (verbose) progress.tick()
       }
 
       return dictionary
@@ -112,23 +113,6 @@ class MorphologyDictionary {
           }
         )
       }
-    }
-
-    /**
-     * @return this [String] converted to an [InputStream]
-     */
-    private fun String.toInputStream(): InputStream = ByteArrayInputStream(this.toByteArray())
-
-    /**
-     * @return the number of lines of this file
-     */
-    private fun File.getNumOfLines(): Int {
-
-      var count = 0
-
-      this.forEachLine { count++ }
-
-      return count
     }
   }
 
