@@ -23,7 +23,7 @@ import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 class MorphologyDictionary {
 
   /**
-   *
+   * The [MorphologyEntry] type.
    */
   enum class MorphologyEntryType { Single, Multiple }
 
