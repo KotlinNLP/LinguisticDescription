@@ -7,23 +7,31 @@
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyDictionary
 import utils.Timer
+import java.io.File
+import java.io.FileOutputStream
 
 /**
  * Load a [MorphologyDictionary] from a file in JSONL format.
  *
  * Command line arguments:
  *   1. The path of the input file from which to read the dictionary in JSONL format.
+ *   1. The path of the output file into which to write the serialized dictionary.
  */
 fun main(args: Array<String>) {
 
-  require(args.size == 1) { "Required 1 argument: <input_file>." }
+  require(args.size == 2) { "Required 2 arguments: <input_file> <output_file>." }
 
   val inputFile: String = args[0]
+  val outputFile: String = args[1]
   val timer = Timer()
 
   println("Loading morphology dictionary in JSONL format from '$inputFile'...")
   val m = MorphologyDictionary.load(inputFile)
-
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
-  println("Number of elements in the dictionary: ${m.size}.")
+
+  println("\nNumber of elements in the dictionary: ${m.size}.")
+
+  println("\nSaving serialized dictionary to '$outputFile'...")
+  m.dump(FileOutputStream(File(outputFile)))
+  println("Elapsed time: %s".format(timer.formatElapsedTime()))
 }
