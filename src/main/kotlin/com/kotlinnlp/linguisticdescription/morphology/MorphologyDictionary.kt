@@ -23,18 +23,18 @@ import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 class MorphologyDictionary {
 
   /**
-   * The [MorphologyEntry] type.
-   */
-  enum class MorphologyEntryType { Single, Multiple }
-
-  /**
    * The morphology entry.
-   * If [type] is [MorphologyEntryType.Single] the list contains only one morphology, otherwise more.
+   * If [type] is [Type.Single] the list contains only one morphology, otherwise more.
    */
   data class MorphologyEntry(
-    val type: MorphologyEntryType,
+    val type: Type,
     val list: List<Morphology>
   ) {
+
+    /**
+     * The [MorphologyEntry] type.
+     */
+    enum class Type { Single, Multiple }
 
     /**
      * Build a [MorphologyEntry] given a list of [Morphology].
@@ -42,7 +42,7 @@ class MorphologyDictionary {
      * @param morphologies the list of morphologies
      */
     constructor(morphologies: List<Morphology>): this(
-      type = if (morphologies.size == 1) MorphologyEntryType.Single else MorphologyEntryType.Multiple,
+      type = if (morphologies.size == 1) Type.Single else Type.Multiple,
       list = morphologies
     )
   }
