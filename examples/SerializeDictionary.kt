@@ -11,7 +11,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 /**
- * Load a [MorphologyDictionary] from a file in JSONL format.
+ * Load a [MorphologyDictionary] from a file in JSONL format and serialize it to another file.
  *
  * Command line arguments:
  *   1. The path of the input file from which to read the dictionary in JSONL format.
