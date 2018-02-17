@@ -17,16 +17,26 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFac
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
+import java.io.Serializable
 
 /**
  * An helper that optimizes the memory load for the morphologies, mapping them to indices.
  */
-class MorphologyCompressor {
+class MorphologyCompressor : Serializable {
+
+  companion object {
+
+    /**
+     * Private val used to serialize the class (needed by Serializable).
+     */
+    @Suppress("unused")
+    private const val serialVersionUID: Long = 1L
+  }
 
   /**
    * The encoded morphology of an entry of the [MorphologyDictionary].
    */
-  inner class EncodedMorphology(val lemma: String, val typeIndex: Int, val propertiesIndex: Int) {
+  inner class EncodedMorphology(val lemma: String, val typeIndex: Int, val propertiesIndex: Int) : Serializable {
 
     /**
      * @return the morphology decoded from this one
@@ -65,7 +75,16 @@ class MorphologyCompressor {
   /**
    * A container of morphology properties, used to map them to a unique index.
    */
-  private data class Properties(val properties: List<Pair<String, String>>) {
+  private data class Properties(val properties: List<Pair<String, String>>) : Serializable {
+
+    companion object {
+
+      /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+    }
 
     override fun toString(): String = this.properties
       .sortedBy { it.first }

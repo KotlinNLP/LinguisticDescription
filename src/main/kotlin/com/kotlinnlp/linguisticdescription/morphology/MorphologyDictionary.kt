@@ -9,15 +9,19 @@ package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.utils.Serializer
 import com.kotlinnlp.linguisticdescription.utils.forEachLine
 import com.kotlinnlp.linguisticdescription.utils.getNumOfLines
 import com.kotlinnlp.linguisticdescription.utils.toInputStream
 import com.kotlinnlp.progressindicator.ProgressIndicatorBar
+import java.io.InputStream
+import java.io.OutputStream
+import java.io.Serializable
 
 /**
  * The dictionary of morphologies that maps forms to morphologies.
  */
-class MorphologyDictionary {
+class MorphologyDictionary : Serializable {
 
   /**
    * The morphology entry.
@@ -59,7 +63,16 @@ class MorphologyDictionary {
     val form: String,
     val multipleForm: List<String>?,
     var morphologies: MutableList<List<MorphologyCompressor.EncodedMorphology>>
-  ) {
+  ) : Serializable {
+
+    companion object {
+
+      /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+    }
 
     /**
      * Convert this [RowEntry] to an [Entry].
@@ -76,6 +89,12 @@ class MorphologyDictionary {
   }
 
   companion object {
+
+    /**
+     * Private val used to serialize the class (needed by Serializable).
+     */
+    @Suppress("unused")
+    private const val serialVersionUID: Long = 1L
 
     /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
@@ -107,6 +126,15 @@ class MorphologyDictionary {
 
       return dictionary
     }
+
+    /**
+     * Read a [MorphologyDictionary] (serialized) from an input stream and decode it.
+     *
+     * @param inputStream the [InputStream] from which to read the serialized [MorphologyDictionary]
+     *
+     * @return the [MorphologyDictionary] read from [inputStream] and decoded
+     */
+    fun load(inputStream: InputStream): MorphologyDictionary = Serializer.deserialize(inputStream)
 
     /**
      * @param entryObj the JsonObject of a input file entry
@@ -144,6 +172,14 @@ class MorphologyDictionary {
    * @return the [Entry] related to the given [form] if present, otherwise null
    */
   operator fun get(form: String): MorphologyDictionary.Entry? = this.morphologyMap[form]?.toEntry()
+
+  /**
+   * Serialize this [MorphologyDictionary] and write it to an output stream.
+   *
+   * @param outputStream the [OutputStream] in which to write this serialized [MorphologyDictionary]
+   */
+  fun dump(outputStream: OutputStream) = Serializer.serialize(this, outputStream)
+
   /**
    * Add a new entry to the morphology map or add new [encodedMorphologies] to it if already present.
    *
