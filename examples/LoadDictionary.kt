@@ -6,6 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyDictionary
+import utils.Timer
 
 /**
  * Load a [MorphologyDictionary] from a file in JSONL format.
@@ -18,9 +19,11 @@ fun main(args: Array<String>) {
   require(args.size == 1) { "Required 1 argument: <input_file>." }
 
   val inputFile: String = args[0]
+  val timer = Timer()
 
   println("Loading morphology dictionary in JSONL format from '$inputFile'...")
   val m = MorphologyDictionary.load(inputFile)
 
-  print("\nNumber of elements in the dictionary: ${m.size}.")
+  println("Elapsed time: %s".format(timer.formatElapsedTime()))
+  println("Number of elements in the dictionary: ${m.size}.")
 }
