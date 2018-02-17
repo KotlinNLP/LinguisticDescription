@@ -44,7 +44,9 @@ class EncodedMorphology(
     properties = this.compressor.decodeProperties(this.propertiesIndex)
   )
 
-  override fun hashCode(): Int = "%d %d %d".format(this.lemmaIndex, this.typeIndex, this.propertiesIndex).hashCode()
+  override fun toString(): String = "%d %d %d".format(this.lemmaIndex, this.typeIndex, this.propertiesIndex)
+
+  override fun hashCode(): Int = this.toString().hashCode()
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
