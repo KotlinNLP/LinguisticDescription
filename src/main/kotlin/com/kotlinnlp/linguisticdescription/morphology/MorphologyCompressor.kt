@@ -170,7 +170,7 @@ class MorphologyCompressor : Serializable {
    */
   private fun encodeJSONProperties(propertiesObject: JsonObject): Int {
 
-    val properties = Properties(propertiesObject.filter { it.value != null }.map { Pair(it.value as String, it.key) })
+    val properties = Properties(propertiesObject.filter { it.value != null }.map { Pair(it.key, it.value as String) })
     val inversedMap: Map<Properties, Int> = this.propertiesBiMap.inverse()
 
     return if (properties in inversedMap) {
