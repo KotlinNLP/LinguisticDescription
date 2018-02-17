@@ -65,6 +65,11 @@ class MorphologyCompressor : Serializable {
   }
 
   /**
+   * The BiMap of unique indices to lemmas.
+   */
+  private val lemmasBiMap: BiMap<Int, String> = HashBiMap.create()
+
+  /**
    * The map of morphology types associated by annotation.
    */
   private val annotationsToTypesMap: Map<String, MorphologyType> = MorphologyType.values().associateBy { it.annotation }
@@ -93,12 +98,19 @@ class MorphologyCompressor : Serializable {
     if (typeAnnotation !in this.annotationsToTypesMap) throw InvalidMorphologyType(typeAnnotation)
 
     return EncodedMorphology(
-      lemma = morphologyObj.string("lemma")!!,
+      lemmaIndex = this.encodeLemma(morphologyObj.string("lemma")!!),
       typeIndex = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation),
       propertiesIndex = this.encodeJSONProperties(morphologyObj.obj("properties")!!),
       compressor = this
     )
   }
+
+  /**
+   * @param index the index of a lemma
+   *
+   * @return the lemma associated to the given [index]
+   */
+  fun decodeLemma(index: Int): String = this.lemmasBiMap[index]!!
 
   /**
    * @param index the index of a morphology type
@@ -130,6 +142,23 @@ class MorphologyCompressor : Serializable {
         it.first,
         MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
       )
+    }
+  }
+
+  /**
+   * @param lemma a lemma
+   *
+   * @return the index that encodes the given lemma
+   */
+  private fun encodeLemma(lemma: String): Int {
+
+    val inversedMap: Map<String, Int> = this.lemmasBiMap.inverse()
+
+    return if (lemma in inversedMap) {
+      inversedMap.getValue(lemma)
+    } else {
+      this.lemmasBiMap[this.lemmasBiMap.size] = lemma
+      this.lemmasBiMap.size
     }
   }
 

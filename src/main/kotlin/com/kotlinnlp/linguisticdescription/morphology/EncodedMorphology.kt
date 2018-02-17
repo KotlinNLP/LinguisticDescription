@@ -13,9 +13,14 @@ import java.io.Serializable
 
 /**
  * The encoded morphology of an entry of the [MorphologyDictionary].
+ *
+ * @property lemmaIndex
+ * @property typeIndex
+ * @property propertiesIndex
+ * @param compressor
  */
 class EncodedMorphology(
-  val lemma: String,
+  val lemmaIndex: Int,
   val typeIndex: Int,
   val propertiesIndex: Int,
   private val compressor: MorphologyCompressor
@@ -34,12 +39,12 @@ class EncodedMorphology(
    * @return the morphology decoded from this one
    */
   fun decode(): Morphology = MorphologyFactory(
-    lemma = this.lemma,
+    lemma = this.compressor.decodeLemma(this.lemmaIndex),
     type = this.compressor.decodeType(this.typeIndex),
     properties = this.compressor.decodeProperties(this.propertiesIndex)
   )
 
-  override fun hashCode(): Int = "%s\t%d\t%d".format(this.lemma, this.typeIndex, this.propertiesIndex).hashCode()
+  override fun hashCode(): Int = "%d %d %d".format(this.lemmaIndex, this.typeIndex, this.propertiesIndex).hashCode()
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
@@ -47,7 +52,7 @@ class EncodedMorphology(
 
     other as EncodedMorphology
 
-    if (this.lemma != other.lemma) return false
+    if (this.lemmaIndex != other.lemmaIndex) return false
     if (this.typeIndex != other.typeIndex) return false
     if (this.propertiesIndex != other.propertiesIndex) return false
 
