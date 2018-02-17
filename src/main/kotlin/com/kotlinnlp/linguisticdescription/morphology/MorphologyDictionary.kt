@@ -68,10 +68,12 @@ class MorphologyDictionary : Serializable {
    *
    * @property forms the list of forms of the entry
    * @property morphologies the list of encoded morphologies of the entry
+   * @param compressor the compressor of the dictionary that builds this row entry
    */
   private data class RowEntry(
     val forms: List<String>,
-    var morphologies: MutableList<List<EncodedMorphology>>
+    var morphologies: MutableList<List<Int>>,
+    private val compressor: MorphologyCompressor
   ) : Serializable {
 
     companion object {
@@ -92,7 +94,7 @@ class MorphologyDictionary : Serializable {
       form = this.forms.joinToString(separator = " "),
       multipleForm = if(this.forms.size > 1) this.forms else null,
       morphologies = this.morphologies.map { encodedMorphologies ->
-        MorphologyEntry(morphologies = encodedMorphologies.map { it.decode() })
+        MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it) })
       }
     )
   }
@@ -195,7 +197,7 @@ class MorphologyDictionary : Serializable {
    * @param forms the list of forms of the entry
    * @param encodedMorphologies the encoded morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, encodedMorphologies: List<EncodedMorphology>) {
+  private fun addEntry(forms: List<String>, encodedMorphologies: List<Int>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
 
@@ -203,20 +205,21 @@ class MorphologyDictionary : Serializable {
 
       this.morphologyMap[uniqueForm] = RowEntry(
         forms = forms,
-        morphologies = mutableListOf(encodedMorphologies)
+        morphologies = mutableListOf(encodedMorphologies),
+        compressor = this.compressor
       )
 
     } else {
-      this.addMorphologies(form = uniqueForm, indices = encodedMorphologies)
+      this.addMorphologies(form = uniqueForm, encodedMorphologies = encodedMorphologies)
     }
   }
 
   /**
-   * Add the given [indices] to the [RowEntry] with the given [form].
+   * Add the given [encodedMorphologies] to the [RowEntry] with the given [form].
    *
    * @param form a form
-   * @param indices the encoded morphologies to add to the given form
+   * @param encodedMorphologies the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, indices: List<EncodedMorphology>) =
-    this.morphologyMap[form]!!.morphologies.add(indices)
+  private fun addMorphologies(form: String, encodedMorphologies: List<Int>) =
+    this.morphologyMap[form]!!.morphologies.add(encodedMorphologies)
 }

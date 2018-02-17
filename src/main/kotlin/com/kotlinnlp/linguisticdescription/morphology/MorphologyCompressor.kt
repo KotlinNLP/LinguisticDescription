@@ -12,6 +12,8 @@ import com.beust.klaxon.obj
 import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
@@ -90,57 +92,29 @@ class MorphologyCompressor : Serializable {
   /**
    * @param morphologyObj a morphology JSON object
    *
-   * @return the encoded morphology object of [morphologyObj]
+   * @return the encoded index of [morphologyObj]
    */
-  fun encodeMorphology(morphologyObj: JsonObject): EncodedMorphology {
+  fun encodeMorphology(morphologyObj: JsonObject): Int {
 
     val typeAnnotation: String = morphologyObj.string("type")!!
 
     if (typeAnnotation !in this.annotationsToTypesMap) throw InvalidMorphologyType(typeAnnotation)
 
-    return EncodedMorphology(
-      lemmaIndex = this.encodeLemma(morphologyObj.string("lemma")!!),
-      typeIndex = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation),
-      propertiesIndex = this.encodeJSONProperties(morphologyObj.obj("properties")!!),
-      compressor = this
-    )
+    val lemmaIndex: Int = this.encodeLemma(morphologyObj.string("lemma")!!)
+    val typeIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation)
+    val propertiesIndex: Int = this.encodeJSONProperties(morphologyObj.obj("properties")!!)
+
+    return 1.0e06.toInt() * lemmaIndex + 1.0e03.toInt() * typeIndex + propertiesIndex
   }
 
   /**
-   * @param index the index of a lemma
    *
-   * @return the lemma associated to the given [index]
    */
-  fun decodeLemma(index: Int): String = this.lemmasBiMap[index]!!
-
-  /**
-   * @param index the index of a morphology type
-   *
-   * @return the morphology type associated to the given [index]
-   */
-  fun decodeType(index: Int): MorphologyType {
-
-    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(index)
-
-    return this.annotationsToTypesMap[typeAnnotation]!!
-  }
-
-  /**
-   * @param index the index of an encoded morphology properties object
-   *
-   * @return the map of properties types to [MorphologyProperty] objects associated to the given [index]
-   */
-  fun decodeProperties(index: Int): Map<String, MorphologyProperty> {
-
-    val properties: Properties = this.propertiesBiMap.getValue(index)
-
-    return properties.properties.associate {
-      Pair(
-        it.first,
-        MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
-      )
-    }
-  }
+  fun decodeMorphology(encodedMorphology: Int): Morphology = MorphologyFactory(
+    lemma = this.decodeLemma(encodedMorphology),
+    type = this.decodeType(encodedMorphology),
+    properties = this.decodeProperties(encodedMorphology)
+  )
 
   /**
    * @param lemma a lemma
@@ -174,6 +148,43 @@ class MorphologyCompressor : Serializable {
     } else {
       this.propertiesBiMap[this.propertiesBiMap.size] = properties
       this.propertiesBiMap.size
+    }
+  }
+
+  /**
+   * @param encodedMorphology an encoded morphology
+   *
+   * @return the lemma of the given [encodedMorphology]
+   */
+  private fun decodeLemma(encodedMorphology: Int): String = this.lemmasBiMap[encodedMorphology / 1.0e6.toInt()]!!
+
+  /**
+   * @param encodedMorphology an encoded morphology
+   *
+   * @return the morphology type of the given [encodedMorphology]
+   */
+  private fun decodeType(encodedMorphology: Int): MorphologyType {
+
+    val typeRemainder: Int = encodedMorphology % 1.0e6.toInt()
+    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(typeRemainder / 1.0e3.toInt())
+
+    return this.annotationsToTypesMap[typeAnnotation]!!
+  }
+
+  /**
+   * @param encodedMorphology an encoded morphology
+   *
+   * @return the map of properties types to [MorphologyProperty] objects associated to the given [encodedMorphology]
+   */
+  private fun decodeProperties(encodedMorphology: Int): Map<String, MorphologyProperty> {
+
+    val properties: Properties = this.propertiesBiMap.getValue(encodedMorphology % 1.0e6.toInt())
+
+    return properties.properties.associate {
+      Pair(
+        it.first,
+        MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
+      )
     }
   }
 }
