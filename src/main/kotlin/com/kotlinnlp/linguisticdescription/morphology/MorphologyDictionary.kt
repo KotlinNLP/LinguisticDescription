@@ -66,13 +66,11 @@ class MorphologyDictionary : Serializable {
   /**
    * A data entry of the morphology map, with the morphologies encoded with the [compressor].
    *
-   * @property form the unique form of the entry
-   * @property multipleForm the list of forms of the entry (null if it is composed by a single form)
+   * @property forms the list of forms of the entry
    * @property morphologies the list of encoded morphologies of the entry
    */
   private data class RowEntry(
-    val form: String,
-    val multipleForm: List<String>?,
+    val forms: List<String>,
     var morphologies: MutableList<List<EncodedMorphology>>
   ) : Serializable {
 
@@ -91,8 +89,8 @@ class MorphologyDictionary : Serializable {
      * @return the entry interpreted from this row entry
      */
     fun toEntry(): Entry = Entry(
-      form = this.form,
-      multipleForm = this.multipleForm,
+      form = this.forms.joinToString(separator = " "),
+      multipleForm = if(this.forms.size > 1) this.forms else null,
       morphologies = this.morphologies.map { encodedMorphologies ->
         MorphologyEntry(morphologies = encodedMorphologies.map { it.decode() })
       }
@@ -204,8 +202,7 @@ class MorphologyDictionary : Serializable {
     if (uniqueForm !in this.morphologyMap) {
 
       this.morphologyMap[uniqueForm] = RowEntry(
-        form = uniqueForm,
-        multipleForm = if (forms.size > 1) forms else null,
+        forms = forms,
         morphologies = mutableListOf(encodedMorphologies)
       )
 
