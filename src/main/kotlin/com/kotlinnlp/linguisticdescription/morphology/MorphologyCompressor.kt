@@ -49,8 +49,7 @@ class MorphologyCompressor : Serializable {
 
     override fun toString(): String = this.properties
       .sortedBy { it.first }
-      .map { "${it.first} = ${it.second}" }
-      .joinToString { "\t" }
+      .joinToString(separator = ",") { "${it.first}=${it.second}" }
 
     override fun hashCode(): Int = this.toString().hashCode()
 
