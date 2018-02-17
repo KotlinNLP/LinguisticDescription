@@ -33,6 +33,8 @@ class MorphologyCompressor : Serializable {
 
   /**
    * A container of morphology properties, used to map them to a unique index.
+   *
+   * @property properties a list of morphology properties
    */
   private data class Properties(val properties: List<Pair<String, String>>) : Serializable {
 

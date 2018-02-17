@@ -26,6 +26,9 @@ class MorphologyDictionary : Serializable {
   /**
    * The morphology entry.
    * If [type] is [Type.Single] the list contains only one morphology, otherwise more.
+   *
+   * @property type the type of this entry (Single or Multiple)
+   * @property list a list of morphologies
    */
   data class MorphologyEntry(
     val type: Type,
@@ -50,6 +53,10 @@ class MorphologyDictionary : Serializable {
 
   /**
    * A data entry of the morphology map.
+   *
+   * @property form the unique form of the entry
+   * @property multipleForm the list of forms of the entry (null if it is composed by a single form)
+   * @property morphologies the list of morphologies of the entry
    */
   data class Entry(
     val form: String,
@@ -57,7 +64,11 @@ class MorphologyDictionary : Serializable {
     val morphologies: List<MorphologyEntry>)
 
   /**
-   * A data entry of the morphology map, with the morphologies list not interpreted.
+   * A data entry of the morphology map, with the morphologies encoded with the [compressor].
+   *
+   * @property form the unique form of the entry
+   * @property multipleForm the list of forms of the entry (null if it is composed by a single form)
+   * @property morphologies the list of encoded morphologies of the entry
    */
   private data class RowEntry(
     val form: String,

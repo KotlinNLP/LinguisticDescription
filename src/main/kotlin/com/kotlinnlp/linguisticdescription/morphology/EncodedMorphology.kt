@@ -14,10 +14,10 @@ import java.io.Serializable
 /**
  * The encoded morphology of an entry of the [MorphologyDictionary].
  *
- * @property lemmaIndex
- * @property typeIndex
- * @property propertiesIndex
- * @param compressor
+ * @property lemmaIndex the index that encodes a lemma
+ * @property typeIndex the index that encodes a morphology type
+ * @property propertiesIndex the index that encodes a morphology properties object
+ * @param compressor the compressor that built this [EncodedMorphology]
  */
 class EncodedMorphology(
   val lemmaIndex: Int,
