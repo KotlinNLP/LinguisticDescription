@@ -55,10 +55,10 @@ class MorphologyDictionary {
   /**
    * A data entry of the morphology map, with the morphologies list not interpreted.
    */
-  private inner class RowEntry(
+  private data class RowEntry(
     val form: String,
     val multipleForm: List<String>?,
-    var morphologies: MutableList<List<Int>>
+    var morphologies: MutableList<List<MorphologyCompressor.EncodedMorphology>>
   ) {
 
     /**
@@ -69,8 +69,8 @@ class MorphologyDictionary {
     fun toEntry(): Entry = Entry(
       form = this.form,
       multipleForm = this.multipleForm,
-      morphologies = this.morphologies.map { indices ->
-        MorphologyEntry(morphologies = indices.map { this@MorphologyDictionary.compressor.getMorphology(it) })
+      morphologies = this.morphologies.map { encodedMorphologies ->
+        MorphologyEntry(morphologies = encodedMorphologies.map { it.decode() })
       }
     )
   }
@@ -98,8 +98,8 @@ class MorphologyDictionary {
 
         dictionary.addEntry(
           forms = getForms(entryObj),
-          jsonMorphologiesIndices = entryObj.array<JsonObject>("morpho")!!.map {
-            dictionary.compressor.morphologyObjToIndex(it)
+          encodedMorphologies = entryObj.array<JsonObject>("morpho")!!.map {
+            dictionary.compressor.encodeMorphology(it)
           })
 
         if (verbose) progress.tick()
@@ -144,14 +144,13 @@ class MorphologyDictionary {
    * @return the [Entry] related to the given [form] if present, otherwise null
    */
   operator fun get(form: String): MorphologyDictionary.Entry? = this.morphologyMap[form]?.toEntry()
-
   /**
-   * Add a new entry to the morphology map or add new [jsonMorphologiesIndices] to it if already present.
+   * Add a new entry to the morphology map or add new [encodedMorphologies] to it if already present.
    *
    * @param forms the list of forms of the entry
-   * @param jsonMorphologiesIndices the indices of the JSON morphologies of the entry, given from the [compressor]
+   * @param encodedMorphologies the encoded morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, jsonMorphologiesIndices: List<Int>) {
+  private fun addEntry(forms: List<String>, encodedMorphologies: List<MorphologyCompressor.EncodedMorphology>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
 
@@ -160,11 +159,11 @@ class MorphologyDictionary {
       this.morphologyMap[uniqueForm] = RowEntry(
         form = uniqueForm,
         multipleForm = if (forms.size > 1) forms else null,
-        morphologies = mutableListOf(jsonMorphologiesIndices)
+        morphologies = mutableListOf(encodedMorphologies)
       )
 
     } else {
-      this.addMorphologies(form = uniqueForm, indices = jsonMorphologiesIndices)
+      this.addMorphologies(form = uniqueForm, indices = encodedMorphologies)
     }
   }
 
@@ -172,8 +171,8 @@ class MorphologyDictionary {
    * Add the given [indices] to the [RowEntry] with the given [form].
    *
    * @param form a form
-   * @param indices the JSON morphologies indices to add to the given form
+   * @param indices the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, indices: List<Int>) =
+  private fun addMorphologies(form: String, indices: List<MorphologyCompressor.EncodedMorphology>) =
     this.morphologyMap[form]!!.morphologies.add(indices)
 }
