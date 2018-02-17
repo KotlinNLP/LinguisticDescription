@@ -122,10 +122,6 @@ class MorphologyCompressor : Serializable {
 
     val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(index)
 
-    if (typeAnnotation !in this.annotationsToTypesMap) {
-      throw InvalidMorphologyType(typeAnnotation)
-    }
-
     return this.annotationsToTypesMap[typeAnnotation]!!
   }
 
