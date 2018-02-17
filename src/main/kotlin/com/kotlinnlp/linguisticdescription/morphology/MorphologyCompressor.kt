@@ -12,8 +12,6 @@ import com.beust.klaxon.obj
 import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
@@ -31,45 +29,6 @@ class MorphologyCompressor : Serializable {
      */
     @Suppress("unused")
     private const val serialVersionUID: Long = 1L
-  }
-
-  /**
-   * The encoded morphology of an entry of the [MorphologyDictionary].
-   */
-  inner class EncodedMorphology(val lemma: String, val typeIndex: Int, val propertiesIndex: Int) : Serializable {
-
-    /**
-     * @return the morphology decoded from this one
-     */
-    fun decode(): Morphology {
-
-      val typeAnnotation: String = this@MorphologyCompressor.indicesToAnnotationsBiMap[this.typeIndex]!!
-
-      if (typeAnnotation !in this@MorphologyCompressor.annotationsToTypesMap) {
-        throw InvalidMorphologyType(typeAnnotation)
-      }
-
-      return MorphologyFactory(
-        lemma = this.lemma,
-        type = this@MorphologyCompressor.annotationsToTypesMap[typeAnnotation]!!,
-        properties = this@MorphologyCompressor.decodeProperties(this.propertiesIndex)
-      )
-    }
-
-    override fun hashCode(): Int = "%s\t%d\t%d".format(this.lemma, this.typeIndex, this.propertiesIndex).hashCode()
-
-    override fun equals(other: Any?): Boolean {
-      if (this === other) return true
-      if (javaClass != other?.javaClass) return false
-
-      other as EncodedMorphology
-
-      if (this.lemma != other.lemma) return false
-      if (this.typeIndex != other.typeIndex) return false
-      if (this.propertiesIndex != other.propertiesIndex) return false
-
-      return true
-    }
   }
 
   /**
@@ -136,8 +95,42 @@ class MorphologyCompressor : Serializable {
     return EncodedMorphology(
       lemma = morphologyObj.string("lemma")!!,
       typeIndex = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation),
-      propertiesIndex = this.encodeJSONProperties(morphologyObj.obj("properties")!!)
+      propertiesIndex = this.encodeJSONProperties(morphologyObj.obj("properties")!!),
+      compressor = this
     )
+  }
+
+  /**
+   * @param index the index of a morphology type
+   *
+   * @return the morphology type associated to the given [index]
+   */
+  fun decodeType(index: Int): MorphologyType {
+
+    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(index)
+
+    if (typeAnnotation !in this.annotationsToTypesMap) {
+      throw InvalidMorphologyType(typeAnnotation)
+    }
+
+    return this.annotationsToTypesMap[typeAnnotation]!!
+  }
+
+  /**
+   * @param index the index of an encoded morphology properties object
+   *
+   * @return the map of properties types to [MorphologyProperty] objects associated to the given [index]
+   */
+  fun decodeProperties(index: Int): Map<String, MorphologyProperty> {
+
+    val properties: Properties = this.propertiesBiMap.getValue(index)
+
+    return properties.properties.associate {
+      Pair(
+        it.first,
+        MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
+      )
+    }
   }
 
   /**
@@ -155,23 +148,6 @@ class MorphologyCompressor : Serializable {
     } else {
       this.propertiesBiMap[this.propertiesBiMap.size] = properties
       this.propertiesBiMap.size
-    }
-  }
-
-  /**
-   * @param index the index of an encoded morphology properties object
-   *
-   * @return the map of properties types to [MorphologyProperty] objects encoded with the given [index]
-   */
-  private fun decodeProperties(index: Int): Map<String, MorphologyProperty> {
-
-    val properties: Properties = this.propertiesBiMap.getValue(index)
-
-    return properties.properties.associate {
-      Pair(
-        it.first,
-        MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
-      )
     }
   }
 }

@@ -62,7 +62,7 @@ class MorphologyDictionary : Serializable {
   private data class RowEntry(
     val form: String,
     val multipleForm: List<String>?,
-    var morphologies: MutableList<List<MorphologyCompressor.EncodedMorphology>>
+    var morphologies: MutableList<List<EncodedMorphology>>
   ) : Serializable {
 
     companion object {
@@ -186,7 +186,7 @@ class MorphologyDictionary : Serializable {
    * @param forms the list of forms of the entry
    * @param encodedMorphologies the encoded morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, encodedMorphologies: List<MorphologyCompressor.EncodedMorphology>) {
+  private fun addEntry(forms: List<String>, encodedMorphologies: List<EncodedMorphology>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
 
@@ -209,6 +209,6 @@ class MorphologyDictionary : Serializable {
    * @param form a form
    * @param indices the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, indices: List<MorphologyCompressor.EncodedMorphology>) =
+  private fun addMorphologies(form: String, indices: List<EncodedMorphology>) =
     this.morphologyMap[form]!!.morphologies.add(indices)
 }
