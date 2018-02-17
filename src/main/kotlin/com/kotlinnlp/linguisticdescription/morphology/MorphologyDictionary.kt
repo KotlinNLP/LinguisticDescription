@@ -8,12 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.*
-import com.google.common.collect.BiMap
-import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
 import com.kotlinnlp.linguisticdescription.utils.forEachLine
 import com.kotlinnlp.linguisticdescription.utils.getNumOfLines
 import com.kotlinnlp.linguisticdescription.utils.toInputStream
@@ -74,32 +69,10 @@ class MorphologyDictionary {
     fun toEntry(): Entry = Entry(
       form = this.form,
       multipleForm = this.multipleForm,
-      morphologies = this.morphologies.map { MorphologyEntry(it.toMorphologies()) }
+      morphologies = this.morphologies.map { indices ->
+        MorphologyEntry(morphologies = indices.map { this@MorphologyDictionary.compressor.getMorphology(it) })
+      }
     )
-
-    /**
-     * Convert this list of JSON morphologies to a list of [Morphology] objects.
-     *
-     * @throws InvalidMorphologyType when an object of this list contains an invalid type annotation
-     *
-     * @return a list of [Morphology] objects
-     */
-    private fun List<Int>.toMorphologies(): List<Morphology> = this.map { jsonMorphologyIndex ->
-
-      val jsonMorphology = this@MorphologyDictionary.jsonMorphologiesBiMap.getValue(jsonMorphologyIndex)
-      val morphoObj = Parser().parse(jsonMorphology) as JsonObject
-      val typeAnnotation: String = morphoObj.string("type")!!
-
-      if (typeAnnotation !in this@MorphologyDictionary.annotationsMap) throw InvalidMorphologyType(typeAnnotation)
-
-      MorphologyFactory(
-        lemma = morphoObj.string("lemma")!!,
-        type = this@MorphologyDictionary.annotationsMap[typeAnnotation]!!,
-        properties = morphoObj.obj("properties")!!
-          .filter { it.value != null }
-          .mapValues { MorphologyPropertyFactory(propertyType = it.key, valueAnnotation = it.value as String) }
-      )
-    }
   }
 
   companion object {
@@ -125,7 +98,9 @@ class MorphologyDictionary {
 
         dictionary.addEntry(
           forms = getForms(entryObj),
-          jsonMorphologies = entryObj.array<JsonObject>("morpho")!!.map { it.toJsonString() })
+          jsonMorphologiesIndices = entryObj.array<JsonObject>("morpho")!!.map {
+            dictionary.compressor.morphologyObjToIndex(it)
+          })
 
         if (verbose) progress.tick()
       }
@@ -154,14 +129,9 @@ class MorphologyDictionary {
   val size: Int get() = this.morphologyMap.size
 
   /**
-   * The map of morphology types associated by annotation.
+   * The compressor of morphologies.
    */
-  private val annotationsMap: Map<String, MorphologyType> = MorphologyType.values().associateBy { it.annotation }
-
-  /**
-   * The BiMap of unique indices to morphologies in JSON string format.
-   */
-  private val jsonMorphologiesBiMap: BiMap<Int, String> = HashBiMap.create()
+  private val compressor = MorphologyCompressor()
 
   /**
    * The map of forms to [Entry] objects.
@@ -176,15 +146,14 @@ class MorphologyDictionary {
   operator fun get(form: String): MorphologyDictionary.Entry? = this.morphologyMap[form]?.toEntry()
 
   /**
-   * Add a new entry to the morphology map or add new [jsonMorphologies] to it if already present.
+   * Add a new entry to the morphology map or add new [jsonMorphologiesIndices] to it if already present.
    *
    * @param forms the list of forms of the entry
-   * @param jsonMorphologies the JSON morphologies array of the entry
+   * @param jsonMorphologiesIndices the indices of the JSON morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, jsonMorphologies: List<String>) {
+  private fun addEntry(forms: List<String>, jsonMorphologiesIndices: List<Int>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
-    val jsonMorphologiesIndices: List<Int> = jsonMorphologies.map { this.getIndex(it) }
 
     if (uniqueForm !in this.morphologyMap) {
 
@@ -197,20 +166,6 @@ class MorphologyDictionary {
     } else {
       this.addMorphologies(form = uniqueForm, indices = jsonMorphologiesIndices)
     }
-  }
-
-  /**
-   * @param jsonMorphology a morphology in JSON string format
-   *
-   * @return the index to which the [jsonMorphology] is mapped
-   */
-  private fun getIndex(jsonMorphology: String): Int {
-
-    if (jsonMorphology !in this.jsonMorphologiesBiMap.inverse()) {
-      this.jsonMorphologiesBiMap[this.jsonMorphologiesBiMap.size] = jsonMorphology
-    }
-
-    return this.jsonMorphologiesBiMap.inverse()[jsonMorphology]!!
   }
 
   /**
