@@ -8,6 +8,8 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.*
+import com.google.common.collect.BiMap
+import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
@@ -61,7 +63,7 @@ class MorphologyDictionary {
   private inner class RowEntry(
     val form: String,
     val multipleForm: List<String>?,
-    var morphologies: MutableList<List<String>>
+    var morphologies: MutableList<List<Int>>
   ) {
 
     /**
@@ -82,8 +84,9 @@ class MorphologyDictionary {
      *
      * @return a list of [Morphology] objects
      */
-    private fun List<String>.toMorphologies(): List<Morphology> = this.map { jsonMorphology ->
+    private fun List<Int>.toMorphologies(): List<Morphology> = this.map { jsonMorphologyIndex ->
 
+      val jsonMorphology = this@MorphologyDictionary.jsonMorphologiesBiMap.getValue(jsonMorphologyIndex)
       val morphoObj = Parser().parse(jsonMorphology) as JsonObject
       val typeAnnotation: String = morphoObj.string("type")!!
 
@@ -156,6 +159,11 @@ class MorphologyDictionary {
   private val annotationsMap: Map<String, MorphologyType> = MorphologyType.values().associateBy { it.annotation }
 
   /**
+   * The BiMap of unique indices to morphologies in JSON string format.
+   */
+  private val jsonMorphologiesBiMap: BiMap<Int, String> = HashBiMap.create()
+
+  /**
    * The map of forms to [Entry] objects.
    */
   private val morphologyMap = mutableMapOf<String, MorphologyDictionary.RowEntry>()
@@ -176,26 +184,41 @@ class MorphologyDictionary {
   private fun addEntry(forms: List<String>, jsonMorphologies: List<String>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
+    val jsonMorphologiesIndices: List<Int> = jsonMorphologies.map { this.getIndex(it) }
 
     if (uniqueForm !in this.morphologyMap) {
 
       this.morphologyMap[uniqueForm] = RowEntry(
         form = uniqueForm,
         multipleForm = if (forms.size > 1) forms else null,
-        morphologies = mutableListOf(jsonMorphologies)
+        morphologies = mutableListOf(jsonMorphologiesIndices)
       )
 
     } else {
-      this.addMorphologies(form = uniqueForm, jsonMorphologies = jsonMorphologies)
+      this.addMorphologies(form = uniqueForm, indices = jsonMorphologiesIndices)
     }
   }
 
   /**
-   * Add the given [jsonMorphologies] to the entry with the given [form].
+   * @param jsonMorphology a morphology in JSON string format
+   *
+   * @return the index to which the [jsonMorphology] is mapped
+   */
+  private fun getIndex(jsonMorphology: String): Int {
+
+    if (jsonMorphology !in this.jsonMorphologiesBiMap.inverse()) {
+      this.jsonMorphologiesBiMap[this.jsonMorphologiesBiMap.size] = jsonMorphology
+    }
+
+    return this.jsonMorphologiesBiMap.inverse()[jsonMorphology]!!
+  }
+
+  /**
+   * Add the given [indices] to the [RowEntry] with the given [form].
    *
    * @param form a form
-   * @param jsonMorphologies the morphology entry to add
+   * @param indices the JSON morphologies indices to add to the given form
    */
-  private fun addMorphologies(form: String, jsonMorphologies: List<String>) =
-    this.morphologyMap[form]!!.morphologies.add(jsonMorphologies)
+  private fun addMorphologies(form: String, indices: List<Int>) =
+    this.morphologyMap[form]!!.morphologies.add(indices)
 }
