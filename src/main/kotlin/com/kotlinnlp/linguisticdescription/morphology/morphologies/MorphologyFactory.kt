@@ -161,7 +161,8 @@ object MorphologyFactory {
       val propertyName: String = it.name!!
       val isLemma: Boolean = propertyName == "lemma"
 
-      if (!isLemma && propertyName !in properties) throw MissingMorphologyProperty(propertyName)
+      if (!isLemma && propertyName !in properties)
+        throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type)
 
       Pair(it, if (isLemma) lemma else properties[propertyName]!!)
     }

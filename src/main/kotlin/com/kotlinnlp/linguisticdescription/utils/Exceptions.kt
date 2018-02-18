@@ -15,7 +15,9 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPrope
  *
  * @param propertyName the name of the missing parameter
  */
-class MissingMorphologyProperty(propertyName: String) : RuntimeException(propertyName)
+class MissingMorphologyProperty(morphologyType: MorphologyType, propertyName: String) : RuntimeException("""
+  '%s' of %s
+""".trimIndent().format(propertyName, morphologyType))
 
 /**
  * Raised when trying to get a [MorphologyType] by invalid annotation.
