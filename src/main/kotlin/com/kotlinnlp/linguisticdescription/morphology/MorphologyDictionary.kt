@@ -156,7 +156,8 @@ class MorphologyDictionary : Serializable {
         form = forms.first(),
         multipleForm = if (forms.size > 1) forms else null,
         morphologies = encodedMorphologiesList.map { encodedMorphologies ->
-          MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it.toLong()) })
+          val morphologyCodes: List<String> = encodedMorphologies.split(',')
+          MorphologyEntry(morphologies = morphologyCodes.map { this.compressor.decodeMorphology(it.toLong()) })
         }
       )
 
