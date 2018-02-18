@@ -68,6 +68,16 @@ class MorphologyCompressor : Serializable {
   }
 
   /**
+   * The multiplier coefficient of the type index, used to encode a morphology.
+   */
+  private val typeIndexCoeff: Int = 1.0e03.toInt()
+
+  /**
+   * The multiplier coefficient of the lemma index, used to encode a morphology.
+   */
+  private val lemmaIndexCoeff: Int = 1.0e06.toInt()
+
+  /**
    * The BiMap of unique indices to lemmas.
    */
   private val lemmasBiMap: BiMap<Int, String> = HashBiMap.create()
@@ -104,11 +114,15 @@ class MorphologyCompressor : Serializable {
     val typeIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation)
     val propertiesIndex: Int = this.encodeJSONProperties(morphologyObj.obj("properties")!!)
 
-    return 1.0e06.toInt() * lemmaIndex + 1.0e03.toInt() * typeIndex + propertiesIndex
+    return this.lemmaIndexCoeff * lemmaIndex + this.typeIndexCoeff * typeIndex + propertiesIndex
   }
 
   /**
+   * Decode an encoded morphology.
    *
+   * @param encodedMorphology an encoded morphology
+   *
+   * @return the decoded morphology object
    */
   fun decodeMorphology(encodedMorphology: Int): Morphology = MorphologyFactory(
     lemma = this.decodeLemma(encodedMorphology),
@@ -156,7 +170,7 @@ class MorphologyCompressor : Serializable {
    *
    * @return the lemma of the given [encodedMorphology]
    */
-  private fun decodeLemma(encodedMorphology: Int): String = this.lemmasBiMap[encodedMorphology / 1.0e6.toInt()]!!
+  private fun decodeLemma(encodedMorphology: Int): String = this.lemmasBiMap[encodedMorphology / this.lemmaIndexCoeff]!!
 
   /**
    * @param encodedMorphology an encoded morphology
@@ -165,8 +179,8 @@ class MorphologyCompressor : Serializable {
    */
   private fun decodeType(encodedMorphology: Int): MorphologyType {
 
-    val typeRemainder: Int = encodedMorphology % 1.0e6.toInt()
-    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(typeRemainder / 1.0e3.toInt())
+    val typeRemainder: Int = encodedMorphology % this.lemmaIndexCoeff
+    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(typeRemainder / this.typeIndexCoeff)
 
     return this.annotationsToTypesMap[typeAnnotation]!!
   }
@@ -178,7 +192,7 @@ class MorphologyCompressor : Serializable {
    */
   private fun decodeProperties(encodedMorphology: Int): Map<String, MorphologyProperty> {
 
-    val properties: Properties = this.propertiesBiMap.getValue(encodedMorphology % 1.0e6.toInt())
+    val properties: Properties = this.propertiesBiMap.getValue(encodedMorphology % this.typeIndexCoeff)
 
     return properties.properties.associate {
       Pair(
