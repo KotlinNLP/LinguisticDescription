@@ -46,6 +46,11 @@ class MorphologyDictionary : Serializable {
       type = if (morphologies.size == 1) Type.Single else Type.Multiple,
       list = morphologies
     )
+
+    /**
+     * @return a string representation of this entry
+     */
+    override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
   }
 
   /**
@@ -58,7 +63,18 @@ class MorphologyDictionary : Serializable {
   data class Entry(
     val form: String,
     val multipleForm: List<String>?,
-    val morphologies: List<MorphologyEntry>)
+    val morphologies: List<MorphologyEntry>
+  ) {
+
+    /**
+     * @return a string representation of this entry
+     */
+    override fun toString(): String = """
+      Form: '%s'
+      Morphologies:
+      %s%s
+    """.trimIndent().format(this.form, "\t", this.morphologies.joinToString(separator = "\n\t"))
+  }
 
   companion object {
 
