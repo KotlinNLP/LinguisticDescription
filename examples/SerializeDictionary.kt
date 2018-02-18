@@ -32,6 +32,7 @@ fun main(args: Array<String>) {
   println("\nNumber of elements in the dictionary: ${m.size}.")
 
   println("\nSaving serialized dictionary to '$outputFile'...")
+  timer.reset()
   m.dump(FileOutputStream(File(outputFile)))
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 }
