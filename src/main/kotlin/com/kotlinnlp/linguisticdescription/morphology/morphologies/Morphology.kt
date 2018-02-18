@@ -43,10 +43,16 @@ abstract class Morphology(val lemma: String) {
   /**
    * @return the string representation of this morphology (with the values of its properties)
    */
-  override fun toString() = "%s (%s)".format(
-    this.getSuperClassesNames().joinToString(separator = "."),
-    this.getProperties().entries.joinToString { "${it.key}: ${it.value}" }
-  )
+  override fun toString(): String {
+
+    val properties = this.getProperties().entries
+
+    return "'%s': %s%s".format(
+      this.lemma,
+      this.getSuperClassesNames().joinToString(separator = "."),
+      if (properties.isNotEmpty()) " (" + properties.joinToString { "${it.key}: ${it.value}" } + ")" else ""
+    )
+  }
 
   /**
    * @return the list of names of super classes of this morphology, from the highest to itself
@@ -57,8 +63,8 @@ abstract class Morphology(val lemma: String) {
     var currentClass: KClass<*> = this::class
 
     while (currentClass != Morphology::class) {
-        classes.add(0, currentClass.simpleName!!)
-        currentClass = (currentClass.java.superclass as Class<*>).kotlin
+      classes.add(0, currentClass.simpleName!!)
+      currentClass = (currentClass.java.superclass as Class<*>).kotlin
     }
 
     return classes.toList()
