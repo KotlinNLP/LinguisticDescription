@@ -30,10 +30,7 @@ class MorphologyDictionary : Serializable {
    * @property type the type of this entry (Single or Multiple)
    * @property list a list of morphologies
    */
-  data class MorphologyEntry(
-    val type: Type,
-    val list: List<Morphology>
-  ) {
+  data class MorphologyEntry(val type: Type, val list: List<Morphology>) {
 
     /**
      * The [MorphologyEntry] type.
@@ -62,42 +59,6 @@ class MorphologyDictionary : Serializable {
     val form: String,
     val multipleForm: List<String>?,
     val morphologies: List<MorphologyEntry>)
-
-  /**
-   * A data entry of the morphology map, with the morphologies encoded with the [compressor].
-   *
-   * @property forms the list of forms of the entry
-   * @property morphologies the list of encoded morphologies of the entry
-   * @param compressor the compressor of the dictionary that builds this row entry
-   */
-  private data class RowEntry(
-    val forms: List<String>,
-    var morphologies: MutableList<List<Int>>,
-    private val compressor: MorphologyCompressor
-  ) : Serializable {
-
-    companion object {
-
-      /**
-       * Private val used to serialize the class (needed by Serializable).
-       */
-      @Suppress("unused")
-      private const val serialVersionUID: Long = 1L
-    }
-
-    /**
-     * Convert this [RowEntry] to an [Entry].
-     *
-     * @return the entry interpreted from this row entry
-     */
-    fun toEntry(): Entry = Entry(
-      form = this.forms.joinToString(separator = " "),
-      multipleForm = if(this.forms.size > 1) this.forms else null,
-      morphologies = this.morphologies.map { encodedMorphologies ->
-        MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it) })
-      }
-    )
-  }
 
   companion object {
 
@@ -175,14 +136,34 @@ class MorphologyDictionary : Serializable {
   /**
    * The map of forms to [Entry] objects.
    */
-  private val morphologyMap = mutableMapOf<String, MorphologyDictionary.RowEntry>()
+  private val morphologyMap = mutableMapOf<String, String>()
 
   /**
    * @param form a form of the dictionary
    *
    * @return the [Entry] related to the given [form] if present, otherwise null
    */
-  operator fun get(form: String): MorphologyDictionary.Entry? = this.morphologyMap[form]?.toEntry()
+  operator fun get(form: String): Entry? {
+
+    val encodedEntry: String? = this.morphologyMap[form]
+
+    return if (encodedEntry != null) {
+
+      val encodedMorphologiesList: List<String> = encodedEntry.split("\t")
+      val forms: List<String> = form.split(" ")
+
+      Entry(
+        form = forms.first(),
+        multipleForm = if (forms.size > 1) forms else null,
+        morphologies = encodedMorphologiesList.map { encodedMorphologies ->
+          MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it.toInt()) })
+        }
+      )
+
+    } else {
+      null
+    }
+  }
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
@@ -202,24 +183,19 @@ class MorphologyDictionary : Serializable {
     val uniqueForm: String = forms.joinToString(separator = " ")
 
     if (uniqueForm !in this.morphologyMap) {
-
-      this.morphologyMap[uniqueForm] = RowEntry(
-        forms = forms,
-        morphologies = mutableListOf(encodedMorphologies),
-        compressor = this.compressor
-      )
-
+      this.morphologyMap[uniqueForm] = encodedMorphologies.joinToString(separator = ",")
     } else {
       this.addMorphologies(form = uniqueForm, encodedMorphologies = encodedMorphologies)
     }
   }
 
   /**
-   * Add the given [encodedMorphologies] to the [RowEntry] with the given [form].
+   * Add the given [encodedMorphologies] to the encoded entry with the given [form].
    *
    * @param form a form
    * @param encodedMorphologies the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, encodedMorphologies: List<Int>) =
-    this.morphologyMap[form]!!.morphologies.add(encodedMorphologies)
+  private fun addMorphologies(form: String, encodedMorphologies: List<Int>) {
+    this.morphologyMap[form] = this.morphologyMap[form]!! + "\t" + encodedMorphologies.joinToString(separator = ",")
+  }
 }
