@@ -156,7 +156,7 @@ class MorphologyDictionary : Serializable {
         form = forms.first(),
         multipleForm = if (forms.size > 1) forms else null,
         morphologies = encodedMorphologiesList.map { encodedMorphologies ->
-          MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it.toInt()) })
+          MorphologyEntry(morphologies = encodedMorphologies.map { this.compressor.decodeMorphology(it.toLong()) })
         }
       )
 
@@ -178,7 +178,7 @@ class MorphologyDictionary : Serializable {
    * @param forms the list of forms of the entry
    * @param encodedMorphologies the encoded morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, encodedMorphologies: List<Int>) {
+  private fun addEntry(forms: List<String>, encodedMorphologies: List<Long>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ")
 
@@ -195,7 +195,7 @@ class MorphologyDictionary : Serializable {
    * @param form a form
    * @param encodedMorphologies the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, encodedMorphologies: List<Int>) {
+  private fun addMorphologies(form: String, encodedMorphologies: List<Long>) {
     this.morphologyMap[form] = this.morphologyMap[form]!! + "\t" + encodedMorphologies.joinToString(separator = ",")
   }
 }
