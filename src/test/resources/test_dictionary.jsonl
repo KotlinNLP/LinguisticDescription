@@ -1,0 +1,4 @@
+{"form":"form1","morpho":[{"lemma":"lemma1","type":"NOUN-COMMON","properties":{"gender":"M","number":"SING","person":"3","case":"UNKNOWN","degree":"BASE","mood":null,"tense":null}}]}
+{"form":"form1","morpho":[{"lemma":"lemma2","type":"VERB","properties":{"gender":"F","number":"SING","person":"3","case":null,"degree":null,"mood":"IND","tense":"PRESENT"}}]}
+{"form":"form2","morpho":[{"lemma":"lemma3","type":"PREP","properties":{"gender":null,"number":null,"person":null,"case":null,"degree":null,"mood":null,"tense":null}},{"lemma":"lemma4","type":"ART","properties":{"gender":"F","number":"PL","person":null,"case":"OBJ","degree":null,"mood":null,"tense":null}}]}
+{"form":["form3.1","form3.2","form3.3"],"morpho":[{"lemma":"lemma5 lemma6 lemma7","type":"PREP","properties":{"gender":null,"number":null,"person":null,"case":null,"degree":null,"mood":null,"tense":null}}]}
