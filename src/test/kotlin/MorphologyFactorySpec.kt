@@ -56,6 +56,12 @@ class MorphologyFactorySpec : Spek({
         it("should return a Morphology with the expected gender") {
           assertEquals(GrammaticalCase.Subject, (morpho as Article.Indefinite).case)
         }
+
+        it("should return the expected string calling the toString() method") {
+          assertEquals(
+            "'x': Article.Indefinite.Base (case: Subject, gender: Masculine, number: Singular)",
+            morpho.toString())
+        }
       }
 
       on("factory of an Indefinite Article without the 'gender' property") {
@@ -84,6 +90,12 @@ class MorphologyFactorySpec : Spek({
 
         it("should return a Morphology of the expected type") {
           assertTrue { morpho is Conjunction.Comparative }
+        }
+
+        it("should return the expected string calling the toString() method") {
+          assertEquals(
+            "'x': Conjunction.Comparative.Base",
+            morpho.toString())
         }
       }
 
