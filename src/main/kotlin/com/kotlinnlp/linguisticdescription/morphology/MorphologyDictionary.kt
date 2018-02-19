@@ -215,17 +215,19 @@ class MorphologyDictionary : Serializable {
     if (uniqueForm !in this.morphologyMap) {
       this.morphologyMap[uniqueForm] = encodedMorphologies.joinToString(separator = ",")
     } else {
-      this.addMorphologies(form = uniqueForm, encodedMorphologies = encodedMorphologies)
+      this.addMorphologies(uniqueForm = uniqueForm, encodedMorphologies = encodedMorphologies)
     }
   }
 
   /**
-   * Add the given [encodedMorphologies] to the encoded entry with the given [form].
+   * Add the given [encodedMorphologies] to the encoded entry with the given [uniqueForm].
    *
-   * @param form a form
+   * @param uniqueForm a unique form
    * @param encodedMorphologies the encoded morphologies to add to the given form
    */
-  private fun addMorphologies(form: String, encodedMorphologies: List<Long>) {
-    this.morphologyMap[form] = this.morphologyMap[form]!! + "\t" + encodedMorphologies.joinToString(separator = ",")
+  private fun addMorphologies(uniqueForm: String, encodedMorphologies: List<Long>) {
+    this.morphologyMap[uniqueForm] = "%s\t%s".format(
+      this.morphologyMap[uniqueForm]!!, encodedMorphologies.joinToString(separator = ",")
+    )
   }
 }
