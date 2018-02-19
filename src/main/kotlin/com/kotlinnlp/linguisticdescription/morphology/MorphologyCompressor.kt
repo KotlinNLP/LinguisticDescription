@@ -142,8 +142,9 @@ class MorphologyCompressor : Serializable {
     return if (lemma in inversedMap) {
       inversedMap.getValue(lemma)
     } else {
-      this.lemmasBiMap[this.lemmasBiMap.size] = lemma
-      this.lemmasBiMap.size
+      val index: Int = this.lemmasBiMap.size
+      this.lemmasBiMap[index] = lemma
+      index
     }
   }
 
