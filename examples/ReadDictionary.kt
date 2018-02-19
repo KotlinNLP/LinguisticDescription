@@ -29,16 +29,16 @@ fun main(args: Array<String>) {
 
   println("\nNumber of elements in the dictionary: ${m.size}.")
 
-  var exit = false
-
-  while (!exit) {
+  while (true) {
 
     print("\nSearch a form (empty to exit): ")
     val searchVal = readLine()!!
 
     if (searchVal.isEmpty())
-      exit = true
+      break
     else
       println("\n" + m[searchVal])
   }
+
+  println("\nExiting...")
 }
