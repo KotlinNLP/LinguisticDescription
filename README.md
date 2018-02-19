@@ -14,7 +14,7 @@ LinguisticDescription is part of [KotlinNLP](http://kotlinnlp.com/ "KotlinNLP").
 <dependency>
     <groupId>com.kotlinnlp</groupId>
     <artifactId>linguisticdescription</artifactId>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
 </dependency>
 ```
 
