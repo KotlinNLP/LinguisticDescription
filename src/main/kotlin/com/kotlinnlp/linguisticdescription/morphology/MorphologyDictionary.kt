@@ -182,7 +182,7 @@ class MorphologyDictionary : Serializable {
       val forms: List<String> = form.split(" ")
 
       Entry(
-        form = forms.first(),
+        form = form,
         multipleForm = if (forms.size > 1) forms else null,
         morphologies = encodedMorphologiesList.map { encodedMorphologies ->
           val morphologyCodes: List<String> = encodedMorphologies.split(',')
