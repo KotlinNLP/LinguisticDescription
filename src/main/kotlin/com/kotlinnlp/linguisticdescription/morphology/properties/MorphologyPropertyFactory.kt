@@ -41,13 +41,13 @@ object MorphologyPropertyFactory {
    */
   operator fun invoke(propertyType: String, valueAnnotation: String): MorphologyProperty {
 
-    if (propertyType !in propertiesMap) throw InvalidMorphologyPropertyType(propertyType)
+    if (propertyType !in this.propertiesMap) throw InvalidMorphologyPropertyType(propertyType)
 
-    val valuesMap: Map<String, MorphologyProperty> = propertiesMap[propertyType]!!
+    val valuesMap: Map<String, MorphologyProperty> = this.propertiesMap.getValue(propertyType)
 
     if (valueAnnotation !in valuesMap)
       throw InvalidMorphologyPropertyAnnotation(type = propertyType, annotation = valueAnnotation)
 
-    return valuesMap[valueAnnotation]!!
+    return valuesMap.getValue(valueAnnotation)
   }
 }
