@@ -54,6 +54,20 @@ abstract class Morphology(val lemma: String) {
     )
   }
 
+  override fun hashCode(): Int = this.toString().hashCode()
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as Morphology
+
+    if (this.lemma != other.lemma) return false
+    if (this.toString() != other.toString()) return false
+
+    return true
+  }
+
   /**
    * @return the list of names of super classes of this morphology, from the highest to itself
    */
