@@ -29,6 +29,11 @@ object MorphologyPropertyFactory {
   )
 
   /**
+   * The list of types of all the possible properties.
+   */
+  val propertyTypes: List<String> = this.propertiesMap.keys.toList()
+
+  /**
    * Build a [MorphologyProperty] given its type and value annotation as strings.
    *
    * @param propertyType the morphology property type (gender, number, etc...)
