@@ -51,6 +51,19 @@ class MorphologyDictionary : Serializable {
      * @return a string representation of this entry
      */
     override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
+
+    override fun hashCode(): Int = this.toString().hashCode()
+
+    override fun equals(other: Any?): Boolean {
+      if (this === other) return true
+      if (javaClass != other?.javaClass) return false
+
+      other as MorphologyEntry
+
+      if (this.toString() != other.toString()) return false
+
+      return true
+    }
   }
 
   /**
