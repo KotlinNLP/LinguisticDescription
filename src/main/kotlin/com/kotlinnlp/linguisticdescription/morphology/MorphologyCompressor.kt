@@ -160,8 +160,9 @@ class MorphologyCompressor : Serializable {
     return if (properties in inversedMap) {
       inversedMap.getValue(properties)
     } else {
-      this.propertiesBiMap[this.propertiesBiMap.size] = properties
-      this.propertiesBiMap.size
+      val index: Int = this.propertiesBiMap.size
+      this.propertiesBiMap[index] = properties
+      index
     }
   }
 
