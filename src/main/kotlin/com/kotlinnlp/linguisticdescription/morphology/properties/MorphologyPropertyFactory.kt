@@ -45,7 +45,8 @@ object MorphologyPropertyFactory {
 
     val valuesMap: Map<String, MorphologyProperty> = propertiesMap[propertyType]!!
 
-    if (valueAnnotation !in valuesMap) throw InvalidMorphologyPropertyAnnotation(valueAnnotation)
+    if (valueAnnotation !in valuesMap)
+      throw InvalidMorphologyPropertyAnnotation(type = propertyType, annotation = valueAnnotation)
 
     return valuesMap[valueAnnotation]!!
   }

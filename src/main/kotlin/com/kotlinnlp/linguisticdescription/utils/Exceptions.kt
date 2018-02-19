@@ -13,6 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPrope
 /**
  * Raised when trying to create a Morphology without passing all required parameters.
  *
+ * @param morphologyType the type of the morphology
  * @param propertyName the name of the missing parameter
  */
 class MissingMorphologyProperty(morphologyType: MorphologyType, propertyName: String) : RuntimeException("""
@@ -36,6 +37,9 @@ class InvalidMorphologyPropertyType(propertyType: String) : RuntimeException(pro
 /**
  * Raised when trying to get a [MorphologyProperty] by invalid annotation.
  *
- * @param propertyAnnotation the annotation string of a [MorphologyProperty]
+ * @param type the type of the property
+ * @param annotation the annotation string of the missing property
  */
-class InvalidMorphologyPropertyAnnotation(propertyAnnotation: String) : RuntimeException(propertyAnnotation)
+class InvalidMorphologyPropertyAnnotation(type: String, annotation: String) : RuntimeException(
+  "'%s' invalid for %s".format(annotation, type)
+)
