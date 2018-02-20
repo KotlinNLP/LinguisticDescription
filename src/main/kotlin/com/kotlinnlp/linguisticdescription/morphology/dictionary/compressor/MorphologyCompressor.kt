@@ -5,14 +5,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.compressor
+package com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.obj
 import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyDictionary
+import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty

@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.compressor
+package com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor
 
 /**
  * A temporary morphology entry.

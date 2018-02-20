@@ -5,10 +5,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology
+package com.kotlinnlp.linguisticdescription.morphology.dictionary
 
 import com.beust.klaxon.*
-import com.kotlinnlp.linguisticdescription.morphology.compressor.MorphologyCompressor
+import com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor.MorphologyCompressor
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.utils.Serializer
 import com.kotlinnlp.linguisticdescription.utils.forEachLine

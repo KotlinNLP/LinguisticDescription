@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyDictionary
+import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
 import utils.Timer
 import java.io.File
 import java.io.FileInputStream
