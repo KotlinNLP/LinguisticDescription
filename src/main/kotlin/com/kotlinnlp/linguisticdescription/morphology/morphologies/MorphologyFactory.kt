@@ -162,7 +162,7 @@ object MorphologyFactory {
       val isLemma: Boolean = propertyName == "lemma"
 
       if (!isLemma && propertyName !in properties)
-        throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type)
+        throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type, lemma = lemma)
 
       Pair(it, if (isLemma) lemma else properties[propertyName]!!)
     }

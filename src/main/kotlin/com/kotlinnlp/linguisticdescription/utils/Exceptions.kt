@@ -15,10 +15,13 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPrope
  *
  * @param morphologyType the type of the morphology
  * @param propertyName the name of the missing parameter
+ * @param lemma the lemma of the morphology
  */
-class MissingMorphologyProperty(morphologyType: MorphologyType, propertyName: String) : RuntimeException("""
-  '%s' of %s
-""".trimIndent().format(propertyName, morphologyType))
+class MissingMorphologyProperty(
+  morphologyType: MorphologyType,
+  propertyName: String,
+  lemma: String
+) : RuntimeException("'%s' of %s '%s'".trimIndent().format(propertyName, morphologyType, lemma))
 
 /**
  * Raised when trying to get a [MorphologyType] by invalid annotation.
