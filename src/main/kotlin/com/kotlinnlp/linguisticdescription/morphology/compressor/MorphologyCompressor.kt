@@ -5,13 +5,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology
+package com.kotlinnlp.linguisticdescription.morphology.compressor
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.obj
 import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
@@ -31,40 +32,6 @@ class MorphologyCompressor : Serializable {
      */
     @Suppress("unused")
     private const val serialVersionUID: Long = 1L
-  }
-
-  /**
-   * A container of morphology properties, used to map them to a unique index.
-   *
-   * @property properties a list of morphology properties
-   */
-  private data class Properties(val properties: List<Pair<String, String>>) : Serializable {
-
-    companion object {
-
-      /**
-       * Private val used to serialize the class (needed by Serializable).
-       */
-      @Suppress("unused")
-      private const val serialVersionUID: Long = 1L
-    }
-
-    override fun toString(): String = this.properties
-      .sortedBy { it.first }
-      .joinToString(separator = ",") { "${it.first}=${it.second}" }
-
-    override fun hashCode(): Int = this.toString().hashCode()
-
-    override fun equals(other: Any?): Boolean {
-      if (this === other) return true
-      if (javaClass != other?.javaClass) return false
-
-      other as Properties
-
-      if (this.properties != other.properties) return false
-
-      return true
-    }
   }
 
   /**
@@ -197,7 +164,7 @@ class MorphologyCompressor : Serializable {
 
     val properties: Properties = this.propertiesBiMap.getValue((encodedMorphology % this.typeIndexCoeff).toInt())
 
-    return properties.properties.associate {
+    return properties.list.associate {
       Pair(
         it.first,
         MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
