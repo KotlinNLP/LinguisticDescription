@@ -9,7 +9,6 @@ package com.kotlinnlp.linguisticdescription.morphology.dictionary
 
 import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor.MorphologyCompressor
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.utils.Serializer
 import com.kotlinnlp.linguisticdescription.utils.forEachLine
 import com.kotlinnlp.linguisticdescription.utils.getNumOfLines
@@ -23,81 +22,6 @@ import java.io.Serializable
  * The dictionary of morphologies that maps forms to morphologies.
  */
 class MorphologyDictionary : Serializable {
-
-  /**
-   * A morphology entry of an [Entry].
-   *
-   * If [type] is [Type.Single] the list contains only one morphology, otherwise more.
-   *
-   * @property type the type of this entry (Single or Multiple)
-   * @property list a list of morphologies
-   */
-  data class MorphologyEntry(val type: Type, val list: List<Morphology>) {
-
-    /**
-     * The [MorphologyEntry] type.
-     */
-    enum class Type { Single, Multiple }
-
-    /**
-     * Build a [MorphologyEntry] given a list of [Morphology].
-     *
-     * @param morphologies the list of morphologies
-     */
-    constructor(morphologies: List<Morphology>): this(
-      type = if (morphologies.size == 1) Type.Single else Type.Multiple,
-      list = morphologies
-    )
-
-    /**
-     * @return a string representation of this entry
-     */
-    override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
-
-    /**
-     * @return the hash code of this object
-     */
-    override fun hashCode(): Int = this.toString().hashCode()
-
-    /**
-     * @param other another object
-     *
-     * @return a boolean indicating if this object is equal to the [other] object
-     */
-    override fun equals(other: Any?): Boolean {
-      if (this === other) return true
-      if (javaClass != other?.javaClass) return false
-
-      other as MorphologyEntry
-
-      if (this.toString() != other.toString()) return false
-
-      return true
-    }
-  }
-
-  /**
-   * A data entry of the morphology dictionary.
-   *
-   * @property form the unique form of the entry
-   * @property multipleForm the list of forms of the entry (null if it is composed by a single form)
-   * @property morphologies the list of morphologies of the entry
-   */
-  data class Entry(
-    val form: String,
-    val multipleForm: List<String>?,
-    val morphologies: List<MorphologyEntry>
-  ) {
-
-    /**
-     * @return a string representation of this entry
-     */
-    override fun toString(): String = """
-      Form: '%s'
-      Morphologies:
-      %s%s
-    """.trimIndent().format(this.form, "\t", this.morphologies.joinToString(separator = "\n\t"))
-  }
 
   companion object {
 
