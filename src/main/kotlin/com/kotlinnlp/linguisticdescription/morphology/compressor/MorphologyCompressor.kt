@@ -12,8 +12,8 @@ import com.beust.klaxon.obj
 import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyDictionary
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
@@ -21,7 +21,7 @@ import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
 import java.io.Serializable
 
 /**
- * An helper that optimizes the memory load for the morphologies, mapping them to indices.
+ * A helper that optimizes the memory load of the morphologies, mapping them to indices.
  */
 class MorphologyCompressor : Serializable {
 
@@ -67,9 +67,9 @@ class MorphologyCompressor : Serializable {
   private val propertiesBiMap: BiMap<Int, Properties> = HashBiMap.create()
 
   /**
-   * @param morphologyObj a morphology JSON object
+   * @param morphologyObj a single morphology JSON object
    *
-   * @return the encoded index of [morphologyObj]
+   * @return the index representing the encoding of the [morphologyObj]
    */
   fun encodeMorphology(morphologyObj: JsonObject): Long {
 
@@ -85,17 +85,22 @@ class MorphologyCompressor : Serializable {
   }
 
   /**
-   * Decode an encoded morphology.
+   * Decode an encoded morphology entry.
    *
-   * @param encodedMorphology an encoded morphology
+   * @param morphologyEntryCodes the list of encoded morphologies of an entry (one element for a single morphology)
    *
-   * @return the decoded morphology object
+   * @return the decoded morphology entry
    */
-  fun decodeMorphology(encodedMorphology: Long): Morphology = MorphologyFactory(
-    lemma = this.decodeLemma(encodedMorphology),
-    type = this.decodeType(encodedMorphology),
-    properties = this.decodeProperties(encodedMorphology)
-  )
+  fun decodeMorphology(morphologyEntryCodes: List<String>): List<MorphologyDictionary.MorphologyEntry> {
+
+    val tmpEntry: TmpEntry = this.decodeTmpEntry(morphologyEntryCodes)
+
+    return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
+      MorphologyDictionary.MorphologyEntry(morphologies = entry.morphologies.map {
+        MorphologyFactory(lemma = it.lemma, type = it.type, properties = this.mapProperties(it.properties))
+      })
+    }
+  }
 
   /**
    * @param lemma a lemma
@@ -135,6 +140,35 @@ class MorphologyCompressor : Serializable {
   }
 
   /**
+   * Decode an encoded entry to a temporary entry.
+   *
+   * @param morphologyEntryCodes the list of encoded morphologies of an entry (one element for a single morphology)
+   *
+   * @return a temporary entry object
+   */
+  private fun decodeTmpEntry(morphologyEntryCodes: List<String>) = TmpEntry(
+    morphologies = morphologyEntryCodes.map { this.decodeTmpMorphology(it) }
+  )
+
+  /**
+   * Decode an encoded morphology to a temporary morphology.
+   *
+   * @param morphologyCode an encoded morphology
+   *
+   * @return a temporary morphology object
+   */
+  private fun decodeTmpMorphology(morphologyCode: String): TmpMorphology {
+
+    val encodedMorphology: Long = morphologyCode.toLong()
+
+    return TmpMorphology(
+      lemma = this.decodeLemma(encodedMorphology),
+      type = this.decodeType(encodedMorphology),
+      properties = this.decodeProperties(encodedMorphology)
+    )
+  }
+
+  /**
    * @param encodedMorphology an encoded morphology
    *
    * @return the lemma of the given [encodedMorphology]
@@ -158,17 +192,21 @@ class MorphologyCompressor : Serializable {
   /**
    * @param encodedMorphology an encoded morphology
    *
-   * @return the map of properties types to [MorphologyProperty] objects associated to the given [encodedMorphology]
+   * @return the properties of the given [encodedMorphology]
    */
-  private fun decodeProperties(encodedMorphology: Long): Map<String, MorphologyProperty> {
+  private fun decodeProperties(encodedMorphology: Long): Properties =
+    this.propertiesBiMap.getValue((encodedMorphology % this.typeIndexCoeff).toInt())
 
-    val properties: Properties = this.propertiesBiMap.getValue((encodedMorphology % this.typeIndexCoeff).toInt())
-
-    return properties.list.associate {
+  /**
+   * @param properties the properties object of a morphology
+   *
+   * @return a map of morphology types to [MorphologyProperty] objects
+   */
+  private fun mapProperties(properties: Properties): Map<String, MorphologyProperty> =
+    properties.list.associate {
       Pair(
         it.first,
         MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
       )
     }
-  }
 }
