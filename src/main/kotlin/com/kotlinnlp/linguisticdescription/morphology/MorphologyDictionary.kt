@@ -183,7 +183,7 @@ class MorphologyDictionary : Serializable {
       val morphologies = mutableListOf<MorphologyEntry>()
 
       encodedEntry.split("\t").forEach { it ->
-        morphologies.addAll(this.compressor.decodeMorphology(morphologyCodes = it.split(',')))
+        morphologies.addAll(this.compressor.decodeMorphology(morphologyEntryCodes = it.split(',')))
       }
 
       Entry(form = form, multipleForm = if (forms.size > 1) forms else null, morphologies = morphologies)
