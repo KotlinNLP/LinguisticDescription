@@ -10,6 +10,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Pre
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Verb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Noun
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Pronoun
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import org.jetbrains.spek.api.Spek
@@ -20,6 +21,7 @@ import org.jetbrains.spek.api.dsl.on
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  *
@@ -36,7 +38,7 @@ class MorphologyDictionarySpec : Spek({
       on("content") {
 
         it("should have the expected size") {
-          assertEquals(3, dictionary.size)
+          assertEquals(4, dictionary.size)
         }
 
         it("should contain the 'form1' form") {
@@ -49,6 +51,10 @@ class MorphologyDictionarySpec : Spek({
 
         it("should contain the 'form3.1 form3.2 form3.3' form") {
           assertNotNull(dictionary["form3.1 form3.2 form3.3"])
+        }
+
+        it("should contain the 'form4' form") {
+          assertNotNull(dictionary["form4"])
         }
 
 
@@ -173,6 +179,139 @@ class MorphologyDictionarySpec : Spek({
 
         it("should contain the expected morphology") {
           assertEquals(Preposition.Base(lemma = "lemma5 lemma6 lemma7"), entry.morphologies.first().list[0])
+        }
+      }
+
+      on("the 'form4' form") {
+
+        val entry: MorphologyDictionary.Entry = dictionary["form4"]!!
+
+        it("should have the expected form") {
+          assertEquals("form4", entry.form)
+        }
+
+        it("should have a null multiple form") {
+          assertNull(entry.multipleForm)
+        }
+
+        it("should contain 4 morphologies") {
+          assertEquals(4, entry.morphologies.size)
+        }
+
+        it("should contain Multiple morphologies") {
+          assertTrue { entry.morphologies.all { it.type == MorphologyDictionary.MorphologyEntry.Type.Multiple } }
+        }
+
+        it("should contain 2 entries in its multiple morphologies") {
+          assertTrue { entry.morphologies.all { it.list.size == 2 } }
+        }
+
+        it("should contain the expected first entry of its first morphology") {
+          assertEquals(
+            Verb.Base(
+              lemma = "lemma8",
+              gender = Gender.Undefined,
+              number = Number.Singular,
+              person = Person.Third,
+              mood = Mood.Indicative,
+              tense = Tense.Present
+            ),
+            entry.morphologies[0].list[0]
+          )
+        }
+
+        it("should contain the expected second entry of its first morphology") {
+          assertEquals(
+            Pronoun.Base(
+              lemma = "lemma9",
+              gender = Gender.Masculine,
+              number = Number.Singular,
+              person = Person.Third,
+              case = GrammaticalCase.IndirectObject
+            ),
+            entry.morphologies[0].list[1]
+          )
+        }
+
+        it("should contain the expected first entry of its second morphology") {
+          assertEquals(
+            Verb.Base(
+              lemma = "lemma8",
+              gender = Gender.Undefined,
+              number = Number.Singular,
+              person = Person.Third,
+              mood = Mood.Indicative,
+              tense = Tense.Present
+            ),
+            entry.morphologies[1].list[0]
+          )
+        }
+
+        it("should contain the expected second entry of its second morphology") {
+          assertEquals(
+            Pronoun.Base(
+              lemma = "lemma9",
+              gender = Gender.Masculine,
+              number = Number.Plural,
+              person = Person.Third,
+              case = GrammaticalCase.IndirectObject
+            ),
+            entry.morphologies[1].list[1]
+          )
+        }
+
+        it("should contain the expected first entry of its third morphology") {
+          assertEquals(
+            Verb.Base(
+              lemma = "lemma8",
+              gender = Gender.Undefined,
+              number = Number.Singular,
+              person = Person.Third,
+              mood = Mood.Subjunctive,
+              tense = Tense.Present
+            ),
+            entry.morphologies[2].list[0]
+          )
+        }
+
+        it("should contain the expected second entry of its third morphology") {
+          assertEquals(
+            Pronoun.Base(
+              lemma = "lemma9",
+              gender = Gender.Masculine,
+              number = Number.Singular,
+              person = Person.Third,
+              case = GrammaticalCase.IndirectObject
+            ),
+            entry.morphologies[2].list[1]
+          )
+        }
+
+        it("should contain the expected first entry of its fourth morphology") {
+          assertEquals(
+            Verb.Base(
+              lemma = "lemma8",
+              gender = Gender.Undefined,
+              number = Number.Singular,
+              person = Person.Third,
+              mood = Mood.Subjunctive,
+              tense = Tense.Present
+            ),
+            entry.morphologies[3].list[0]
+          )
+        }
+
+        it("should contain the expected second entry of its fourth morphology") {
+          assertEquals(
+            Pronoun.Base(
+              lemma = "lemma9",
+              gender = Gender.Masculine,
+              number = Number.Plural,
+              person = Person.Third,
+              case = GrammaticalCase.IndirectObject
+            ),
+            entry.morphologies[3].list[1]
+          )
         }
       }
     }
