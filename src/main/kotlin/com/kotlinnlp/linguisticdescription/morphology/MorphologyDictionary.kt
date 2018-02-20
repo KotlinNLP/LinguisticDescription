@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.*
+import com.kotlinnlp.linguisticdescription.morphology.compressor.MorphologyCompressor
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
 import com.kotlinnlp.linguisticdescription.utils.Serializer
 import com.kotlinnlp.linguisticdescription.utils.forEachLine
@@ -178,17 +179,14 @@ class MorphologyDictionary : Serializable {
 
     return if (encodedEntry != null) {
 
-      val encodedMorphologiesList: List<String> = encodedEntry.split("\t")
       val forms: List<String> = form.split(" ")
+      val morphologies = mutableListOf<MorphologyEntry>()
 
-      Entry(
-        form = form,
-        multipleForm = if (forms.size > 1) forms else null,
-        morphologies = encodedMorphologiesList.map { encodedMorphologies ->
-          val morphologyCodes: List<String> = encodedMorphologies.split(',')
-          MorphologyEntry(morphologies = morphologyCodes.map { this.compressor.decodeMorphology(it.toLong()) })
-        }
-      )
+      encodedEntry.split("\t").forEach { it ->
+        morphologies.addAll(this.compressor.decodeMorphology(morphologyCodes = it.split(',')))
+      }
+
+      Entry(form = form, multipleForm = if (forms.size > 1) forms else null, morphologies = morphologies)
 
     } else {
       null
