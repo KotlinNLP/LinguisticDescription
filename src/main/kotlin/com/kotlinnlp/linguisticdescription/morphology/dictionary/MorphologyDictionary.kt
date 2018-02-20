@@ -59,6 +59,8 @@ class MorphologyDictionary : Serializable {
         if (verbose) progress.tick()
       }
 
+      dictionary.setMultiWords()
+
       return dictionary
     }
 
@@ -102,7 +104,12 @@ class MorphologyDictionary : Serializable {
   private val morphologyMap = mutableMapOf<String, String>()
 
   /**
-   * @param form a form of the dictionary
+   * The map of single forms to the list of multi-words that they introduce.
+   */
+  private val multiWordsMap = mutableMapOf<String, MutableList<String>>()
+
+  /**
+   * @param form a form to search in the dictionary
    *
    * @return the [Entry] related to the given [form] if present, otherwise null
    */
@@ -125,6 +132,15 @@ class MorphologyDictionary : Serializable {
       null
     }
   }
+
+  /**
+   * Get the multi-words introduced by a given [form].
+   *
+   * @param form a single form to search in the dictionary
+   *
+   * @return the list of multi-words that the given [form] introduces (empty if no one is found)
+   */
+  fun getMultiWords(form: String): List<String> = this.multiWordsMap[form] ?: listOf()
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
@@ -160,5 +176,35 @@ class MorphologyDictionary : Serializable {
     this.morphologyMap[uniqueForm] = "%s\t%s".format(
       this.morphologyMap[uniqueForm]!!, encodedMorphologies.joinToString(separator = ",")
     )
+  }
+
+  /**
+   * Set the multi-words into the dictionary.
+   *
+   * It should be called after the dictionary has been filled.
+   */
+  private fun setMultiWords() {
+
+    this.morphologyMap.keys.forEach { uniqueForm ->
+
+      val firstSpaceIndex: Int = uniqueForm.indexOf(' ')
+
+      if (firstSpaceIndex >= 0) {
+        this.setMultiWord(startWord = uniqueForm.substring(0, firstSpaceIndex), multiWord = uniqueForm)
+      }
+    }
+  }
+
+  /**
+   * Set the given [multiWord] as introduced by the given [startWord].
+   *
+   * @param startWord a single form of the dictionary that introduces the given [multiWord]
+   * @param multiWord a multi-word contained in this dictionary, introduced by [startWord]
+   */
+  private fun setMultiWord(startWord: String, multiWord: String) {
+
+    if (startWord !in this.multiWordsMap) this.multiWordsMap[startWord] = mutableListOf()
+
+    this.multiWordsMap.getValue(startWord).add(multiWord)
   }
 }

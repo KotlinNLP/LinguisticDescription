@@ -74,5 +74,12 @@ fun readValue(): String {
  * @param dictionary the morphology dictionary
  */
 fun printMorphology(form: String, dictionary: MorphologyDictionary) {
+
+  val multiWords: List<String> = dictionary.getMultiWords(form)
+
   println("\n" + dictionary[form])
+
+  if (multiWords.isNotEmpty()) {
+    println("Multi-words starting with '%s':\n\t%s".format(form, multiWords.joinToString(separator = "\n\t")))
+  }
 }
