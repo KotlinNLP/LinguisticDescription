@@ -20,25 +20,59 @@ fun main(args: Array<String>) {
 
   require(args.size == 1) { "Required 1 argument: <input_file>." }
 
-  val inputFile: String = args[0]
-  val timer = Timer()
-
-  println("Loading serialized dictionary from '$inputFile'...")
-  val m = MorphologyDictionary.load(FileInputStream(File(inputFile)))
-  println("Elapsed time: %s".format(timer.formatElapsedTime()))
-
-  println("\nNumber of elements in the dictionary: ${m.size}.")
+  val dictionary: MorphologyDictionary = loadDictionary(filename = args[0])
 
   while (true) {
 
-    print("\nSearch a form (empty to exit): ")
-    val searchVal = readLine()!!
+    val searchVal = readValue()
 
     if (searchVal.isEmpty())
       break
     else
-      println("\n" + m[searchVal])
+      printMorphology(form = searchVal, dictionary = dictionary)
   }
 
   println("\nExiting...")
+}
+
+/**
+ * @param filename the filename of the serialized dictionary
+ *
+ * @return a morphology dictionary
+ */
+fun loadDictionary(filename: String): MorphologyDictionary {
+
+  val timer = Timer()
+
+  println("Loading serialized dictionary from '$filename'...")
+
+  val m = MorphologyDictionary.load(FileInputStream(File(filename)))
+
+  println("Elapsed time: %s".format(timer.formatElapsedTime()))
+
+  println("\nNumber of elements in the dictionary: ${m.size}.")
+
+  return m
+}
+
+/**
+ * Read a value from the standard input.
+ *
+ * @return the string read
+ */
+fun readValue(): String {
+
+  print("\nSearch a form (empty to exit): ")
+
+  return readLine()!!
+}
+
+/**
+ * Print the morphology of a form.
+ *
+ * @param form a form to search in the dictionary
+ * @param dictionary the morphology dictionary
+ */
+fun printMorphology(form: String, dictionary: MorphologyDictionary) {
+  println("\n" + dictionary[form])
 }
