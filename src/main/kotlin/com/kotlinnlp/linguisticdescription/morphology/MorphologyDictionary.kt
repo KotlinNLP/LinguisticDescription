@@ -25,7 +25,8 @@ import java.io.Serializable
 class MorphologyDictionary : Serializable {
 
   /**
-   * The morphology entry.
+   * A morphology entry of an [Entry].
+   *
    * If [type] is [Type.Single] the list contains only one morphology, otherwise more.
    *
    * @property type the type of this entry (Single or Multiple)
@@ -53,8 +54,16 @@ class MorphologyDictionary : Serializable {
      */
     override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
 
+    /**
+     * @return the hash code of this object
+     */
     override fun hashCode(): Int = this.toString().hashCode()
 
+    /**
+     * @param other another object
+     *
+     * @return a boolean indicating if this object is equal to the [other] object
+     */
     override fun equals(other: Any?): Boolean {
       if (this === other) return true
       if (javaClass != other?.javaClass) return false
@@ -68,7 +77,7 @@ class MorphologyDictionary : Serializable {
   }
 
   /**
-   * A data entry of the morphology map.
+   * A data entry of the morphology dictionary.
    *
    * @property form the unique form of the entry
    * @property multipleForm the list of forms of the entry (null if it is composed by a single form)

@@ -25,12 +25,23 @@ data class Properties(val list: List<Pair<String, String>>) : Serializable {
     private const val serialVersionUID: Long = 1L
   }
 
+  /**
+   * @return a string representation of this entry
+   */
   override fun toString(): String = this.list
     .sortedBy { it.first }
     .joinToString(separator = ",") { "${it.first}=${it.second}" }
 
+  /**
+   * @return the hash code of this object
+   */
   override fun hashCode(): Int = this.toString().hashCode()
 
+  /**
+   * @param other another object
+   *
+   * @return a boolean indicating if this object is equal to the [other] object
+   */
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (javaClass != other?.javaClass) return false
