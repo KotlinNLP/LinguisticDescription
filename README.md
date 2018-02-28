@@ -8,6 +8,10 @@ LinguisticDescription is part of [KotlinNLP](http://kotlinnlp.com/ "KotlinNLP").
 
 ## Getting Started
 
+### Examples
+
+Try some examples running the files in the `examples` folder.
+
 ### Import with Maven
 
 ```xml
