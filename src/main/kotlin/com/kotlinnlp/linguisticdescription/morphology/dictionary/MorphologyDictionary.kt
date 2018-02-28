@@ -144,6 +144,16 @@ class MorphologyDictionary : Serializable {
   }
 
   /**
+   * Get the multi-words in which the given [word] is involved.
+   *
+   * @param word a single form to search in the dictionary
+   *
+   * @return the list of multi-words in which the given [word] is involved (empty if no one is found)
+   */
+  fun getMultiWords(word: String): List<String> =
+    this.wordsToMultiWords[word]?.let { this.indicesToMultiWords(it) } ?: listOf()
+
+  /**
    * Get the multi-words introduced by a given [startWord].
    *
    * @param startWord a single form to search in the dictionary
