@@ -18,7 +18,7 @@ Try some examples running the files in the `examples` folder.
 <dependency>
     <groupId>com.kotlinnlp</groupId>
     <artifactId>linguisticdescription</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
