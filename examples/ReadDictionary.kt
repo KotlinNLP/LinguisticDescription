@@ -75,11 +75,12 @@ private fun readValue(): String {
  */
 private fun printMorphology(form: String, dictionary: MorphologyDictionary) {
 
-  val multiWords: List<String> = dictionary.getMultiWordsIntroducedBy(form)
+  val multiWords: List<String> = dictionary.getMultiWords(form)
 
   println("\n" + dictionary[form])
 
   if (multiWords.isNotEmpty()) {
-    println("Multi-words starting with '%s':\n\t%s".format(form, multiWords.joinToString(separator = "\n\t")))
+    println("'%s' is involved in the following multi-words expressions:\n\t%s"
+      .format(form, multiWords.sorted().joinToString(separator = "\n\t")))
   }
 }
