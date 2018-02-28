@@ -116,7 +116,7 @@ class MorphologyDictionary : Serializable {
   /**
    * The map of forms to the multi-words expressions in which they are involved.
    */
-  private val wordsToMultiWords = mutableMapOf<String, MutableSet<Int>>()
+  private val wordsToMultiWords = mutableMapOf<String, MutableList<Int>>()
 
   /**
    * @param form a form to search in the dictionary
@@ -150,8 +150,8 @@ class MorphologyDictionary : Serializable {
    *
    * @return the list of multi-words that the given [startWord] introduces (empty if no one is found)
    */
-  fun getMultiWords(startWord: String): List<String> =
-    this.startMultiWordsMap[startWord]?.let { indices -> indices.map { i -> this.multiWords[i] } } ?: listOf()
+  fun getMultiWordsIntroducedBy(startWord: String): List<String> =
+    this.startMultiWordsMap[startWord]?.let { this.indicesToMultiWords(it) } ?: listOf()
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
@@ -218,8 +218,15 @@ class MorphologyDictionary : Serializable {
     this.startMultiWordsMap.getValue(startWord).add(multiWordIndex)
 
     words.forEach {
-      if (it !in this.wordsToMultiWords) this.wordsToMultiWords[it] = mutableSetOf()
+      if (it !in this.wordsToMultiWords) this.wordsToMultiWords[it] = mutableListOf()
       this.wordsToMultiWords.getValue(it).add(multiWordIndex)
     }
   }
+
+  /**
+   * @param indices a list of indices
+   *
+   * @return the list of multi-words expression that are mapped to the given [indices]
+   */
+  private fun indicesToMultiWords(indices: List<Int>): List<String> = indices.map { this.multiWords[it] }
 }
