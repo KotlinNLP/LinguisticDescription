@@ -40,7 +40,7 @@ fun main(args: Array<String>) {
  *
  * @return a morphology dictionary
  */
-fun loadDictionary(filename: String): MorphologyDictionary {
+private fun loadDictionary(filename: String): MorphologyDictionary {
 
   val timer = Timer()
 
@@ -60,7 +60,7 @@ fun loadDictionary(filename: String): MorphologyDictionary {
  *
  * @return the string read
  */
-fun readValue(): String {
+private fun readValue(): String {
 
   print("\nSearch a form (empty to exit): ")
 
@@ -73,7 +73,7 @@ fun readValue(): String {
  * @param form a form to search in the dictionary
  * @param dictionary the morphology dictionary
  */
-fun printMorphology(form: String, dictionary: MorphologyDictionary) {
+private fun printMorphology(form: String, dictionary: MorphologyDictionary) {
 
   val multiWords: List<String> = dictionary.getMultiWords(form)
 
