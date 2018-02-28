@@ -104,9 +104,19 @@ class MorphologyDictionary : Serializable {
   private val morphologyMap = mutableMapOf<String, String>()
 
   /**
-   * The map of single forms to the list of multi-words that they introduce.
+   * The list of multi-words.
    */
-  private val multiWordsMap = mutableMapOf<String, MutableList<String>>()
+  private val multiWords = mutableListOf<String>()
+
+  /**
+   * The map of single forms to the list of multi-words that they introduce (as indices of [multiWords]).
+   */
+  private val startMultiWordsMap = mutableMapOf<String, MutableList<Int>>()
+
+  /**
+   * The map of forms to the multi-words expressions in which they are involved.
+   */
+  private val wordsToMultiWords = mutableMapOf<String, MutableSet<Int>>()
 
   /**
    * @param form a form to search in the dictionary
@@ -134,13 +144,14 @@ class MorphologyDictionary : Serializable {
   }
 
   /**
-   * Get the multi-words introduced by a given [form].
+   * Get the multi-words introduced by a given [startWord].
    *
-   * @param form a single form to search in the dictionary
+   * @param startWord a single form to search in the dictionary
    *
-   * @return the list of multi-words that the given [form] introduces (empty if no one is found)
+   * @return the list of multi-words that the given [startWord] introduces (empty if no one is found)
    */
-  fun getMultiWords(form: String): List<String> = this.multiWordsMap[form] ?: listOf()
+  fun getMultiWords(startWord: String): List<String> =
+    this.startMultiWordsMap[startWord]?.let { indices -> indices.map { i -> this.multiWords[i] } } ?: listOf()
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
@@ -185,26 +196,30 @@ class MorphologyDictionary : Serializable {
    */
   private fun setMultiWords() {
 
-    this.morphologyMap.keys.forEach { uniqueForm ->
-
-      val firstSpaceIndex: Int = uniqueForm.indexOf(' ')
-
-      if (firstSpaceIndex >= 0) {
-        this.setMultiWord(startWord = uniqueForm.substring(0, firstSpaceIndex), multiWord = uniqueForm)
-      }
-    }
+    this.morphologyMap.keys
+      .filter { it.indexOf(' ') >= 0 }
+      .forEach { this.addMultiWord(it) }
   }
 
   /**
-   * Set the given [multiWord] as introduced by the given [startWord].
+   * Add a multi-words expression with the given [form].
    *
-   * @param startWord a single form of the dictionary that introduces the given [multiWord]
-   * @param multiWord a multi-word contained in this dictionary, introduced by [startWord]
+   * @param form the form of the multi-words expression
    */
-  private fun setMultiWord(startWord: String, multiWord: String) {
+  private fun addMultiWord(form: String) {
 
-    if (startWord !in this.multiWordsMap) this.multiWordsMap[startWord] = mutableListOf()
+    val words: List<String> = form.split(' ')
+    val startWord: String = words.first()
+    val multiWordIndex: Int = this.multiWords.size
 
-    this.multiWordsMap.getValue(startWord).add(multiWord)
+    this.multiWords.add(form)
+
+    if (startWord !in this.startMultiWordsMap) this.startMultiWordsMap[startWord] = mutableListOf()
+    this.startMultiWordsMap.getValue(startWord).add(multiWordIndex)
+
+    words.forEach {
+      if (it !in this.wordsToMultiWords) this.wordsToMultiWords[it] = mutableSetOf()
+      this.wordsToMultiWords.getValue(it).add(multiWordIndex)
+    }
   }
 }
