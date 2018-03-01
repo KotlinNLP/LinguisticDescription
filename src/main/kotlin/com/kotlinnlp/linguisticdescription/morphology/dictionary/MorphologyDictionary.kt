@@ -80,11 +80,11 @@ class MorphologyDictionary : Serializable {
      */
     private fun getForms(entryObj: JsonObject): List<String> = try {
 
-      entryObj.array<String>("form")!!.toList()
+      entryObj.array<String>("form")!!.map { it.toLowerCase() }
 
     } catch (e: ClassCastException) {
 
-      listOf(entryObj.string("form")!!)
+      listOf(entryObj.string("form")!!.toLowerCase())
     }
   }
 
@@ -125,7 +125,7 @@ class MorphologyDictionary : Serializable {
    */
   operator fun get(form: String): Entry? {
 
-    val encodedEntry: String? = this.morphologyMap[form]
+    val encodedEntry: String? = this.morphologyMap[form.toLowerCase()]
 
     return if (encodedEntry != null) {
 
@@ -151,7 +151,7 @@ class MorphologyDictionary : Serializable {
    * @return the list of multi-words in which the given [word] is involved (empty if no one is found)
    */
   fun getMultiWords(word: String): List<String> =
-    this.wordsToMultiWords[word]?.let { this.indicesToMultiWords(it) } ?: listOf()
+    this.wordsToMultiWords[word.toLowerCase()]?.let { this.indicesToMultiWords(it) } ?: listOf()
 
   /**
    * Get the multi-words introduced by a given [startWord].
@@ -161,7 +161,7 @@ class MorphologyDictionary : Serializable {
    * @return the list of multi-words that the given [startWord] introduces (empty if no one is found)
    */
   fun getMultiWordsIntroducedBy(startWord: String): List<String> =
-    this.startMultiWordsMap[startWord]?.let { this.indicesToMultiWords(it) } ?: listOf()
+    this.startMultiWordsMap[startWord.toLowerCase()]?.let { this.indicesToMultiWords(it) } ?: listOf()
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
