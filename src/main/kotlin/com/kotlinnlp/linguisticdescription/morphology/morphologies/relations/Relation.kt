@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription
+package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 /**
  * Define a 'relation' object.
