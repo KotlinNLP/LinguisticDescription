@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.Discourse
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * The 'punctuation' morphology.

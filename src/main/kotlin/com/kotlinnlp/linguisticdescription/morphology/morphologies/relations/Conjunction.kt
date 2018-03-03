@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.Relation
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * The 'conjunction' morphology.

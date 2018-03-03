@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.dictionary
 
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * A morphology entry of an [Entry].

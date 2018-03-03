@@ -10,7 +10,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 import com.kotlinnlp.linguisticdescription.Relation
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*

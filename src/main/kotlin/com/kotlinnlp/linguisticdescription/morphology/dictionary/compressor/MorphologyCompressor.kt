@@ -14,7 +14,7 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType

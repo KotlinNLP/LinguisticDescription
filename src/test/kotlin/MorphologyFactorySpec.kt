@@ -6,7 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.MorphologyFactory
+import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Conjunction
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
 import com.kotlinnlp.linguisticdescription.morphology.properties.*

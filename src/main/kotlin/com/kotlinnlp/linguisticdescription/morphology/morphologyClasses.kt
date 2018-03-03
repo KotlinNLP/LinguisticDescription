@@ -5,9 +5,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.morphology.morphologies
+package com.kotlinnlp.linguisticdescription.morphology
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.*
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.*

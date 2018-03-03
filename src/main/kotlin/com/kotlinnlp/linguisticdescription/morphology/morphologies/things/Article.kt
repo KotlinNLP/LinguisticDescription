@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.Thing
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number

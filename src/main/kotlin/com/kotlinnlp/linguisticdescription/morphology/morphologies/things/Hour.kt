@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.Thing
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * The 'hour' morphology.
