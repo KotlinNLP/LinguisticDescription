@@ -116,4 +116,14 @@ class LexiconDictionary {
    * Lexical entries associated by POS tags, in turn associated by lemma.
    */
   private val lexiconMap: MutableMap<String, Map<String, LexicalEntry>> = mutableMapOf()
+
+  /**
+   * Get a lexical entry by lemma and POS tag.
+   *
+   * @param lemma a lemma
+   * @param posTag a POS tag annotation
+   *
+   * @return the lexical entry associated to the given [lemma] and [posTag] or null if no one has been found
+   */
+  fun get(lemma: String, posTag: String): LexicalEntry? = this.lexiconMap[lemma]?.get(posTag)
 }
