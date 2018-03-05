@@ -8,12 +8,12 @@
 package com.kotlinnlp.linguisticdescription.lexicon
 
 /**
- * A semantic category.
+ * A sentiment category.
  *
  * @property type the category type
  * @property annotation the string annotation of the category
  */
-enum class SemanticCategory(val type: String, val annotation: String) {
+enum class SentimentCategory(val type: String, val annotation: String) {
   Pronoun("Linguistic process", "pronoun"),
   I("Linguistic process - Pronoun", "i"),
   We("Linguistic process - Pronoun", "we"),
