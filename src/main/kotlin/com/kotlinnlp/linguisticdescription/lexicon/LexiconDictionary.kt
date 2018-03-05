@@ -30,7 +30,7 @@ class LexiconDictionary {
    * @property polarity the polarity (a value in the range [-1.0, 1.0])
    * @property categories a list of sentiment categories (can be null)
    */
-  data class SentimentInfo(val polarity: Double, val categories: List<String>?)
+  data class SentimentInfo(val polarity: Double, val categories: List<SentimentCategory>?)
 
   /**
    * Semantic info.
@@ -59,6 +59,12 @@ class LexiconDictionary {
   data class SemanticClass(val type: String, val name: String)
 
   companion object {
+
+    /**
+     * A map of sentiment categories associated by annotation.
+     */
+    private val annotationsToSentimentCategories: Map<String, SentimentCategory> =
+      SentimentCategory.values().associateBy { it.annotation }
 
     /**
      * Load a [LexiconDictionary] from a JSONL file.
@@ -101,7 +107,8 @@ class LexiconDictionary {
       return LexicalEntry(
         sentiment = SentimentInfo(
           polarity = sentiment.double("polarity")!!,
-          categories = sentiment.array("categories")),
+          categories = sentiment
+            .array<String>("categories")?.map { this.annotationsToSentimentCategories.getValue(it) }),
         semantic = if (semanticClasses != null || semanticAnalogy != null)
           SemanticInfo(
             classes = semanticClasses?.map { SemanticClass(type = it[0], name = it[1]) },
