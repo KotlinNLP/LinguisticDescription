@@ -34,7 +34,7 @@ enum class SentimentCategory(val type: String, val annotation: String) {
   NegativeEmotion("Affective processes", "negemo"),
   Anxiety("Affective processes - Negative Emotion", "anx"),
   Anger("Affective processes - Negative Emotion", "anger"),
-  Affect("Affective processes - Negative Emotion", "sad"),
+  Sadness("Affective processes - Negative Emotion", "sad"),
   CognitiveProcess("Cognitive process", "cogmech"),
   Insight("Cognitive process", "insight"),
   Causation("Cognitive process", "cause"),
