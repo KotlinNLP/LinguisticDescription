@@ -16,9 +16,9 @@ enum class LIWCCategoryType(val annotation: String) {
   LinguisticProcess("Linguistic Process"),
   SocialProcess("Social process"),
   AffectiveProcess("Affective Process"),
-  CognitiveProcess("Cognitive process"),
-  PerceptualProcess("Perceptual process"),
-  BiologicalProcess("Biological process"),
+  CognitiveProcess("Cognitive Process"),
+  PerceptualProcess("Perceptual Process"),
+  BiologicalProcess("Biological Process"),
   Relativity("Relativity"),
   PersonalConcerns("Personal Concerns"),
   Spoken("Spoken")
