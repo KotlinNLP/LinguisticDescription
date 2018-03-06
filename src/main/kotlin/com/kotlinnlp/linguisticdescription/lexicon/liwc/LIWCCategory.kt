@@ -50,7 +50,7 @@ enum class LIWCCategory(val type: LIWCCategoryType, val annotation: String) {
   Hear(type = LIWCCategoryType.PerceptualProcess, annotation = "hear"),
   Feel(type = LIWCCategoryType.PerceptualProcess, annotation = "feel"),
   BiologicalProcess(type = LIWCCategoryType.BiologicalProcess, annotation = "bio"),
-  body(type = LIWCCategoryType.BiologicalProcess, annotation = "body"),
+  Body(type = LIWCCategoryType.BiologicalProcess, annotation = "body"),
   Sexual(type = LIWCCategoryType.BiologicalProcess, annotation = "sexual"),
   Ingestion(type = LIWCCategoryType.BiologicalProcess, annotation = "ingest"),
   Relativity(type = LIWCCategoryType.Relativity, annotation = "relativ"),
@@ -64,6 +64,6 @@ enum class LIWCCategory(val type: LIWCCategoryType, val annotation: String) {
   Religion(type = LIWCCategoryType.PersonalConcerns, annotation = "relig"),
   Death(type = LIWCCategoryType.PersonalConcerns, annotation = "death"),
   Assent(type = LIWCCategoryType.Spoken, annotation = "assent"),
-  Nonfluencies(type = LIWCCategoryType.Spoken, annotation = "nonfl"),
+  NonFluencies(type = LIWCCategoryType.Spoken, annotation = "nonfl"),
   Fillers(type = LIWCCategoryType.Spoken,annotation =  "filler")
 }
