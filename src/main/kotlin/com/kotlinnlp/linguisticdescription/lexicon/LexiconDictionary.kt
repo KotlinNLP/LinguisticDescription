@@ -29,7 +29,7 @@ class LexiconDictionary {
    * Sentiment info.
    *
    * @property polarity the polarity (a value in the range [-1.0, 1.0])
-   * @property categories a list of sentiment categories (can be null)
+   * @property categories a list of LIWC categories (can be null)
    */
   data class SentimentInfo(val polarity: Double, val categories: List<LIWCCategory>?)
 
@@ -62,9 +62,9 @@ class LexiconDictionary {
   companion object {
 
     /**
-     * A map of sentiment categories associated by annotation.
+     * A map of LIWC categories associated by annotation.
      */
-    private val annotationsToSentimentCategories: Map<String, LIWCCategory> =
+    private val annotationsToLIWCCategories: Map<String, LIWCCategory> =
       LIWCCategory.values().associateBy { it.annotation }
 
     /**
@@ -109,7 +109,7 @@ class LexiconDictionary {
         sentiment = SentimentInfo(
           polarity = sentiment.double("polarity")!!,
           categories = sentiment
-            .array<String>("categories")?.map { this.annotationsToSentimentCategories.getValue(it) }),
+            .array<String>("categories")?.map { this.annotationsToLIWCCategories.getValue(it) }),
         semantic = if (semanticClasses != null || semanticAnalogy != null)
           SemanticInfo(
             classes = semanticClasses?.map { SemanticClass(type = it[0], name = it[1]) },
