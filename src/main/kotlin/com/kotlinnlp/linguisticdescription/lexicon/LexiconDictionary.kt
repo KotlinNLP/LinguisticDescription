@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.lexicon
 
 import com.beust.klaxon.*
+import com.kotlinnlp.linguisticdescription.lexicon.liwc.LIWCCategory
 import com.kotlinnlp.linguisticdescription.utils.forEachLine
 import com.kotlinnlp.linguisticdescription.utils.toInputStream
 
@@ -30,7 +31,7 @@ class LexiconDictionary {
    * @property polarity the polarity (a value in the range [-1.0, 1.0])
    * @property categories a list of sentiment categories (can be null)
    */
-  data class SentimentInfo(val polarity: Double, val categories: List<SentimentCategory>?)
+  data class SentimentInfo(val polarity: Double, val categories: List<LIWCCategory>?)
 
   /**
    * Semantic info.
@@ -63,8 +64,8 @@ class LexiconDictionary {
     /**
      * A map of sentiment categories associated by annotation.
      */
-    private val annotationsToSentimentCategories: Map<String, SentimentCategory> =
-      SentimentCategory.values().associateBy { it.annotation }
+    private val annotationsToSentimentCategories: Map<String, LIWCCategory> =
+      LIWCCategory.values().associateBy { it.annotation }
 
     /**
      * Load a [LexiconDictionary] from a JSONL file.
