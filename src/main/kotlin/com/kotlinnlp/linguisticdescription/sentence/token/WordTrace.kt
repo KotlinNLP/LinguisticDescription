@@ -23,6 +23,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.Surface
  * @property semanticRelations the list of semantic relations (can be null)
  * @property pos the POS tag
  * @property surface the surface information
+ * @property positionedAfter the id of the token after which this trace is positioned
  */
 data class WordTrace(
   override val id: Int,
@@ -32,7 +33,8 @@ data class WordTrace(
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
   val pos: String,
-  val surface: Surface
+  val surface: Surface,
+  val positionedAfter: Int
 ) : Token {
 
   /**

@@ -21,6 +21,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
  * @property pos the POS tag
+ * @property positionedAfter the id of the token after which this trace is positioned
  */
 data class Trace(
   override val id: Int,
@@ -29,7 +30,8 @@ data class Trace(
   override val coReferences: List<CoReference>?,
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
-  val pos: String
+  val pos: String,
+  val positionedAfter: Int
 ) : Token {
 
   /**
