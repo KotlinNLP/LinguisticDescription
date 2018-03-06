@@ -29,7 +29,7 @@ enum class SentimentCategory(val type: String, val annotation: String) {
   Family("Social processes", "family"),
   Friendly("Social processes", "friend"),
   Human("Social processes", "humans"),
-  AffectiveProcess("Affective Process", "affect"),
+  Affect("Affective Process", "affect"),
   PositiveEmotion("Affective process", "posemo"),
   NegativeEmotion("Affective processes", "negemo"),
   Anxiety("Affective processes - Negative Emotion", "anx"),
