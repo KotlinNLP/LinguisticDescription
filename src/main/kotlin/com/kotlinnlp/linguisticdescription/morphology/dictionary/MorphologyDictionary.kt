@@ -32,6 +32,11 @@ class MorphologyDictionary : Serializable {
     private const val serialVersionUID: Long = 1L
 
     /**
+     * The prefix used to define morphologies by reference.
+     */
+    val REF_PREFIX = "REF:"
+
+    /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
      *
      * @param filename the morphologies dictionary filename
@@ -59,6 +64,11 @@ class MorphologyDictionary : Serializable {
         if (verbose) progress.tick()
       }
 
+      if (verbose) println("Exploding accentuated forms...")
+      // Attention: explodeByAccents() must be called before setMultiWords()
+      AccentsHelper.explodeByAccents(dictionary.morphologyMap)
+
+      if (verbose) println("Setting multi-words expressions...")
       dictionary.setMultiWords()
 
       return dictionary
@@ -125,7 +135,9 @@ class MorphologyDictionary : Serializable {
    */
   operator fun get(form: String): Entry? {
 
-    val encodedEntry: String? = this.morphologyMap[form.toLowerCase()]
+    val encodedEntry: String? = this.morphologyMap[form.toLowerCase()]?.let {
+      if (it.startsWith(REF_PREFIX)) this.morphologyMap[it.removePrefix(REF_PREFIX)] else it
+    }
 
     return if (encodedEntry != null) {
 
