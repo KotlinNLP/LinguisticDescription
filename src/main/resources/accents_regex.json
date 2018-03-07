@@ -1,26 +1,28 @@
-[
-  {"pattern": "(a['’]|á)$", "replacement": "à"},
-  {"pattern": "(a['’]|à)$", "replacement": "á"},
-  {"pattern": "[àá]$", "replacement": "a'"},
-  {"pattern": "[àá]$", "replacement": "a’"},
+{
+  "it": [
+    {"pattern": "(a['’]|á)$", "replacement": "à"},
+    {"pattern": "(a['’]|à)$", "replacement": "á"},
+    {"pattern": "[àá]$", "replacement": "a'"},
+    {"pattern": "[àá]$", "replacement": "a’"},
 
-  {"pattern": "(e['’]|é)$", "replacement": "è"},
-  {"pattern": "(e['’]|è)$", "replacement": "é"},
-  {"pattern": "[èé]$", "replacement": "e'"},
-  {"pattern": "[èé]$", "replacement": "e’"},
+    {"pattern": "(e['’]|é)$", "replacement": "è"},
+    {"pattern": "(e['’]|è)$", "replacement": "é"},
+    {"pattern": "[èé]$", "replacement": "e'"},
+    {"pattern": "[èé]$", "replacement": "e’"},
 
-  {"pattern": "(i['’]|í)$", "replacement": "ì"},
-  {"pattern": "(i['’]|ì)$", "replacement": "í"},
-  {"pattern": "[ìí]$", "replacement": "i'"},
-  {"pattern": "[ìí]$", "replacement": "i’"},
+    {"pattern": "(i['’]|í)$", "replacement": "ì"},
+    {"pattern": "(i['’]|ì)$", "replacement": "í"},
+    {"pattern": "[ìí]$", "replacement": "i'"},
+    {"pattern": "[ìí]$", "replacement": "i’"},
 
-  {"pattern": "(o['’]|ó)$", "replacement": "ò"},
-  {"pattern": "(o['’]|ò)$", "replacement": "ó"},
-  {"pattern": "[òó]$", "replacement": "o'"},
-  {"pattern": "[òó]$", "replacement": "o’"},
+    {"pattern": "(o['’]|ó)$", "replacement": "ò"},
+    {"pattern": "(o['’]|ò)$", "replacement": "ó"},
+    {"pattern": "[òó]$", "replacement": "o'"},
+    {"pattern": "[òó]$", "replacement": "o’"},
 
-  {"pattern": "(u['’]|ú)$", "replacement": "ù"},
-  {"pattern": "(u['’]|ù)$", "replacement": "ú"},
-  {"pattern": "[ùú]$", "replacement": "u'"},
-  {"pattern": "[ùú]$", "replacement": "u’"}
-]
+    {"pattern": "(u['’]|ú)$", "replacement": "ù"},
+    {"pattern": "(u['’]|ù)$", "replacement": "ú"},
+    {"pattern": "[ùú]$", "replacement": "u'"},
+    {"pattern": "[ùú]$", "replacement": "u’"}
+  ]
+}
