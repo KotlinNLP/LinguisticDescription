@@ -40,11 +40,12 @@ class MorphologyDictionary : Serializable {
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
      *
      * @param filename the morphologies dictionary filename
-     * @param verbose whether to print the reading progress
+     * @param languageCode the iso-a2 code of the dictionary language (needed to explode accents, default = null)
+     * @param verbose whether to print the reading progress (default = true)
      *
      * @return a new Morphology Dictionary
      */
-    fun load(filename: String, verbose: Boolean = true): MorphologyDictionary {
+    fun load(filename: String, languageCode: String? = null, verbose: Boolean = true): MorphologyDictionary {
 
       val dictionary = MorphologyDictionary()
 
@@ -64,9 +65,11 @@ class MorphologyDictionary : Serializable {
         if (verbose) progress.tick()
       }
 
-      if (verbose) println("Exploding accentuated forms...")
       // Attention: explodeByAccents() must be called before setMultiWords()
-      AccentsHelper.explodeByAccents(morphologyMap = dictionary.morphologyMap, verbose = verbose)
+      if (languageCode != null) {
+        if (verbose) println("Exploding accentuated forms...")
+        AccentsHelper(languageCode = languageCode, verbose = verbose).explodeByAccents(dictionary.morphologyMap)
+      }
 
       if (verbose) println("Setting multi-words expressions...")
       dictionary.setMultiWords()
