@@ -11,6 +11,7 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.string
+import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 
 /**
  * The helper that explodes the accentuated forms of a [MorphologyDictionary].
@@ -26,16 +27,22 @@ object AccentsHelper {
    * Explode the keys of a [morphologyMap] by accents, adding new missing entries by reference.
    *
    * @param morphologyMap the morphology map of a [MorphologyDictionary]
+   * @param verbose whether to print the exploding progress
    */
-  fun explodeByAccents(morphologyMap: MutableMap<String, String>) {
+  fun explodeByAccents(morphologyMap: MutableMap<String, String>, verbose: Boolean) {
+
+    val progress = ProgressIndicatorBar(morphologyMap.size)
 
     for (form in morphologyMap.keys.toList()) { // avoid concurrent modifications calling .toList()
+
       explodeGroupByAccents(formsGroup = form.split(' ')) // split in case of multi-words
         .filter { it.isNotEmpty() }
         .forEach { alternativeFormsGroup ->
           val altForm: String = alternativeFormsGroup.joinToString(separator = " ")
           morphologyMap.putIfAbsent(altForm, MorphologyDictionary.REF_PREFIX + form)
         }
+
+      if (verbose) progress.tick()
     }
   }
 
