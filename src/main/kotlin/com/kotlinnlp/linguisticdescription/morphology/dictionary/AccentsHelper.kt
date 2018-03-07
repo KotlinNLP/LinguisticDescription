@@ -15,21 +15,50 @@ import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 
 /**
  * The helper that explodes the accentuated forms of a [MorphologyDictionary].
+ *
+ * @param languageCode the iso-a2 code of the language whose accents regex list must be used
+ * @param verbose whether to print the exploding progress (default = true)
  */
-object AccentsHelper {
+class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
+
+  companion object {
+
+    /**
+     * A map of lists of pairs <regex, replacement> for the accents, associated by language iso-a2 code.
+     */
+    private val accentsRegexMap: Map<String, List<Pair<Regex, String>>> = this.loadAccentsRegexList()
+
+    /**
+     * Load the list of regular expression for the accents with their replacements from the resources.
+     *
+     * @return a map of lists of pairs <regex, replacement> associated by language iso-a2 code
+     */
+    private fun loadAccentsRegexList(): Map<String, List<Pair<Regex, String>>> {
+
+      val filename: String = MorphologyDictionary::class.java.classLoader.getResource("accents_regex.json").file
+      val regexObj: JsonObject = Parser().parse(filename) as JsonObject
+
+      return regexObj.mapValues { (_, regexList) -> regexList as JsonArray<*>
+        regexList.map { obj -> obj as JsonObject
+          Pair(Regex(obj.string("pattern")!!), obj.string("replacement")!!)
+        }
+      }
+    }
+  }
 
   /**
    * A list of pairs <regex, replacement> for the accents.
    */
-  private val accentsRegexList: List<Pair<Regex, String>> = this.loadAccentsRegex()
+  val accentsRegexList: List<Pair<Regex, String>> = accentsRegexMap.getOrElse(languageCode) {
+    throw RuntimeException("Language not supported: $languageCode.")
+  }
 
   /**
    * Explode the keys of a [morphologyMap] by accents, adding new missing entries by reference.
    *
    * @param morphologyMap the morphology map of a [MorphologyDictionary]
-   * @param verbose whether to print the exploding progress
    */
-  fun explodeByAccents(morphologyMap: MutableMap<String, String>, verbose: Boolean) {
+  fun explodeByAccents(morphologyMap: MutableMap<String, String>) {
 
     val progress = ProgressIndicatorBar(morphologyMap.size)
 
@@ -42,22 +71,7 @@ object AccentsHelper {
           morphologyMap.putIfAbsent(altForm, MorphologyDictionary.REF_PREFIX + form)
         }
 
-      if (verbose) progress.tick()
-    }
-  }
-
-  /**
-   * Load the list of regular expression for the accents with their replacements from the resources.
-   *
-   * @return a list of pairs <regex, replacement>
-   */
-  private fun loadAccentsRegex(): List<Pair<Regex, String>> {
-
-    val filename: String = MorphologyDictionary::class.java.classLoader.getResource("accents_regex.json").file
-    val regexList: JsonArray<*> = Parser().parse(filename) as JsonArray<*>
-
-    return regexList.map { obj -> obj as JsonObject
-      Pair(Regex(obj.string("pattern")!!), obj.string("replacement")!!)
+      if (this.verbose) progress.tick()
     }
   }
 
@@ -100,7 +114,7 @@ object AccentsHelper {
 
     val explodedForms = mutableListOf<String>()
 
-    AccentsHelper.accentsRegexList.forEach { (regex, replacement) ->
+    this.accentsRegexList.forEach { (regex, replacement) ->
       if (regex.containsMatchIn(form)) {
         val newForm: String = regex.replace(input = form, replacement = replacement)
         explodedForms.add(newForm)
