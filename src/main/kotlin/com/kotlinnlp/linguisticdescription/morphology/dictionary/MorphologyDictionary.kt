@@ -80,11 +80,11 @@ class MorphologyDictionary : Serializable {
      */
     private fun getForms(entryObj: JsonObject): List<String> = try {
 
-      entryObj.array<String>("form")!!.map { it.toLowerCase() }
+      entryObj.array("form")!!
 
     } catch (e: ClassCastException) {
 
-      listOf(entryObj.string("form")!!.toLowerCase())
+      listOf(entryObj.string("form")!!)
     }
   }
 
@@ -178,7 +178,7 @@ class MorphologyDictionary : Serializable {
    */
   private fun addEntry(forms: List<String>, encodedMorphologies: List<Long>) {
 
-    val uniqueForm: String = forms.joinToString(separator = " ")
+    val uniqueForm: String = forms.joinToString(separator = " ") { it.toLowerCase() }
 
     if (uniqueForm !in this.morphologyMap) {
       this.morphologyMap[uniqueForm] = encodedMorphologies.joinToString(separator = ",")
