@@ -66,7 +66,7 @@ class MorphologyDictionary : Serializable {
 
       if (verbose) println("Exploding accentuated forms...")
       // Attention: explodeByAccents() must be called before setMultiWords()
-      AccentsHelper.explodeByAccents(dictionary.morphologyMap)
+      AccentsHelper.explodeByAccents(morphologyMap = dictionary.morphologyMap, verbose = verbose)
 
       if (verbose) println("Setting multi-words expressions...")
       dictionary.setMultiWords()
