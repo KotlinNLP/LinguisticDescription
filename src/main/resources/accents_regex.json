@@ -1,0 +1,36 @@
+[
+  {"pattern": "a['’]$", "replacement": "à"},
+  {"pattern": "a['’]$", "replacement": "á"},
+  {"pattern": "à$", "replacement": "a'"},
+  {"pattern": "à$", "replacement": "a’"},
+  {"pattern": "á$", "replacement": "a'"},
+  {"pattern": "á$", "replacement": "a’"},
+
+  {"pattern": "e['’]$", "replacement": "è"},
+  {"pattern": "e['’]$", "replacement": "é"},
+  {"pattern": "è$", "replacement": "e'"},
+  {"pattern": "è$", "replacement": "e’"},
+  {"pattern": "é$", "replacement": "e'"},
+  {"pattern": "é$", "replacement": "e’"},
+
+  {"pattern": "i['’]$", "replacement": "ì"},
+  {"pattern": "i['’]$", "replacement": "í"},
+  {"pattern": "ì$", "replacement": "i'"},
+  {"pattern": "ì$", "replacement": "i’"},
+  {"pattern": "í$", "replacement": "i'"},
+  {"pattern": "í$", "replacement": "i’"},
+
+  {"pattern": "o['’]$", "replacement": "ò"},
+  {"pattern": "o['’]$", "replacement": "ó"},
+  {"pattern": "ò$", "replacement": "o'"},
+  {"pattern": "ò$", "replacement": "o’"},
+  {"pattern": "ó$", "replacement": "o'"},
+  {"pattern": "ó$", "replacement": "o’"},
+
+  {"pattern": "u['’]$", "replacement": "ù"},
+  {"pattern": "u['’]$", "replacement": "ú"},
+  {"pattern": "ù$", "replacement": "u'"},
+  {"pattern": "ù$", "replacement": "u’"},
+  {"pattern": "ú$", "replacement": "u'"},
+  {"pattern": "ú$", "replacement": "u’"}
+]
