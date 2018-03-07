@@ -49,7 +49,7 @@ class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
   /**
    * A list of pairs <regex, replacement> for the accents.
    */
-  val accentsRegexList: List<Pair<Regex, String>> = accentsRegexMap.getOrElse(languageCode.toLowerCase()) {
+  private val accentsRegexList: List<Pair<Regex, String>> = accentsRegexMap.getOrElse(languageCode.toLowerCase()) {
     throw RuntimeException("Language not supported: $languageCode.")
   }
 
