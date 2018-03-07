@@ -92,7 +92,7 @@ class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
 
     val explodingGroups: List<List<String>> = if (explodedGroups.isNotEmpty()) explodedGroups else listOf(formsGroup)
     val newGroups: List<List<String>> = explodingGroups.flatMap {
-      this.explodeReplacing(forms = it, formIndex = formIndex, replacements = explodedForms)
+      this.explodeReplacing(formsGroup = it, formIndex = formIndex, replacements = explodedForms)
     }
 
     return (explodedGroups + newGroups).let {
@@ -125,19 +125,21 @@ class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
   }
 
   /**
-   * Replace each replacement of [replacements] to the form at the given [formIndex] in the [forms] list, obtaining new
-   * forms lists.
+   * Replace each replacement of [replacements] to the form at the given [formIndex] in the [formsGroup], obtaining new
+   * forms groups.
    *
-   * @param forms a list of forms
-   * @param formIndex the index of the form to replace, within the [forms]
+   * @param formsGroup a group of forms
+   * @param formIndex the index of the form to replace, within the [formsGroup]
    * @param replacements the list of replacements
    *
    * @return a list of forms groups
    */
-  private fun explodeReplacing(forms: List<String>, formIndex: Int, replacements: List<String>): List<List<String>> {
+  private fun explodeReplacing(formsGroup: List<String>,
+                               formIndex: Int,
+                               replacements: List<String>): List<List<String>> {
 
     return replacements.map { replacement ->
-      forms.subList(0, formIndex) + replacement + forms.subList(formIndex + 1, forms.size)
+      formsGroup.subList(0, formIndex) + replacement + formsGroup.subList(formIndex + 1, formsGroup.size)
     }
   }
 }
