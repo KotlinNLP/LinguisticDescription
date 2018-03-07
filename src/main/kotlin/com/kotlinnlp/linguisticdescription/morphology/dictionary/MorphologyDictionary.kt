@@ -179,24 +179,10 @@ class MorphologyDictionary : Serializable {
   private fun addEntry(forms: List<String>, encodedMorphologies: List<Long>) {
 
     val uniqueForm: String = forms.joinToString(separator = " ") { it.toLowerCase() }
+    val morphologyString: String = encodedMorphologies.joinToString(separator = ",")
 
-    if (uniqueForm !in this.morphologyMap) {
-      this.morphologyMap[uniqueForm] = encodedMorphologies.joinToString(separator = ",")
-    } else {
-      this.addMorphologies(uniqueForm = uniqueForm, encodedMorphologies = encodedMorphologies)
-    }
-  }
-
-  /**
-   * Add the given [encodedMorphologies] to the encoded entry with the given [uniqueForm].
-   *
-   * @param uniqueForm a unique form
-   * @param encodedMorphologies the encoded morphologies to add to the given form
-   */
-  private fun addMorphologies(uniqueForm: String, encodedMorphologies: List<Long>) {
-    this.morphologyMap[uniqueForm] = "%s\t%s".format(
-      this.morphologyMap[uniqueForm]!!, encodedMorphologies.joinToString(separator = ",")
-    )
+    this.morphologyMap[uniqueForm] =
+      this.morphologyMap[uniqueForm]?.let { "%s\t%s".format(it, morphologyString) } ?: morphologyString
   }
 
   /**
