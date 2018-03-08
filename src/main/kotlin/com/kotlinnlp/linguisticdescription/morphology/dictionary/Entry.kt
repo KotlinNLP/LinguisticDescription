@@ -24,7 +24,7 @@ data class Entry(
    * @return a string representation of this entry
    */
   override fun toString(): String = """
-    Form: '%s'
+    Form: `%s`
     Morphologies:
     %s%s
   """.trimIndent().format(this.form, "\t", this.morphologies.joinToString(separator = "\n\t"))

@@ -76,7 +76,7 @@ abstract class Morphology(val lemma: String) {
 
     val properties = this.getProperties().entries
 
-    return "'%s': %s%s".format(
+    return "`%s`: %s%s".format(
       this.lemma,
       this.getSuperClassesNames().joinToString(separator = "."),
       if (properties.isNotEmpty()) " (" + properties.joinToString { "${it.key}: ${it.value}" } + ")" else ""
