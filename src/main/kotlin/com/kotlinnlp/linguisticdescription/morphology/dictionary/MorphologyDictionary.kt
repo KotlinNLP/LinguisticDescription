@@ -68,7 +68,8 @@ class MorphologyDictionary : Serializable {
       // Attention: explodeByAccents() must be called before setMultiWords()
       if (languageCode != null) {
         if (verbose) println("Exploding accentuated forms...")
-        AccentsHelper(languageCode = languageCode, verbose = verbose).explodeByAccents(dictionary.morphologyMap)
+        dictionary.alternativesCount += AccentsHelper(languageCode = languageCode, verbose = verbose)
+          .explodeByAccents(dictionary.morphologyMap)
       }
 
       if (verbose) println("Setting multi-words expressions...")
@@ -102,9 +103,22 @@ class MorphologyDictionary : Serializable {
   }
 
   /**
-   * The size of the dictionary (number of entries).
+   * The size of the dictionary (number of entries, excluding the references).
    */
-  val size: Int get() = this.morphologyMap.size
+  var size: Int = 0
+    private set
+
+  /**
+   * The number of forms that are alternatives of others.
+   */
+  var alternativesCount: Int = 0
+    private set
+
+  /**
+   * The number of multi-words expressions in the dictionary (excluding the references).
+   */
+  var multiwordsCount: Int = 0
+    private set
 
   /**
    * The compressor of morphologies.
@@ -162,21 +176,27 @@ class MorphologyDictionary : Serializable {
    * Get the multi-words in which the given [word] is involved.
    *
    * @param word a single form to search in the dictionary
+   * @param includeAlternatives whether the alternative forms must be included in the returned list (default = true)
    *
    * @return the list of multi-words in which the given [word] is involved (empty if no one is found)
    */
-  fun getMultiWords(word: String): List<String> =
-    this.wordsToMultiWords[word.toLowerCase()]?.let { this.indicesToMultiWords(it) } ?: listOf()
+  fun getMultiWords(word: String, includeAlternatives: Boolean = true): List<String> =
+    this.wordsToMultiWords[word.toLowerCase()]?.let {
+      this.indicesToMultiWords(indices = it, includeAlternatives = includeAlternatives)
+    } ?: listOf()
 
   /**
    * Get the multi-words introduced by a given [startWord].
    *
    * @param startWord a single form to search in the dictionary
+   * @param includeAlternatives whether the alternative forms must be included in the returned list (default = true)
    *
    * @return the list of multi-words that the given [startWord] introduces (empty if no one is found)
    */
-  fun getMultiWordsIntroducedBy(startWord: String): List<String> =
-    this.startMultiWordsMap[startWord.toLowerCase()]?.let { this.indicesToMultiWords(it) } ?: listOf()
+  fun getMultiWordsIntroducedBy(startWord: String, includeAlternatives: Boolean = true): List<String> =
+    this.startMultiWordsMap[startWord.toLowerCase()]?.let {
+      this.indicesToMultiWords(indices = it, includeAlternatives = includeAlternatives)
+    } ?: listOf()
 
   /**
    * Serialize this [MorphologyDictionary] and write it to an output stream.
@@ -196,8 +216,12 @@ class MorphologyDictionary : Serializable {
     val uniqueForm: String = forms.joinToString(separator = " ") { it.toLowerCase() }
     val morphologyString: String = encodedMorphologies.joinToString(separator = ",")
 
-    this.morphologyMap[uniqueForm] =
-      this.morphologyMap[uniqueForm]?.let { "%s\t%s".format(it, morphologyString) } ?: morphologyString
+    this.morphologyMap[uniqueForm] = if (uniqueForm in this.morphologyMap) {
+      this.morphologyMap.getValue(uniqueForm) + "\t" + morphologyString
+    } else {
+      this.size++
+      morphologyString
+    }
   }
 
   /**
@@ -232,12 +256,23 @@ class MorphologyDictionary : Serializable {
       if (it !in this.wordsToMultiWords) this.wordsToMultiWords[it] = mutableListOf()
       this.wordsToMultiWords.getValue(it).add(multiWordIndex)
     }
+
+    if (!this.isReference(form)) this.multiwordsCount++
   }
 
   /**
    * @param indices a list of indices
+   * @param includeAlternatives whether the alternative forms must be included in the returned list
    *
    * @return the list of multi-words expression that are mapped to the given [indices]
    */
-  private fun indicesToMultiWords(indices: List<Int>): List<String> = indices.map { this.multiWords[it] }
+  private fun indicesToMultiWords(indices: List<Int>, includeAlternatives: Boolean): List<String> =
+    indices.map { this.multiWords[it] }.let { if (includeAlternatives) it else it.filter { !this.isReference(it) } }
+
+  /**
+   * @param form a form of the dictionary
+   *
+   * @return a boolean indicating whether the given [form] references another one
+   */
+  private fun isReference(form: String): Boolean = this.morphologyMap.getValue(form).startsWith(REF_PREFIX)
 }
