@@ -243,7 +243,7 @@ class MorphologyDictionary : Serializable {
    */
   private fun addMultiWord(form: String) {
 
-    val words: List<String> = form.split(' ')
+    val words: Set<String> = form.split(' ').toSet() // the set is used for forms containing the same word more times
     val startWord: String = words.first()
     val multiWordIndex: Int = this.multiWords.size
 
