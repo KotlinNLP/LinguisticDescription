@@ -80,7 +80,7 @@ private fun printMorphology(form: String, dictionary: MorphologyDictionary) {
   println("\n" + dictionary[form])
 
   if (multiWords.isNotEmpty()) {
-    println("'%s' is involved in the following multi-words expressions:\n\t%s"
+    println("`%s` is involved in the following multi-words expressions:\n\t%s"
       .format(form, multiWords.sorted().joinToString(separator = "\n\t")))
   }
 }
