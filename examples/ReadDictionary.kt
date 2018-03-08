@@ -50,7 +50,7 @@ private fun loadDictionary(filename: String): MorphologyDictionary {
 
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
-  println("\nNumber of elements in the dictionary: ${m.size}.")
+  println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
 
   return m
 }

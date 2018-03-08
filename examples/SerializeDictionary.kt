@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
   val m = MorphologyDictionary.load(inputFile, languageCode = if (args.size > 2) args[2] else null)
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
-  println("\nNumber of elements in the dictionary: ${m.size}.")
+  println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
 
   println("\nSaving serialized dictionary to '$outputFile'...")
   timer.reset()
