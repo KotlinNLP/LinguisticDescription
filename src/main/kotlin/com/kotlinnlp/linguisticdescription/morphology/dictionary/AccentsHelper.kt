@@ -54,25 +54,33 @@ class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
   }
 
   /**
-   * Explode the keys of a [morphologyMap] by accents, adding new missing entries by reference.
+   * Explode the keys of a [morphologyMap] by accents, adding new entries by reference.
    *
    * @param morphologyMap the morphology map of a [MorphologyDictionary]
+   *
+   * @return the number of new entries inserted in the [morphologyMap]
    */
-  fun explodeByAccents(morphologyMap: MutableMap<String, String>) {
+  fun explodeByAccents(morphologyMap: MutableMap<String, String>): Int {
 
     val progress = ProgressIndicatorBar(morphologyMap.size)
+    var inserted = 0
 
     for (form in morphologyMap.keys.toList()) { // avoid concurrent modifications calling .toList()
 
       explodeGroupByAccents(formsGroup = form.split(' ')) // split in case of multi-words
         .filter { it.isNotEmpty() }
         .forEach { alternativeFormsGroup ->
+
           val altForm: String = alternativeFormsGroup.joinToString(separator = " ")
-          morphologyMap.putIfAbsent(altForm, MorphologyDictionary.REF_PREFIX + form)
+          val prevValue: String? = morphologyMap.putIfAbsent(altForm, MorphologyDictionary.REF_PREFIX + form)
+
+          if (prevValue == null) inserted++
         }
 
       if (this.verbose) progress.tick()
     }
+
+    return inserted
   }
 
   /**
