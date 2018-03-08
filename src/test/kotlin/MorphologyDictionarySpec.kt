@@ -8,6 +8,7 @@
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.Entry
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Adverb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Preposition
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Verb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
@@ -32,38 +33,55 @@ class MorphologyDictionarySpec : Spek({
 
   describe("a MorphologyDictionary") {
 
-    context("loading from JSONL format") {
+    val dictionary: MorphologyDictionary = MorphologyDictionary.load(
+      filename = MorphologyDictionary::class.java.classLoader.getResource("test_dictionary.jsonl").file,
+      languageCode = "it")
 
-      val dictionary: MorphologyDictionary = MorphologyDictionary.load(
-        filename = MorphologyDictionary::class.java.classLoader.getResource("test_dictionary.jsonl").file)
+    context("loading") {
 
-      on("content") {
-
-        it("should have the expected size") {
-          assertEquals(4, dictionary.size)
-        }
-
-        it("should contain the 'form1' form") {
-          assertNotNull(dictionary["form1"])
-        }
-
-        it("should contain the 'form2' form") {
-          assertNotNull(dictionary["form2"])
-        }
-
-        it("should contain the 'form3.1 form3.2 form3.3' form") {
-          assertNotNull(dictionary["form3.1 form3.2 form3.3"])
-        }
-
-        it("should contain the 'form4' form") {
-          assertNotNull(dictionary["form4"])
-        }
-
-
-        it("should return null when trying to get a form not present") {
-          assertNull(dictionary["form3"])
-        }
+      it("should have the expected size") {
+        assertEquals(6, dictionary.size)
       }
+
+      it("should have the expected multi-words count") {
+        assertEquals(2, dictionary.multiwordsCount)
+      }
+
+      it("should have the expected alternative forms count") {
+        assertEquals(6, dictionary.alternativesCount)
+      }
+
+      it("should contain the 'form1' form") {
+        assertNotNull(dictionary["form1"])
+      }
+
+      it("should contain the 'form2' form") {
+        assertNotNull(dictionary["form2"])
+      }
+
+      it("should contain the 'form3.1 form3.2 form3.3' form") {
+        assertNotNull(dictionary["form3.1 form3.2 form3.3"])
+      }
+
+      it("should contain the 'form4' form") {
+        assertNotNull(dictionary["form4"])
+      }
+
+      it("should contain the 'form with_è accentuated' form") {
+        assertNotNull(dictionary["form with_è accentuated"])
+      }
+
+      it("should contain the 'only_è' form") {
+        assertNotNull(dictionary["only_è"])
+      }
+
+
+      it("should return null when trying to get a form not present") {
+        assertNull(dictionary["form3"])
+      }
+    }
+
+    context("forms with one morphology") {
 
       on("the 'form1' form") {
 
@@ -71,59 +89,6 @@ class MorphologyDictionarySpec : Spek({
 
         it("should have the expected form") {
           assertEquals("form1", entry.form)
-        }
-
-        it("should have a null multiple form") {
-          assertNull(entry.multipleForm)
-        }
-
-        it("should contain 2 morphologies") {
-          assertEquals(2, entry.morphologies.size)
-        }
-
-        it("should contain a first Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[0].type)
-        }
-
-        it("should contain the first expected morphology") {
-          assertEquals(
-            Noun.Common.Base(
-              lemma = "lemma1",
-              case = GrammaticalCase.Unknown,
-              degree = Degree.Base,
-              gender = Gender.Masculine,
-              number = Number.Singular,
-              person = Person.Third
-            ),
-            entry.morphologies[0].list.first()
-          )
-        }
-
-        it("should contain a second Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[1].type)
-        }
-
-        it("should contain the second expected morphology") {
-          assertEquals(
-            Verb.Base(
-              lemma = "lemma2",
-              gender = Gender.Feminine,
-              number = Number.Singular,
-              person = Person.Third,
-              mood = Mood.Indicative,
-              tense = Tense.Present
-            ),
-            entry.morphologies[1].list.first()
-          )
-        }
-      }
-
-      on("the 'form2' form") {
-
-        val entry: Entry = dictionary["form2"]!!
-
-        it("should have the expected form") {
-          assertEquals("form2", entry.form)
         }
 
         it("should have a null multiple form") {
@@ -143,13 +108,13 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain the expected first entry of its multiple morphology") {
-          assertEquals(Preposition.Base(lemma = "lemma3"), entry.morphologies.first().list[0])
+          assertEquals(Preposition.Base(lemma = "lemma1"), entry.morphologies.first().list[0])
         }
 
         it("should contain the expected second entry of its multiple morphology") {
           assertEquals(
             Article.Base(
-              lemma = "lemma4",
+              lemma = "lemma2",
               gender = Gender.Feminine,
               number = Number.Plural,
               case = GrammaticalCase.Object
@@ -158,6 +123,65 @@ class MorphologyDictionarySpec : Spek({
           )
         }
       }
+    }
+
+    context("forms with more morphologies") {
+
+      on("the 'form2' form") {
+
+        val entry: Entry = dictionary["form2"]!!
+
+        it("should have the expected form") {
+          assertEquals("form2", entry.form)
+        }
+
+        it("should have a null multiple form") {
+          assertNull(entry.multipleForm)
+        }
+
+        it("should contain 2 morphologies") {
+          assertEquals(2, entry.morphologies.size)
+        }
+
+        it("should contain a first Single morphology") {
+          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[0].type)
+        }
+
+        it("should contain the first expected morphology") {
+          assertEquals(
+            Noun.Common.Base(
+              lemma = "lemma3",
+              case = GrammaticalCase.Unknown,
+              degree = Degree.Base,
+              gender = Gender.Masculine,
+              number = Number.Singular,
+              person = Person.Third
+            ),
+            entry.morphologies[0].list.first()
+          )
+        }
+
+        it("should contain a second Single morphology") {
+          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[1].type)
+        }
+
+        it("should contain the second expected morphology") {
+          assertEquals(
+            Verb.Base(
+              lemma = "lemma4",
+              gender = Gender.Feminine,
+              number = Number.Singular,
+              person = Person.Third,
+              mood = Mood.Indicative,
+              tense = Tense.Present
+            ),
+            entry.morphologies[1].list.first()
+          )
+        }
+      }
+    }
+
+    context("multiple forms (multi-words expressions)") {
 
       on("the 'form3.1 form3.2 form3.3' form") {
 
@@ -183,6 +207,9 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(Preposition.Base(lemma = "lemma5 lemma6 lemma7"), entry.morphologies.first().list[0])
         }
       }
+    }
+
+    context("forms with morphology containing multiple (exploding) properties") {
 
       on("the 'form4' form") {
 
@@ -314,6 +341,99 @@ class MorphologyDictionarySpec : Spek({
             ),
             entry.morphologies[3].list[1]
           )
+        }
+      }
+    }
+
+    context("forms with accentuated words") {
+
+      on("the 'form with_è accentuated' form") {
+
+        val entry: Entry = dictionary["form with_è accentuated"]!!
+
+        it("should have the expected multiple form") {
+          assertEquals(listOf("form", "with_è", "accentuated"), entry.multipleForm)
+        }
+
+        it("should contain 1 morphology") {
+          assertEquals(1, entry.morphologies.size)
+        }
+
+        it("should contain a Single morphology") {
+          assertEquals(MorphologyEntry.Type.Single, entry.morphologies.first().type)
+        }
+
+        it("should contain the expected morphology") {
+          assertEquals(
+            Adverb.Modal(lemma = "lemma10", degree = Degree.Base),
+            entry.morphologies.first().list.first())
+        }
+      }
+
+      on("the querying the alternative forms of 'form with_è accentuated'") {
+
+        val expectedMorpho = listOf(MorphologyEntry(listOf(Adverb.Modal(lemma = "lemma10", degree = Degree.Base))))
+
+        it("should return the same entry when querying `form with_e' accentuated`") {
+          assertEquals(
+            Entry(
+              form = "form with_e' accentuated",
+              multipleForm = listOf("form", "with_e'", "accentuated"),
+              morphologies = expectedMorpho),
+            dictionary["form with_e' accentuated"])
+        }
+
+        it("should return the same entry when querying `form with_é accentuated`") {
+          assertEquals(
+            Entry(
+              form = "form with_é accentuated",
+              multipleForm = listOf("form", "with_é", "accentuated"),
+              morphologies = expectedMorpho),
+            dictionary["form with_é accentuated"])
+        }
+      }
+
+      on("the 'only_è' form") {
+
+        val entry: Entry = dictionary["only_è"]!!
+
+        it("should have the expected form") {
+          assertEquals("only_è", entry.form)
+        }
+
+        it("should have null multiple form") {
+          assertNull(entry.multipleForm)
+        }
+
+        it("should contain 1 morphology") {
+          assertEquals(1, entry.morphologies.size)
+        }
+
+        it("should contain a Single morphology") {
+          assertEquals(MorphologyEntry.Type.Single, entry.morphologies.first().type)
+        }
+
+        it("should contain the expected morphology") {
+          assertEquals(
+            Adverb.Modal(lemma = "lemma11", degree = Degree.Base),
+            entry.morphologies.first().list.first())
+        }
+      }
+
+      on("the querying the alternative forms of 'only_è'") {
+
+        val expectedMorpho = listOf(MorphologyEntry(listOf(Adverb.Modal(lemma = "lemma11", degree = Degree.Base))))
+
+        it("should return the same entry when querying `only_e'`") {
+          assertEquals(
+            Entry(form = "only_e'", multipleForm = null, morphologies = expectedMorpho),
+            dictionary["only_e'"])
+        }
+
+        it("should return the same entry when querying `only_é`") {
+          assertEquals(
+            Entry(form = "only_é", multipleForm = null, morphologies = expectedMorpho),
+            dictionary["only_é"])
         }
       }
     }
