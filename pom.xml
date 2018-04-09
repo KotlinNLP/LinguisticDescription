@@ -62,6 +62,7 @@
         <dokka.version>0.9.13</dokka.version>
         <klaxon.version>0.30</klaxon.version>
         <google-guava.version>23.2-jre</google-guava.version>
+        <utils.version>1.0.0</utils.version>
         <progressindicator.version>1.0.0</progressindicator.version>
     </properties>
 
@@ -79,7 +80,6 @@
             <url>https://jcenter.bintray.com/</url>
         </pluginRepository>
     </pluginRepositories>
-
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
@@ -243,6 +243,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google-guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
+            <artifactId>utils</artifactId>
+            <version>${utils.version}</version>
         </dependency>
 
         <dependency>
