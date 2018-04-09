@@ -9,8 +9,8 @@ package com.kotlinnlp.linguisticdescription.lexicon
 
 import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.lexicon.liwc.LIWCCategory
-import com.kotlinnlp.linguisticdescription.utils.forEachLine
-import com.kotlinnlp.linguisticdescription.utils.toInputStream
+import com.kotlinnlp.utils.forEachLine
+import com.kotlinnlp.utils.toInputStream
 
 /**
  * A lexicon dictionary.

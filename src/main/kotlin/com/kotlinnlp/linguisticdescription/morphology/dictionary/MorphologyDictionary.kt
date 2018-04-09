@@ -9,10 +9,10 @@ package com.kotlinnlp.linguisticdescription.morphology.dictionary
 
 import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor.MorphologyCompressor
-import com.kotlinnlp.linguisticdescription.utils.Serializer
-import com.kotlinnlp.linguisticdescription.utils.forEachLine
-import com.kotlinnlp.linguisticdescription.utils.getNumOfLines
-import com.kotlinnlp.linguisticdescription.utils.toInputStream
+import com.kotlinnlp.utils.Serializer
+import com.kotlinnlp.utils.forEachLine
+import com.kotlinnlp.utils.getLinesCount
+import com.kotlinnlp.utils.toInputStream
 import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 import java.io.InputStream
 import java.io.OutputStream
@@ -50,7 +50,7 @@ class MorphologyDictionary : Serializable {
       val dictionary = MorphologyDictionary()
 
       val jsonParser = Parser()
-      val progress = ProgressIndicatorBar(getNumOfLines(filename))
+      val progress = ProgressIndicatorBar(getLinesCount(filename))
 
       forEachLine(filename) { line ->
 
