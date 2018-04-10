@@ -6,7 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
-import utils.Timer
+import com.kotlinnlp.utils.Timer
 import java.io.File
 import java.io.FileOutputStream
 
