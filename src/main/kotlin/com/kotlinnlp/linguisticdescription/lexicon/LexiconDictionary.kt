@@ -102,21 +102,38 @@ class LexiconDictionary {
 
       val sentiment: JsonObject = jsonObject.obj("sentiment")!!
       val semantic: JsonObject = jsonObject.obj("semantic")!!
+
+      return LexicalEntry(
+        sentiment = this.buildSentimentInfo(sentiment),
+        semantic = this.buildSemanticInfo(semantic)
+      )
+    }
+
+    /**
+     * @param sentiment the JsonObject that contains sentiment info
+     */
+    private fun buildSentimentInfo(sentiment: JsonObject): SentimentInfo {
+
+      return SentimentInfo(
+        polarity = sentiment.double("polarity")!!,
+        categories = sentiment
+          .array<String>("categories")?.map { this.annotationsToLIWCCategories.getValue(it) })
+    }
+
+    /**
+     * @param semantic the JsonObject that contains semantic info
+     */
+    private fun buildSemanticInfo(semantic: JsonObject): SemanticInfo? {
+
       val semanticClasses = semantic.array<JsonArray<String>>("classes")
       val semanticAnalogy = semantic.array<String>("analogy")
 
-      return LexicalEntry(
-        sentiment = SentimentInfo(
-          polarity = sentiment.double("polarity")!!,
-          categories = sentiment
-            .array<String>("categories")?.map { this.annotationsToLIWCCategories.getValue(it) }),
-        semantic = if (semanticClasses != null || semanticAnalogy != null)
-          SemanticInfo(
-            classes = semanticClasses?.map { SemanticClass(type = it[0], name = it[1]) },
-            analogy = semanticAnalogy?.toList())
-        else
-          null
-      )
+      return if (semanticClasses != null || semanticAnalogy != null)
+        SemanticInfo(
+          classes = semanticClasses?.map { SemanticClass(type = it[0], name = it[1]) },
+          analogy = semanticAnalogy?.toList())
+      else
+        null
     }
   }
 
