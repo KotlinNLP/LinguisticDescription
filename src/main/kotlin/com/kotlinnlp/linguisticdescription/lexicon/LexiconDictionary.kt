@@ -11,19 +11,25 @@ import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.lexicon.liwc.LIWCCategory
 import com.kotlinnlp.utils.forEachLine
 import com.kotlinnlp.utils.toInputStream
+import java.io.Serializable
 
 /**
  * A lexicon dictionary.
  */
-class LexiconDictionary {
+class LexiconDictionary : Serializable {
 
   /**
    * An lexical entry of a dictionary entry, associated to a POS tag.
    *
-   * @property sentiment the sentiment info of the entry
+   * @property sentiment the sentiment info of the entry (can be null)
+   * @property syntax the syntactic info of the entry (can be null)
    * @property semantic the semantic info of the entry (can be null)
    */
-  data class LexicalEntry(val sentiment: SentimentInfo, val semantic: SemanticInfo?)
+  data class LexicalEntry(
+    val sentiment: SentimentInfo?,
+    val syntax: SyntacticInfo?,
+    val semantic: SemanticInfo?
+  ) : Serializable
 
   /**
    * Sentiment info.
@@ -31,7 +37,25 @@ class LexiconDictionary {
    * @property polarity the polarity (a value in the range [-1.0, 1.0])
    * @property categories a list of LIWC categories (can be null)
    */
-  data class SentimentInfo(val polarity: Double, val categories: List<LIWCCategory>?)
+  data class SentimentInfo(val polarity: Double, val categories: List<LIWCCategory>?) : Serializable
+
+  /**
+   * Syntactic info.
+   *
+   * @property subcategorization a list of syntactic categories
+   * @property regencies a list of regencies (can be null)
+   */
+  data class SyntacticInfo(val subcategorization: List<String>?, val regencies: List<String>?) : Serializable {
+
+    /**
+     * Check requirements.
+     */
+    init {
+      require(this.subcategorization != null || this.regencies != null) {
+        "At least one between the subcategorization and the regencies must be not null."
+      }
+    }
+  }
 
   /**
    * Semantic info.
@@ -39,7 +63,7 @@ class LexiconDictionary {
    * @property analogy a list of terms that are semantically analogous (can be null)
    * @property classes a list of semantic classes (can be null)
    */
-  data class SemanticInfo(val analogy: List<String>?, val classes: List<SemanticClass>?) {
+  data class SemanticInfo(val analogy: List<String>?, val classes: List<SemanticClass>?) : Serializable {
 
     /**
      * Check requirements.
@@ -57,7 +81,7 @@ class LexiconDictionary {
    * @property type the class type
    * @property name the class name
    */
-  data class SemanticClass(val type: String, val name: String)
+  data class SemanticClass(val type: String, val name: String) : Serializable
 
   companion object {
 
@@ -83,7 +107,7 @@ class LexiconDictionary {
 
         val entryObj: JsonObject = jsonParser.parse(line.toInputStream()) as JsonObject
         val lemma: String = entryObj.string("lemma")!!
-        val lexicon: Map<String, Any?> = entryObj.obj("lexicon")!!.toMap()
+        val lexicon: Map<String, Any?> = entryObj.obj("properties")!!.toMap()
 
         dictionary.lexiconMap[lemma] = lexicon.entries.associate {
           Pair(it.key, this.buildLexicalEntry(it.value as JsonObject))
@@ -100,35 +124,58 @@ class LexiconDictionary {
      */
     private fun buildLexicalEntry(jsonObject: JsonObject): LexicalEntry {
 
-      val sentiment: JsonObject = jsonObject.obj("sentiment")!!
-      val semantic: JsonObject = jsonObject.obj("semantic")!!
+      val sentiment: JsonObject? = jsonObject.obj("sentiment")
+      val syntax: JsonObject? = jsonObject.obj("syntax")
+      val semantic: JsonObject? = jsonObject.obj("semantic")
 
       return LexicalEntry(
         sentiment = this.buildSentimentInfo(sentiment),
+        syntax = this.buildSyntacticInfo(syntax),
         semantic = this.buildSemanticInfo(semantic)
       )
     }
 
     /**
      * @param sentiment the JsonObject that contains sentiment info
+     *
+     * @return a sentiment info (can be null)
      */
-    private fun buildSentimentInfo(sentiment: JsonObject): SentimentInfo {
+    private fun buildSentimentInfo(sentiment: JsonObject?): SentimentInfo? {
 
-      return SentimentInfo(
+      return if (sentiment != null) SentimentInfo(
         polarity = sentiment.double("polarity")!!,
         categories = sentiment
           .array<String>("categories")?.map { this.annotationsToLIWCCategories.getValue(it) })
+      else
+        null
+    }
+
+    /**
+     * @param syntax the JsonObject that contains syntactic info
+     *
+     * @return a syntactic info (can be null)
+     */
+    private fun buildSyntacticInfo(syntax: JsonObject?): SyntacticInfo? {
+
+      return if (syntax != null)
+        SyntacticInfo(
+          subcategorization = syntax.array<String>("subcategorization")?.toList(),
+          regencies = syntax.array<String>("regencies")?.toList())
+      else
+        null
     }
 
     /**
      * @param semantic the JsonObject that contains semantic info
+     *
+     * @return a semantic info (can be null)
      */
-    private fun buildSemanticInfo(semantic: JsonObject): SemanticInfo? {
+    private fun buildSemanticInfo(semantic: JsonObject?): SemanticInfo? {
 
-      val semanticClasses = semantic.array<JsonArray<String>>("classes")
-      val semanticAnalogy = semantic.array<String>("analogy")
+      val semanticClasses = semantic?.array<JsonArray<String>>("classes")
+      val semanticAnalogy = semantic?.array<String>("analogy")
 
-      return if (semanticClasses != null || semanticAnalogy != null)
+      return if (semantic != null && (semanticClasses != null || semanticAnalogy != null))
         SemanticInfo(
           classes = semanticClasses?.map { SemanticClass(type = it[0], name = it[1]) },
           analogy = semanticAnalogy?.toList())
