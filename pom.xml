@@ -150,6 +150,7 @@
                             <goal>javadocJar</goal>
                         </goals>
                         <configuration>
+                            <skip>true</skip>
                             <includes>
                                 <file>packages.md</file>
                             </includes>
