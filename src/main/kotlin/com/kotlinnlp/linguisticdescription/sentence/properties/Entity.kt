@@ -27,6 +27,7 @@ data class Entity(val tokens: List<Token>, val type: Type) {
     Location("LOC"),
     Organization("ORG"),
     Person("PER"),
+    GeoPolitical("GPE"),
     Undefined("")
   }
 
