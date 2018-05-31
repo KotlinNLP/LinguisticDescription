@@ -62,6 +62,7 @@
         <kotlin.version>1.2.41</kotlin.version>
         <spek.version>1.1.5</spek.version>
         <dokka.version>0.9.13</dokka.version>
+        <surfire.version>2.19.1</surfire.version>
         <klaxon.version>0.30</klaxon.version>
         <google-guava.version>23.2-jre</google-guava.version>
         <utils.version>1.1.0</utils.version>
@@ -203,6 +204,17 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surfire.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.*</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
