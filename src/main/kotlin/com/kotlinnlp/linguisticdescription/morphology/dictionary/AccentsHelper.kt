@@ -11,7 +11,7 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.string
-import com.kotlinnlp.progressindicator.ProgressIndicatorBar
+import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
 
 /**
  * The helper that explodes the accentuated forms of a [MorphologyDictionary].

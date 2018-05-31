@@ -12,8 +12,8 @@ import com.kotlinnlp.linguisticdescription.morphology.dictionary.compressor.Morp
 import com.kotlinnlp.utils.Serializer
 import com.kotlinnlp.utils.forEachLine
 import com.kotlinnlp.utils.getLinesCount
+import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
 import com.kotlinnlp.utils.toInputStream
-import com.kotlinnlp.progressindicator.ProgressIndicatorBar
 import java.io.InputStream
 import java.io.OutputStream
 import java.io.Serializable
