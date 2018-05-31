@@ -141,6 +141,9 @@
                 <groupId>org.jetbrains.dokka</groupId>
                 <artifactId>dokka-maven-plugin</artifactId>
                 <version>${dokka.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>prepare-package</phase>
@@ -150,7 +153,6 @@
                             <goal>javadocJar</goal>
                         </goals>
                         <configuration>
-                            <skip>true</skip>
                             <includes>
                                 <file>packages.md</file>
                             </includes>
