@@ -14,30 +14,30 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * A word token.
  *
  * @property id the id of the token, unique within its sentence
+ * @property form the form of the token
+ * @property position the position of the token
  * @property head the head of the token
  * @property deprel the dependency relation with the [head]
  * @property coReferences the list of co-references (can be null)
  * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
- * @property surface the surface information
- * @property position the position of the token
  * @property diathesis the diathesis property (defined for verbs, otherwise null)
  * @property morphology the morphology of the token itself
  * @property contextMorphology the morphology of the token within a context (e.g. multi-words)
  */
 data class Word(
   override val id: Int,
+  override val form: String,
+  override val position: Position,
   override val head: Head,
   override val deprel: String,
   override val coReferences: List<CoReference>?,
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
-  val surface: Surface,
-  val position: Position,
   val diathesis: Diathesis?, // null by default, only verbs have it defined
   val morphology: Morphology,
   val contextMorphology: Morphology
-) : SyntacticToken {
+) : RealToken, SyntacticToken {
 
   /**
    * @return a string representation of this token
@@ -52,7 +52,7 @@ data class Word(
         diathesis: %s
   """.trimIndent().format(
     this.id,
-    this.surface.form,
+    this.form,
     this.morphology.type.annotation,
     this.deprel,
     this.morphology,
