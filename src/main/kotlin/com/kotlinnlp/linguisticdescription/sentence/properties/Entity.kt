@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.kotlinnlp.linguisticdescription.sentence.token.Token
+import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
 import com.kotlinnlp.linguisticdescription.sentence.token.Trace
 import com.kotlinnlp.linguisticdescription.sentence.token.Word
 import com.kotlinnlp.linguisticdescription.sentence.token.WordTrace
@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.WordTrace
  * @property tokens the list of tokens that compose this entity
  * @property type the entity type
  */
-data class Entity(val tokens: List<Token>, val type: Type) {
+data class Entity(val tokens: List<SyntacticToken>, val type: Type) {
 
   /**
    * The entity type.
@@ -34,7 +34,7 @@ data class Entity(val tokens: List<Token>, val type: Type) {
   /**
    * Build an [Entity] given its list of tokens and its type annotation.
    */
-  constructor(tokens: List<Token>, typeAnnotation: String): this(
+  constructor(tokens: List<SyntacticToken>, typeAnnotation: String): this(
     tokens = tokens,
     type = annotationsToTypes.getValue(typeAnnotation)
   )

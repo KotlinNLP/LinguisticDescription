@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.kotlinnlp.linguisticdescription.sentence.token.Token
+import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
 import com.kotlinnlp.linguisticdescription.sentence.token.Trace
 import com.kotlinnlp.linguisticdescription.sentence.token.Word
 import com.kotlinnlp.linguisticdescription.sentence.token.WordTrace
@@ -26,7 +26,7 @@ import java.util.*
  * @property approxDate TODO: describe it
  */
 data class DateTime(
-  val tokens: List<Token>,
+  val tokens: List<SyntacticToken>,
   val timeZone: TimeZone,
   val isInterval: Boolean,
   val suggestYear: Boolean,

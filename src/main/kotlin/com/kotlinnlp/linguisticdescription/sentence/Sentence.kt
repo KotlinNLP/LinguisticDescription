@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
-import com.kotlinnlp.linguisticdescription.sentence.token.Token
+import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
 
 /**
  * A sentence.
@@ -23,7 +23,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.Token
 data class Sentence(
   val id: Int,
   val confidence: Double,
-  val tokens: List<Token>,
+  val tokens: List<SyntacticToken>,
   val dateTimes: List<DateTime>?,
   val entities: List<Entity>?
 ) {

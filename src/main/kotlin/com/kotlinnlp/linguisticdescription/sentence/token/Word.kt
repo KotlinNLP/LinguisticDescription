@@ -37,7 +37,7 @@ data class Word(
   val diathesis: Diathesis?, // null by default, only verbs have it defined
   val morphology: Morphology,
   val contextMorphology: Morphology
-) : Token {
+) : SyntacticToken {
 
   /**
    * @return a string representation of this token

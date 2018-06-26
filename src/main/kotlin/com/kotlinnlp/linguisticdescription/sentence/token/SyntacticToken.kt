@@ -12,9 +12,9 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.Head
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
- * A token.
+ * A syntactic token.
  */
-interface Token {
+interface SyntacticToken {
 
   /**
    * The id of the token, unique within its sentence.

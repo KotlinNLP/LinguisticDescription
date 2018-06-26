@@ -32,7 +32,7 @@ data class Trace(
   override val semanticRelations: List<SemanticRelation>?,
   val pos: String,
   val positionedAfter: Int
-) : Token {
+) : SyntacticToken {
 
   /**
    * @return a string representation of this token

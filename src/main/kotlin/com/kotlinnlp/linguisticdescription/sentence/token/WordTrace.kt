@@ -35,7 +35,7 @@ data class WordTrace(
   val pos: String,
   val surface: Surface,
   val positionedAfter: Int
-) : Token {
+) : SyntacticToken {
 
   /**
    * @return a string representation of this token
