@@ -43,8 +43,8 @@ data class DateTime(
     this.tokens.joinToString(separator = " ") {
       when (it) {
         is Trace -> "-"
-        is Word -> it.surface.form
-        is WordTrace -> it.surface.form
+        is Word -> it.form
+        is WordTrace -> it.form
         else -> throw RuntimeException("Invalid token.")
       }
     },
