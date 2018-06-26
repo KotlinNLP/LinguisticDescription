@@ -33,6 +33,10 @@ object MorphologyFactory {
                       type: MorphologyType,
                       properties: Map<String, MorphologyProperty> = mapOf()): Morphology {
 
+    require(type != MorphologyType.Num) {
+      "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
+    }
+
     val kClass: KClass<*> = morphologyClasses[type]!!
     val constructor: KFunction<Any> = kClass.constructors.last()
 

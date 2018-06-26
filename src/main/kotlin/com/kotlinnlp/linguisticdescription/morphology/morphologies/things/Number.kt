@@ -10,12 +10,16 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
-import com.kotlinnlp.linguisticdescription.morphology.properties.Number
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Genderable
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Numerable
 
 /**
  * The 'number' morphology.
+ *
+ * Note:
+ *  Number morphologies cannot be put in the dictionary because they have an adding 'numericForm' property.
+ *  They should be created using a Morphological Analyzer.
  *
  * @property lemma the lemma (the standard representation of the number in digits)
  * @property gender the 'gender' morphology property
@@ -23,8 +27,9 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
  */
 class Number(
   lemma: String,
+  val numericForm: kotlin.Number,
   override val gender: Gender,
-  override val number: Number
+  override val number: NumberProp
 ) : Morphology(lemma), Thing, Genderable, Numerable {
 
   override val type: MorphologyType = MorphologyType.Num
