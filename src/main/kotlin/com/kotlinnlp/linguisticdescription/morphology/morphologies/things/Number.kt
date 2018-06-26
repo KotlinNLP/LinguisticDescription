@@ -17,7 +17,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'number' morphology.
  *
- * @property lemma the lemma
+ * @property lemma the lemma (the standard representation of the number in digits)
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  */
