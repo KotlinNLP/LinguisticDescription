@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
 interface RealToken : FormToken {
 
   /**
-   * The position of the token.
+   * The position of the token in the original text.
    */
   val position: Position
 }
