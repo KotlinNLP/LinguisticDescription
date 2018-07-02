@@ -23,10 +23,10 @@ import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
 data class SemanticSentence(
   val id: Int,
   val confidence: Double,
-  val tokens: List<SyntacticToken>,
+  override val tokens: List<SyntacticToken>,
   val dateTimes: List<DateTime>?,
   val entities: List<Entity>?
-) {
+) : Sentence<SyntacticToken> {
 
   /**
    * @return a string representation of this sentence
