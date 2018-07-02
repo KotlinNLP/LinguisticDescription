@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
 /**
- * The position of a token.
+ * The position of an item.
  *
- * @property index the index of this token within the list of tokens of its sentence
- * @property start the index of the starting char of this token within the original text
- * @property end the index of the ending char of this token within the original text
+ * @property index the index of this item within a list of items
+ * @property start the index of the starting char of this item within the original text
+ * @property end the index of the ending char of this item within the original text
  */
 data class Position(
   val index: Int,
