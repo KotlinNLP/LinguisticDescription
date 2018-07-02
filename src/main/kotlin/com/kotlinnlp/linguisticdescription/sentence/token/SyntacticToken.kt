@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 /**
  * A syntactic token.
  */
-interface SyntacticToken {
+interface SyntacticToken : Token {
 
   /**
    * The id of the token, unique within its sentence.

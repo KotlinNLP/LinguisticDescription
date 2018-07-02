@@ -8,12 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 /**
- * A token with a form.
+ * The base token.
  */
-interface FormToken : Token {
-
-  /**
-   * The form.
-   */
-  val form: String
-}
+interface Token
