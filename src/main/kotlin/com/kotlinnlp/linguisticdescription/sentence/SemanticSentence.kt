@@ -20,7 +20,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
  * @property dateTimes the list of datetimes contained in this sentence
  * @property entities the list of entities contained in this sentence
  */
-data class Sentence(
+data class SemanticSentence(
   val id: Int,
   val confidence: Double,
   val tokens: List<SyntacticToken>,
