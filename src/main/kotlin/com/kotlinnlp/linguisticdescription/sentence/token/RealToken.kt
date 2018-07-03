@@ -7,15 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.Positionable
 
 /**
  * A real token, with a form and a position in the original text.
  */
-interface RealToken : FormToken {
-
-  /**
-   * The position of the token in the original text.
-   */
-  val position: Position
-}
+interface RealToken : FormToken, Positionable

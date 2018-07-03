@@ -8,15 +8,9 @@
 package com.kotlinnlp.linguisticdescription.sentence
 
 import com.kotlinnlp.linguisticdescription.sentence.token.Token
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.Positionable
 
 /**
  * A real sentence, with a position in the original text.
  */
-interface RealSentence<TokenType: Token> : Sentence<TokenType> {
-
-  /**
-   * The position of this sentence in the original text.
-   */
-  val position: Position
-}
+interface RealSentence<TokenType: Token> : Sentence<TokenType>, Positionable
