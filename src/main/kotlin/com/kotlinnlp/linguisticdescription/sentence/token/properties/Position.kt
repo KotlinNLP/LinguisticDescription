@@ -18,4 +18,14 @@ data class Position(
   val index: Int,
   val start: Int,
   val end: Int
-)
+) {
+
+  override fun equals(other: Any?): Boolean {
+
+    if (other !is Position) return false
+
+    return other.start == this.start && other.end == this.end
+  }
+
+  override fun hashCode(): Int = 31 * this.start + this.end
+}
