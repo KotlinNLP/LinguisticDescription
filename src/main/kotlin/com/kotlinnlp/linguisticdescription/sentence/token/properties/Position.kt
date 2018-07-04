@@ -20,6 +20,11 @@ data class Position(
   val end: Int
 ) {
 
+  /**
+   * The length of the item.
+   */
+  val length: Int = this.end - this.start + 1
+
   override fun equals(other: Any?): Boolean {
 
     if (other !is Position) return false
