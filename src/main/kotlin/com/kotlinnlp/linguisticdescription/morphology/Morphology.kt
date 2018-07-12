@@ -8,12 +8,12 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 /**
- * A morphology entry.
+ * A morphology of a lexical form.
  *
  * If [type] is [Type.Single] the list contains only one single morphology, otherwise more.
  *
- * @property type the type of this entry (Single or Multiple)
- * @property list a list of morphologies
+ * @property type the type of this morphology (Single or Multiple)
+ * @property list a list of single morphologies
  */
 data class Morphology(val type: Type, val list: List<SingleMorphology>) {
 
@@ -33,7 +33,7 @@ data class Morphology(val type: Type, val list: List<SingleMorphology>) {
   )
 
   /**
-   * @return a string representation of this entry
+   * @return a string representation of this morphology
    */
   override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
 
