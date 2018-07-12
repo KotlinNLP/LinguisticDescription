@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
  * The 'phrase' morphology.
  *
  * @property lemma the lemma
  */
-sealed class Phrase(lemma: String) : Morphology(lemma), Discourse {
+sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
 
   /**
    * The 'affirmative phrase' morphology.

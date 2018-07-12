@@ -14,12 +14,12 @@ import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter
 
 /**
- * The factory of a new [Morphology].
+ * The factory of a new [SingleMorphology].
  */
 object MorphologyFactory {
 
   /**
-   * Create a new [Morphology] given its [properties].
+   * Create a new [SingleMorphology] given its [properties].
    *
    * @param lemma the lemma of the morphology
    * @param type the morphology type
@@ -31,7 +31,7 @@ object MorphologyFactory {
    */
   operator fun invoke(lemma: String,
                       type: MorphologyType,
-                      properties: Map<String, MorphologyProperty> = mapOf()): Morphology {
+                      properties: Map<String, MorphologyProperty> = mapOf()): SingleMorphology {
 
     require(type != MorphologyType.Num) {
       "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
@@ -51,6 +51,6 @@ object MorphologyFactory {
       Pair(it, if (isLemma) lemma else properties[propertyName]!!)
     }
 
-    return constructor.callBy(keywordArgs) as Morphology
+    return constructor.callBy(keywordArgs) as SingleMorphology
   }
 }

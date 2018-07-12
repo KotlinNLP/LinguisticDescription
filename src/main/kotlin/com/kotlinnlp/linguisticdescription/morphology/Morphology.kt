@@ -7,109 +7,54 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
-import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
-import kotlin.reflect.KClass
-import kotlin.reflect.full.isSubclassOf
-import kotlin.reflect.full.memberProperties
-import kotlin.reflect.full.primaryConstructor
-
 /**
- * The base interface implemented by all morphologies.
+ * A morphology entry.
  *
- * @property lemma the lemma
+ * If [type] is [Type.Single] the list contains only one single morphology, otherwise more.
+ *
+ * @property type the type of this entry (Single or Multiple)
+ * @property list a list of morphologies
  */
-abstract class Morphology(val lemma: String) {
-
-  companion object {
-
-    /**
-     * Get the list of properties required to build a certain morphology.
-     *
-     * @param type a morphology type
-     *
-     * @return a list of required properties for a morphology of the given type
-     */
-    fun getRequiredProperties(type: MorphologyType): List<String> {
-
-      val requiredProperties = mutableListOf<String>()
-      val morphologyClass: KClass<*> = morphologyClasses.getValue(type)
-
-      if (morphologyClass.isSubclassOf(Genderable::class)) requiredProperties.add("gender")
-      if (morphologyClass.isSubclassOf(Numerable::class)) requiredProperties.add("number")
-      if (morphologyClass.isSubclassOf(PersonDeclinable::class)) requiredProperties.add("person")
-      if (morphologyClass.isSubclassOf(Gradable::class)) requiredProperties.add("degree")
-      if (morphologyClass.isSubclassOf(CaseDeclinable::class)) requiredProperties.add("case")
-      if (morphologyClass.isSubclassOf(Conjugable::class)) {
-        requiredProperties.add("mood")
-        requiredProperties.add("tense")
-      }
-
-      return requiredProperties
-    }
-  }
+data class Morphology(val type: Type, val list: List<SingleMorphology>) {
 
   /**
-   * The type associated to this morphology.
+   * The [Morphology] type.
    */
-  abstract val type: MorphologyType
+  enum class Type { Single, Multiple }
 
   /**
-   * @return a map of properties names to values
+   * Build a [Morphology] given a list of [SingleMorphology].
+   *
+   * @param morphologies the list of single morphologies
    */
-  fun getProperties(): Map<String, MorphologyProperty> {
-
-    val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters
-      .filter { it.name!! != "lemma" }
-      .map { it.name!! }
-      .toSet()
-
-    return this::class.memberProperties
-      .filter { it.name in paramsNames }
-      .associate { it.name to it.getter.call(this) as MorphologyProperty }
-  }
+  constructor(morphologies: List<SingleMorphology>): this(
+    type = if (morphologies.size == 1) Type.Single else Type.Multiple,
+    list = morphologies
+  )
 
   /**
-   * @return the string representation of this morphology (with the values of its properties)
+   * @return a string representation of this entry
    */
-  override fun toString(): String {
+  override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
 
-    val properties = this.getProperties().entries
-
-    return "`%s`: %s%s".format(
-      this.lemma,
-      this.getSuperClassesNames().joinToString(separator = "."),
-      if (properties.isNotEmpty()) " (" + properties.joinToString { "${it.key}: ${it.value}" } + ")" else ""
-    )
-  }
-
+  /**
+   * @return the hash code of this object
+   */
   override fun hashCode(): Int = this.toString().hashCode()
 
+  /**
+   * @param other another object
+   *
+   * @return a boolean indicating if this object is equal to the [other] object
+   */
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (javaClass != other?.javaClass) return false
 
     other as Morphology
 
-    if (this.lemma != other.lemma) return false
     if (this.toString() != other.toString()) return false
 
     return true
-  }
-
-  /**
-   * @return the list of names of super classes of this morphology, from the highest to itself
-   */
-  private fun getSuperClassesNames(): List<String> {
-
-    val classes = mutableListOf<String>()
-    var currentClass: KClass<*> = this::class
-
-    while (currentClass != Morphology::class) {
-      classes.add(0, currentClass.simpleName!!)
-      currentClass = (currentClass.java.superclass as Class<*>).kotlin
-    }
-
-    return classes.toList()
   }
 }

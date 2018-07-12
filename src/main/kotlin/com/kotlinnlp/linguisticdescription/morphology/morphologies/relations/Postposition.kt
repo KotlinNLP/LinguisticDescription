@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
  * The 'postposition' morphology.
  *
  * @property lemma the lemma
  */
-sealed class Postposition(lemma: String) : Morphology(lemma), Relation {
+sealed class Postposition(lemma: String) : SingleMorphology(lemma), Relation {
 
   /**
    * The 'postposition' morphology.

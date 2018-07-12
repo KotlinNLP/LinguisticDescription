@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Conjugable
@@ -34,7 +34,7 @@ sealed class Verb(
   override val gender: Gender,
   override val number: Number,
   override val person: Person
-) : Morphology(lemma), Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
+) : SingleMorphology(lemma), Relation, ContentWord, Conjugable, Genderable, Numerable, PersonDeclinable {
 
   /**
    * The 'verb' morphology.

@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Genderable
@@ -30,7 +30,7 @@ class Number(
   val numericForm: kotlin.Number,
   override val gender: Gender,
   override val number: NumberProp
-) : Morphology(lemma), Thing, Genderable, Numerable {
+) : SingleMorphology(lemma), Thing, Genderable, Numerable {
 
   override val type: MorphologyType = MorphologyType.Num
 }

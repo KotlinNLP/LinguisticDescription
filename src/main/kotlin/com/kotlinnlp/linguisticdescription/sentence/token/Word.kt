@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
 /**
@@ -35,8 +35,8 @@ data class Word(
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
   val diathesis: Diathesis?, // null by default, only verbs have it defined
-  val morphology: Morphology,
-  val contextMorphology: Morphology
+  val morphology: SingleMorphology,
+  val contextMorphology: SingleMorphology
 ) : RealToken, SyntacticToken {
 
   /**

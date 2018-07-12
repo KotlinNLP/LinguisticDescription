@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
  * The 'conjunction' morphology.
  *
  * @property lemma the lemma
  */
-sealed class Conjunction(lemma: String) : Morphology(lemma), Relation {
+sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
 
   /**
    * The 'conjunction' morphology.

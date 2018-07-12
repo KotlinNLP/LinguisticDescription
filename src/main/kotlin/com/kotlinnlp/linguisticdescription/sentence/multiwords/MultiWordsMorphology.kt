@@ -7,8 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.multiwords
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyEntry
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * The morphology of a multi-words expression.
@@ -20,5 +19,5 @@ import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 data class MultiWordsMorphology(
   override val startToken: Int,
   override val endToken: Int,
-  val morphologies: List<MorphologyEntry>
+  val morphologies: List<Morphology>
 ) : MultiWords

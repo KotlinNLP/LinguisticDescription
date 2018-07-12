@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Gradable
 
@@ -22,7 +22,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Grad
 sealed class Adverb(
   lemma: String,
   override val degree: Degree
-) : Morphology(lemma), Relation, Gradable {
+) : SingleMorphology(lemma), Relation, Gradable {
 
   /**
    * The 'adversative adverb' morphology.

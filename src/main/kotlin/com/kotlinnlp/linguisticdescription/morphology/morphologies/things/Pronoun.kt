@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
@@ -28,7 +28,7 @@ sealed class Pronoun(
   override val number: Number,
   override val person: Person,
   override val case: GrammaticalCase
-) : Morphology(lemma), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
+) : SingleMorphology(lemma), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
 
   /**
    * The 'pronoun' morphology.

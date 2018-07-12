@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
  * The 'interjection' morphology.
  *
  * @property lemma the lemma
  */
-class Interjection(lemma: String) : Morphology(lemma), Discourse {
+class Interjection(lemma: String) : SingleMorphology(lemma), Discourse {
 
   override val type: MorphologyType = MorphologyType.Interj
 }

@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
@@ -31,7 +31,7 @@ sealed class Adjective(
   override val person: Person,
   override val case: GrammaticalCase,
   override val degree: Degree
-) : Morphology(lemma), Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
+) : SingleMorphology(lemma), Relation, Genderable, Numerable, PersonDeclinable, CaseDeclinable, Gradable {
 
   /**
    * The 'adjective' morphology.

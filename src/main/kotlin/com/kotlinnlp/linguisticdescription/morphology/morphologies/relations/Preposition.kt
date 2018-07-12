@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
@@ -21,7 +21,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
  *
  * @property lemma the lemma
  */
-sealed class Preposition(lemma: String) : Morphology(lemma), Relation {
+sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
 
   /**
    * The 'preposition' morphology.

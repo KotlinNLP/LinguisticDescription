@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
  * The 'hour' morphology.
  *
  * @property lemma the lemma
  */
-class Hour(lemma: String) : Morphology(lemma), Thing {
+class Hour(lemma: String) : SingleMorphology(lemma), Thing {
 
   override val type: MorphologyType = MorphologyType.Hour
 }

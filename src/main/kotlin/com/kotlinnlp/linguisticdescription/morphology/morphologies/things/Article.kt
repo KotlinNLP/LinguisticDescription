@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
@@ -29,7 +29,7 @@ sealed class Article(
   override val gender: Gender,
   override val number: Number,
   override val case: GrammaticalCase
-) : Morphology(lemma), Thing, Genderable, Numerable, CaseDeclinable {
+) : SingleMorphology(lemma), Thing, Genderable, Numerable, CaseDeclinable {
 
   /**
    * The 'article' morphology.
