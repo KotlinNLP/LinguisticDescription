@@ -15,7 +15,7 @@ package com.kotlinnlp.linguisticdescription.morphology
  * @property type the type of this morphology (Single or Multiple)
  * @property list a list of single morphologies
  */
-data class Morphology(val type: Type, val list: List<SingleMorphology>) {
+open class Morphology(val type: Type, val list: List<SingleMorphology>) {
 
   /**
    * The [Morphology] type.
