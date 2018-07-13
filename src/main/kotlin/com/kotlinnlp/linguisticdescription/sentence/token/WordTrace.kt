@@ -26,7 +26,7 @@ data class WordTrace(
   override val form: String,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  override val semanticRelations: List<SemanticRelation>?,
+  val semanticRelations: List<SemanticRelation>?,
   val positionedAfter: Int
 ) : FormToken, SyntacticToken {
 

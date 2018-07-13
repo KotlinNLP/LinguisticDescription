@@ -24,7 +24,7 @@ data class Trace(
   override val id: Int,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  override val semanticRelations: List<SemanticRelation>?,
+  val semanticRelations: List<SemanticRelation>?,
   val positionedAfter: Int
 ) : SyntacticToken {
 

@@ -29,7 +29,7 @@ data class Word(
   override val position: Position,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  override val semanticRelations: List<SemanticRelation>?,
+  val semanticRelations: List<SemanticRelation>?,
   val diathesis: Diathesis?, // null by default, only verbs have it defined
   val morphology: SingleMorphology,
   val contextMorphology: SingleMorphology
