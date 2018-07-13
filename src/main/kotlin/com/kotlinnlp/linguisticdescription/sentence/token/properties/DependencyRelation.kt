@@ -10,16 +10,18 @@ package com.kotlinnlp.linguisticdescription.sentence.token.properties
 /**
  * The head of a token.
  *
- * @property id the id of the head token
- * @property confidence the confidence score of the attachment to this head
+ * @property governor the id of the governor token
+ * @property deprel the label of the dependency relation
+ * @property attachmentScore the attachment confidence score
  */
-data class Head(
-  val id: Int,
-  val confidence: Double
+data class DependencyRelation(
+  val governor: Int,
+  val deprel: String,
+  val attachmentScore: Double
 ) {
 
   /**
    * @return a string representation of this head
    */
-  override fun toString(): String = "%d (%.2f%%)".format(this.id, 100.0 * this.confidence)
+  override fun toString(): String = "%d %s (%.2f%)".format(this.governor, this.deprel, this.attachmentScore)
 }

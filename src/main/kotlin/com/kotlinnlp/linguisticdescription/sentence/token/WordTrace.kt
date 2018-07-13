@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.Head
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
@@ -16,8 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  *
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
- * @property head the head of the token
- * @property deprel the dependency relation with the [head]
+ * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
@@ -26,8 +25,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 data class WordTrace(
   override val id: Int,
   override val form: String,
-  override val head: Head,
-  override val deprel: String,
+  override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
@@ -39,15 +37,14 @@ data class WordTrace(
    */
   override fun toString(): String = """
     [%d] '%s' (TRACE) %s
-        head: %d
+        dependency: %d
         corefs: %s
         descendants: %d
         sem-rel: %s
   """.trimIndent().format(
     this.id,
     this.form,
-    this.deprel,
-    this.head,
+    this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.descendantsCount,
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"

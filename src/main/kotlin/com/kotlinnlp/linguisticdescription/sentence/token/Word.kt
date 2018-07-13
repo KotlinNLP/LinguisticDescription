@@ -16,8 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
  * @property position the position of the token
- * @property head the head of the token
- * @property deprel the dependency relation with the [head]
+ * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
@@ -29,8 +28,7 @@ data class Word(
   override val id: Int,
   override val form: String,
   override val position: Position,
-  override val head: Head,
-  override val deprel: String,
+  override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
@@ -43,9 +41,9 @@ data class Word(
    * @return a string representation of this token
    */
   override fun toString(): String = """
-    [%d] '%s' %s %s
+    [%d] '%s' %s
         %s
-        head: %s
+        dependency: %s
         corefs: %s
         descendants: %d
         semantic relations: %s
@@ -54,9 +52,8 @@ data class Word(
     this.id,
     this.form,
     this.morphology.type.annotation,
-    this.deprel,
     this.morphology,
-    this.head,
+    this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.descendantsCount,
     this.semanticRelations?.joinToString(separator = ", ") ?: "None",

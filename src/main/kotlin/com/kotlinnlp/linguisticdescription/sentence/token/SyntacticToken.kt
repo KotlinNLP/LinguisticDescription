@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.Head
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
@@ -22,14 +22,9 @@ interface SyntacticToken : Token {
   val id: Int
 
   /**
-   * The head of the token.
+   * The dependency relation with its governor.
    */
-  val head: Head
-
-  /**
-   * The dependency relation with the [head].
-   */
-  val deprel: String
+  val dependencyRelation: DependencyRelation
 
   /**
    * The list of co-references (can be null).
