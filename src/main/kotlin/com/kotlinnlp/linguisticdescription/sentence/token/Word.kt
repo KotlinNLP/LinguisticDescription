@@ -39,9 +39,7 @@ data class Word(
         %s
         dependency: %s
         corefs: %s
-        descendants: %d
-        semantic relations: %s
-        diathesis: %s
+        sem-rel: %s
   """.trimIndent().format(
     this.id,
     this.form,
