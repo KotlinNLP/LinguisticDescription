@@ -8,7 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
-import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
 /**
@@ -21,9 +20,6 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
- * @property diathesis the diathesis property (defined for verbs, otherwise null)
- * @property morphology the morphology of the token itself
- * @property contextMorphology the morphology of the token within a context (e.g. multi-words)
  */
 data class Word(
   override val id: Int,
@@ -32,10 +28,7 @@ data class Word(
   override val lexicalInterpretations: List<LexicalInterpretation>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  val semanticRelations: List<SemanticRelation>?,
-  val diathesis: Diathesis?, // null by default, only verbs have it defined
-  val morphology: SingleMorphology,
-  val contextMorphology: SingleMorphology
+  val semanticRelations: List<SemanticRelation>?
 ) : RealToken, LexicalToken, SyntacticToken {
 
   /**
