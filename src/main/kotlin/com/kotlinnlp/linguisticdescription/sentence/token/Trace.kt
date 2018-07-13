@@ -20,7 +20,6 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * @property coReferences the list of co-references (can be null)
  * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
- * @property pos the POS tag
  * @property positionedAfter the id of the token after which this trace is positioned
  */
 data class Trace(
@@ -30,7 +29,6 @@ data class Trace(
   override val coReferences: List<CoReference>?,
   override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
-  val pos: String,
   val positionedAfter: Int
 ) : SyntacticToken {
 
@@ -38,14 +36,13 @@ data class Trace(
    * @return a string representation of this token
    */
   override fun toString(): String = """
-    [%d] TRACE %s %s
+    [%d] TRACE %s
         head: %s
         corefs: %s
         descendants: %d
         sem-rel: %s
   """.trimIndent().format(
     this.id,
-    this.pos,
     this.deprel,
     this.head,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
