@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * A trace token.
  *
  * @property id the id of the token, unique within its sentence
- * @property lexicalForms the list of lexical interpretations of the trace
+ * @property lexicalInterpretations the list of lexical interpretations of the trace
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
@@ -24,7 +24,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  */
 data class Trace(
   override val id: Int,
-  override val lexicalForms: List<Morphology>,
+  override val lexicalInterpretations: List<LexicalInterpretation>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,

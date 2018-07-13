@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.Morphology
+import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
@@ -17,7 +17,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
  * @property position the position of the token
- * @property lexicalForms the list of lexical interpretations of the [form]
+ * @property lexicalInterpretations the list of lexical interpretations of the [form]
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
@@ -29,7 +29,7 @@ data class Word(
   override val id: Int,
   override val form: String,
   override val position: Position,
-  override val lexicalForms: List<Morphology>,
+  override val lexicalInterpretations: List<LexicalInterpretation>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,
@@ -42,7 +42,7 @@ data class Word(
    * @return a string representation of this token
    */
   override fun toString(): String = """
-    [%d] '%s' %s
+    [%d] '%s'
         %s
         dependency: %s
         corefs: %s
@@ -52,11 +52,9 @@ data class Word(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphology.type.annotation,
-    this.morphology,
+    this.lexicalInterpretations.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation  } },
     this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
-    this.semanticRelations?.joinToString(separator = ", ") ?: "None",
-    this.diathesis ?: "None"
+    this.semanticRelations?.joinToString(separator = ", ") ?: "None"
   )
 }
