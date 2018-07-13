@@ -32,11 +32,6 @@ interface SyntacticToken : Token {
   val coReferences: List<CoReference>?
 
   /**
-   * The amount of descendants of the token.
-   */
-  val descendantsCount: Int
-
-  /**
    * The list of semantic relations (can be null).
    */
   val semanticRelations: List<SemanticRelation>?

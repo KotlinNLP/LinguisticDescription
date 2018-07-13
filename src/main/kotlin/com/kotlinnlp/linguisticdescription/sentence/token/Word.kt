@@ -18,7 +18,6 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property position the position of the token
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
- * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
  * @property diathesis the diathesis property (defined for verbs, otherwise null)
  * @property morphology the morphology of the token itself
@@ -30,7 +29,6 @@ data class Word(
   override val position: Position,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
   val diathesis: Diathesis?, // null by default, only verbs have it defined
   val morphology: SingleMorphology,
@@ -55,7 +53,6 @@ data class Word(
     this.morphology,
     this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
-    this.descendantsCount,
     this.semanticRelations?.joinToString(separator = ", ") ?: "None",
     this.diathesis ?: "None"
   )

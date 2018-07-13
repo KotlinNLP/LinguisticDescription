@@ -18,7 +18,6 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * @property form the form of the token
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
- * @property descendantsCount the amount of descendants of the token
  * @property semanticRelations the list of semantic relations (can be null)
  * @property positionedAfter the id of the token after which this trace is positioned
  */
@@ -27,7 +26,6 @@ data class WordTrace(
   override val form: String,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  override val descendantsCount: Int,
   override val semanticRelations: List<SemanticRelation>?,
   val positionedAfter: Int
 ) : FormToken, SyntacticToken {
@@ -39,14 +37,12 @@ data class WordTrace(
     [%d] '%s' (TRACE) %s
         dependency: %d
         corefs: %s
-        descendants: %d
         sem-rel: %s
   """.trimIndent().format(
     this.id,
     this.form,
     this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
-    this.descendantsCount,
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"
   )
 }
