@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
@@ -16,6 +17,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
  * @property position the position of the token
+ * @property lexicalForms the list of lexical interpretations of the [form]
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
@@ -27,13 +29,14 @@ data class Word(
   override val id: Int,
   override val form: String,
   override val position: Position,
+  override val lexicalForms: List<Morphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,
   val diathesis: Diathesis?, // null by default, only verbs have it defined
   val morphology: SingleMorphology,
   val contextMorphology: SingleMorphology
-) : RealToken, SyntacticToken {
+) : RealToken, LexicalToken, SyntacticToken {
 
   /**
    * @return a string representation of this token
