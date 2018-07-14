@@ -27,8 +27,8 @@ data class Word(
   override val position: Position,
   override val lexicalInterpretations: List<LexicalInterpretation>,
   override val dependencyRelation: DependencyRelation,
-  override val coReferences: List<CoReference>?,
-  val semanticRelations: List<SemanticRelation>?
+  override val coReferences: List<CoReference> = emptyList(),
+  val semanticRelations: List<SemanticRelation> = emptyList()
 ) : RealToken, LexicalToken, SyntacticToken {
 
   /**
@@ -45,7 +45,7 @@ data class Word(
     this.form,
     this.lexicalInterpretations.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation  } },
     this.dependencyRelation,
-    this.coReferences?.joinToString(separator = ", ") ?: "None",
-    this.semanticRelations?.joinToString(separator = ", ") ?: "None"
+    this.coReferences.joinToString(separator = ", "),
+    this.semanticRelations.joinToString(separator = ", ")
   )
 }

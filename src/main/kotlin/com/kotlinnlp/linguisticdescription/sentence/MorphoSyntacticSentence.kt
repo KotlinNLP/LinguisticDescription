@@ -17,15 +17,15 @@ import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
  * @property id the sentence id
  * @property confidence the confidence score
  * @property tokens the list of tokens of this sentence
- * @property dateTimes the list of datetimes contained in this sentence
+ * @property dateTimes the list of date-times contained in this sentence
  * @property entities the list of entities contained in this sentence
  */
 data class MorphoSyntacticSentence(
   val id: Int,
   val confidence: Double,
   override val tokens: List<SyntacticToken>,
-  val dateTimes: List<DateTime>?,
-  val entities: List<Entity>?
+  val dateTimes: List<DateTime> = emptyList(),
+  val entities: List<Entity> = emptyList()
 ) : Sentence<SyntacticToken> {
 
   /**
@@ -40,8 +40,8 @@ data class MorphoSyntacticSentence(
   """.trimIndent().format(
     "id", this.id,
     "confidence", 100.0 * this.confidence,
-    "datetimes", this.dateTimes?.joinToString(separator = ", ") ?: "None",
-    "entities", this.entities?.joinToString(separator = ", ") ?: "None",
+    "datetimes", this.dateTimes.joinToString(separator = ", "),
+    "entities", this.entities.joinToString(separator = ", "),
     "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString(prefix = "\t") }
   )
 }
