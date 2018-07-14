@@ -10,12 +10,12 @@ package com.kotlinnlp.linguisticdescription.sentence.token.properties
 /**
  * The head of a token.
  *
- * @property governor the id of the governor token
+ * @property governor the id of the governor token (can be null if the governor is the root)
  * @property deprel the label of the dependency relation
  * @property attachmentScore the attachment confidence score
  */
 data class DependencyRelation(
-  val governor: Int,
+  val governor: Int?,
   val deprel: String,
   val attachmentScore: Double
 ) {
