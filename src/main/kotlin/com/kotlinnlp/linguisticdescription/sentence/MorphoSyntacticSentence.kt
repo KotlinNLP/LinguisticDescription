@@ -29,6 +29,20 @@ data class MorphoSyntacticSentence(
 ) : Sentence<SyntacticToken> {
 
   /**
+   *
+   */
+  private val tokensByID: Map<Int, SyntacticToken> = this.tokens.associateBy { it.id }
+
+  /**
+   * @param id the id of a token of this sentence
+   *
+   * @throws NoSuchElementException when the given [id] is not within the token ids of this sentence
+   *
+   * @return the token of this sentence with the given id
+   */
+  fun getTokenByID(id: Int): SyntacticToken = this.tokensByID.getValue(id)
+
+  /**
    * @return a string representation of this sentence
    */
   override fun toString(): String = """
