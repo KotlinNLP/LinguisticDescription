@@ -29,7 +29,7 @@ data class MorphoSyntacticSentence(
 ) : Sentence<SyntacticToken> {
 
   /**
-   *
+   * The tokens of this sentence associated by ID.
    */
   private val tokensByID: Map<Int, SyntacticToken> = this.tokens.associateBy { it.id }
 
