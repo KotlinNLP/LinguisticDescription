@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * A trace token.
  *
  * @property id the id of the token, unique within its sentence
- * @property lexicalInterpretations the list of lexical interpretations of the trace
+ * @property morphologies the list of scored morphologies, sorted by descending score
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
@@ -24,7 +24,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  */
 data class Trace(
   override val id: Int,
-  override val lexicalInterpretations: List<ScoredMorphology>,
+  override val morphologies: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,

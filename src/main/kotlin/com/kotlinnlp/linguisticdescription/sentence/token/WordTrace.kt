@@ -17,7 +17,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  *
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
- * @property lexicalInterpretations the list of lexical interpretations of the [form]
+ * @property morphologies the list of scored morphologies, sorted by descending score
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
@@ -26,7 +26,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 data class WordTrace(
   override val id: Int,
   override val form: String,
-  override val lexicalInterpretations: List<ScoredMorphology>,
+  override val morphologies: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,

@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 interface LexicalToken : Token {
 
   /**
-   * The list of lexical interpretations, sorted by score in a descending order.
+   * The list of scored morphologies, sorted by descending score.
    */
-  val lexicalInterpretations: List<ScoredMorphology>
+  val morphologies: List<ScoredMorphology>
 }
