@@ -29,7 +29,7 @@ data class Trace(
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,
   val positionedAfter: Int
-) : LexicalToken, SyntacticToken {
+) : MorphoToken, SyntacticToken {
 
   /**
    * @return a string representation of this token

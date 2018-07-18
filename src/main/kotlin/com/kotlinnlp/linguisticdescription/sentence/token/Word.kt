@@ -29,7 +29,7 @@ data class Word(
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference> = emptyList(),
   val semanticRelations: List<SemanticRelation> = emptyList()
-) : RealToken, LexicalToken, SyntacticToken {
+) : RealToken, MorphoToken, SyntacticToken {
 
   /**
    * @return a string representation of this token

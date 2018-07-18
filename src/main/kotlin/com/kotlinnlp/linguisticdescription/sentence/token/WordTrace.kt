@@ -31,7 +31,7 @@ data class WordTrace(
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,
   val positionedAfter: Int
-) : FormToken, LexicalToken, SyntacticToken {
+) : FormToken, MorphoToken, SyntacticToken {
 
   /**
    * @return a string representation of this token

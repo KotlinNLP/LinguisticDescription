@@ -10,9 +10,9 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 
 /**
- * The LexicalToken.
+ * A token with a list of possible morphologies.
  */
-interface LexicalToken : Token {
+interface MorphoToken : Token {
 
   /**
    * The list of scored morphologies, sorted by descending score.
