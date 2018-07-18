@@ -23,5 +23,8 @@ data class DependencyRelation(
   /**
    * @return a string representation of this head
    */
-  override fun toString(): String = "%d %s (%.2f%)".format(this.governor, this.deprel, this.attachmentScore)
+  override fun toString(): String = "%s %s (%.2f%)".format(
+    this.governor?.toString() ?: "R",
+    this.deprel,
+    this.attachmentScore)
 }
