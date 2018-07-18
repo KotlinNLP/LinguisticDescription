@@ -9,7 +9,6 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
  * A syntactic token.
