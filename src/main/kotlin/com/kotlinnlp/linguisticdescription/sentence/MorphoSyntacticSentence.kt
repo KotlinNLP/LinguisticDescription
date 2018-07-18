@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
-import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
+import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**
  * A sentence.
@@ -23,15 +23,15 @@ import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
 data class MorphoSyntacticSentence(
   val id: Int,
   val confidence: Double,
-  override val tokens: List<SyntacticToken>,
+  override val tokens: List<MorphoSyntacticToken>,
   val dateTimes: List<DateTime> = emptyList(),
   val entities: List<Entity> = emptyList()
-) : Sentence<SyntacticToken> {
+) : Sentence<MorphoSyntacticToken> {
 
   /**
    * The tokens of this sentence associated by ID.
    */
-  private val tokensByID: Map<Int, SyntacticToken> = this.tokens.associateBy { it.id }
+  private val tokensByID: Map<Int, MorphoSyntacticToken> = this.tokens.associateBy { it.id }
 
   /**
    * @param id the id of a token of this sentence
@@ -40,7 +40,7 @@ data class MorphoSyntacticSentence(
    *
    * @return the token of this sentence with the given id
    */
-  fun getTokenByID(id: Int): SyntacticToken = this.tokensByID.getValue(id)
+  fun getTokenByID(id: Int): MorphoSyntacticToken = this.tokensByID.getValue(id)
 
   /**
    * @return a string representation of this sentence
