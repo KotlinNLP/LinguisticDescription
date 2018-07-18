@@ -39,8 +39,8 @@ data class WordTrace(
   override fun toString(): String = """
     [%d] '%s' (TRACE) %s
         dependency: %d
-        corefs: %s
-        sem-rel: %s
+        co-references: %s
+        semantic relations: %s
   """.trimIndent().format(
     this.id,
     this.form,

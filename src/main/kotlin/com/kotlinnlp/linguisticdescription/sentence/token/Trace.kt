@@ -37,8 +37,8 @@ data class Trace(
   override fun toString(): String = """
     [%d] TRACE
         dependency: %s
-        corefs: %s
-        sem-rel: %s
+        co-references: %s
+        semantic relations: %s
   """.trimIndent().format(
     this.id,
     this.dependencyRelation,

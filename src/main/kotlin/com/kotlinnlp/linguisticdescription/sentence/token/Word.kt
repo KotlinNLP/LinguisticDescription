@@ -38,8 +38,8 @@ data class Word(
     [%d] '%s'
         %s
         dependency: %s
-        corefs: %s
-        sem-rel: %s
+        co-references: %s
+        semantic relations: %s
   """.trimIndent().format(
     this.id,
     this.form,
