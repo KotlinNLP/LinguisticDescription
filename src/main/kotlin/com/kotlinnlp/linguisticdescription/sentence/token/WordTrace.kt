@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
+import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
@@ -26,7 +26,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 data class WordTrace(
   override val id: Int,
   override val form: String,
-  override val lexicalInterpretations: List<LexicalInterpretation>,
+  override val lexicalInterpretations: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
   val semanticRelations: List<SemanticRelation>?,

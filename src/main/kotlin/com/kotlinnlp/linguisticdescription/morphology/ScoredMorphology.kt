@@ -8,14 +8,14 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 /**
- * The LexicalInterpretation extends the [Morphology] with a [score] property.
+ * Extension of the [Morphology] with a [score] property.
  *
  * @property type the type of this morphology (Single or Multiple)
  * @property list a list of single morphologies
- * @property score the score assigned to this lexical interpretation (default 0.0)
+ * @property score the score assigned to this morphology
  */
-class LexicalInterpretation(
+class ScoredMorphology(
   type: Type,
   list: List<SingleMorphology>,
-  val score: Double = 0.0
+  val score: Double
 ): Morphology(type, list)

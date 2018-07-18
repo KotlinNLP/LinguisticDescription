@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
+import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 
 /**
  * The LexicalToken.
@@ -17,5 +17,5 @@ interface LexicalToken : Token {
   /**
    * The list of lexical interpretations, sorted by score in a descending order.
    */
-  val lexicalInterpretations: List<LexicalInterpretation>
+  val lexicalInterpretations: List<ScoredMorphology>
 }

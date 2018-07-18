@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.LexicalInterpretation
+import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
 /**
@@ -25,7 +25,7 @@ data class Word(
   override val id: Int,
   override val form: String,
   override val position: Position,
-  override val lexicalInterpretations: List<LexicalInterpretation>,
+  override val lexicalInterpretations: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference> = emptyList(),
   val semanticRelations: List<SemanticRelation> = emptyList()
