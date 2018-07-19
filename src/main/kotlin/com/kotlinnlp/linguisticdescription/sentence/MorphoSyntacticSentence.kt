@@ -12,7 +12,7 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**
- * A sentence.
+ * A sentence with morphological and syntactic information.
  *
  * @property id the sentence id
  * @property confidence the confidence score
