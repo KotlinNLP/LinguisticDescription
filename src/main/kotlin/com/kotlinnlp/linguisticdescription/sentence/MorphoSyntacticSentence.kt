@@ -10,7 +10,7 @@ package com.kotlinnlp.linguisticdescription.sentence
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
-import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.Entity
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**

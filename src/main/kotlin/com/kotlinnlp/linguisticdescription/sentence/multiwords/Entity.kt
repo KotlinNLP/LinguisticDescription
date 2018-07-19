@@ -5,9 +5,8 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.properties
+package com.kotlinnlp.linguisticdescription.sentence.multiwords
 
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.*
 
 /**
