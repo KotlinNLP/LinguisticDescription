@@ -16,6 +16,11 @@ import com.beust.klaxon.json
 interface MorphoSyntacticToken : MorphoToken, SyntacticToken {
 
   /**
+   * The label that defines the type of this token.
+   */
+  val type: String
+
+  /**
    * @return the JSON object that represents this token
    */
   fun toJSON(): JsonObject {

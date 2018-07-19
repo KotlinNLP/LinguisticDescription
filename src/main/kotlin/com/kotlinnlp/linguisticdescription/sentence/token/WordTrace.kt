@@ -34,6 +34,11 @@ data class WordTrace(
 ) : FormToken, MorphoSyntacticToken {
 
   /**
+   * The label that defines the type of this token.
+   */
+  override val type: String = "WORD-TRACE"
+
+  /**
    * @return a string representation of this token
    */
   override fun toString(): String = """

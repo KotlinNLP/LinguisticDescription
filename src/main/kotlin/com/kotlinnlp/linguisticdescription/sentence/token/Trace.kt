@@ -32,6 +32,11 @@ data class Trace(
 ) : MorphoSyntacticToken {
 
   /**
+   * The label that defines the type of this token.
+   */
+  override val type: String = "TRACE"
+
+  /**
    * @return a string representation of this token
    */
   override fun toString(): String = """
