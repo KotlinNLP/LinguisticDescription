@@ -57,7 +57,7 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
    */
   fun toString(tokens: List<Token>): String = "[%s] %s".format(
     this.type,
-    tokens.subList(this.startToken, this.endToken + 1).joinToString(separator = " ") {
+    this.getRefTokens(tokens).joinToString(separator = " ") {
       when (it) {
         is Trace -> "-"
         is Word -> it.form
