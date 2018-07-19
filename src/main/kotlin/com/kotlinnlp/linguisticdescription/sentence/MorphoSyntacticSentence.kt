@@ -7,8 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.sentence
 
-import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.Entity
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
@@ -67,5 +67,17 @@ data class MorphoSyntacticSentence(
   /**
    * @return the JSON array (of Token objects) that represents this sentence
    */
-  fun toJSON(): JsonArray<JsonObject> = JsonArray(this.tokens.map { it.toJSON() })
+  fun toJSON(): JsonObject = json {
+
+    val self = this@MorphoSyntacticSentence
+
+    obj(
+      "id" to self.id,
+      "analysisConfidence" to self.confidence,
+      "multiWords" to self.multiWords?.map { it.toJSON() },
+      "entities" to self.entities?.map { it.toJSON() },
+      "dateTimes" to self.dateTimes?.map { it.toJSON() },
+      "tokens" to array(self.tokens.map { it.toJSON() })
+    )
+  }
 }
