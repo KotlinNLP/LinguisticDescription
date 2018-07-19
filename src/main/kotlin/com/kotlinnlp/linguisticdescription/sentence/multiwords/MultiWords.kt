@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.multiwords
 
+import com.kotlinnlp.linguisticdescription.sentence.token.Token
+
 /**
  * A multi-words expression.
  */
@@ -21,4 +23,9 @@ interface MultiWords {
    * The index of the last token of the expression
    */
   val endToken: Int
+
+  /**
+   * @param tokens the list of all the sentence tokens in which to find the reference of this entity
+   */
+  fun getRefTokens(tokens: List<Token>): List<Token> = tokens.subList(this.startToken, this.endToken + 1)
 }
