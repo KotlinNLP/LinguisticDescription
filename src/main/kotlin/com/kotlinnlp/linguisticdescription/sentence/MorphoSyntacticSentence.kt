@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.sentence
 
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.sentence.properties.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
@@ -58,4 +60,9 @@ data class MorphoSyntacticSentence(
     "entities", this.entities.joinToString(separator = ", "),
     "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString(prefix = "\t") }
   )
+
+  /**
+   * @return the JSON array (of Token objects) that represents this sentence
+   */
+  fun toJSON(): JsonArray<JsonObject> = JsonArray(this.tokens.map { it.toJSON() })
 }
