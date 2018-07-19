@@ -7,18 +7,17 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.kotlinnlp.linguisticdescription.sentence.token.SyntacticToken
-import com.kotlinnlp.linguisticdescription.sentence.token.Trace
-import com.kotlinnlp.linguisticdescription.sentence.token.Word
-import com.kotlinnlp.linguisticdescription.sentence.token.WordTrace
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.token.*
 
 /**
- * A parsed token.
+ * An entity found as sequence of tokens.
  *
- * @property tokens the list of tokens that compose this entity
+ * @property startToken the index of the first token of this numeric expression, within the input tokens list
+ * @property endToken the index of the last token of this numeric expression, within the input tokens list
  * @property type the entity type
  */
-data class Entity(val tokens: List<SyntacticToken>, val type: Type) {
+data class Entity(override val startToken: Int, override val endToken: Int, val type: Type) : MultiWords {
 
   /**
    * The entity type.
@@ -31,14 +30,6 @@ data class Entity(val tokens: List<SyntacticToken>, val type: Type) {
     Undefined("")
   }
 
-  /**
-   * Build an [Entity] given its list of tokens and its type annotation.
-   */
-  constructor(tokens: List<SyntacticToken>, typeAnnotation: String): this(
-    tokens = tokens,
-    type = annotationsToTypes.getValue(typeAnnotation)
-  )
-
   companion object {
 
     /**
@@ -48,11 +39,26 @@ data class Entity(val tokens: List<SyntacticToken>, val type: Type) {
   }
 
   /**
+   * Build an [Entity] given its list of tokens and its type annotation.
+   *
+   * @param startToken the index of the first token of this numeric expression, within the input tokens list
+   * @param endToken the index of the last token of this numeric expression, within the input tokens list
+   * @param typeAnnotation the annotation string of the type of this entity
+   */
+  constructor(startToken: Int, endToken: Int, typeAnnotation: String): this(
+    startToken = startToken,
+    endToken = endToken,
+    type = annotationsToTypes.getValue(typeAnnotation)
+  )
+
+  /**
+   * @param tokens the list of tokens in which to find the reference of this entity
+   *
    * @return a string representation of this entity
    */
-  override fun toString(): String = "[%s] %s".format(
+  fun toString(tokens: List<Token>): String = "[%s] %s".format(
     this.type,
-    this.tokens.joinToString(separator = " ") {
+    tokens.subList(this.startToken, this.endToken + 1).joinToString(separator = " ") {
       when (it) {
         is Trace -> "-"
         is Word -> it.form
