@@ -19,15 +19,15 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
  * @property id the sentence id
  * @property confidence the confidence score
  * @property tokens the list of tokens of this sentence
- * @property dateTimes the list of date-times contained in this sentence
- * @property entities the list of entities contained in this sentence
+ * @property dateTimes the list of date-times contained in this sentence (can be null)
+ * @property entities the list of entities contained in this sentence (can be null)
  */
 data class MorphoSyntacticSentence(
   val id: Int,
   val confidence: Double,
   override val tokens: List<MorphoSyntacticToken>,
-  val dateTimes: List<DateTime> = emptyList(),
-  val entities: List<Entity> = emptyList()
+  val dateTimes: List<DateTime>? = null,
+  val entities: List<Entity>? = null
 ) : Sentence<MorphoSyntacticToken> {
 
   /**
@@ -56,8 +56,8 @@ data class MorphoSyntacticSentence(
   """.trimIndent().format(
     "id", this.id,
     "confidence", 100.0 * this.confidence,
-    "datetimes", this.dateTimes.joinToString(separator = ", "),
-    "entities", this.entities.joinToString(separator = ", "),
+    "datetimes", this.dateTimes?.joinToString(separator = ", ") ?: "None",
+    "entities", this.entities?.joinToString(separator = ", ") ?: "None",
     "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString(prefix = "\t") }
   )
 
