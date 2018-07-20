@@ -5,9 +5,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime
+package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.TokensRange
+import com.kotlinnlp.linguisticdescription.sentence.properties.TokensRange
 
 /**
  * A date-time expression.

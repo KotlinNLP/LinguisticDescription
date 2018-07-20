@@ -5,17 +5,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals
-
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.SingleDateTime
+package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 /**
- * A date-time interval limited with a lower bound.
+ * A date-time composed by a single element (not an interval).
  */
-interface LowerLimitedInterval : Interval {
-
-  /**
-   * The lower bound date-time.
-   */
-  val from: SingleDateTime
-}
+interface SingleDateTime : DateTime

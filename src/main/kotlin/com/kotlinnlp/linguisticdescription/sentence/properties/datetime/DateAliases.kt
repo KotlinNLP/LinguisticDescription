@@ -5,9 +5,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime
+package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
-/**
- * A date-time composed by a single element (not an interval).
- */
-interface SingleDateTime : DateTime
+typealias DateTimeObj = SingleDateTime
+typealias DateObj = Date
+typealias TimeObj = Time

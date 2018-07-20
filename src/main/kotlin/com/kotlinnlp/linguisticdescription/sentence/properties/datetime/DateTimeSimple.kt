@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime
+package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 /**
  * A simple date-time object.

@@ -5,8 +5,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime
+package com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals
 
-typealias DateTimeObj = SingleDateTime
-typealias DateObj = Date
-typealias TimeObj = Time
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
+
+/**
+ * A generic date-time interval.
+ */
+interface Interval : DateTime

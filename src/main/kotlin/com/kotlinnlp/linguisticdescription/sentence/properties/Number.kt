@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.sentence.multiwords
+package com.kotlinnlp.linguisticdescription.sentence.properties
 
 /**
  * Represents a numeric expression recognized.

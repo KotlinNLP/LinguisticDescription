@@ -9,9 +9,9 @@ package com.kotlinnlp.linguisticdescription.sentence
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.Entity
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
+import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**
