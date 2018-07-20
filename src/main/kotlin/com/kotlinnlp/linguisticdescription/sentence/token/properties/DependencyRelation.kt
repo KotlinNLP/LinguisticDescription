@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * The head of a token.
  *
@@ -27,4 +30,18 @@ data class DependencyRelation(
     this.governor?.toString() ?: "R",
     this.deprel,
     this.attachmentScore)
+
+  /**
+   * @return the JSON object that represents this dependency relation
+   */
+  fun toJSON(): JsonObject = json {
+
+    val self = this@DependencyRelation
+
+    obj(
+      "head" to self.governor,
+      "relation" to self.deprel,
+      "attachmentScore" to self.attachmentScore
+    )
+  }
 }
