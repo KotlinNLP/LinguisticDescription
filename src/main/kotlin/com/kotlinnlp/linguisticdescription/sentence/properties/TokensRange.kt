@@ -7,7 +7,6 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.sentence.token.Token
 
 /**
