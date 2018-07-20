@@ -11,7 +11,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.Entity
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**
@@ -28,7 +28,7 @@ data class MorphoSyntacticSentence(
   val id: Int,
   val confidence: Double,
   override val tokens: List<MorphoSyntacticToken>,
-  val multiWords: List<MultiWordsMorphology>?,
+  val multiWords: List<MultiWords>?,
   val dateTimes: List<DateTime>?,
   val entities: List<Entity>?
 ) : Sentence<MorphoSyntacticToken> {

@@ -10,13 +10,13 @@ package com.kotlinnlp.linguisticdescription.sentence.multiwords
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
- * The morphology of a multi-words expression.
+ * A multi-words expression.
  *
  * @property startToken the index of the first token of the expression
  * @property endToken the index of the last token of the expression
  * @property morphologies the list of possible morphologies of the expression
  */
-data class MultiWordsMorphology(
+data class MultiWords(
   override val startToken: Int,
   override val endToken: Int,
   val morphologies: List<Morphology>
