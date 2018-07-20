@@ -27,8 +27,8 @@ data class Word(
   override val position: Position,
   override val morphologies: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
-  override val coReferences: List<CoReference> = emptyList(),
-  val semanticRelations: List<SemanticRelation> = emptyList()
+  override val coReferences: List<CoReference>?,
+  val semanticRelations: List<SemanticRelation>?
 ) : RealToken, MorphoSyntacticToken {
 
   /**
@@ -50,7 +50,7 @@ data class Word(
     this.form,
     this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation  } },
     this.dependencyRelation,
-    this.coReferences.joinToString(separator = ", "),
-    this.semanticRelations.joinToString(separator = ", ")
+    this.coReferences?.joinToString(separator = ", ") ?: "None",
+    this.semanticRelations?.joinToString(separator = ", ") ?: "None"
   )
 }
