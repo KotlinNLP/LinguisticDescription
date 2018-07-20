@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.sentence.properties.TokensRange
 
 /**
@@ -20,4 +21,11 @@ interface DateTime : TokensRange {
    * @return the standard string representing this date-time
    */
   fun toStandardFormat(): String
+
+  /**
+   * @return the JSON object that represents this multi-words expression
+   */
+  fun toJSON(): JsonObject {
+    TODO("make as abstract and implement for each implementation")
+  }
 }

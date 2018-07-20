@@ -29,11 +29,4 @@ interface TokensRange {
    * @param tokens the list of all the sentence tokens in which to find the reference of this entity
    */
   fun getRefTokens(tokens: List<Token>): List<Token> = tokens.subList(this.startToken, this.endToken + 1)
-
-  /**
-   * @return the JSON object that represents this multi-words expression
-   */
-  fun toJSON(): JsonObject {
-    TODO("make as abstract and implement for each implementation")
-  }
 }
