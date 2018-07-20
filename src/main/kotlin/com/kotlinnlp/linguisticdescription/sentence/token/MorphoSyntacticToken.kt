@@ -26,20 +26,28 @@ interface MorphoSyntacticToken : MorphoToken, SyntacticToken {
   fun toJSON(): JsonObject {
 
     val jsonObject = json {
+
+      val self = this@MorphoSyntacticToken
+
       obj(
-        "id" to this@MorphoSyntacticToken.id,
-        "lemma" to null,
-        "head" to this@MorphoSyntacticToken.dependencyRelation.governor,
-        "pos" to if (this@MorphoSyntacticToken.morphologies.isNotEmpty())
-          this@MorphoSyntacticToken.morphologies.first().list.joinToString("-") { it.type.annotation }
-        else
-          null,
-        "deprel" to this@MorphoSyntacticToken.dependencyRelation.deprel
+        "id" to self.id,
+        "type" to self.type,
+        "dependency" to self.dependencyRelation.toJSON(),
+        "coReferences" to self.coReferences?.map { it.toJSON() },
+        "morphology" to if (self.morphologies.isNotEmpty()) self.morphologies.map { it.toJSON() } else null
       )
     }
 
-    if (this is RealToken)
-      jsonObject["form"] = (this as RealToken).form
+    if (this is RealToken) {
+      jsonObject["surface"] = json {
+        val self = this@MorphoSyntacticToken
+        obj(
+          "form" to self.form,
+          "translitForm" to self.form // TODO: set it properly
+        )
+      }
+      jsonObject["position"] = this.position.toJSON()
+    }
 
     return jsonObject
   }
