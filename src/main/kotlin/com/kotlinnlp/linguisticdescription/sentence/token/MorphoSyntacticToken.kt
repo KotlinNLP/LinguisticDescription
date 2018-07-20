@@ -40,10 +40,9 @@ interface MorphoSyntacticToken : MorphoToken, SyntacticToken {
 
     if (this is RealToken) {
       jsonObject["surface"] = json {
-        val self = this@MorphoSyntacticToken
         obj(
-          "form" to self.form,
-          "translitForm" to self.form // TODO: set it properly
+          "form" to this@MorphoSyntacticToken.form,
+          "translitForm" to this@MorphoSyntacticToken.form // TODO: set it properly
         )
       }
       jsonObject["position"] = this.position.toJSON()
