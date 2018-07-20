@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * A morphology of a lexical form.
  *
@@ -56,5 +59,18 @@ open class Morphology(val type: Type, val list: List<SingleMorphology>) {
     if (this.toString() != other.toString()) return false
 
     return true
+  }
+
+  /**
+   * @return the JSON object that represents this morphology
+   */
+  open fun toJSON(): JsonObject = json {
+
+    val self = this@Morphology
+
+    obj(
+      "type" to self.type.toString().toUpperCase(),
+      "list" to array(self.list.map { it.toJSON() })
+    )
   }
 }

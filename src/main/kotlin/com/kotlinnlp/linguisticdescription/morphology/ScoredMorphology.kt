@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
+import com.beust.klaxon.JsonObject
+
 /**
  * Extension of the [Morphology] with a [score] property.
  *
@@ -18,4 +20,17 @@ class ScoredMorphology(
   type: Type,
   list: List<SingleMorphology>,
   val score: Double
-): Morphology(type, list)
+): Morphology(type, list) {
+
+  /**
+   * @return the JSON object that represents this morphology
+   */
+  override fun toJSON(): JsonObject {
+
+    val jsonObject: JsonObject = super.toJSON()
+
+    jsonObject["score"] = this.score
+
+    return jsonObject
+  }
+}

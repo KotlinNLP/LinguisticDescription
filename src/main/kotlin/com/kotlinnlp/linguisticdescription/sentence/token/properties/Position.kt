@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * The position of an item.
  *
@@ -24,6 +27,20 @@ data class Position(
    * The length of the item.
    */
   val length: Int = this.end - this.start + 1
+
+  /**
+   * @return the JSON object that represents this position
+   */
+  fun toJSON(): JsonObject = json {
+
+    val self = this@Position
+
+    obj(
+      "start" to self.start,
+      "end" to self.end,
+      "index" to self.index
+    )
+  }
 
   override fun equals(other: Any?): Boolean {
 

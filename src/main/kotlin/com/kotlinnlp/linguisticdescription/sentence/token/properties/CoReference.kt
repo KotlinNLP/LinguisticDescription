@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * A co-reference.
  *
@@ -26,4 +29,18 @@ data class CoReference(
   override fun toString(): String = "%d-%s (%.2f%%)".format(
     this.sentenceId, this.tokenId.let { if (it >= 0) it.toString() else "ROOT" },
     100.0 * this.confidence)
+
+  /**
+   * @return the JSON object that represents this co-reference
+   */
+  fun toJSON(): JsonObject = json {
+
+    val self = this@CoReference
+
+    obj(
+      "tokenId" to self.tokenId,
+      "sentenceId" to self.sentenceId,
+      "confidence" to self.confidence
+    )
+  }
 }

@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 import kotlin.reflect.KClass
@@ -111,5 +113,30 @@ abstract class SingleMorphology(val lemma: String) {
     }
 
     return classes.toList()
+  }
+
+  /**
+   * @return the JSON object that represents this single morphology
+   */
+  fun toJSON(): JsonObject {
+
+    val jsonObject = json {
+      obj(
+        "lemma" to this@SingleMorphology.lemma,
+        "pos" to this@SingleMorphology.type.toString()
+      )
+    }
+
+    if (this is Genderable) jsonObject["gender"] = this.gender
+    if (this is Numerable) jsonObject["number"] = this.number
+    if (this is PersonDeclinable) jsonObject["number"] = this.person
+    if (this is CaseDeclinable) jsonObject["case"] = this.case
+    if (this is Gradable) jsonObject["degree"] = this.degree
+    if (this is Conjugable) {
+      jsonObject["mood"] = this.mood
+      jsonObject["tense"] = this.tense
+    }
+
+    return jsonObject
   }
 }
