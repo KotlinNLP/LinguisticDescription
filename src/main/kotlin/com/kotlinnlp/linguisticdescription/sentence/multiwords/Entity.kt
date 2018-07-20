@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.*
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
  * @property type the entity type
  */
-data class Entity(override val startToken: Int, override val endToken: Int, val type: Type) : MultiWords {
+data class Entity(override val startToken: Int, override val endToken: Int, val type: Type) : TokensRange {
 
   /**
    * The entity type.

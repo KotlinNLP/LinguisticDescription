@@ -22,4 +22,4 @@ data class Number(
   val value: kotlin.Number,
   val asWord: String,
   val original: String
-) : MultiWords
+) : TokensRange

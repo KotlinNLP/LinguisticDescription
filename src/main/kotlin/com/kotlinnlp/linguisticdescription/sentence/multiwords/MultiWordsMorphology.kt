@@ -20,4 +20,4 @@ data class MultiWordsMorphology(
   override val startToken: Int,
   override val endToken: Int,
   val morphologies: List<Morphology>
-) : MultiWords
+) : TokensRange

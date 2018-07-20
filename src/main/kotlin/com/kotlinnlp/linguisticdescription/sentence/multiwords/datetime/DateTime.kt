@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime
 
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.TokensRange
 
 /**
  * A date-time expression.
  */
-interface DateTime : MultiWords {
+interface DateTime : TokensRange {
 
   /**
    * Get the string representing this date-time in the standard format.

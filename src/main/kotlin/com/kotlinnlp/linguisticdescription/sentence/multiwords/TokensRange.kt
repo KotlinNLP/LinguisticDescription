@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.Token
 /**
  * A multi-words expression.
  */
-interface MultiWords {
+interface TokensRange {
 
   /**
    * The index of the first token of the expression
