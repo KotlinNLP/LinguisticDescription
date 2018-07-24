@@ -12,9 +12,7 @@ import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 import kotlin.reflect.KClass
-import kotlin.reflect.full.isSubclassOf
-import kotlin.reflect.full.memberProperties
-import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.full.*
 
 /**
  * The base interface implemented by all morphologies of single lemmas.
@@ -62,7 +60,7 @@ abstract class SingleMorphology(val lemma: String) {
   fun getProperties(): Map<String, MorphologyProperty> {
 
     val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters
-      .filter { it.name!! != "lemma" }
+      .filter { it.type.isSubtypeOf(MorphologyProperty::class.starProjectedType) }
       .map { it.name!! }
       .toSet()
 
