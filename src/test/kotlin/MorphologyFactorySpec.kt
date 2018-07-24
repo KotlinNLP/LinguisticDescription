@@ -59,7 +59,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should return the expected string calling the toString() method") {
           assertEquals(
-            "'x': Article.Indefinite.Base (case: Subject, gender: Masculine, number: Singular)",
+            "`x`: Article.Indefinite.Base (case: Subject, gender: Masculine, number: Singular)",
             morpho.toString())
         }
       }
@@ -94,7 +94,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should return the expected string calling the toString() method") {
           assertEquals(
-            "'x': Conjunction.Comparative.Base",
+            "`x`: Conjunction.Comparative.Base",
             morpho.toString())
         }
       }
@@ -131,10 +131,21 @@ class MorphologyFactorySpec : Spek({
       on("factory of all possible Morphologies") {
 
         it("should create Morphologies of the expected type") {
+          assertTrue(MorphologyType.values().filterNot { it == MorphologyType.Num }.all {
+            MorphologyFactory(lemma = "x", type = it, properties = allProperties).type == it
+          })
+        }
+      }
+    }
 
-          assertTrue(MorphologyType.values().all {
-            MorphologyFactory(lemma = "x", type = it, properties = allProperties).type == it }
-          )
+    context("Num morphology") {
+
+      on("factory") {
+
+        it("should raise an exception") {
+          assertFailsWith<IllegalArgumentException> {
+            MorphologyFactory(lemma = "x", type = MorphologyType.Num, properties = mapOf())
+          }
         }
       }
     }
