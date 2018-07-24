@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 import kotlin.reflect.KClass
@@ -76,9 +77,10 @@ abstract class SingleMorphology(val lemma: String) {
 
     val properties = this.getProperties().entries
 
-    return "`%s`: %s%s".format(
+    return "`%s`: %s%s%s".format(
       this.lemma,
       this.getSuperClassesNames().joinToString(separator = "."),
+      if (this is Number) " ${this.numericForm}" else "",
       if (properties.isNotEmpty()) " (" + properties.joinToString { "${it.key}: ${it.value}" } + ")" else ""
     )
   }
