@@ -7,7 +7,6 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
@@ -21,12 +20,4 @@ data class MultiWords(
   override val startToken: Int,
   override val endToken: Int,
   val morphologies: List<Morphology>
-) : TokensRange {
-
-  /**
-   * @return the JSON object that represents this multi-words expression
-   */
-  fun toJSON(): JsonObject {
-    TODO("make as abstract and implement for each implementation")
-  }
-}
+) : TokensRange
