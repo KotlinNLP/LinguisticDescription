@@ -11,7 +11,6 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
-import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
 
 /**
@@ -20,7 +19,6 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSyntacticToken
  * @property id the sentence id
  * @property confidence the confidence score
  * @property tokens the list of tokens of this sentence
- * @property multiWords the list of generic multi-words expressions contained in this sentence (can be null)
  * @property dateTimes the list of date-times contained in this sentence (can be null)
  * @property entities the list of entities contained in this sentence (can be null)
  */
@@ -28,7 +26,6 @@ data class MorphoSyntacticSentence(
   val id: Int,
   val confidence: Double,
   override val tokens: List<MorphoSyntacticToken>,
-  val multiWords: List<MultiWords>?,
   val dateTimes: List<DateTime>?,
   val entities: List<Entity>?
 ) : Sentence<MorphoSyntacticToken> {
@@ -59,7 +56,7 @@ data class MorphoSyntacticSentence(
   """.trimIndent().format(
     "id", this.id,
     "confidence", 100.0 * this.confidence,
-    "datetimes", this.dateTimes?.joinToString(separator = ", ") ?: "None",
+    "date-times", this.dateTimes?.joinToString(separator = ", ") ?: "None",
     "entities", this.entities?.joinToString(separator = ", ") ?: "None",
     "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString(prefix = "\t") }
   )
@@ -74,7 +71,6 @@ data class MorphoSyntacticSentence(
     obj(
       "id" to self.id,
       "analysisConfidence" to self.confidence,
-      "multiWords" to self.multiWords?.map { it.toJSON() },
       "entities" to self.entities?.map { it.toJSON() },
       "dateTimes" to self.dateTimes?.map { it.toJSON() },
       "tokens" to array(self.tokens.map { it.toJSON() })
