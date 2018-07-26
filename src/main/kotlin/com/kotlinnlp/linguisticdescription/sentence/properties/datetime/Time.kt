@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
 import java.util.*
 
 /**
@@ -65,4 +67,20 @@ data class Time(
    * @return a string representation of this time object
    */
   override fun toString(): String = this.toStandardFormat()
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@Time.startToken,
+      "endToken" to this@Time.endToken,
+      "hour" to this@Time.hour,
+      "min" to this@Time.min,
+      "sec" to this@Time.sec,
+      "millisec" to this@Time.millisec,
+      "generic" to this@Time.generic?.toString(),
+      "timezone" to this@Time.timezone?.id
+    )
+  }
 }

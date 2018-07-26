@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.SingleDateTime
 
 /**
@@ -37,4 +39,16 @@ data class CloseInterval(
    * @return a string representation of this interval object
    */
   override fun toString(): String = this.toStandardFormat()
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@CloseInterval.startToken,
+      "endToken" to this@CloseInterval.endToken,
+      "from" to this@CloseInterval.from.toJSON(),
+      "to" to this@CloseInterval.to.toJSON()
+    )
+  }
 }

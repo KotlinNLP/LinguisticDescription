@@ -7,14 +7,15 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * An ordinal date object.
  *
  * E.g. "The second week of 2015".
- *
- * @property dateUnit the date unit as string
  */
-sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
+sealed class DateOrdinal : SingleDateTime {
 
   /**
    * The position.
@@ -59,12 +60,44 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
   abstract val dateTime: DateTimeObj
 
   /**
+   * The date unit as string.
+   */
+  val dateUnit: String get() = this::class.simpleName!!
+
+  /**
    * Get the string representing this ordinal date in the following standard format:
    *   the POSITION DATE_UNIT of DATE_TIME
    *
    * @return the string representing this ordinal date
    */
-  override fun toStandardFormat(): String = "the $position '$dateUnit' of '$dateTime'"
+  override fun toStandardFormat(): String {
+
+    val dateUnit: String = (this as? DateOrdinal.Date)?.dateTime?.toString() ?: this.dateUnit.toLowerCase()
+
+    return "the $position '$dateUnit' of '$dateTime'"
+  }
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject {
+
+    val jsonObject: JsonObject = json {
+      obj(
+        "startToken" to this@DateOrdinal.startToken,
+        "endToken" to this@DateOrdinal.endToken,
+        "position" to this@DateOrdinal.position.count,
+        "dateTime" to this@DateOrdinal.dateTime.toJSON(),
+        "unit" to this@DateOrdinal.dateUnit
+      )
+    }
+
+    if (this is DateOrdinal.Date) {
+      jsonObject["date"] = this.value.toJSON()
+    }
+
+    return jsonObject
+  }
 
   /**
    * An ordinal date of [DateObj] units.
@@ -77,8 +110,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val position: Position,
     override val dateTime: DateTimeObj,
     val value: DateObj
-  ) : DateOrdinal(dateUnit = value.toString()) {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -90,8 +126,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "day") {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -103,8 +142,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "week") {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -116,8 +158,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "weekend") {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -129,8 +174,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "month") {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -142,8 +190,11 @@ sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "year") {
+  ) : DateOrdinal() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 }

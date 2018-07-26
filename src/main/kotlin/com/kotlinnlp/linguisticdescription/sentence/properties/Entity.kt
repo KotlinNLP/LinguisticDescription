@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
 import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.token.*
 
 /**
@@ -71,7 +72,11 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
   /**
    * @return the JSON object that represents this entity
    */
-  fun toJSON(): JsonObject {
-    TODO("make as abstract and implement for each implementation")
+  fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@Entity.startToken,
+      "endToken" to this@Entity.endToken,
+      "type" to this@Entity.type.toString()
+    )
   }
 }

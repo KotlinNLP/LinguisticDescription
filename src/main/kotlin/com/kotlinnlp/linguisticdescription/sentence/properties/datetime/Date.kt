@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * A date object.
  * At least one of [day], [weekDay], [month], [year] or [holiday] is not null.
@@ -76,4 +79,20 @@ data class Date(
     if (this.yearAbbr) " (year abbr.)" else "",
     this.holiday?.let { " [$it]" } ?: ""
   )
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@Date.startToken,
+      "endToken" to this@Date.endToken,
+      "day" to this@Date.day,
+      "weekDay" to this@Date.weekDay?.let { WEEK_DAYS[it - 1] },
+      "month" to this@Date.month,
+      "year" to this@Date.year,
+      "yearAbbr" to this@Date.yearAbbr,
+      "holiday" to this@Date.holiday?.toString()
+    )
+  }
 }

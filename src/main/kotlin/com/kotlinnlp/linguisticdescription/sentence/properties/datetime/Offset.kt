@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * An offset object.
  *
@@ -20,12 +23,29 @@ sealed class Offset : SingleDateTime {
   abstract val units: Int
 
   /**
+   * The offset unit type.
+   */
+  val unitType: String get() = this::class.simpleName!!
+
+  /**
    * Get the string representing this offset in the following standard format:
    *   (+|-) UNITS OFFSET_TYPE.
    *
    * @return the string representing this offset
    */
-  override fun toStandardFormat(): String = "%+d %s".format(this.units, this::class.simpleName!!.toLowerCase())
+  override fun toStandardFormat(): String = "%+d %s".format(this.units, this.unitType.toLowerCase())
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@Offset.startToken,
+      "endToken" to this@Offset.endToken,
+      "type" to this@Offset.unitType,
+      "units" to this@Offset.units
+    )
+  }
 
   /**
    * An offset of [DateObj].
@@ -50,6 +70,9 @@ sealed class Offset : SingleDateTime {
      */
     override fun toStandardFormat(): String = "%+d %s".format(this.units, this.value)
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -76,6 +99,9 @@ sealed class Offset : SingleDateTime {
      */
     override fun toStandardFormat(): String = "%+d %s".format(this.units, this.value)
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -88,6 +114,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Hours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -100,6 +129,9 @@ sealed class Offset : SingleDateTime {
    */
   data class QuarterHours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -112,6 +144,9 @@ sealed class Offset : SingleDateTime {
    */
   data class HalfHours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -124,6 +159,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Minutes(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -136,6 +174,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Seconds(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -148,6 +189,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Days(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -160,6 +204,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Weeks(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -172,6 +219,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Weekends(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -184,6 +234,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Months(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 
@@ -196,6 +249,9 @@ sealed class Offset : SingleDateTime {
    */
   data class Years(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
+    /**
+     * @return a string representation of this date-time object
+     */
     override fun toString(): String = this.toStandardFormat()
   }
 }

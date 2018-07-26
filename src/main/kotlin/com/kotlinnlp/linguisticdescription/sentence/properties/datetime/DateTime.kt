@@ -23,9 +23,7 @@ interface DateTime : TokensRange {
   fun toStandardFormat(): String
 
   /**
-   * @return the JSON object that represents this multi-words expression
+   * @return the JSON object that represents this date-time expression
    */
-  fun toJSON(): JsonObject {
-    TODO("make as abstract and implement for each implementation")
-  }
+  fun toJSON(): JsonObject
 }

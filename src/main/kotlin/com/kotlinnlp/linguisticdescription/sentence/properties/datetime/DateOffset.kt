@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.json
+
 /**
  * A date-offset object.
  *
@@ -36,4 +39,16 @@ data class DateOffset(
    * @return a string representation of this date-offset object
    */
   override fun toString(): String = this.toStandardFormat()
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = json {
+    obj(
+      "startToken" to this@DateOffset.startToken,
+      "endToken" to this@DateOffset.endToken,
+      "dateTime" to this@DateOffset.dateTime.toJSON(),
+      "offset" to this@DateOffset.toJSON()
+    )
+  }
 }
