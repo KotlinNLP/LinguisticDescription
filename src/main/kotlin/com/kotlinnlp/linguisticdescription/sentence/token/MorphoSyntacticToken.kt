@@ -13,7 +13,7 @@ import com.beust.klaxon.json
 /**
  * A token with morphological and syntactic information.
  */
-interface MorphoSyntacticToken : MorphoToken, SyntacticToken {
+interface MorphoSyntacticToken : ScoredMorphoToken, SyntacticToken {
 
   /**
    * The label that defines the type of this token.
