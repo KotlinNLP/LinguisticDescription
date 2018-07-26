@@ -21,7 +21,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
  */
-data class Word(
+open class Word(
   override val id: Int,
   override val form: String,
   override val position: Position,
