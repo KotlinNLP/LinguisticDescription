@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
-import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
  * A token with a list of possible morphologies.
@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 interface MorphoToken : Token {
 
   /**
-   * The list of scored morphologies, sorted by descending score.
+   * The list of possible morphologies of the token.
    */
-  val morphologies: List<ScoredMorphology>
+  val morphologies: List<Morphology>
 }
