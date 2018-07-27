@@ -15,6 +15,7 @@ package com.kotlinnlp.linguisticdescription
  * @property isoCode the ISO 639-1 code of the language
  */
 enum class Language(val id: Int, val isoCode: String) {
+  Unknown(-1, "--"),
   Arabic(0, "ar"),
   Bulgarian(1, "bg"),
   Bengali(2, "bn"),
@@ -42,6 +43,5 @@ enum class Language(val id: Int, val isoCode: String) {
   Slovenian(24, "sl"),
   Swedish(25, "sv"),
   Turkish(26, "tr"),
-  Chinese(27, "zh"),
-  Unknown(-1, "--")
+  Chinese(27, "zh")
 }
