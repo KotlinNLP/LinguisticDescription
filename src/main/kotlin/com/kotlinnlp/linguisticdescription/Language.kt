@@ -11,7 +11,7 @@ package com.kotlinnlp.linguisticdescription
  * Enum class containing the supported languages.
  * The last is the Unknown language.
  *
- * @property id a unique id of the language
+ * @property id a unique numeric ID of the language
  * @property isoCode the ISO 639-1 code of the language
  */
 enum class Language(val id: Int, val isoCode: String) {
