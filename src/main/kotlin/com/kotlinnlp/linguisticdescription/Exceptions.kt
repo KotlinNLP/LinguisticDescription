@@ -46,3 +46,10 @@ class InvalidMorphologyPropertyType(propertyType: String) : RuntimeException(pro
 class InvalidMorphologyPropertyAnnotation(type: String, annotation: String) : RuntimeException(
   "'%s' invalid for %s".format(annotation, type)
 )
+
+/**
+ * Raised when a given code is not within the supported ISO 639-1 language codes.
+ *
+ * @param code a language code
+ */
+class InvalidLanguageCode(code: String) : RuntimeException(code)
