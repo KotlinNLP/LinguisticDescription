@@ -42,6 +42,7 @@ enum class Language(val id: Int, val isoCode: String) {
   Slovak(23, "sk"),
   Slovenian(24, "sl"),
   Swedish(25, "sv"),
-  Turkish(26, "tr"),
-  Chinese(27, "zh")
+  Thai(26, "th"),
+  Turkish(27, "tr"),
+  Chinese(28, "zh")
 }
