@@ -10,7 +10,6 @@ package com.kotlinnlp.linguisticdescription.lexicon
 import com.beust.klaxon.*
 import com.kotlinnlp.linguisticdescription.lexicon.liwc.LIWCCategory
 import com.kotlinnlp.utils.forEachLine
-import com.kotlinnlp.utils.toInputStream
 import java.io.Serializable
 
 /**
@@ -105,7 +104,7 @@ class LexiconDictionary : Serializable {
 
       forEachLine(filename) { line ->
 
-        val entryObj: JsonObject = jsonParser.parse(line.toInputStream()) as JsonObject
+        val entryObj: JsonObject = jsonParser.parse(StringBuilder(line)) as JsonObject
         val lemma: String = entryObj.string("lemma")!!
         val lexicon: Map<String, Any?> = entryObj.obj("properties")!!.toMap()
 
