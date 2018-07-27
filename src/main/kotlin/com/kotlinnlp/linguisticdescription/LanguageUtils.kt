@@ -15,6 +15,8 @@ private val languagesByIso: Map<String, Language> = Language.values().associateB
 /**
  * @param isoCode the ISO 639-1 code of a language
  *
- * @return the language with the given code or null if no one corresponds
+ * @throws RuntimeException when the given ISO code is not valid
+ *
+ * @return the language with the given code
  */
-fun getLanguageByIso(isoCode: String): Language? = languagesByIso[isoCode]
+fun getLanguageByIso(isoCode: String): Language = languagesByIso[isoCode] ?: throw InvalidLanguageCode(isoCode)
