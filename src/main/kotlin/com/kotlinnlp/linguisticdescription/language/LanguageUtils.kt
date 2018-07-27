@@ -5,7 +5,9 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription
+package com.kotlinnlp.linguisticdescription.language
+
+import com.kotlinnlp.linguisticdescription.InvalidLanguageCode
 
 /**
  * A map of languages associated by ISO code.

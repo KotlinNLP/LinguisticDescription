@@ -5,7 +5,7 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription
+package com.kotlinnlp.linguisticdescription.language
 
 /**
  * Enum class containing the supported languages.
