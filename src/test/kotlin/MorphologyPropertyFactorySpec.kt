@@ -7,8 +7,8 @@
 
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyType
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyType
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it

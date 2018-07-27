@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
-import com.kotlinnlp.linguisticdescription.utils.MissingMorphologyProperty
+import com.kotlinnlp.linguisticdescription.MissingMorphologyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter

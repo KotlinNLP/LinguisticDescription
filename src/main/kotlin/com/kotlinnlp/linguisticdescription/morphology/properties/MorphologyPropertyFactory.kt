@@ -7,8 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyPropertyType
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyType
 
 /**
  * The factory of a new [MorphologyProperty].

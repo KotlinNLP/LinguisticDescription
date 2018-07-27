@@ -11,7 +11,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Con
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
-import com.kotlinnlp.linguisticdescription.utils.MissingMorphologyProperty
+import com.kotlinnlp.linguisticdescription.MissingMorphologyProperty
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
