@@ -15,25 +15,18 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoToken
  * A sentence with morphological and syntactic information.
  *
  * @property tokens the list of tokens of this sentence
- * @property dateTimes the list of date-time expressions contained in this sentence (can be null)
- * @property multiWords the list of multi-words expressions contained in this sentence (can be null)
+ * @property dateTimes
+ * @property multiWords
  */
-data class MorphoSentence(
-  override val tokens: List<MorphoToken>,
-  val dateTimes: List<DateTime>?,
-  val multiWords: List<MultiWords>?
-) : Sentence<MorphoToken> {
+interface MorphoSentence : Sentence<MorphoToken> {
 
   /**
-   * @return a string representation of this sentence
+   * The list of date-time expressions contained in this sentence (can be null).
    */
-  override fun toString(): String = """
-    %-11s : %s
-    %-11s : %s
-    %-11s : %s
-  """.trimIndent().format(
-    "date-times", this.dateTimes?.joinToString(separator = ", ") ?: "None",
-    "multi-words", this.multiWords?.joinToString(separator = ", ") ?: "None",
-    "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString() }
-  )
+  val dateTimes: List<DateTime>?
+
+  /**
+   * The list of multi-words expressions contained in this sentence (can be null).
+   */
+  val multiWords: List<MultiWords>?
 }
