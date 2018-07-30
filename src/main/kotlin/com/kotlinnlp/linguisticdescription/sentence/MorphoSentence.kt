@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoToken
  * @property dateTimes
  * @property multiWords
  */
-interface MorphoSentence : Sentence<MorphoToken> {
+interface MorphoSentence<TokenType: MorphoToken> : Sentence<TokenType> {
 
   /**
    * The list of date-time expressions contained in this sentence (can be null).
