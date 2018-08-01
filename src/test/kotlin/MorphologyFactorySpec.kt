@@ -80,6 +80,26 @@ class MorphologyFactorySpec : Spek({
           }
         }
       }
+
+      on("factory of an Indefinite Article without the 'gender' property but allowing incomplete properties") {
+
+        it("should build the expected morphology") {
+
+          val morpho = MorphologyFactory(
+            lemma = "x",
+            type = MorphologyType.ArtIndef,
+            properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Subject),
+            allowIncompleteProperties = true)
+
+          val expected = Article.Indefinite.Base(
+            lemma = "x",
+            gender = Gender.Undefined,
+            number = Number.Singular,
+            case = GrammaticalCase.Subject)
+
+          assertEquals(expected, morpho)
+        }
+      }
     }
 
     context("Morphology without properties") {
