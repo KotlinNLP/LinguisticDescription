@@ -71,8 +71,8 @@ data class MorphoSyntacticSentence(
     obj(
       "id" to self.id,
       "analysisConfidence" to self.confidence,
-      "entities" to self.entities?.map { it.toJSON() },
-      "dateTimes" to self.dateTimes?.map { it.toJSON() },
+      "entities" to self.entities?.let { array(it.map { it.toJSON() }) },
+      "dateTimes" to self.dateTimes?.let { array(it.map { it.toJSON() }) },
       "tokens" to array(self.tokens.map { it.toJSON() })
     )
   }
