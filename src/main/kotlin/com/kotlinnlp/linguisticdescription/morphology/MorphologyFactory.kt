@@ -24,6 +24,8 @@ object MorphologyFactory {
    * @param lemma the lemma of the morphology
    * @param type the morphology type
    * @param properties the map of property names to their values (optional, unnecessary adding properties are ignored)
+   * @param allowIncompleteProperties allow to build the morphology even if the [properties] map does not contain all
+   *                                  the required properties (default = false)
    *
    * @throws MissingMorphologyProperty when a required property is missing
    *
@@ -31,7 +33,8 @@ object MorphologyFactory {
    */
   operator fun invoke(lemma: String,
                       type: MorphologyType,
-                      properties: Map<String, MorphologyProperty> = mapOf()): SingleMorphology {
+                      properties: Map<String, MorphologyProperty> = mapOf(),
+                      allowIncompleteProperties: Boolean = false): SingleMorphology {
 
     require(type != MorphologyType.Num) {
       "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
@@ -40,16 +43,19 @@ object MorphologyFactory {
     val kClass: KClass<*> = morphologyClasses[type]!!
     val constructor: KFunction<Any> = kClass.constructors.last()
 
-    val keywordArgs: Map<KParameter, Any?> = constructor.parameters.associate {
-
-      val propertyName: String = it.name!!
-      val isLemma: Boolean = propertyName == "lemma"
-
-      if (!isLemma && propertyName !in properties)
-        throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type, lemma = lemma)
-
-      Pair(it, if (isLemma) lemma else properties[propertyName]!!)
-    }
+    val keywordArgs: Map<KParameter, Any?> = mapOf(
+      *constructor.parameters
+        .mapNotNull {
+          val propertyName: String = it.name!!
+          when {
+            propertyName == "lemma" -> it to lemma
+            propertyName in properties -> it to properties.getValue(propertyName)
+            allowIncompleteProperties -> null
+            else -> throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type, lemma = lemma)
+          }
+        }
+        .toTypedArray()
+    )
 
     return constructor.callBy(keywordArgs) as SingleMorphology
   }
