@@ -14,7 +14,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 
-private typealias PersonProperty = Person // avoid ambiguity with Noun.Person
+private typealias PersonProperty = Person // avoid ambiguity with Noun.Proper.Person
 
 /**
  * The 'noun' morphology.
