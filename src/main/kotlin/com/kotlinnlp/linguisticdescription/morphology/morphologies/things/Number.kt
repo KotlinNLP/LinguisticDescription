@@ -28,8 +28,8 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 class Number(
   lemma: String,
   val numericForm: kotlin.Number,
-  override val gender: Gender,
-  override val number: NumberProp
+  override val gender: Gender = Gender.Undefined,
+  override val number: NumberProp = NumberProp.Undefined
 ) : SingleMorphology(lemma), Thing, Genderable, Numerable {
 
   override val type: MorphologyType = MorphologyType.Num

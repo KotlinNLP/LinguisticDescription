@@ -34,7 +34,8 @@ sealed class Article(
   /**
    * The 'article' morphology.
    */
-  class Base(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+  class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
+             case: GrammaticalCase = GrammaticalCase.Undefined)
     : Article(lemma, gender, number, case) {
 
     override val type: MorphologyType = MorphologyType.Art
@@ -43,7 +44,8 @@ sealed class Article(
   /**
    * The 'definite article' morphology.
    */
-  class Definite(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+  class Definite(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
+                 case: GrammaticalCase = GrammaticalCase.Undefined)
     : Article(lemma, gender, number, case) {
 
     override val type: MorphologyType = MorphologyType.ArtDef
@@ -52,13 +54,15 @@ sealed class Article(
   /**
    * The 'indefinite article' morphology.
    */
-  sealed class Indefinite(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+  sealed class Indefinite(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
+                          case: GrammaticalCase = GrammaticalCase.Undefined)
     : Article(lemma, gender, number, case) {
 
     /**
      * The 'indefinite article' morphology.
      */
-    class Base(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+    class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
+               case: GrammaticalCase = GrammaticalCase.Undefined)
       : Article.Indefinite(lemma, gender, number, case) {
 
       override val type: MorphologyType = MorphologyType.ArtIndef
@@ -67,7 +71,8 @@ sealed class Article(
     /**
      * The 'indefinite partitive article' morphology.
      */
-    class Partitive(lemma: String, gender: Gender, number: Number, case: GrammaticalCase)
+    class Partitive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
+                    case: GrammaticalCase = GrammaticalCase.Undefined)
       : Article.Indefinite(lemma, gender, number, case) {
 
       override val type: MorphologyType = MorphologyType.ArtIndefPart

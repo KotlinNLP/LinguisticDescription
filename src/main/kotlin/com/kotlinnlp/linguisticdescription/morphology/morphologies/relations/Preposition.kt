@@ -41,9 +41,9 @@ sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Articulated(
     lemma: String,
-    override val gender: Gender,
-    override val number: Number,
-    override val case: GrammaticalCase
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
   ) : Preposition(lemma), Genderable, Numerable, CaseDeclinable {
 
     override val type: MorphologyType = MorphologyType.PrepArt

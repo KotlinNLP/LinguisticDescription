@@ -39,7 +39,8 @@ sealed class Verb(
   /**
    * The 'verb' morphology.
    */
-  class Base(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+  class Base(lemma: String, mood: Mood = Mood.Base, tense: Tense = Tense.Base, gender: Gender = Gender.Undefined,
+             number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.Verb
@@ -48,7 +49,8 @@ sealed class Verb(
   /**
    * The 'auxiliary verb' morphology.
    */
-  class Auxiliary(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+  class Auxiliary(lemma: String, mood: Mood = Mood.Base, tense: Tense = Tense.Base, gender: Gender = Gender.Undefined,
+                  number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.VerbAux
@@ -57,7 +59,8 @@ sealed class Verb(
   /**
    * The 'modal verb' morphology.
    */
-  class Modal(lemma: String, mood: Mood, tense: Tense, gender: Gender, number: Number, person: Person)
+  class Modal(lemma: String, mood: Mood = Mood.Base, tense: Tense = Tense.Base, gender: Gender = Gender.Undefined,
+              number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
     override val type = MorphologyType.VerbModal

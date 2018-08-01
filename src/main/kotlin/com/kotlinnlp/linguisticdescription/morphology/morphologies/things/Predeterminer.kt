@@ -27,10 +27,10 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
  */
 class Predeterminer(
   lemma: String,
-  override val gender: Gender,
-  override val number: Number,
-  override val person: Person,
-  override val case: GrammaticalCase
+  override val gender: Gender = Gender.Undefined,
+  override val number: Number = Number.Undefined,
+  override val person: Person = Person.Undefined,
+  override val case: GrammaticalCase = GrammaticalCase.Undefined
 ) : SingleMorphology(lemma), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
 
   override val type: MorphologyType = MorphologyType.Predet
