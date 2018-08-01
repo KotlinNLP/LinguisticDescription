@@ -126,14 +126,14 @@ abstract class SingleMorphology(val lemma: String) {
       )
     }
 
-    if (this is Genderable) jsonObject["gender"] = this.gender
-    if (this is Numerable) jsonObject["number"] = this.number
-    if (this is PersonDeclinable) jsonObject["number"] = this.person
-    if (this is CaseDeclinable) jsonObject["case"] = this.case
-    if (this is Gradable) jsonObject["degree"] = this.degree
+    if (this is Genderable) jsonObject["gender"] = this.gender.toString()
+    if (this is Numerable) jsonObject["number"] = this.number.toString()
+    if (this is PersonDeclinable) jsonObject["number"] = this.person.toString()
+    if (this is CaseDeclinable) jsonObject["case"] = this.case.toString()
+    if (this is Gradable) jsonObject["degree"] = this.degree.toString()
     if (this is Conjugable) {
-      jsonObject["mood"] = this.mood
-      jsonObject["tense"] = this.tense
+      jsonObject["mood"] = this.mood.toString()
+      jsonObject["tense"] = this.tense.toString()
     }
 
     return jsonObject
