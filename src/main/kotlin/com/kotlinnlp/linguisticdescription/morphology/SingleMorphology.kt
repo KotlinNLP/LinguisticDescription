@@ -93,7 +93,6 @@ abstract class SingleMorphology(val lemma: String) {
 
     other as SingleMorphology
 
-    if (this.lemma != other.lemma) return false
     if (this.toString() != other.toString()) return false
 
     return true
