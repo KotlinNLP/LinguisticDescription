@@ -15,12 +15,12 @@ import com.kotlinnlp.linguisticdescription.sentence.token.Token
 interface TokensRange {
 
   /**
-   * The index of the first token of the expression
+   * The index of the first token of the expression.
    */
   val startToken: Int
 
   /**
-   * The index of the last token of the expression
+   * The index of the last token of the expression.
    */
   val endToken: Int
 
