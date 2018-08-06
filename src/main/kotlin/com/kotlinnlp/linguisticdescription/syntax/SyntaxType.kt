@@ -83,7 +83,7 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   ContinDenom("CONTIN-DENOM", "CONTIN"),
   ContinLocut("CONTIN-LOCUT", "CONTIN"),
   ContinNumber("CONTIN-NUM", "CONTIN"),
-  ContinCord("CONTIN-COORD", "CONTIN"),
+  ContinCoord("CONTIN-COORD", "CONTIN"),
 
   EndInterrogative("END-INTERROGATIVE", "END"),
   EndAssertive("END-ASSERTIVE", "END"),
