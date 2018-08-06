@@ -25,6 +25,7 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   Object("OBJ", "OBJ"),
   InterrogativeObject("OBJ-INTERR", "OBJ"),
   IndirectObject("IOBJ", "IOBJ"),
+  InterrogativeIndirectObject("IOBJ-INTERR", "IOBJ"),
   IndirectComplement("INDCOMPL", "INDCOMPL"),
 
   PredCompl("PREDCOMPL", "PREDCOMPL"),
