@@ -20,16 +20,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * @property dependencyRelation the dependency relation with its governor
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
- * @property positionedAfter the id of the token after which this trace is positioned
- *                           (-1 if it is positioned at the beginning of the sentence)
  */
 data class Trace(
   override val id: Int,
   override val morphologies: List<ScoredMorphology>,
   override val dependencyRelation: DependencyRelation,
   override val coReferences: List<CoReference>?,
-  val semanticRelations: List<SemanticRelation>?,
-  val positionedAfter: Int
+  val semanticRelations: List<SemanticRelation>?
 ) : MorphoSyntacticToken {
 
   /**
