@@ -45,6 +45,17 @@ data class MorphoSyntacticSentence(
   fun getTokenByID(id: Int): MorphoSyntacticToken = this.tokensByID.getValue(id)
 
   /**
+   * Get a list of tokens with a given governor.
+   *
+   * @param governorId the governor id
+   *
+   * @return a list of dependents tokens
+   */
+  fun getDependents(governorId: Int): List<MorphoSyntacticToken> = this.tokens.filter {
+    it.dependencyRelation.governor == governorId
+  }
+
+  /**
    * @return a string representation of this sentence
    */
   override fun toString(): String = """
