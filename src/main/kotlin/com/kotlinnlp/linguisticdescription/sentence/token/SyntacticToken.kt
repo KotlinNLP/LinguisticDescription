@@ -13,12 +13,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyR
 /**
  * A syntactic token.
  */
-interface SyntacticToken : Token {
-
-  /**
-   * The id of the token, unique within its sentence.
-   */
-  val id: Int
+interface SyntacticToken : TokenIdentificable {
 
   /**
    * The dependency relation with its governor.

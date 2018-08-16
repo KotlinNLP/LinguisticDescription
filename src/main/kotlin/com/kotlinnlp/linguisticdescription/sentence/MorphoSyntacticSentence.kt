@@ -28,21 +28,7 @@ data class MorphoSyntacticSentence(
   override val tokens: List<MorphoSyntacticToken>,
   val dateTimes: List<DateTime>?,
   val entities: List<Entity>?
-) : Sentence<MorphoSyntacticToken> {
-
-  /**
-   * The tokens of this sentence associated by ID.
-   */
-  private val tokensByID: Map<Int, MorphoSyntacticToken> = this.tokens.associateBy { it.id }
-
-  /**
-   * @param id the id of a token of this sentence
-   *
-   * @throws NoSuchElementException when the given [id] is not within the token ids of this sentence
-   *
-   * @return the token of this sentence with the given id
-   */
-  fun getTokenByID(id: Int): MorphoSyntacticToken = this.tokensByID.getValue(id)
+) : SentenceIdentificable<MorphoSyntacticToken>() {
 
   /**
    * Get a list of tokens with a given governor.
