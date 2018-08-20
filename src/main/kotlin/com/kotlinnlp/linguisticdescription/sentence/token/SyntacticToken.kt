@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
  * A syntactic token.
@@ -24,6 +25,11 @@ interface SyntacticToken : TokenIdentificable {
    * The list of co-references (can be null).
    */
   val coReferences: List<CoReference>?
+
+  /**
+   * The list of semantic relations (can be null).
+   */
+  val semanticRelations: List<SemanticRelation>?
 
   /**
    * @param prefix a prefix to prepend to each line that composes the string representation of this token

@@ -39,7 +39,7 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   /**
    * The list of semantic relations (can be null).
    */
-  val semanticRelations: List<SemanticRelation>? get() =
+  override val semanticRelations: List<SemanticRelation>? get() =
     if (this::_semanticRelations.isInitialized) this._semanticRelations else null
 
   /**
