@@ -53,12 +53,12 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   internal lateinit var _dependencyRelation: DependencyRelation
 
   /**
-   * The mutable list of co-references (can be null).
+   * The mutable list of co-references.
    */
   internal lateinit var _coReferences: MutableList<CoReference>
 
   /**
-   * The mutable list of semantic relations (can be null).
+   * The mutable list of semantic relations.
    */
   internal lateinit var _semanticRelations: MutableList<SemanticRelation>
 
@@ -78,6 +78,15 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
    */
   fun removeMorphology(index: Int) {
     this._morphologies.removeAt(index)
+  }
+
+  /**
+   * Update the [dependencyRelation] replacing it with a given one.
+   *
+   * @param dependencyRelation the dependency relation with which to replace the current one
+   */
+  fun updateDependencyRelation(dependencyRelation: DependencyRelation) {
+    this._dependencyRelation = dependencyRelation
   }
 
   /**
