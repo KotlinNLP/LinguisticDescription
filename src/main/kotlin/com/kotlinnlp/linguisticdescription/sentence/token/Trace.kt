@@ -16,18 +16,40 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * A trace token.
  *
  * @property id the id of the token, unique within its sentence
- * @property morphologies the list of scored morphologies, sorted by descending score
- * @property dependencyRelation the dependency relation with its governor
- * @property coReferences the list of co-references (can be null)
- * @property semanticRelations the list of semantic relations (can be null)
  */
-data class Trace(
-  override val id: Int,
-  override val morphologies: List<ScoredMorphology>,
-  override val dependencyRelation: DependencyRelation,
-  override val coReferences: List<CoReference>?,
-  val semanticRelations: List<SemanticRelation>?
-) : MorphoSyntacticToken {
+data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
+
+  companion object {
+
+    /**
+     * Build a [Trace] with the given properties already assigned.
+     *
+     * @param id the id of the token, unique within its sentence
+     * @param morphologies the list of scored morphologies, sorted by descending score
+     * @param dependencyRelation the dependency relation with the governor
+     * @param coReferences the list of co-references (can be null)
+     * @param semanticRelations the list of semantic relations (can be null)
+     *
+     * @return a new token with the given properties
+     */
+    operator fun invoke(
+      id: Int,
+      morphologies: List<ScoredMorphology>,
+      dependencyRelation: DependencyRelation,
+      coReferences: List<CoReference>?,
+      semanticRelations: List<SemanticRelation>?
+    ): Trace {
+
+      val token = Trace(id)
+
+      token._morphologies.addAll(morphologies)
+      token._dependencyRelation = dependencyRelation
+      coReferences?.let { token._coReferences = it.toMutableList() }
+      semanticRelations?.let { token._semanticRelations = it.toMutableList() }
+
+      return token
+    }
+  }
 
   /**
    * The label that defines the type of this token.

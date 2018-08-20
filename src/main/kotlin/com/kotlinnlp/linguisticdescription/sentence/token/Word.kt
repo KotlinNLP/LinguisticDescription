@@ -16,20 +16,48 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
  * @property position the position of the token
- * @property morphologies the list of scored morphologies, sorted by descending score
- * @property dependencyRelation the dependency relation with its governor
- * @property coReferences the list of co-references (can be null)
- * @property semanticRelations the list of semantic relations (can be null)
  */
 open class Word(
   override val id: Int,
   override val form: String,
-  override val position: Position,
-  override val morphologies: List<ScoredMorphology>,
-  override val dependencyRelation: DependencyRelation,
-  override val coReferences: List<CoReference>?,
-  val semanticRelations: List<SemanticRelation>?
-) : RealToken, MorphoSyntacticToken {
+  override val position: Position
+) : RealToken, MutableMorphoSyntacticToken(id) {
+
+  companion object {
+
+    /**
+     * Build a [Word] with the given properties already assigned.
+     *
+     * @param id the id of the token, unique within its sentence
+     * @param form the form of the token
+     * @param position the position of the token
+     * @param morphologies the list of scored morphologies, sorted by descending score
+     * @param dependencyRelation the dependency relation with the governor
+     * @param coReferences the list of co-references (can be null)
+     * @param semanticRelations the list of semantic relations (can be null)
+     *
+     * @return a new token with the given properties
+     */
+    operator fun invoke(
+      id: Int,
+      form: String,
+      position: Position,
+      morphologies: List<ScoredMorphology>,
+      dependencyRelation: DependencyRelation,
+      coReferences: List<CoReference>?,
+      semanticRelations: List<SemanticRelation>?
+    ): Word {
+
+      val token = Word(id = id, form = form, position = position)
+
+      token._morphologies.addAll(morphologies)
+      token._dependencyRelation = dependencyRelation
+      coReferences?.let { token._coReferences = it.toMutableList() }
+      semanticRelations?.let { token._semanticRelations = it.toMutableList() }
+
+      return token
+    }
+  }
 
   /**
    * The label that defines the type of this token.
