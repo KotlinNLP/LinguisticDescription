@@ -17,16 +17,8 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MutableMorphoSyntactic
  * A sentence with morphological and syntactic information.
  *
  * @property id the sentence id
- * @property confidence the confidence score
- * @property dateTimes the list of date-times contained in this sentence (can be null)
- * @property entities the list of entities contained in this sentence (can be null)
  */
-data class MorphoSyntacticSentence(
-  val id: Int,
-  val confidence: Double,
-  val dateTimes: List<DateTime>?,
-  val entities: List<Entity>?
-) : SentenceIdentificable<MutableMorphoSyntacticToken>() {
+data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableMorphoSyntacticToken>() {
 
   companion object {
 
@@ -49,10 +41,12 @@ data class MorphoSyntacticSentence(
       entities: List<Entity>?
     ): MorphoSyntacticSentence {
 
-      val sentence =
-        MorphoSyntacticSentence(id = id, confidence = confidence, dateTimes = dateTimes, entities = entities)
+      val sentence = MorphoSyntacticSentence(id)
 
+      sentence._confidence = confidence
       sentence._tokens.addAll(tokens)
+      dateTimes?.let { sentence._dateTimes = it.toMutableList() }
+      entities?.let { sentence._entities = it.toMutableList() }
 
       return sentence
     }
@@ -69,6 +63,45 @@ data class MorphoSyntacticSentence(
   private val _tokens: MutableList<MutableMorphoSyntacticToken> = mutableListOf()
 
   /**
+   * The confidence score.
+   */
+  val confidence: Double get() = this._confidence
+
+  /**
+   * The list of date-times contained in this sentence (can be null).
+   */
+  val dateTimes: List<DateTime>? get() = if (this::_dateTimes.isInitialized) this._dateTimes else null
+
+  /**
+   * The list of entities contained in this sentence (can be null).
+   */
+  val entities: List<Entity>? get() = if (this::_entities.isInitialized) this._entities else null
+
+  /**
+   * The mutable confidence score.
+   */
+  private var _confidence: Double = 0.0
+
+  /**
+   * The mutable list of date-times contained in this sentence.
+   */
+  private lateinit var _dateTimes: MutableList<DateTime>
+
+  /**
+   * The mutable list of entities contained in this sentence.
+   */
+  private lateinit var _entities: MutableList<Entity>
+
+  /**
+   * Update the [confidence] replacing it with a given one.
+   *
+   * @param confidence the confidence with which to replace the current one
+   */
+  fun updateConfidence(confidence: Double) {
+    this._confidence = confidence
+  }
+
+  /**
    * Add a new token at a given index.
    *
    * @param index the index of the [tokens] list at which to insert the token
@@ -79,6 +112,30 @@ data class MorphoSyntacticSentence(
     this._tokens.add(index, token)
 
     this.reIndexTokens()
+  }
+
+  /**
+   * Add a new date-time.
+   *
+   * @param dateTime the date-time to add
+   */
+  fun addDateTime(dateTime: DateTime) {
+
+    if (!this::_dateTimes.isInitialized) this._dateTimes = mutableListOf()
+
+    this._dateTimes.add(dateTime)
+  }
+
+  /**
+   * Add a new entity.
+   *
+   * @param entity the entity to add
+   */
+  fun addEntity(entity: Entity) {
+
+    if (!this::_entities.isInitialized) this._entities = mutableListOf()
+
+    this._entities.add(entity)
   }
 
   /**
