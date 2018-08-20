@@ -40,7 +40,7 @@ data class WordTrace(
    * @return a string representation of this token
    */
   override fun toString(): String = """
-    [%d] '%s' (TRACE) %s
+    [%d] '%s' (TRACE)
         dependency: %d
         co-references: %s
         semantic relations: %s
