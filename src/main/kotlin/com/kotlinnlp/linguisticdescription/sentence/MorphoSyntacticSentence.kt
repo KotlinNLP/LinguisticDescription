@@ -75,7 +75,10 @@ data class MorphoSyntacticSentence(
    * @param token the token to add
    */
   fun addToken(index: Int, token: MutableMorphoSyntacticToken) {
+
     this._tokens.add(index, token)
+
+    this.reIndexTokens()
   }
 
   /**

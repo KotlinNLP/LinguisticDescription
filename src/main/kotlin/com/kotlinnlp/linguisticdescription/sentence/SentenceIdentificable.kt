@@ -35,8 +35,7 @@ abstract class SentenceIdentificable<TokenType: TokenIdentificable> : Sentence<T
    */
   fun getTokenIndex(id: Int): Int {
 
-    if (!this::tokensIdsToIndices.isInitialized)
-      this.tokensIdsToIndices = this.tokens.withIndex().associate { (i, it) -> it.id to i }
+    if (!this::tokensIdsToIndices.isInitialized) reIndexTokens()
 
     return this.tokensIdsToIndices.getValue(id)
   }
@@ -52,8 +51,19 @@ abstract class SentenceIdentificable<TokenType: TokenIdentificable> : Sentence<T
    */
   fun getTokenById(id: Int): TokenType {
 
-    if (!this::tokensById.isInitialized) this.tokensById = this.tokens.associateBy { it.id }
+    if (!this::tokensById.isInitialized) reIndexTokens()
 
     return this.tokensById.getValue(id)
+  }
+
+  /**
+   * Re-index the tokens-ids association.
+   * It must be called each time the [tokens] list changes.
+   */
+  protected fun reIndexTokens() {
+
+    this.tokensIdsToIndices = this.tokens.withIndex().associate { (i, it) -> it.id to i }
+
+    this.tokensById = this.tokens.associateBy { it.id }
   }
 }
