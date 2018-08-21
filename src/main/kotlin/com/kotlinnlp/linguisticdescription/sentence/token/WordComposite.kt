@@ -26,20 +26,45 @@ class WordComposite(
   id: Int,
   form: String,
   position: Position,
-  morphologies: List<ScoredMorphology>,
-  dependencyRelation: DependencyRelation,
-  coReferences: List<CoReference>?,
-  semanticRelations: List<SemanticRelation>?,
   val components: List<Word>
-) : Word(
-  id = id,
-  form = form,
-  position = position,
-  morphologies = morphologies,
-  dependencyRelation = dependencyRelation,
-  coReferences = coReferences,
-  semanticRelations = semanticRelations
-) {
+) : Word(id = id, form = form, position = position) {
+
+  companion object {
+
+    /**
+     * Build a [WordComposite] with the given properties already assigned.
+     *
+     * @param id the id of the token, unique within its sentence
+     * @param form the form of the token
+     * @param position the position of the token
+     * @param morphologies the list of scored morphologies, sorted by descending score
+     * @param dependencyRelation the dependency relation with the governor
+     * @param coReferences the list of co-references (can be null)
+     * @param semanticRelations the list of semantic relations (can be null)
+     *
+     * @return a new token with the given properties
+     */
+    operator fun invoke(
+      id: Int,
+      form: String,
+      position: Position,
+      morphologies: List<ScoredMorphology>,
+      dependencyRelation: DependencyRelation,
+      coReferences: List<CoReference>?,
+      semanticRelations: List<SemanticRelation>?,
+      components: List<Word>
+    ): WordComposite {
+
+      val token = WordComposite(id = id, form = form, position = position, components = components)
+
+      token._morphologies.addAll(morphologies)
+      token._dependencyRelation = dependencyRelation
+      coReferences?.let { token._coReferences = it.toMutableList() }
+      semanticRelations?.let { token._semanticRelations = it.toMutableList() }
+
+      return token
+    }
+  }
 
   /**
    * @return a string representation of this token
@@ -54,7 +79,7 @@ class WordComposite(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation  } },
+    this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation } },
     this.components.joinToString(" + ") { it.form },
     this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
