@@ -33,7 +33,7 @@ interface MorphoSyntacticToken : ScoredMorphoToken, SyntacticToken {
         "id" to self.id,
         "type" to self.type,
         "dependency" to self.dependencyRelation.toJSON(),
-        "coReferences" to self.coReferences?.map { it.toJSON() },
+        "coReferences" to self.coReferences?.let { array(it.map { it.toJSON() }) },
         "morphology" to if (self.morphologies.isNotEmpty()) array(self.morphologies.map { it.toJSON() }) else null
       )
     }
