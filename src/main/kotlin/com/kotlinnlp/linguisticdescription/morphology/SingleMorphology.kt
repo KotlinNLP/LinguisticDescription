@@ -10,7 +10,10 @@ package com.kotlinnlp.linguisticdescription.morphology
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
+import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
+import com.kotlinnlp.linguisticdescription.morphology.properties.Person
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number as LDNumber
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 import kotlin.reflect.KClass
 import kotlin.reflect.full.*
@@ -47,6 +50,32 @@ abstract class SingleMorphology(val lemma: String) {
       }
 
       return requiredProperties
+    }
+
+    /**
+     * @param first the first morphology
+     * @param second the second morphology
+     * @param weakMatch whether to allows the match between undefined properties or not (default false)
+     *
+     * @return 'true' whether the [first] and [second] morphologies agree morphologically
+     */
+    fun <X, Y>agree(first: X, second: Y, weakMatch: Boolean = false): Boolean
+      where X : Genderable,
+            X : PersonDeclinable,
+            X : Numerable,
+            Y : Genderable,
+            Y : PersonDeclinable,
+            Y : Numerable{
+
+      return if (weakMatch) {
+        ((first.gender == second.gender || first.gender == Gender.Undefined || second.gender == Gender.Undefined)
+          && (first.person == second.person || first.person == Person.Undefined || second.person == Person.Undefined)
+          && (first.number == second.number || first.number == LDNumber.Undefined || second.number == LDNumber.Undefined))
+      } else {
+        (first.gender == second.gender
+          && first.person == second.person
+          && first.number == second.number)
+      }
     }
   }
 

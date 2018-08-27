@@ -71,8 +71,5 @@ sealed class Verb(
    *
    * @return 'true' whether the [other] verb agreed morphologically with this
    */
-  fun agree(other: Verb): Boolean =
-    this.gender == other.gender
-      && this.person == other.person
-      && this.number == other.number
+  fun agree(other: Verb): Boolean = SingleMorphology.agree(this, other)
 }
