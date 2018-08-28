@@ -28,6 +28,17 @@ abstract class SingleMorphology(val lemma: String) {
   companion object {
 
     /**
+     * A class which extends Genderable, Numerable and PersonDeclinable and then delegates the implementation
+     * of these types to the object [t].
+     */
+    class WithGenderNumberPerson<out T>(
+      val t: T
+    ) : Genderable by t, Numerable by t, PersonDeclinable by t
+      where T : Genderable,
+            T : Numerable,
+            T : PersonDeclinable
+
+    /**
      * Get the list of properties required to build a certain morphology.
      *
      * @param type a morphology type
@@ -51,38 +62,36 @@ abstract class SingleMorphology(val lemma: String) {
 
       return requiredProperties
     }
-
-    /**
-     * @param first the first morphology
-     * @param second the second morphology
-     * @param weakMatch whether to allows the match between undefined properties or not (default false)
-     *
-     * @return 'true' whether the [first] and [second] morphologies agree morphologically
-     */
-    fun <X, Y>agree(first: X, second: Y, weakMatch: Boolean = false): Boolean
-      where X : Genderable,
-            X : PersonDeclinable,
-            X : Numerable,
-            Y : Genderable,
-            Y : PersonDeclinable,
-            Y : Numerable{
-
-      return if (weakMatch) {
-        ((first.gender == second.gender || first.gender == Gender.Undefined || second.gender == Gender.Undefined)
-          && (first.person == second.person || first.person == Person.Undefined || second.person == Person.Undefined)
-          && (first.number == second.number || first.number == LDNumber.Undefined || second.number == LDNumber.Undefined))
-      } else {
-        (first.gender == second.gender
-          && first.person == second.person
-          && first.number == second.number)
-      }
-    }
   }
 
   /**
    * The type associated to this morphology.
    */
   abstract val type: MorphologyType
+
+  /**
+   * @param other a morphology
+   * @param weakMatch whether to allows the match between undefined properties or not (default false)
+   *
+   * @return 'true' whether this morphology and [other] morphologies agree morphologically
+   */
+  fun agree(other: SingleMorphology, weakMatch: Boolean = false): Boolean {
+
+    return if (this is WithGenderNumberPerson<*> && other is WithGenderNumberPerson<*>)
+      when {
+        weakMatch ->
+          (this.gender == other.gender || this.gender == Gender.Undefined || other.gender == Gender.Undefined)
+            && (this.person == other.person || this.person == Person.Undefined || other.person == Person.Undefined)
+            && (this.number == other.number || this.number == LDNumber.Undefined || other.number == LDNumber.Undefined)
+
+        else ->
+          this.gender == other.gender
+            && this.person == other.person
+            && this.number == other.number
+      }
+    else
+      false
+  }
 
   /**
    * @return a map of properties names to values

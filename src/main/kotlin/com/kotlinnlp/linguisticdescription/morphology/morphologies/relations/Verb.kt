@@ -65,11 +65,4 @@ sealed class Verb(
 
     override val type = MorphologyType.VerbModal
   }
-
-  /**
-   * @param other a Verb
-   *
-   * @return 'true' whether the [other] verb agreed morphologically with this
-   */
-  fun agree(other: Verb): Boolean = SingleMorphology.agree(this, other)
 }
