@@ -28,17 +28,6 @@ abstract class SingleMorphology(val lemma: String) {
   companion object {
 
     /**
-     * A class which extends Genderable, Numerable and PersonDeclinable and then delegates the implementation
-     * of these types to the object [t].
-     */
-    class WithGenderNumberPerson<out T>(
-      val t: T
-    ) : Genderable by t, Numerable by t, PersonDeclinable by t
-      where T : Genderable,
-            T : Numerable,
-            T : PersonDeclinable
-
-    /**
      * Get the list of properties required to build a certain morphology.
      *
      * @param type a morphology type
@@ -77,7 +66,9 @@ abstract class SingleMorphology(val lemma: String) {
    */
   fun agree(other: SingleMorphology, weakMatch: Boolean = false): Boolean {
 
-    return if (this is WithGenderNumberPerson<*> && other is WithGenderNumberPerson<*>)
+    return if (this is Genderable && this is Numerable && this is PersonDeclinable
+      && other is Genderable && other is Numerable && other is PersonDeclinable)
+
       when {
         weakMatch ->
           (this.gender == other.gender || this.gender == Gender.Undefined || other.gender == Gender.Undefined)
