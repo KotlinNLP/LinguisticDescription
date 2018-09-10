@@ -12,13 +12,16 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'indirect object' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class RelativeClause : SyntaxDependency, NominalModifier {
+sealed class RelativeClause(override val direction: SyntaxDependency.Direction)
+  : SyntaxDependency<SyntaxType>, NominalModifier {
 
   /**
    *
    */
-  class Base : RelativeClause() {
+  class Base(direction: SyntaxDependency.Direction) : RelativeClause(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +32,7 @@ sealed class RelativeClause : SyntaxDependency, NominalModifier {
   /**
    *
    */
-  class Reduced : RelativeClause() {
+  class Reduced(direction: SyntaxDependency.Direction) : RelativeClause(direction) {
 
     /**
      * The type associated to this dependency.

@@ -8,12 +8,27 @@
 package com.kotlinnlp.linguisticdescription.syntax
 
 /**
- * The base interface implemented by all dependencies.
+ * The base interface implemented by all the syntax dependencies.
  */
-interface SyntaxDependency {
+interface SyntaxDependency<T> {
 
   /**
-   * The type associated to this dependency.
+   * The direction of the dependency.
    */
-  val type: SyntaxType
+  enum class Direction {
+    ROOT,
+    LEFT,
+    RIGHT,
+    NULL
+  }
+
+  /**
+   * The type of this dependency.
+   */
+  val type: T
+
+  /**
+   * The direction of the dependency, related to the governor.
+   */
+  val direction: Direction
 }

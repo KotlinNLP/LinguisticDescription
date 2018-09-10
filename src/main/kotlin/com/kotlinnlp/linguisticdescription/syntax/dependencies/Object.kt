@@ -12,13 +12,16 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'object' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class Object : SyntaxDependency, VerbalCoreArgument {
+sealed class Object(override val direction: SyntaxDependency.Direction)
+  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base : Object() {
+  class Base(direction: SyntaxDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +32,7 @@ sealed class Object : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Interrogative : Object() {
+  class Interrogative(direction: SyntaxDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +43,7 @@ sealed class Object : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Extra : Object() {
+  class Extra(direction: SyntaxDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.

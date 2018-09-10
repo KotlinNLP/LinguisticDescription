@@ -12,13 +12,15 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'contin' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class Contin : SyntaxDependency {
+sealed class Contin(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    *
    */
-  class Base : Contin() {
+  class Base(direction: SyntaxDependency.Direction) : Contin(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +31,7 @@ sealed class Contin : SyntaxDependency {
   /**
    *
    */
-  class Denom : Contin() {
+  class Denom(direction: SyntaxDependency.Direction) : Contin(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +42,7 @@ sealed class Contin : SyntaxDependency {
   /**
    *
    */
-  class Locut : Contin() {
+  class Locut(direction: SyntaxDependency.Direction) : Contin(direction) {
 
     /**
      * The type associated to this dependency.
@@ -51,7 +53,7 @@ sealed class Contin : SyntaxDependency {
   /**
    *
    */
-  class Number : Contin() {
+  class Number(direction: SyntaxDependency.Direction) : Contin(direction) {
 
     /**
      * The type associated to this dependency.
@@ -62,7 +64,7 @@ sealed class Contin : SyntaxDependency {
   /**
    *
    */
-  class Coord : Contin() {
+  class Coord(direction: SyntaxDependency.Direction) : Contin(direction) {
 
     /**
      * The type associated to this dependency.

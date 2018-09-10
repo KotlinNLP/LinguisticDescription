@@ -12,13 +12,16 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'subject' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class Subject : SyntaxDependency, VerbalCoreArgument {
+sealed class Subject(override val direction: SyntaxDependency.Direction)
+  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base : Subject() {
+  class Base(direction: SyntaxDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +32,7 @@ sealed class Subject : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Passive : Subject() {
+  class Passive(direction: SyntaxDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +43,7 @@ sealed class Subject : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Interrogative : Subject() {
+  class Interrogative(direction: SyntaxDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
@@ -51,7 +54,7 @@ sealed class Subject : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Extra : Subject() {
+  class Extra(direction: SyntaxDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.

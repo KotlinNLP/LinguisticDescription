@@ -12,8 +12,10 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'determiner' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-class Determiner : SyntaxDependency, NominalModifier {
+class Determiner(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType>, NominalModifier {
 
   /**
    * The type associated to this dependency.

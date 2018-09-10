@@ -12,13 +12,16 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'predicative complement' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
+sealed class PredCompl(override val direction: SyntaxDependency.Direction)
+  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base : PredCompl() {
+  class Base(direction: SyntaxDependency.Direction) : PredCompl(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +32,7 @@ sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  class Interrogative : PredCompl() {
+  class Interrogative(direction: SyntaxDependency.Direction) : PredCompl(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,12 +43,12 @@ sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  sealed class Subj : PredCompl() {
+  sealed class Subj(direction: SyntaxDependency.Direction) : PredCompl(direction) {
 
     /**
      *
      */
-    class Base : Subj() {
+    class Base(direction: SyntaxDependency.Direction) : Subj(direction) {
 
       /**
        * The type associated to this dependency.
@@ -56,7 +59,7 @@ sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
     /**
      *
      */
-    class Interrogative : Subj() {
+    class Interrogative(direction: SyntaxDependency.Direction) : Subj(direction) {
 
       /**
        * The type associated to this dependency.
@@ -68,12 +71,12 @@ sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
   /**
    *
    */
-  sealed class Obj : PredCompl() {
+  sealed class Obj(direction: SyntaxDependency.Direction) : PredCompl(direction) {
 
     /**
      *
      */
-    class Base : Obj() {
+    class Base(direction: SyntaxDependency.Direction) : Obj(direction) {
 
       /**
        * The type associated to this dependency.
@@ -84,7 +87,7 @@ sealed class PredCompl : SyntaxDependency, VerbalCoreArgument {
     /**
      *
      */
-    class Interrogative : Obj() {
+    class Interrogative(direction: SyntaxDependency.Direction) : Obj(direction) {
 
       /**
        * The type associated to this dependency.

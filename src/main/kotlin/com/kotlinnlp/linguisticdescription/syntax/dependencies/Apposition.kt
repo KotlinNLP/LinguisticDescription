@@ -12,8 +12,10 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'apposition' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-class Apposition : SyntaxDependency, NominalModifier {
+class Apposition(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType>, NominalModifier {
 
   /**
    * The type associated to this dependency.

@@ -12,8 +12,10 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'initiator' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-class Initiator : SyntaxDependency {
+class Initiator(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    * The type associated to this dependency.

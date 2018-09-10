@@ -12,13 +12,15 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'restrictive modifier' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class RestrictiveModifier : SyntaxDependency {
+sealed class RestrictiveModifier(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    *
    */
-  class Base : RestrictiveModifier() {
+  class Base(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +31,7 @@ sealed class RestrictiveModifier : SyntaxDependency {
   /**
    *
    */
-  class Comparative : RestrictiveModifier() {
+  class Comparative(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +42,7 @@ sealed class RestrictiveModifier : SyntaxDependency {
   /**
    *
    */
-  class Interrogative : RestrictiveModifier() {
+  class Interrogative(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.
@@ -51,7 +53,7 @@ sealed class RestrictiveModifier : SyntaxDependency {
   /**
    *
    */
-  class Negative : RestrictiveModifier() {
+  class Negative(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.
@@ -62,7 +64,7 @@ sealed class RestrictiveModifier : SyntaxDependency {
   /**
    *
    */
-  class Possessive : RestrictiveModifier() {
+  class Possessive(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.
@@ -73,7 +75,7 @@ sealed class RestrictiveModifier : SyntaxDependency {
   /**
    *
    */
-  class Quantitative : RestrictiveModifier() {
+  class Quantitative(direction: SyntaxDependency.Direction) : RestrictiveModifier(direction) {
 
     /**
      * The type associated to this dependency.

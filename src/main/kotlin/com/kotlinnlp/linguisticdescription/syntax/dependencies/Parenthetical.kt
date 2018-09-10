@@ -12,8 +12,10 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'parenthetical' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-class Parenthetical : SyntaxDependency {
+class Parenthetical(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    * The type associated to this dependency.

@@ -5,20 +5,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticdescription.syntax.dependencies
+package com.kotlinnlp.linguisticdescription.syntax
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
- * The 'separator' dependency.
+ * The syntax dependency with a string type.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-class Separator(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
-
-  /**
-   * The type associated to this dependency.
-   */
-  override val type: SyntaxType = SyntaxType.Separator
-}
+data class SyntaxDependencyString(
+  override val type: String,
+  override val direction: SyntaxDependency.Direction
+) : SyntaxDependency<String>

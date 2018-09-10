@@ -12,13 +12,15 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'auxiliary' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class End : SyntaxDependency {
+sealed class End(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    *
    */
-  class Assertive : End() {
+  class Assertive(direction: SyntaxDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +31,7 @@ sealed class End : SyntaxDependency {
   /**
    *
    */
-  class Interrogative : End() {
+  class Interrogative(direction: SyntaxDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +42,7 @@ sealed class End : SyntaxDependency {
   /**
    *
    */
-  class Imperative : End() {
+  class Imperative(direction: SyntaxDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.

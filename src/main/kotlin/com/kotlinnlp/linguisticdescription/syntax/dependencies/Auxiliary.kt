@@ -12,13 +12,15 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
 
 /**
  * The 'auxiliary' dependency.
+ *
+ * @property direction the direction of the dependency, related to the governor
  */
-sealed class Auxiliary : SyntaxDependency {
+sealed class Auxiliary(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
 
   /**
    *
    */
-  class Base : Auxiliary() {
+  class Base(direction: SyntaxDependency.Direction) : Auxiliary(direction) {
 
     /**
      * The type associated to this dependency.
@@ -29,7 +31,7 @@ sealed class Auxiliary : SyntaxDependency {
   /**
    *
    */
-  class Tense : Auxiliary() {
+  class Tense(direction: SyntaxDependency.Direction) : Auxiliary(direction) {
 
     /**
      * The type associated to this dependency.
@@ -40,7 +42,7 @@ sealed class Auxiliary : SyntaxDependency {
   /**
    *
    */
-  class Passive : Auxiliary() {
+  class Passive(direction: SyntaxDependency.Direction) : Auxiliary(direction) {
 
     /**
      * The type associated to this dependency.
@@ -51,7 +53,7 @@ sealed class Auxiliary : SyntaxDependency {
   /**
    *
    */
-  class Progressive : Auxiliary() {
+  class Progressive(direction: SyntaxDependency.Direction) : Auxiliary(direction) {
 
     /**
      * The type associated to this dependency.
