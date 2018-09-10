@@ -40,7 +40,7 @@ object MorphologyFactory {
       "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
     }
 
-    val kClass: KClass<*> = morphologyClasses[pos]!!
+    val kClass: KClass<*> = morphologyClasses.getValue(pos)
     val constructor: KFunction<Any> = kClass.constructors.last()
 
     val keywordArgs: Map<KParameter, Any?> = mapOf(
