@@ -8,10 +8,10 @@
 package com.kotlinnlp.linguisticdescription.morphology
 
 /**
- * The type of a morphology.
+ * The Part-Of-Speech.
  *
- * @property annotation the string used to annotate this type
- * @property baseAnnotation the string used to annotate base label of this type
+ * @property annotation the string used to annotate this POS
+ * @property baseAnnotation the base level of annotation
  */
 enum class POS(val annotation: String, val baseAnnotation: String) {
 
