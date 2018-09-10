@@ -26,7 +26,7 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   InterrogativeObject("OBJ-INTERR", "OBJ"),
   IndirectObject("IOBJ", "IOBJ"),
   InterrogativeIndirectObject("IOBJ-INTERR", "IOBJ"),
-  IndirectComplement("INDCOMPL", "INDCOMPL"),
+  IndirectComplement("INDCOMPL", "INDCOMPL"), // TODO: Add related class
 
   PredCompl("PREDCOMPL", "PREDCOMPL"),
   PredComplSubj("PREDCOMPL-SUBJ", "PREDCOMPL"),
@@ -44,7 +44,7 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
 
   ExtraObject("EXTRAOBJ", "EXTRAOBJ"),
   ExtraSubject("EXTRASUBJ", "EXTRASUBJ"),
-  EmptyCompl("EMPTYCOMPL", "EMPTYCOMPL"),
+  EmptyCompl("EMPTYCOMPL", "EMPTYCOMPL"), // TODO: add related class
 
   Locative("LOC", "LOC"),
   Partitive("PART", "PART"),
