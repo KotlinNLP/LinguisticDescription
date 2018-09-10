@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -43,7 +43,7 @@ sealed class Noun(
              degree: Degree = Degree.Base)
     : Noun(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.Noun
+    override val pos: POS = POS.Noun
   }
 
   /**
@@ -61,7 +61,7 @@ sealed class Noun(
                degree: Degree = Degree.Base)
       : Noun.Common(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounCommon
+      override val pos: POS = POS.NounCommon
     }
 
     /**
@@ -72,7 +72,7 @@ sealed class Noun(
                       degree: Degree = Degree.Base)
       : Noun.Common(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounCommonQuant
+      override val pos: POS = POS.NounCommonQuant
     }
 
     /**
@@ -83,7 +83,7 @@ sealed class Noun(
                     degree: Degree = Degree.Base)
       : Noun.Common(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounCommonGerund
+      override val pos: POS = POS.NounCommonGerund
     }
   }
 
@@ -102,7 +102,7 @@ sealed class Noun(
                case: GrammaticalCase = GrammaticalCase.Undefined, degree: Degree = Degree.Base)
       : Noun.Proper(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounProper
+      override val pos: POS = POS.NounProper
     }
 
     /**
@@ -113,7 +113,7 @@ sealed class Noun(
                  case: GrammaticalCase = GrammaticalCase.Undefined, degree: Degree = Degree.Base)
       : Noun.Proper(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounProperPer
+      override val pos: POS = POS.NounProperPer
     }
 
     /**
@@ -124,7 +124,7 @@ sealed class Noun(
                        case: GrammaticalCase = GrammaticalCase.Undefined, degree: Degree = Degree.Base)
       : Noun.Proper(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounProperOrg
+      override val pos: POS = POS.NounProperOrg
     }
 
     /**
@@ -135,7 +135,7 @@ sealed class Noun(
                    case: GrammaticalCase = GrammaticalCase.Undefined, degree: Degree = Degree.Base)
       : Noun.Proper(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.NounProperLoc
+      override val pos: POS = POS.NounProperLoc
     }
   }
 }

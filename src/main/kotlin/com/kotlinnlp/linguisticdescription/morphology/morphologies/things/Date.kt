@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
@@ -17,5 +17,5 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  */
 class Date(lemma: String) : SingleMorphology(lemma), Thing {
 
-  override val type: MorphologyType = MorphologyType.Date
+  override val pos: POS = POS.Date
 }

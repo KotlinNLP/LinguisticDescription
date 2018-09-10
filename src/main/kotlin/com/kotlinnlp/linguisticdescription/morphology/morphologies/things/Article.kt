@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
@@ -38,7 +38,7 @@ sealed class Article(
              case: GrammaticalCase = GrammaticalCase.Undefined)
     : Article(lemma, gender, number, case) {
 
-    override val type: MorphologyType = MorphologyType.Art
+    override val pos: POS = POS.Art
   }
 
   /**
@@ -48,7 +48,7 @@ sealed class Article(
                  case: GrammaticalCase = GrammaticalCase.Undefined)
     : Article(lemma, gender, number, case) {
 
-    override val type: MorphologyType = MorphologyType.ArtDef
+    override val pos: POS = POS.ArtDef
   }
 
   /**
@@ -65,7 +65,7 @@ sealed class Article(
                case: GrammaticalCase = GrammaticalCase.Undefined)
       : Article.Indefinite(lemma, gender, number, case) {
 
-      override val type: MorphologyType = MorphologyType.ArtIndef
+      override val pos: POS = POS.ArtIndef
     }
 
     /**
@@ -75,7 +75,7 @@ sealed class Article(
                     case: GrammaticalCase = GrammaticalCase.Undefined)
       : Article.Indefinite(lemma, gender, number, case) {
 
-      override val type: MorphologyType = MorphologyType.ArtIndefPart
+      override val pos: POS = POS.ArtIndefPart
     }
   }
 }

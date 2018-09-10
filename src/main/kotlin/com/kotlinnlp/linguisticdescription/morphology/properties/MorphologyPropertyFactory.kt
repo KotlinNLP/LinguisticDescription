@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyType
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyName
 
 /**
  * The factory of a new [MorphologyProperty].
@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyType
 object MorphologyPropertyFactory {
 
   /**
-   * The map of morphology properties types to maps of annotations to morphology properties.
+   * The map of morphology properties names to maps of annotations to morphology properties.
    */
   private val propertiesMap = mapOf<String, Map<String, MorphologyProperty>>(
     "mood" to Mood.values().associateBy { it.annotation },
@@ -29,29 +29,29 @@ object MorphologyPropertyFactory {
   )
 
   /**
-   * The list of types of all the possible properties.
+   * The list of names of all the possible properties.
    */
-  val propertyTypes: List<String> = this.propertiesMap.keys.toList()
+  val propertyNames: List<String> = this.propertiesMap.keys.toList()
 
   /**
    * Build a [MorphologyProperty] given its type and value annotation as strings.
    *
-   * @param propertyType the morphology property type (gender, number, etc...)
+   * @param propertyName the morphology property name (gender, number, etc...)
    * @param valueAnnotation the annotation string of the value
    *
-   * @throws InvalidMorphologyPropertyType when the [propertyType] is not valid
-   * @throws InvalidMorphologyPropertyAnnotation when the [valueAnnotation] for the given [propertyType] is not valid
+   * @throws InvalidMorphologyPropertyName when the [propertyName] is not valid
+   * @throws InvalidMorphologyPropertyAnnotation when the [valueAnnotation] for the given [propertyName] is not valid
    *
    * @return a morphology property
    */
-  operator fun invoke(propertyType: String, valueAnnotation: String): MorphologyProperty {
+  operator fun invoke(propertyName: String, valueAnnotation: String): MorphologyProperty {
 
-    if (propertyType !in this.propertiesMap) throw InvalidMorphologyPropertyType(propertyType)
+    if (propertyName !in this.propertiesMap) throw InvalidMorphologyPropertyName(propertyName)
 
-    val valuesMap: Map<String, MorphologyProperty> = this.propertiesMap.getValue(propertyType)
+    val valuesMap: Map<String, MorphologyProperty> = this.propertiesMap.getValue(propertyName)
 
     if (valueAnnotation !in valuesMap)
-      throw InvalidMorphologyPropertyAnnotation(type = propertyType, annotation = valueAnnotation)
+      throw InvalidMorphologyPropertyAnnotation(type = propertyName, annotation = valueAnnotation)
 
     return valuesMap.getValue(valueAnnotation)
   }

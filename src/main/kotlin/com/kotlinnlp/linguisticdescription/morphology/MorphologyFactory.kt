@@ -22,7 +22,7 @@ object MorphologyFactory {
    * Create a new [SingleMorphology] given its [properties].
    *
    * @param lemma the lemma of the morphology
-   * @param type the morphology type
+   * @param pos the POS of the morphology
    * @param properties the map of property names to their values (optional, unnecessary adding properties are ignored)
    * @param allowIncompleteProperties allow to build the morphology even if the [properties] map does not contain all
    *                                  the required properties (default = false)
@@ -32,15 +32,15 @@ object MorphologyFactory {
    * @return a new morphology
    */
   operator fun invoke(lemma: String,
-                      type: MorphologyType,
+                      pos: POS,
                       properties: Map<String, MorphologyProperty> = mapOf(),
                       allowIncompleteProperties: Boolean = false): SingleMorphology {
 
-    require(type != MorphologyType.Num) {
+    require(pos != POS.Num) {
       "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
     }
 
-    val kClass: KClass<*> = morphologyClasses[type]!!
+    val kClass: KClass<*> = morphologyClasses[pos]!!
     val constructor: KFunction<Any> = kClass.constructors.last()
 
     val keywordArgs: Map<KParameter, Any?> = mapOf(
@@ -51,7 +51,7 @@ object MorphologyFactory {
             propertyName == "lemma" -> it to lemma
             propertyName in properties -> it to properties.getValue(propertyName)
             allowIncompleteProperties -> null
-            else -> throw MissingMorphologyProperty(propertyName = propertyName, morphologyType = type, lemma = lemma)
+            else -> throw MissingMorphologyProperty(propertyName = propertyName, pos = pos, lemma = lemma)
           }
         }
         .toTypedArray()

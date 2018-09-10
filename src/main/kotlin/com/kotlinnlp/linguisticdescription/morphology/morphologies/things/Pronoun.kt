@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
@@ -37,7 +37,7 @@ sealed class Pronoun(
              person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.Pron
+    override val pos: POS = POS.Pron
   }
 
   /**
@@ -47,7 +47,7 @@ sealed class Pronoun(
                       person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.PronDemons
+    override val pos: POS = POS.PronDemons
   }
 
   /**
@@ -57,7 +57,7 @@ sealed class Pronoun(
                     person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.PronExclam
+    override val pos: POS = POS.PronExclam
   }
 
   /**
@@ -73,7 +73,7 @@ sealed class Pronoun(
                person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Indefinite(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronIndef
+      override val pos: POS = POS.PronIndef
     }
 
     /**
@@ -83,7 +83,7 @@ sealed class Pronoun(
                         person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Indefinite(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronIndefSubord
+      override val pos: POS = POS.PronIndefSubord
     }
 
     /**
@@ -93,7 +93,7 @@ sealed class Pronoun(
                        person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Indefinite(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronIndefDistr
+      override val pos: POS = POS.PronIndefDistr
     }
 
     /**
@@ -103,7 +103,7 @@ sealed class Pronoun(
                       person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Indefinite(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronIndefQuant
+      override val pos: POS = POS.PronIndefQuant
     }
   }
 
@@ -114,7 +114,7 @@ sealed class Pronoun(
                       person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.PronInterr
+    override val pos: POS = POS.PronInterr
   }
 
   /**
@@ -124,7 +124,7 @@ sealed class Pronoun(
                 person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.PronOrdin
+    override val pos: POS = POS.PronOrdin
   }
 
   /**
@@ -140,7 +140,7 @@ sealed class Pronoun(
                person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Personal(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronPers
+      override val pos: POS = POS.PronPers
     }
 
     /**
@@ -150,7 +150,7 @@ sealed class Pronoun(
                     person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Personal(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronPersRefl
+      override val pos: POS = POS.PronPersRefl
     }
 
     /**
@@ -160,7 +160,7 @@ sealed class Pronoun(
                   person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Personal(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronPersVariant
+      override val pos: POS = POS.PronPersVariant
     }
 
     /**
@@ -170,7 +170,7 @@ sealed class Pronoun(
                    person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Personal(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronPersEnclit
+      override val pos: POS = POS.PronPersEnclit
     }
 
     /**
@@ -186,7 +186,7 @@ sealed class Pronoun(
                  person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
         : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
 
-        override val type: MorphologyType = MorphologyType.PronPersProclit
+        override val pos: POS = POS.PronPersProclit
       }
 
       /**
@@ -196,7 +196,7 @@ sealed class Pronoun(
                       person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
         : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
 
-        override val type: MorphologyType = MorphologyType.PronPersProclitRefl
+        override val pos: POS = POS.PronPersProclitRefl
       }
 
       /**
@@ -206,7 +206,7 @@ sealed class Pronoun(
                     person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
         : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
 
-        override val type: MorphologyType = MorphologyType.PronPersProclitVariant
+        override val pos: POS = POS.PronPersProclitVariant
       }
     }
   }
@@ -218,7 +218,7 @@ sealed class Pronoun(
                    person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
     : Pronoun(lemma, gender, number, person, case) {
 
-    override val type: MorphologyType = MorphologyType.PronPoss
+    override val pos: POS = POS.PronPoss
   }
 
   /**
@@ -234,7 +234,7 @@ sealed class Pronoun(
                person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Relative(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronRelat
+      override val pos: POS = POS.PronRelat
     }
 
     /**
@@ -244,7 +244,7 @@ sealed class Pronoun(
                  person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
       : Pronoun.Relative(lemma, gender, number, person, case) {
 
-      override val type: MorphologyType = MorphologyType.PronRelatDouble
+      override val pos: POS = POS.PronRelatDouble
     }
   }
 }

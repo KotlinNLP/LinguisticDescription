@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
@@ -22,7 +22,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Base(lemma: String) : Conjunction(lemma) {
 
-    override val type: MorphologyType = MorphologyType.Conj
+    override val pos: POS = POS.Conj
   }
 
   /**
@@ -35,7 +35,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Base(lemma: String) : Comparative(lemma) {
 
-      override val type: MorphologyType = MorphologyType.ConjCompar
+      override val pos: POS = POS.ConjCompar
     }
 
     /**
@@ -43,7 +43,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Antecedent(lemma: String) : Comparative(lemma) {
 
-      override val type: MorphologyType = MorphologyType.ConjComparAntec
+      override val pos: POS = POS.ConjComparAntec
     }
 
     /**
@@ -51,7 +51,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Successive(lemma: String) : Comparative(lemma) {
 
-      override val type: MorphologyType = MorphologyType.ConjComparSucc
+      override val pos: POS = POS.ConjComparSucc
     }
   }
 
@@ -60,7 +60,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Concessive(lemma: String) : Conjunction(lemma) {
 
-    override val type: MorphologyType = MorphologyType.ConjConcess
+    override val pos: POS = POS.ConjConcess
   }
 
   /**
@@ -73,7 +73,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Base(lemma: String) : Coordinating(lemma) {
 
-      override val type: MorphologyType = MorphologyType.ConjCoord
+      override val pos: POS = POS.ConjCoord
     }
 
     /**
@@ -81,7 +81,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Adversative(lemma: String) : Coordinating(lemma) {
 
-      override val type = MorphologyType.ConjCoordAdvers
+      override val pos = POS.ConjCoordAdvers
     }
 
     /**
@@ -89,7 +89,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Disjunctive(lemma: String) : Coordinating(lemma) {
 
-      override val type = MorphologyType.ConjCoordDisj
+      override val pos = POS.ConjCoordDisj
     }
 
     /**
@@ -97,7 +97,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Explicit(lemma: String) : Coordinating(lemma) {
 
-      override val type = MorphologyType.ConjCoordExplic
+      override val pos = POS.ConjCoordExplic
     }
 
     /**
@@ -105,7 +105,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Negative(lemma: String) : Coordinating(lemma) {
 
-      override val type = MorphologyType.ConjCoordNeg
+      override val pos = POS.ConjCoordNeg
     }
   }
 
@@ -119,7 +119,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Base(lemma: String) : Correlating(lemma) {
 
-      override val type = MorphologyType.ConjCorrel
+      override val pos = POS.ConjCorrel
     }
 
     /**
@@ -127,7 +127,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Successive(lemma: String) : Correlating(lemma) {
 
-      override val type = MorphologyType.ConjCorrelSucc
+      override val pos = POS.ConjCorrelSucc
     }
 
     /**
@@ -135,7 +135,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Antecedent(lemma: String) : Correlating(lemma) {
 
-      override val type = MorphologyType.ConjCorrelAntec
+      override val pos = POS.ConjCorrelAntec
     }
   }
 
@@ -149,7 +149,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Base(lemma: String) : Subordinating(lemma) {
 
-      override val type = MorphologyType.ConjSubord
+      override val pos = POS.ConjSubord
     }
 
     /**
@@ -157,7 +157,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Adversative(lemma: String) : Subordinating(lemma) {
 
-      override val type = MorphologyType.ConjSubordAdvers
+      override val pos = POS.ConjSubordAdvers
     }
 
     /**
@@ -165,7 +165,7 @@ sealed class Conjunction(lemma: String) : SingleMorphology(lemma), Relation {
      */
     class Interrogative(lemma: String) : Subordinating(lemma) {
 
-      override val type = MorphologyType.ConjSubordInterr
+      override val pos = POS.ConjSubordInterr
     }
   }
 }

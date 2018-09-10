@@ -76,7 +76,7 @@ open class Word(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.type.annotation  } },
+    this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.pos.annotation  } },
     this.dependencyRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"

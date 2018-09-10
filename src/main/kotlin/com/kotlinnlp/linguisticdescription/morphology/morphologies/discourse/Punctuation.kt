@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
@@ -17,5 +17,5 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  */
 class Punctuation(lemma: String) : SingleMorphology(lemma), Discourse {
 
-  override val type: MorphologyType = MorphologyType.Punct
+  override val pos: POS = POS.Punct
 }

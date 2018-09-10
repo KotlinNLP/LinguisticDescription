@@ -30,14 +30,14 @@ abstract class SingleMorphology(val lemma: String) {
     /**
      * Get the list of properties required to build a certain morphology.
      *
-     * @param type a morphology type
+     * @param pos a POS
      *
-     * @return a list of required properties for a morphology of the given type
+     * @return a list of required properties for a morphology with the given pos tag
      */
-    fun getRequiredProperties(type: MorphologyType): List<String> {
+    fun getRequiredProperties(pos: POS): List<String> {
 
       val requiredProperties = mutableListOf<String>()
-      val morphologyClass: KClass<*> = morphologyClasses.getValue(type)
+      val morphologyClass: KClass<*> = morphologyClasses.getValue(pos)
 
       if (morphologyClass.isSubclassOf(Genderable::class)) requiredProperties.add("gender")
       if (morphologyClass.isSubclassOf(Numerable::class)) requiredProperties.add("number")
@@ -54,9 +54,9 @@ abstract class SingleMorphology(val lemma: String) {
   }
 
   /**
-   * The type associated to this morphology.
+   * The POS of this morphology.
    */
-  abstract val type: MorphologyType
+  abstract val pos: POS
 
   /**
    * @param other a morphology
@@ -151,7 +151,7 @@ abstract class SingleMorphology(val lemma: String) {
     val jsonObject = json {
       obj(
         "lemma" to this@SingleMorphology.lemma,
-        "pos" to this@SingleMorphology.type.toString()
+        "pos" to this@SingleMorphology.pos.toString()
       )
     }
 

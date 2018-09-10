@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -29,7 +29,7 @@ sealed class Adverb(
    */
   class Adversative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvAdvers
+    override val pos: POS = POS.AdvAdvers
   }
 
   /**
@@ -37,7 +37,7 @@ sealed class Adverb(
    */
   class Comparative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvCompar
+    override val pos: POS = POS.AdvCompar
   }
 
   /**
@@ -45,7 +45,7 @@ sealed class Adverb(
    */
   class Concessive(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvConcess
+    override val pos: POS = POS.AdvConcess
   }
 
   /**
@@ -53,7 +53,7 @@ sealed class Adverb(
    */
   class Deictic(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvDeict
+    override val pos: POS = POS.AdvDeict
   }
 
   /**
@@ -61,7 +61,7 @@ sealed class Adverb(
    */
   class Indefinite(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvIndef
+    override val pos: POS = POS.AdvIndef
   }
 
   /**
@@ -69,7 +69,7 @@ sealed class Adverb(
    */
   class IndefiniteSubordinating(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvIndefSubord
+    override val pos: POS = POS.AdvIndefSubord
   }
 
   /**
@@ -77,7 +77,7 @@ sealed class Adverb(
    */
   class Interrogative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvInterr
+    override val pos: POS = POS.AdvInterr
   }
 
   /**
@@ -85,7 +85,7 @@ sealed class Adverb(
    */
   class Limiting(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvLimit
+    override val pos: POS = POS.AdvLimit
   }
 
   /**
@@ -93,7 +93,7 @@ sealed class Adverb(
    */
   class Locative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvLoc
+    override val pos: POS = POS.AdvLoc
   }
 
   /**
@@ -101,7 +101,7 @@ sealed class Adverb(
    */
   class Modal(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree), ContentWord {
 
-    override val type: MorphologyType = MorphologyType.AdvModal
+    override val pos: POS = POS.AdvModal
   }
 
   /**
@@ -109,7 +109,7 @@ sealed class Adverb(
    */
   class Negative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvNeg
+    override val pos: POS = POS.AdvNeg
   }
 
   /**
@@ -117,7 +117,7 @@ sealed class Adverb(
    */
   class Phrase(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvPhras
+    override val pos: POS = POS.AdvPhras
   }
 
   /**
@@ -125,7 +125,7 @@ sealed class Adverb(
    */
   class Quantitative(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvQuant
+    override val pos: POS = POS.AdvQuant
   }
 
   /**
@@ -138,7 +138,7 @@ sealed class Adverb(
      */
     class Base(lemma: String, degree: Degree = Degree.Base) : Adverb.Strength(lemma, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdvStreng
+      override val pos: POS = POS.AdvStreng
     }
 
     /**
@@ -146,7 +146,7 @@ sealed class Adverb(
      */
     class Negative(lemma: String, degree: Degree = Degree.Base) : Adverb.Strength(lemma, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdvStrengNeg
+      override val pos: POS = POS.AdvStrengNeg
     }
   }
 
@@ -155,6 +155,6 @@ sealed class Adverb(
    */
   class Time(lemma: String, degree: Degree = Degree.Base) : Adverb(lemma, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdvTime
+    override val pos: POS = POS.AdvTime
   }
 }

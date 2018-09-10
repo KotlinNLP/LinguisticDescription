@@ -13,7 +13,7 @@ package com.kotlinnlp.linguisticdescription.morphology
  * @property annotation the string used to annotate this type
  * @property baseAnnotation the string used to annotate base label of this type
  */
-enum class MorphologyType(val annotation: String, val baseAnnotation: String) {
+enum class POS(val annotation: String, val baseAnnotation: String) {
 
   Adj("ADJ", "ADJ"),
   AdjCompar("ADJ-COMPAR", "ADJ"),

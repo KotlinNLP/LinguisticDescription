@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -40,7 +40,7 @@ sealed class Adjective(
                  degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.Adj
+    override val pos: POS = POS.Adj
   }
 
   /**
@@ -51,7 +51,7 @@ sealed class Adjective(
                     degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjCompar
+    override val pos: POS = POS.AdjCompar
   }
 
   /**
@@ -61,7 +61,7 @@ sealed class Adjective(
                     degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjDeict
+    override val pos: POS = POS.AdjDeict
   }
 
   /**
@@ -79,7 +79,7 @@ sealed class Adjective(
                degree: Degree = Degree.Base
     ) : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjDemons
+      override val pos: POS = POS.AdjDemons
     }
 
     /**
@@ -90,7 +90,7 @@ sealed class Adjective(
                      degree: Degree = Degree.Base
     ) : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjDemonsAntec
+      override val pos: POS = POS.AdjDemonsAntec
     }
 
     /**
@@ -101,7 +101,7 @@ sealed class Adjective(
                      degree: Degree = Degree.Base
     ) : Adjective.Demonstrative(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjDemonsSucc
+      override val pos: POS = POS.AdjDemonsSucc
     }
   }
 
@@ -113,7 +113,7 @@ sealed class Adjective(
                     degree: Degree = Degree.Base
   ) : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjExclam
+    override val pos: POS = POS.AdjExclam
   }
 
   /**
@@ -131,7 +131,7 @@ sealed class Adjective(
                degree: Degree = Degree.Base)
       : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjIndef
+      override val pos: POS = POS.AdjIndef
     }
 
     /**
@@ -142,7 +142,7 @@ sealed class Adjective(
                        degree: Degree = Degree.Base)
       : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjIndefDistr
+      override val pos: POS = POS.AdjIndefDistr
     }
 
     /**
@@ -153,7 +153,7 @@ sealed class Adjective(
                       degree: Degree = Degree.Base)
       : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjIndefQuant
+      override val pos: POS = POS.AdjIndefQuant
     }
 
     /**
@@ -164,7 +164,7 @@ sealed class Adjective(
                         degree: Degree = Degree.Base)
       : Adjective.Indefinite(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjIndefSubord
+      override val pos: POS = POS.AdjIndefSubord
     }
   }
 
@@ -176,7 +176,7 @@ sealed class Adjective(
                       degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjInterr
+    override val pos: POS = POS.AdjInterr
   }
 
   /**
@@ -187,7 +187,7 @@ sealed class Adjective(
                 degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjOrdin
+    override val pos: POS = POS.AdjOrdin
   }
 
   /**
@@ -198,7 +198,7 @@ sealed class Adjective(
                    degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjPoss
+    override val pos: POS = POS.AdjPoss
   }
 
   /**
@@ -216,7 +216,7 @@ sealed class Adjective(
                degree: Degree = Degree.Base)
       : Adjective.Qualifying(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjQualif
+      override val pos: POS = POS.AdjQualif
     }
 
     /**
@@ -227,7 +227,7 @@ sealed class Adjective(
                        degree: Degree = Degree.Base)
       : Adjective.Qualifying(lemma, gender, number, person, case, degree) {
 
-      override val type: MorphologyType = MorphologyType.AdjQualifPost
+      override val pos: POS = POS.AdjQualifPost
     }
   }
 
@@ -239,6 +239,6 @@ sealed class Adjective(
                  degree: Degree = Degree.Base)
     : Adjective(lemma, gender, number, person, case, degree) {
 
-    override val type: MorphologyType = MorphologyType.AdjRelat
+    override val pos: POS = POS.AdjRelat
   }
 }

@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
@@ -22,7 +22,7 @@ sealed class Postposition(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Base(lemma: String) : Postposition(lemma) {
 
-    override val type: MorphologyType = MorphologyType.Postpos
+    override val pos: POS = POS.Postpos
   }
 
   /**
@@ -30,6 +30,6 @@ sealed class Postposition(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Possessive(lemma: String) : Postposition(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PostposPoss
+    override val pos: POS = POS.PostposPoss
   }
 }

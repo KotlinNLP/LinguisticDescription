@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Conjunction
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
@@ -34,7 +34,7 @@ class MorphologyFactorySpec : Spek({
 
         val morpho = MorphologyFactory(
           lemma = "x",
-          type = MorphologyType.ArtIndef,
+          pos = POS.ArtIndef,
           properties = mapOf(
             "gender" to Gender.Masculine,
             "number" to Number.Singular,
@@ -72,7 +72,7 @@ class MorphologyFactorySpec : Spek({
 
             MorphologyFactory(
               lemma = "x",
-              type = MorphologyType.ArtIndef,
+              pos = POS.ArtIndef,
               properties = mapOf(
                 "number" to Number.Singular,
                 "case" to GrammaticalCase.Subject
@@ -87,7 +87,7 @@ class MorphologyFactorySpec : Spek({
 
           val morpho = MorphologyFactory(
             lemma = "x",
-            type = MorphologyType.ArtIndef,
+            pos = POS.ArtIndef,
             properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Subject),
             allowIncompleteProperties = true)
 
@@ -106,7 +106,7 @@ class MorphologyFactorySpec : Spek({
 
       on("factory of a Comparative Conjunction") {
 
-        val morpho = MorphologyFactory(lemma = "x", type = MorphologyType.ConjCompar)
+        val morpho = MorphologyFactory(lemma = "x", pos = POS.ConjCompar)
 
         it("should return a Morphology of the expected type") {
           assertTrue { morpho is Conjunction.Comparative }
@@ -123,7 +123,7 @@ class MorphologyFactorySpec : Spek({
 
         val morpho = MorphologyFactory(
           lemma = "x",
-          type = MorphologyType.ConjCompar,
+          pos = POS.ConjCompar,
           properties = mapOf(
             "gender" to Gender.Masculine,
             "number" to Number.Singular,
@@ -151,8 +151,8 @@ class MorphologyFactorySpec : Spek({
       on("factory of all possible Morphologies") {
 
         it("should create Morphologies of the expected type") {
-          assertTrue(MorphologyType.values().filterNot { it == MorphologyType.Num }.all {
-            MorphologyFactory(lemma = "x", type = it, properties = allProperties).type == it
+          assertTrue(POS.values().filterNot { it == POS.Num }.all {
+            MorphologyFactory(lemma = "x", pos = it, properties = allProperties).pos == it
           })
         }
       }
@@ -164,7 +164,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should raise an exception") {
           assertFailsWith<IllegalArgumentException> {
-            MorphologyFactory(lemma = "x", type = MorphologyType.Num, properties = mapOf())
+            MorphologyFactory(lemma = "x", pos = POS.Num, properties = mapOf())
           }
         }
       }

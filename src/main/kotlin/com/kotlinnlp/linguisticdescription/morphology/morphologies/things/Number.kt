@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
@@ -32,5 +32,5 @@ class Number(
   override val number: NumberProp = NumberProp.Undefined
 ) : SingleMorphology(lemma), Thing, Genderable, Numerable {
 
-  override val type: MorphologyType = MorphologyType.Num
+  override val pos: POS = POS.Num
 }

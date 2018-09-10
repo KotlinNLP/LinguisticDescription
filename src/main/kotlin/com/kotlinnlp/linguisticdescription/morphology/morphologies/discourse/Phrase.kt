@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 
 /**
@@ -22,7 +22,7 @@ sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
    */
   class Affirmative(lemma: String) : Phrase(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PhrasAff
+    override val pos: POS = POS.PhrasAff
   }
 
   /**
@@ -30,7 +30,7 @@ sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
    */
   class Exclamative(lemma: String) : Phrase(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PhrasExclam
+    override val pos: POS = POS.PhrasExclam
   }
 
   /**
@@ -38,7 +38,7 @@ sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
    */
   class Interrogative(lemma: String) : Phrase(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PhrasInterr
+    override val pos: POS = POS.PhrasInterr
   }
 
   /**
@@ -46,6 +46,6 @@ sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
    */
   class Negative(lemma: String) : Phrase(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PhrasNeg
+    override val pos: POS = POS.PhrasNeg
   }
 }

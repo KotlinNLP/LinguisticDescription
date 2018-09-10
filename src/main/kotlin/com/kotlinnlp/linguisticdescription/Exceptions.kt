@@ -7,35 +7,35 @@
 
 package com.kotlinnlp.linguisticdescription
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 
 /**
  * Raised when trying to create a Morphology without passing all required parameters.
  *
- * @param morphologyType the type of the morphology
+ * @param pos the POS
  * @param propertyName the name of the missing parameter
  * @param lemma the lemma of the morphology
  */
 class MissingMorphologyProperty(
-  morphologyType: MorphologyType,
+  pos: POS,
   propertyName: String,
   lemma: String
-) : RuntimeException("'%s' of %s '%s'".trimIndent().format(propertyName, morphologyType, lemma))
+) : RuntimeException("'%s' of %s '%s'".trimIndent().format(propertyName, pos, lemma))
 
 /**
- * Raised when trying to get a [MorphologyType] by invalid annotation.
+ * Raised when trying to get a [POS] by invalid annotation.
  *
- * @param typeAnnotation the annotation string of a [MorphologyType]
+ * @param annotation the annotation string of a [POS]
  */
-class InvalidMorphologyType(typeAnnotation: String) : RuntimeException(typeAnnotation)
+class InvalidPOS(annotation: String) : RuntimeException(annotation)
 
 /**
- * Raised when trying to get a [MorphologyProperty] by invalid type.
+ * Raised when trying to get a [MorphologyProperty] by invalid name.
  *
  * @param propertyType the type string of a [MorphologyProperty]
  */
-class InvalidMorphologyPropertyType(propertyType: String) : RuntimeException(propertyType)
+class InvalidMorphologyPropertyName(propertyType: String) : RuntimeException(propertyType)
 
 /**
  * Raised when trying to get a [MorphologyProperty] by invalid annotation.

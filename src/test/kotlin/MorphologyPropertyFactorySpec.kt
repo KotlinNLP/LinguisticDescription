@@ -8,7 +8,7 @@
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyType
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyName
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
@@ -26,19 +26,19 @@ class MorphologyPropertyFactorySpec : Spek({
 
     on("factory with correct parameters") {
 
-      val property = MorphologyPropertyFactory(propertyType = "gender", valueAnnotation = "M")
+      val property = MorphologyPropertyFactory(propertyName = "gender", valueAnnotation = "M")
 
       it("should return the expected MorphologyProperty") {
         assertEquals(Gender.Masculine, property)
       }
     }
 
-    on("factory with invalid property type") {
+    on("factory with invalid property name") {
 
-      it("should raise an InvalidMorphologyPropertyType") {
+      it("should raise an InvalidMorphologyPropertyName") {
 
-        assertFailsWith<InvalidMorphologyPropertyType> {
-          MorphologyPropertyFactory(propertyType = "invalid_type", valueAnnotation = "F")
+        assertFailsWith<InvalidMorphologyPropertyName> {
+          MorphologyPropertyFactory(propertyName = "invalid_name", valueAnnotation = "F")
         }
       }
     }
@@ -48,7 +48,7 @@ class MorphologyPropertyFactorySpec : Spek({
       it("should raise an InvalidMorphologyPropertyAnnotation") {
 
         assertFailsWith<InvalidMorphologyPropertyAnnotation> {
-          MorphologyPropertyFactory(propertyType = "gender", valueAnnotation = "T")
+          MorphologyPropertyFactory(propertyName = "gender", valueAnnotation = "T")
         }
       }
     }
@@ -67,9 +67,9 @@ class MorphologyPropertyFactorySpec : Spek({
 
       val allProperties = mutableListOf<Pair<String, String>>()
 
-      propertiesMap.forEach { propertyType, properties ->
+      propertiesMap.forEach { propertyName, properties ->
         properties.forEach { annotation, _ ->
-          allProperties.add(propertyType to annotation)
+          allProperties.add(propertyName to annotation)
         }
       }
 
@@ -77,7 +77,7 @@ class MorphologyPropertyFactorySpec : Spek({
 
         assertTrue {
           allProperties.all {
-            val property = MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
+            val property = MorphologyPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
             property == propertiesMap[it.first]!![it.second] !!
           }
         }

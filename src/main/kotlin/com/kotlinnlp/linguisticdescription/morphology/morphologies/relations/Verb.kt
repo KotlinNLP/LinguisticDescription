@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -43,7 +43,7 @@ sealed class Verb(
              number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
-    override val type = MorphologyType.Verb
+    override val pos = POS.Verb
   }
 
   /**
@@ -53,7 +53,7 @@ sealed class Verb(
                   number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
-    override val type = MorphologyType.VerbAux
+    override val pos = POS.VerbAux
   }
 
   /**
@@ -63,6 +63,6 @@ sealed class Verb(
               number: Number = Number.Undefined, person: Person = Person.Undefined)
     : Verb(lemma, mood, tense, gender, number, person) {
 
-    override val type = MorphologyType.VerbModal
+    override val pos = POS.VerbModal
   }
 }

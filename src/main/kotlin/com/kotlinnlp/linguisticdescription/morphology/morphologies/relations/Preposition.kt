@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.relations
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
@@ -28,7 +28,7 @@ sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Base(lemma: String) : Preposition(lemma) {
 
-    override val type: MorphologyType = MorphologyType.Prep
+    override val pos: POS = POS.Prep
   }
 
   /**
@@ -46,7 +46,7 @@ sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
     override val case: GrammaticalCase = GrammaticalCase.Undefined
   ) : Preposition(lemma), Genderable, Numerable, CaseDeclinable {
 
-    override val type: MorphologyType = MorphologyType.PrepArt
+    override val pos: POS = POS.PrepArt
   }
 
   /**
@@ -54,6 +54,6 @@ sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
    */
   class Possessive(lemma: String) : Preposition(lemma) {
 
-    override val type: MorphologyType = MorphologyType.PrepPoss
+    override val pos: POS = POS.PrepPoss
   }
 }
