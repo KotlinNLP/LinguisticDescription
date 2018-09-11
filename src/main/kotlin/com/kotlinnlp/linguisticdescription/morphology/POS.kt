@@ -149,4 +149,36 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
    * Whether this POS is a [Thing].
    */
   val isThing: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(Thing::class) }
+
+  /**
+   * Factory object.
+   */
+  companion object {
+
+    /**
+     * POS associated by base annotation.
+     */
+    private val basePOSMap: Map<String, POS> =
+      POS.values().filter { it.annotation == it.baseAnnotation }.associateBy { it.baseAnnotation }
+
+    /**
+     * POS associated by annotation.
+     */
+    private val posMap: Map<String, POS> =
+      POS.values().associateBy { it.annotation }
+
+    /**
+     * @param annotation a POS base annotation
+     *
+     * @return the base POS with the given annotation
+     */
+    fun byBaseAnnotation(annotation: String): POS = this.basePOSMap.getValue(annotation)
+
+    /**
+     * @param annotation a POS annotation
+     *
+     * @return the POS with the given annotation
+     */
+    fun byAnnotation(annotation: String): POS = this.posMap.getValue(annotation)
+  }
 }
