@@ -102,13 +102,13 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
    * Whether this Syntax Type is a [NominalModifier].
    */
   val isNominalModifier: Boolean by lazy {
-    sytnaxDependencyClasses.getValue(this).isSubclassOf(NominalModifier::class)
+    syntaxDependencyClasses.getValue(this).isSubclassOf(NominalModifier::class)
   }
 
   /**
    * Whether this Syntax Type is a [VerbalCoreArgument].
    */
   val isVerbalCoreArgument: Boolean by lazy {
-    sytnaxDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
+    syntaxDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
   }
 }
