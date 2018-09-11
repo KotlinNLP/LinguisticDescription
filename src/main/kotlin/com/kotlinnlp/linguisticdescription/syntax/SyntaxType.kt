@@ -61,23 +61,23 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   AuxPassive("AUX-PASSIVE", "AUX"),
   AuxProgressive("AUX-PASSIVE", "AUX"),
 
-  CoordAntec("COORD-ANTEC", "COORD"),
-  Coord2Nd("COORD2ND", "COORD2ND"),
-  Coord2NdAdvers("COORD2ND-ADVERS", "COORD2ND"),
-  Coord2NdCompar("COORD2ND-COMPAR", "COORD2ND"),
-  Coord2NdCorrelat("COORD2ND-CORRELAT", "COORD2ND"),
-  Coord2NdExplic("COORD2ND-EXPLIC", "COORD2ND"),
-  Coord2NdNeg("COORD2ND-NEG", "COORD2ND"),
-  Coord2NdSymmetric("COORD2ND-SYMMETRIC", "COORD2ND"),
+  Coord("COORD", "COORD"), // TODO: add related class
+  CoordAntec("COORD-ANTEC", "COORD"), // TODO: add related class
+  Coord2Nd("COORD2ND", "COORD2ND"), // TODO: add related class
+  Coord2NdAdvers("COORD2ND-ADVERS", "COORD2ND"), // TODO: add related class
+  Coord2NdCompar("COORD2ND-COMPAR", "COORD2ND"), // TODO: add related class
+  Coord2NdCorrelat("COORD2ND-CORRELAT", "COORD2ND"), // TODO: add related class
+  Coord2NdExplic("COORD2ND-EXPLIC", "COORD2ND"), // TODO: add related class
+  Coord2NdNeg("COORD2ND-NEG", "COORD2ND"), // TODO: add related class
+  Coord2NdSymmetric("COORD2ND-SYMMETRIC", "COORD2ND"), // TODO: add related class
 
   Parenthetical("PARENTHETICAL", "PARENTHETICAL"),
-  CloseParenthetical("CLOSE-PARENTHETICAL", "CLOSE"),
-  OpenParenthetical("OPEN-PARENTHETICAL", "OPEN"),
-  CloseQuotes("CLOSE-QUOTES", "CLOSE"),
-  OpenQuotes("OPEN-QUOTES", "OPEN"),
+  CloseParenthetical("CLOSE-PARENTHETICAL", "CLOSE"), // TODO: add related class
+  OpenParenthetical("OPEN-PARENTHETICAL", "OPEN"), // TODO: add related class
+  CloseQuotes("CLOSE-QUOTES", "CLOSE"), // TODO: add related class
+  OpenQuotes("OPEN-QUOTES", "OPEN"), // TODO: add related class
 
   Connector("CONN", "CONN"),
-  Coord("COORD", "COORD"),
 
   Contin("CONTIN", "CONTIN"),
   ContinDenom("CONTIN-DENOM", "CONTIN"),
