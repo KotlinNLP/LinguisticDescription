@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription.syntax
 
+import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
+
 /**
  * The base interface implemented by all the syntax dependencies.
  */
@@ -20,6 +23,29 @@ interface SyntaxDependency<T> {
     LEFT,
     RIGHT,
     NULL
+  }
+
+  /**
+   * Factory object.
+   */
+  companion object {
+
+    /**
+     * Create a new [SyntaxDependency] given its [SyntaxType].
+     *
+     * @param type the syntax type
+     * @param direction the direction of the dependency
+     *
+     * @return a new syntax dependency
+     */
+    operator fun invoke(type: SyntaxType, direction: SyntaxDependency.Direction): SyntaxDependency<SyntaxType> {
+
+      val kClass: KClass<*> = syntaxDependencyClasses.getValue(type)
+      val constructor: KFunction<Any> = kClass.constructors.last()
+
+      @Suppress("UNCHECKED_CAST")
+      return constructor.call(direction) as SyntaxDependency<SyntaxType>
+    }
   }
 
   /**
