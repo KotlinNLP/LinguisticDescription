@@ -6,7 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.morphology.POS
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Conjunction
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -24,15 +24,15 @@ import kotlin.test.assertTrue
 /**
  *
  */
-class MorphologyFactorySpec : Spek({
+class SingleMorphologySpec : Spek({
 
-  describe("a MorphologyFactory") {
+  describe("a SingleMorphology") {
 
     context("Morphology with properties") {
 
       on("factory of an Indefinite Article with Masculine gender, Singular number and Subject case") {
 
-        val morpho = MorphologyFactory(
+        val morpho = SingleMorphology(
           lemma = "x",
           pos = POS.ArtIndef,
           properties = mapOf(
@@ -70,7 +70,7 @@ class MorphologyFactorySpec : Spek({
 
           assertFailsWith<MissingMorphologyProperty> {
 
-            MorphologyFactory(
+            SingleMorphology(
               lemma = "x",
               pos = POS.ArtIndef,
               properties = mapOf(
@@ -85,7 +85,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should build the expected morphology") {
 
-          val morpho = MorphologyFactory(
+          val morpho = SingleMorphology(
             lemma = "x",
             pos = POS.ArtIndef,
             properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Subject),
@@ -106,7 +106,7 @@ class MorphologyFactorySpec : Spek({
 
       on("factory of a Comparative Conjunction") {
 
-        val morpho = MorphologyFactory(lemma = "x", pos = POS.ConjCompar)
+        val morpho = SingleMorphology(lemma = "x", pos = POS.ConjCompar)
 
         it("should return a Morphology of the expected type") {
           assertTrue { morpho is Conjunction.Comparative }
@@ -121,7 +121,7 @@ class MorphologyFactorySpec : Spek({
 
       on("factory of a Comparative Conjunction with extra unnecessary properties") {
 
-        val morpho = MorphologyFactory(
+        val morpho = SingleMorphology(
           lemma = "x",
           pos = POS.ConjCompar,
           properties = mapOf(
@@ -152,7 +152,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should create Morphologies of the expected type") {
           assertTrue(POS.values().filterNot { it == POS.Num }.all {
-            MorphologyFactory(lemma = "x", pos = it, properties = allProperties).pos == it
+            SingleMorphology(lemma = "x", pos = it, properties = allProperties).pos == it
           })
         }
       }
@@ -164,7 +164,7 @@ class MorphologyFactorySpec : Spek({
 
         it("should raise an exception") {
           assertFailsWith<IllegalArgumentException> {
-            MorphologyFactory(lemma = "x", pos = POS.Num, properties = mapOf())
+            SingleMorphology(lemma = "x", pos = POS.Num, properties = mapOf())
           }
         }
       }
