@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 /**
  * The map of POS to the related morphology k-classes.
  */
-val morphologyClasses = mapOf<POS, KClass<*>>(
+internal val morphologyClasses = mapOf<POS, KClass<*>>(
 
   POS.Adj to Adjective.Base::class,
   POS.AdjCompar to Adjective.Comparative::class,
