@@ -7,6 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Discourse
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Relation
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Thing
+import kotlin.reflect.full.isSubclassOf
+
 /**
  * The Part-Of-Speech.
  *
@@ -122,5 +128,25 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   Date("DATE", "DATE"),
   Hour("HOUR", "HOUR"),
   Num("NUM", "NUM"),
-  Predet("PREDET", "PREDET")
+  Predet("PREDET", "PREDET");
+
+  /**
+   * Whether this POS is a [ContentWord].
+   */
+  val isContentWord: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(ContentWord::class) }
+
+  /**
+   * Whether this POS is a [Discourse].
+   */
+  val isDiscourse: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(Discourse::class) }
+
+  /**
+   * Whether this POS is a [Relation].
+   */
+  val isRelation: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(Relation::class) }
+
+  /**
+   * Whether this POS is a [Thing].
+   */
+  val isThing: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(Thing::class) }
 }
