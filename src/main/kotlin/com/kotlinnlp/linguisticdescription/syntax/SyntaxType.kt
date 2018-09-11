@@ -7,6 +7,10 @@
 
 package com.kotlinnlp.linguisticdescription.syntax
 
+import com.kotlinnlp.linguisticdescription.syntax.dependencies.NominalModifier
+import com.kotlinnlp.linguisticdescription.syntax.dependencies.VerbalCoreArgument
+import kotlin.reflect.full.isSubclassOf
+
 /**
  * The type of a syntactic relation.
  *
@@ -92,5 +96,19 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   Interj("INTERJ", "INTERJ"),
 
   Unknown("UNKNOWN", "UNKNOWN"),
-  Wrong("WRONG", "WRONG")
+  Wrong("WRONG", "WRONG");
+
+  /**
+   * Whether this Syntax Type is a [NominalModifier].
+   */
+  val isNominalModifier: Boolean by lazy {
+    sytnaxDependencyClasses.getValue(this).isSubclassOf(NominalModifier::class)
+  }
+
+  /**
+   * Whether this Syntax Type is a [VerbalCoreArgument].
+   */
+  val isVerbalCoreArgument: Boolean by lazy {
+    sytnaxDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
+  }
 }
