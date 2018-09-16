@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
@@ -28,7 +28,7 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   /**
    * The dependency relation with its governor.
    */
-  override val dependencyRelation: DependencyRelation get() = this._dependencyRelation
+  override val syntacticRelation: SyntacticRelation get() = this._syntacticRelation
 
   /**
    * The list of co-references (can be null).
@@ -48,9 +48,9 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   internal val _morphologies: MutableList<ScoredMorphology> = mutableListOf()
 
   /**
-   * The variable dependency relation with the governor.
+   * The variable syntactic relation with the governor.
    */
-  internal lateinit var _dependencyRelation: DependencyRelation
+  internal lateinit var _syntacticRelation: SyntacticRelation
 
   /**
    * The mutable list of co-references.
@@ -81,12 +81,12 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   }
 
   /**
-   * Update the [dependencyRelation] replacing it with a given one.
+   * Update the [syntacticRelation] replacing it with a given one.
    *
-   * @param dependencyRelation the dependency relation with which to replace the current one
+   * @param syntacticRelation the syntactic relation with which to replace the current one
    */
-  fun updateDependencyRelation(dependencyRelation: DependencyRelation) {
-    this._dependencyRelation = dependencyRelation
+  fun updateSyntacticRelation(syntacticRelation: SyntacticRelation) {
+    this._syntacticRelation = syntacticRelation
   }
 
   /**

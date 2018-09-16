@@ -32,7 +32,7 @@ open class Word(
      * @param form the form of the token
      * @param position the position of the token
      * @param morphologies the list of scored morphologies, sorted by descending score
-     * @param dependencyRelation the dependency relation with the governor
+     * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
      * @param semanticRelations the list of semantic relations (can be null)
      *
@@ -43,7 +43,7 @@ open class Word(
       form: String,
       position: Position,
       morphologies: List<ScoredMorphology>,
-      dependencyRelation: DependencyRelation,
+      syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
       semanticRelations: List<SemanticRelation>?
     ): Word {
@@ -51,7 +51,7 @@ open class Word(
       val token = Word(id = id, form = form, position = position)
 
       token._morphologies.addAll(morphologies)
-      token._dependencyRelation = dependencyRelation
+      token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }
       semanticRelations?.let { token._semanticRelations = it.toMutableList() }
 
@@ -77,7 +77,7 @@ open class Word(
     this.id,
     this.form,
     this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.pos.annotation  } },
-    this.dependencyRelation,
+    this.syntacticRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"
   )

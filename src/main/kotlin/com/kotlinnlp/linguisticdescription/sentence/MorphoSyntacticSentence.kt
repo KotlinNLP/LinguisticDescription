@@ -146,7 +146,7 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
    * @return a list of dependents tokens
    */
   fun getDependents(governorId: Int): List<MutableMorphoSyntacticToken> = this.tokens.filter {
-    it.dependencyRelation.governor == governorId
+    it.syntacticRelation.governor == governorId
   }
 
   /**

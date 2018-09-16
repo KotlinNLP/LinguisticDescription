@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
@@ -17,9 +17,9 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 interface SyntacticToken : TokenIdentificable {
 
   /**
-   * The dependency relation with its governor.
+   * The syntactic relation with its governor.
    */
-  val dependencyRelation: DependencyRelation
+  val syntacticRelation: SyntacticRelation
 
   /**
    * The list of co-references (can be null).

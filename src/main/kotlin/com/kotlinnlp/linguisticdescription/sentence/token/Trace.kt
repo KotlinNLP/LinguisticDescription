@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.DependencyRelation
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
 
 /**
@@ -26,7 +26,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
      *
      * @param id the id of the token, unique within its sentence
      * @param morphologies the list of scored morphologies, sorted by descending score
-     * @param dependencyRelation the dependency relation with the governor
+     * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
      * @param semanticRelations the list of semantic relations (can be null)
      *
@@ -35,7 +35,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
     operator fun invoke(
       id: Int,
       morphologies: List<ScoredMorphology>,
-      dependencyRelation: DependencyRelation,
+      syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
       semanticRelations: List<SemanticRelation>?
     ): Trace {
@@ -43,7 +43,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
       val token = Trace(id)
 
       token._morphologies.addAll(morphologies)
-      token._dependencyRelation = dependencyRelation
+      token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }
       semanticRelations?.let { token._semanticRelations = it.toMutableList() }
 
@@ -66,7 +66,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
         semantic relations: %s
   """.trimIndent().format(
     this.id,
-    this.dependencyRelation,
+    this.syntacticRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"
   )
