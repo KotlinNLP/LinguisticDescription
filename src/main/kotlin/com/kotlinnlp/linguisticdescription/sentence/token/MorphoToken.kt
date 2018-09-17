@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
@@ -15,7 +16,12 @@ import com.kotlinnlp.linguisticdescription.morphology.Morphology
 interface MorphoToken : Token {
 
   /**
-   * The list of possible morphologies of the token.
+   * The list of possible morphologies of the token (can be empty).
    */
   val morphologies: List<Morphology>
+
+  /**
+   * The Part-Of-Speech (can be null).
+   */
+  val pos: POSTag?
 }

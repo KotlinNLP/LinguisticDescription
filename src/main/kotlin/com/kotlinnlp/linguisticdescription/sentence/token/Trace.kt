@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
@@ -25,6 +26,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
      * Build a [Trace] with the given properties already assigned.
      *
      * @param id the id of the token, unique within its sentence
+     * @param pos the Part-Of-Speech
      * @param morphologies the list of scored morphologies, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
@@ -34,6 +36,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
      */
     operator fun invoke(
       id: Int,
+      pos: POSTag?,
       morphologies: List<ScoredMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
@@ -42,6 +45,7 @@ data class Trace(override val id: Int) : MutableMorphoSyntacticToken(id) {
 
       val token = Trace(id)
 
+      token._pos = pos
       token._morphologies.addAll(morphologies)
       token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }

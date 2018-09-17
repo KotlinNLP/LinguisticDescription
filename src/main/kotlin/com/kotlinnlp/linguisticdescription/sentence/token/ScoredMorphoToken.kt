@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 
 /**
@@ -15,7 +16,12 @@ import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 interface ScoredMorphoToken : Token {
 
   /**
-   * The list of possible scored morphologies, sorted by descending score.
+   * The list of possible scored morphologies, sorted by descending score (can be empty).
    */
   val morphologies: List<ScoredMorphology>
+
+  /**
+   * The Part-Of-Speech (can be null).
+   */
+  val pos: POSTag?
 }

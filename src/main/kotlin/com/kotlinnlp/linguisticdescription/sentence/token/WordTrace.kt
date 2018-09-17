@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
@@ -30,6 +31,7 @@ data class WordTrace(
      *
      * @param id the id of the token, unique within its sentence
      * @param form the form of the token
+     * @param pos the Part-Of-Speech
      * @param morphologies the list of scored morphologies, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
@@ -40,6 +42,7 @@ data class WordTrace(
     operator fun invoke(
       id: Int,
       form: String,
+      pos: POSTag?,
       morphologies: List<ScoredMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
@@ -48,6 +51,7 @@ data class WordTrace(
 
       val token = WordTrace(id = id, form = form)
 
+      token._pos = pos
       token._morphologies.addAll(morphologies)
       token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }

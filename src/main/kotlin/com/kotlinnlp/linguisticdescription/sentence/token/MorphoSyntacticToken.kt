@@ -32,6 +32,7 @@ interface MorphoSyntacticToken : ScoredMorphoToken, SyntacticToken {
       obj(
         "id" to self.id,
         "type" to self.type,
+        "pos" to self.pos?.labels?.joinToString("+"),
         "dependency" to self.syntacticRelation.toJSON(),
         "coReferences" to self.coReferences?.let { array(it.map { it.toJSON() }) },
         "semanticRelations" to self.semanticRelations?.let { array(it.map { it.toString() }) },

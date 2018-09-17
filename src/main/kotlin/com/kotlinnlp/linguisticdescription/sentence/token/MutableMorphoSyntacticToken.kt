@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
@@ -19,6 +20,11 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  */
 @Suppress("PropertyName")
 abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntacticToken {
+
+  /**
+   * The Part-Of-Speech.
+   */
+  override val pos: POSTag? get() = this._pos
 
   /**
    * The list of scored morphologies, sorted by descending score.
@@ -43,6 +49,11 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
     if (this::_semanticRelations.isInitialized) this._semanticRelations else null
 
   /**
+   * The variable Part-Of-Speech.
+   */
+  internal var _pos: POSTag? = null
+
+  /**
    * The mutable list of scored morphologies, sorted by descending score.
    */
   internal val _morphologies: MutableList<ScoredMorphology> = mutableListOf()
@@ -61,6 +72,15 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
    * The mutable list of semantic relations.
    */
   internal lateinit var _semanticRelations: MutableList<SemanticRelation>
+
+  /**
+   * Update the [pos] replacing it with a given one.
+   *
+   * @param pos the POS with which to replace the current one
+   */
+  fun updatePOS(pos: POSTag) {
+    this._pos = pos
+  }
 
   /**
    * Add a new morphology.

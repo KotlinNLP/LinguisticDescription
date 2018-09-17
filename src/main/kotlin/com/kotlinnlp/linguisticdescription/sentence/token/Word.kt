@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
@@ -31,6 +32,7 @@ open class Word(
      * @param id the id of the token, unique within its sentence
      * @param form the form of the token
      * @param position the position of the token
+     * @param pos the Part-Of-Speech
      * @param morphologies the list of scored morphologies, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
@@ -42,6 +44,7 @@ open class Word(
       id: Int,
       form: String,
       position: Position,
+      pos: POSTag?,
       morphologies: List<ScoredMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
@@ -50,6 +53,7 @@ open class Word(
 
       val token = Word(id = id, form = form, position = position)
 
+      token._pos = pos
       token._morphologies.addAll(morphologies)
       token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }
