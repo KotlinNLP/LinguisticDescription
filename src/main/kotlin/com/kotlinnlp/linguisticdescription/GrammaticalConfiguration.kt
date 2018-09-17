@@ -10,12 +10,12 @@ package com.kotlinnlp.linguisticdescription
 import java.io.Serializable
 
 /**
- * A dependency relation composed by a POS tag and a deprel.
+ * The grammatical configuration of a token, defined by a POS and a syntax type.
  *
  * @property posTag the POS tag (can be null)
  * @property deprel the deprel
  */
-data class DependencyRelation(val posTag: POSTag? = null, val deprel: Deprel) : Serializable {
+data class GrammaticalConfiguration(val posTag: POSTag? = null, val deprel: Deprel) : Serializable {
 
   companion object {
 
