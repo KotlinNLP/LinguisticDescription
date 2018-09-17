@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
 /**
- *
+ * A nominal modifier.
  */
 interface NominalModifier

@@ -8,6 +8,6 @@
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
 /**
- *
+ * A verbal core argument.
  */
 interface VerbalCoreArgument
