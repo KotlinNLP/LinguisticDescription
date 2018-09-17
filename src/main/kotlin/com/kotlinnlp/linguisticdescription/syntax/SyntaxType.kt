@@ -111,4 +111,47 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   val isVerbalCoreArgument: Boolean by lazy {
     syntaxDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
   }
+
+  /**
+   * Factory object.
+   */
+  companion object {
+
+    /**
+     * Raised when trying to build a [SyntaxType] through an invalid annotation.
+     */
+    class InvalidAnnotation(annotation: String) : RuntimeException(annotation)
+
+    /**
+     * Syntax types associated by base annotation.
+     */
+    private val baseTypesMap: Map<String, SyntaxType> =
+      SyntaxType.values().filter { it.annotation == it.baseAnnotation }.associateBy { it.baseAnnotation }
+
+    /**
+     * Syntax types associated by annotation.
+     */
+    private val typeMap: Map<String, SyntaxType> =
+      SyntaxType.values().associateBy { it.annotation }
+
+    /**
+     * @param annotation a syntax type base annotation
+     *
+     * @throws InvalidAnnotation when the annotation is not valid
+     *
+     * @return the base syntax type with the given annotation
+     */
+    fun byBaseAnnotation(annotation: String): SyntaxType =
+      this.baseTypesMap[annotation] ?: throw InvalidAnnotation(annotation)
+
+    /**
+     * @param annotation a syntax type annotation
+     *
+     * @throws InvalidAnnotation when the annotation is not valid
+     *
+     * @return the syntax type with the given annotation
+     */
+    fun byAnnotation(annotation: String): SyntaxType =
+      this.typeMap[annotation] ?: throw InvalidAnnotation(annotation)
+  }
 }
