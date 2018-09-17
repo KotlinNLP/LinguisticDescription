@@ -7,58 +7,58 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'subject' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Subject(override val direction: SyntaxDependency.Direction)
-  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
+sealed class Subject(override val direction: SyntacticDependency.Direction)
+  : SyntacticDependency<SyntacticType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base(direction: SyntaxDependency.Direction) : Subject(direction) {
+  class Base(direction: SyntacticDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.Subject
+    override val type: SyntacticType = SyntacticType.Subject
   }
 
   /**
    *
    */
-  class Passive(direction: SyntaxDependency.Direction) : Subject(direction) {
+  class Passive(direction: SyntacticDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.PassiveSubject
+    override val type: SyntacticType = SyntacticType.PassiveSubject
   }
 
   /**
    *
    */
-  class Interrogative(direction: SyntaxDependency.Direction) : Subject(direction) {
+  class Interrogative(direction: SyntacticDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.InterrogativeSubject
+    override val type: SyntacticType = SyntacticType.InterrogativeSubject
   }
 
   /**
    *
    */
-  class Extra(direction: SyntaxDependency.Direction) : Subject(direction) {
+  class Extra(direction: SyntacticDependency.Direction) : Subject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.ExtraSubject
+    override val type: SyntacticType = SyntacticType.ExtraSubject
   }
 }

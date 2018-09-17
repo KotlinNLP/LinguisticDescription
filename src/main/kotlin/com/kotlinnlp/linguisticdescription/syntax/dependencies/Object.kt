@@ -7,47 +7,47 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'object' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Object(override val direction: SyntaxDependency.Direction)
-  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
+sealed class Object(override val direction: SyntacticDependency.Direction)
+  : SyntacticDependency<SyntacticType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base(direction: SyntaxDependency.Direction) : Object(direction) {
+  class Base(direction: SyntacticDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.Object
+    override val type: SyntacticType = SyntacticType.Object
   }
 
   /**
    *
    */
-  class Interrogative(direction: SyntaxDependency.Direction) : Object(direction) {
+  class Interrogative(direction: SyntacticDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.InterrogativeObject
+    override val type: SyntacticType = SyntacticType.InterrogativeObject
   }
 
   /**
    *
    */
-  class Extra(direction: SyntaxDependency.Direction) : Object(direction) {
+  class Extra(direction: SyntacticDependency.Direction) : Object(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.ExtraObject
+    override val type: SyntacticType = SyntacticType.ExtraObject
   }
 }

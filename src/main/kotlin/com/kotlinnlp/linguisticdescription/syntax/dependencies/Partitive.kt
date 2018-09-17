@@ -7,18 +7,18 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'partitive' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-class Partitive(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
+class Partitive(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
 
   /**
    * The type associated to this dependency.
    */
-  override val type: SyntaxType = SyntaxType.Partitive
+  override val type: SyntacticType = SyntacticType.Partitive
 }

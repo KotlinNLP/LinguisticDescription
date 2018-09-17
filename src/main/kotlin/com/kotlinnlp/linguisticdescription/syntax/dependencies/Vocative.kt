@@ -7,18 +7,18 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'vocative' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-class Vocative(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
+class Vocative(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
 
   /**
    * The type associated to this dependency.
    */
-  override val type: SyntaxType = SyntaxType.Vocative
+  override val type: SyntacticType = SyntacticType.Vocative
 }

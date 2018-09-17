@@ -17,7 +17,7 @@ import kotlin.reflect.full.isSubclassOf
  * @property annotation the string used to annotate this type
  * @property baseAnnotation the string used to annotate base label of this type
  */
-enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
+enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
 
   Top("TOP", "TOP"),
   Initiator("INITIATOR", "INITIATOR"),
@@ -102,14 +102,14 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
    * Whether this Syntax Type is a [NominalModifier].
    */
   val isNominalModifier: Boolean by lazy {
-    syntaxDependencyClasses.getValue(this).isSubclassOf(NominalModifier::class)
+    syntacticDependencyClasses.getValue(this).isSubclassOf(NominalModifier::class)
   }
 
   /**
    * Whether this Syntax Type is a [VerbalCoreArgument].
    */
   val isVerbalCoreArgument: Boolean by lazy {
-    syntaxDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
+    syntacticDependencyClasses.getValue(this).isSubclassOf(VerbalCoreArgument::class)
   }
 
   /**
@@ -118,40 +118,40 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   companion object Factory {
 
     /**
-     * Raised when trying to build a [SyntaxType] through an invalid annotation.
+     * Raised when trying to build a [SyntacticType] through an invalid annotation.
      */
     class InvalidAnnotation(annotation: String) : RuntimeException(annotation)
 
     /**
-     * Syntax types associated by base annotation.
+     * Syntactic types associated by base annotation.
      */
-    private val baseTypesMap: Map<String, SyntaxType> =
-      SyntaxType.values().filter { it.annotation == it.baseAnnotation }.associateBy { it.baseAnnotation }
+    private val baseTypesMap: Map<String, SyntacticType> =
+      SyntacticType.values().filter { it.annotation == it.baseAnnotation }.associateBy { it.baseAnnotation }
 
     /**
-     * Syntax types associated by annotation.
+     * Syntactic types associated by annotation.
      */
-    private val typeMap: Map<String, SyntaxType> =
-      SyntaxType.values().associateBy { it.annotation }
+    private val typeMap: Map<String, SyntacticType> =
+      SyntacticType.values().associateBy { it.annotation }
 
     /**
-     * @param annotation a syntax type base annotation
+     * @param annotation a syntactic type base annotation
      *
      * @throws InvalidAnnotation when the annotation is not valid
      *
-     * @return the base syntax type with the given annotation
+     * @return the base syntactic type with the given annotation
      */
-    fun byBaseAnnotation(annotation: String): SyntaxType =
+    fun byBaseAnnotation(annotation: String): SyntacticType =
       this.baseTypesMap[annotation] ?: throw InvalidAnnotation(annotation)
 
     /**
-     * @param annotation a syntax type annotation
+     * @param annotation a syntactic type annotation
      *
      * @throws InvalidAnnotation when the annotation is not valid
      *
-     * @return the syntax type with the given annotation
+     * @return the syntactic type with the given annotation
      */
-    fun byAnnotation(annotation: String): SyntaxType =
+    fun byAnnotation(annotation: String): SyntacticType =
       this.typeMap[annotation] ?: throw InvalidAnnotation(annotation)
   }
 }

@@ -9,12 +9,12 @@ package com.kotlinnlp.linguisticdescription.syntax
 
 
 /**
- * The syntax dependency with a string type.
+ * The syntactic dependency with a string type.
  *
  * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-data class SyntaxDependencyString(
+data class SyntacticDependencyString(
   override val type: String,
-  override val direction: SyntaxDependency.Direction
-) : SyntaxDependency<String>
+  override val direction: SyntacticDependency.Direction
+) : SyntacticDependency<String>

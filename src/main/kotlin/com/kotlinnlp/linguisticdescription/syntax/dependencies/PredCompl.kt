@@ -7,92 +7,92 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'predicative complement' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class PredCompl(override val direction: SyntaxDependency.Direction)
-  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
+sealed class PredCompl(override val direction: SyntacticDependency.Direction)
+  : SyntacticDependency<SyntacticType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base(direction: SyntaxDependency.Direction) : PredCompl(direction) {
+  class Base(direction: SyntacticDependency.Direction) : PredCompl(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.PredCompl
+    override val type: SyntacticType = SyntacticType.PredCompl
   }
 
   /**
    *
    */
-  class Interrogative(direction: SyntaxDependency.Direction) : PredCompl(direction) {
+  class Interrogative(direction: SyntacticDependency.Direction) : PredCompl(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.PredComplInterr
+    override val type: SyntacticType = SyntacticType.PredComplInterr
   }
 
   /**
    *
    */
-  sealed class Subj(direction: SyntaxDependency.Direction) : PredCompl(direction) {
+  sealed class Subj(direction: SyntacticDependency.Direction) : PredCompl(direction) {
 
     /**
      *
      */
-    class Base(direction: SyntaxDependency.Direction) : Subj(direction) {
+    class Base(direction: SyntacticDependency.Direction) : Subj(direction) {
 
       /**
        * The type associated to this dependency.
        */
-      override val type: SyntaxType = SyntaxType.PredComplSubj
+      override val type: SyntacticType = SyntacticType.PredComplSubj
     }
 
     /**
      *
      */
-    class Interrogative(direction: SyntaxDependency.Direction) : Subj(direction) {
+    class Interrogative(direction: SyntacticDependency.Direction) : Subj(direction) {
 
       /**
        * The type associated to this dependency.
        */
-      override val type: SyntaxType = SyntaxType.PredComplSubjInterr
+      override val type: SyntacticType = SyntacticType.PredComplSubjInterr
     }
   }
 
   /**
    *
    */
-  sealed class Obj(direction: SyntaxDependency.Direction) : PredCompl(direction) {
+  sealed class Obj(direction: SyntacticDependency.Direction) : PredCompl(direction) {
 
     /**
      *
      */
-    class Base(direction: SyntaxDependency.Direction) : Obj(direction) {
+    class Base(direction: SyntacticDependency.Direction) : Obj(direction) {
 
       /**
        * The type associated to this dependency.
        */
-      override val type: SyntaxType = SyntaxType.PredComplObj
+      override val type: SyntacticType = SyntacticType.PredComplObj
     }
 
     /**
      *
      */
-    class Interrogative(direction: SyntaxDependency.Direction) : Obj(direction) {
+    class Interrogative(direction: SyntacticDependency.Direction) : Obj(direction) {
 
       /**
        * The type associated to this dependency.
        */
-      override val type: SyntaxType = SyntaxType.PredComplObjInterr
+      override val type: SyntacticType = SyntacticType.PredComplObjInterr
     }
   }
 }

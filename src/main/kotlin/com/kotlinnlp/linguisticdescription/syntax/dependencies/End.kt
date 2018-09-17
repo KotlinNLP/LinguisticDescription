@@ -7,46 +7,46 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'auxiliary' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class End(override val direction: SyntaxDependency.Direction) : SyntaxDependency<SyntaxType> {
+sealed class End(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
 
   /**
    *
    */
-  class Assertive(direction: SyntaxDependency.Direction) : End(direction) {
+  class Assertive(direction: SyntacticDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.EndAssertive
+    override val type: SyntacticType = SyntacticType.EndAssertive
   }
 
   /**
    *
    */
-  class Interrogative(direction: SyntaxDependency.Direction) : End(direction) {
+  class Interrogative(direction: SyntacticDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.EndInterrogative
+    override val type: SyntacticType = SyntacticType.EndInterrogative
   }
 
   /**
    *
    */
-  class Imperative(direction: SyntaxDependency.Direction) : End(direction) {
+  class Imperative(direction: SyntacticDependency.Direction) : End(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.EndImperative
+    override val type: SyntacticType = SyntacticType.EndImperative
   }
 }

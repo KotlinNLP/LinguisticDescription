@@ -7,36 +7,36 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'indirect object' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class IndirectObject(override val direction: SyntaxDependency.Direction)
-  : SyntaxDependency<SyntaxType>, VerbalCoreArgument {
+sealed class IndirectObject(override val direction: SyntacticDependency.Direction)
+  : SyntacticDependency<SyntacticType>, VerbalCoreArgument {
 
   /**
    *
    */
-  class Base(direction: SyntaxDependency.Direction) : IndirectObject(direction) {
+  class Base(direction: SyntacticDependency.Direction) : IndirectObject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.IndirectObject
+    override val type: SyntacticType = SyntacticType.IndirectObject
   }
 
   /**
    *
    */
-  class Interrogative(direction: SyntaxDependency.Direction) : IndirectObject(direction) {
+  class Interrogative(direction: SyntacticDependency.Direction) : IndirectObject(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.InterrogativeIndirectObject
+    override val type: SyntacticType = SyntacticType.InterrogativeIndirectObject
   }
 }

@@ -7,36 +7,36 @@
 
 package com.kotlinnlp.linguisticdescription.syntax.dependencies
 
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxDependency
-import com.kotlinnlp.linguisticdescription.syntax.SyntaxType
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
  * The 'indirect object' dependency.
  *
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class RelativeClause(override val direction: SyntaxDependency.Direction)
-  : SyntaxDependency<SyntaxType>, NominalModifier {
+sealed class RelativeClause(override val direction: SyntacticDependency.Direction)
+  : SyntacticDependency<SyntacticType>, NominalModifier {
 
   /**
    *
    */
-  class Base(direction: SyntaxDependency.Direction) : RelativeClause(direction) {
+  class Base(direction: SyntacticDependency.Direction) : RelativeClause(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.RelativeClause
+    override val type: SyntacticType = SyntacticType.RelativeClause
   }
 
   /**
    *
    */
-  class Reduced(direction: SyntaxDependency.Direction) : RelativeClause(direction) {
+  class Reduced(direction: SyntacticDependency.Direction) : RelativeClause(direction) {
 
     /**
      * The type associated to this dependency.
      */
-    override val type: SyntaxType = SyntaxType.ReducedRelativeClause
+    override val type: SyntacticType = SyntacticType.ReducedRelativeClause
   }
 }

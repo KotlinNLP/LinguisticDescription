@@ -11,9 +11,9 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
 /**
- * The base interface implemented by all the syntax dependencies.
+ * The base interface implemented by all the syntactic dependencies.
  */
-interface SyntaxDependency<T> {
+interface SyntacticDependency<T> {
 
   /**
    * The direction of the dependency.
@@ -31,20 +31,20 @@ interface SyntaxDependency<T> {
   companion object {
 
     /**
-     * Create a new [SyntaxDependency] given its [SyntaxType].
+     * Create a new [SyntacticDependency] given its [SyntacticType].
      *
-     * @param type the syntax type
+     * @param type the syntactic type
      * @param direction the direction of the dependency
      *
-     * @return a new syntax dependency
+     * @return a new syntactic dependency
      */
-    operator fun invoke(type: SyntaxType, direction: SyntaxDependency.Direction): SyntaxDependency<SyntaxType> {
+    operator fun invoke(type: SyntacticType, direction: SyntacticDependency.Direction): SyntacticDependency<SyntacticType> {
 
-      val kClass: KClass<*> = syntaxDependencyClasses.getValue(type)
+      val kClass: KClass<*> = syntacticDependencyClasses.getValue(type)
       val constructor: KFunction<Any> = kClass.constructors.last()
 
       @Suppress("UNCHECKED_CAST")
-      return constructor.call(direction) as SyntaxDependency<SyntaxType>
+      return constructor.call(direction) as SyntacticDependency<SyntacticType>
     }
   }
 
