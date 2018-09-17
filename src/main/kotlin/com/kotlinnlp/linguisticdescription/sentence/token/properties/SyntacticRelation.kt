@@ -25,7 +25,7 @@ data class SyntacticRelation(
 ) {
 
   /**
-   * @return a string representation of this head
+   * @return a string representation of this syntactic relation
    */
   override fun toString(): String = "%s %s (%.2f%)".format(
     this.governor?.toString() ?: "R",
@@ -33,7 +33,7 @@ data class SyntacticRelation(
     this.attachmentScore)
 
   /**
-   * @return the JSON object that represents this dependency relation
+   * @return the JSON object that represents this syntactic relation
    */
   fun toJSON(): JsonObject = json {
 

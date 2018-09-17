@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property form the form of the token
  * @property position the position of the token
  * @property morphologies the list of scored morphologies, sorted by descending score
- * @property syntacticRelation the dependency relation with its governor
+ * @property syntacticRelation the syntactic relation
  * @property coReferences the list of co-references (can be null)
  * @property semanticRelations the list of semantic relations (can be null)
  * @property components the list of tokens that compose this word

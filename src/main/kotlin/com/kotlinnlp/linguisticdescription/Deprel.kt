@@ -12,7 +12,7 @@ import java.io.Serializable
 /**
  * The Deprel.
  *
- * @property labels the labels of the dependency relation (more for a composite word)
+ * @property labels the labels of the syntactic relation (more for a composite word)
  * @property direction the direction in a possible syntactic context for which this deprel is valid
  */
 data class Deprel(val labels: List<String>, val direction: Direction = Direction.NULL) : Serializable {

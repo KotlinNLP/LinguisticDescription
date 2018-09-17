@@ -32,7 +32,7 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   override val morphologies: List<ScoredMorphology> get() = this._morphologies
 
   /**
-   * The dependency relation with its governor.
+   * The syntactic relation.
    */
   override val syntacticRelation: SyntacticRelation get() = this._syntacticRelation
 
@@ -59,7 +59,7 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
   internal val _morphologies: MutableList<ScoredMorphology> = mutableListOf()
 
   /**
-   * The variable syntactic relation with the governor.
+   * The variable syntactic relation.
    */
   internal lateinit var _syntacticRelation: SyntacticRelation
 
