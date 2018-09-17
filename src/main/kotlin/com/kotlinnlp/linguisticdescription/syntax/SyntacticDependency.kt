@@ -7,13 +7,17 @@
 
 package com.kotlinnlp.linguisticdescription.syntax
 
+import com.kotlinnlp.linguisticdescription.Deprel
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
 /**
  * The base interface implemented by all the syntactic dependencies.
+ *
+ * @property type the type of this dependency
+ * @property direction the direction of the dependency, related to the governor
  */
-interface SyntacticDependency<T> {
+sealed class SyntacticDependency<T: Any>(val type: T, val direction: Direction) {
 
   /**
    * The direction of the dependency.
@@ -38,23 +42,57 @@ interface SyntacticDependency<T> {
      *
      * @return a new syntactic dependency
      */
-    operator fun invoke(type: SyntacticType, direction: SyntacticDependency.Direction): SyntacticDependency<SyntacticType> {
+    operator fun invoke(type: SyntacticType, direction: SyntacticDependency.Direction): SyntacticDependency.Base {
 
       val kClass: KClass<*> = syntacticDependencyClasses.getValue(type)
       val constructor: KFunction<Any> = kClass.constructors.last()
 
       @Suppress("UNCHECKED_CAST")
-      return constructor.call(direction) as SyntacticDependency<SyntacticType>
+      return constructor.call(direction) as SyntacticDependency.Base
     }
   }
 
   /**
-   * The type of this dependency.
+   * @return the string representation of this syntactic dependency
    */
-  val type: T
+  override fun toString(): kotlin.String = this.type.toString() + ":" + this.direction
 
   /**
-   * The direction of the dependency, related to the governor.
+   * @return a Boolean indicating whether the given [other] object is equal to this syntactic dependency, checking only
+   *         the type
    */
-  val direction: Direction
+  fun softEquals(other: Any?): Boolean = other is SyntacticDependency<*> && other.type == this.type
+
+  /**
+   * @return a Boolean indicating whether the given [other] object is equal to this syntactic dependency
+   */
+  override fun equals(other: Any?): Boolean
+    = other is SyntacticDependency<*> && other.type == this.type && other.direction == this.direction
+
+  /**
+   * @return the hash code of this [Deprel]
+   */
+  override fun hashCode(): Int = this.type.hashCode() * 31 + this.direction.hashCode()
+
+  /**
+   * The [SyntacticDependency] with a [SyntacticType].
+   */
+  abstract class Base(
+    type: SyntacticType,
+    direction: SyntacticDependency.Direction
+  ) : SyntacticDependency<SyntacticType>(
+    type = type,
+    direction = direction
+  )
+
+  /**
+   * The [SyntacticDependency] with a [kotlin.String] type.
+   */
+  class String(
+    type: kotlin.String,
+    direction: SyntacticDependency.Direction
+  ) : SyntacticDependency<kotlin.String>(
+    type = type,
+    direction = direction
+  )
 }

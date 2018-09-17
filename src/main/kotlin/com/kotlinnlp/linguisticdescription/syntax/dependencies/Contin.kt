@@ -13,62 +13,39 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'contin' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Contin(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
+sealed class Contin(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Base(direction: SyntacticDependency.Direction) : Contin(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.Contin
-  }
+  class Base(direction: SyntacticDependency.Direction)
+    : Contin(type = SyntacticType.Contin, direction = direction)
 
   /**
    *
    */
-  class Denom(direction: SyntacticDependency.Direction) : Contin(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.ContinDenom
-  }
+  class Denom(direction: SyntacticDependency.Direction)
+    : Contin(type = SyntacticType.ContinDenom, direction = direction)
 
   /**
    *
    */
-  class Locut(direction: SyntacticDependency.Direction) : Contin(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.ContinLocut
-  }
+  class Locut(direction: SyntacticDependency.Direction)
+    : Contin(type = SyntacticType.ContinLocut, direction = direction)
 
   /**
    *
    */
-  class Number(direction: SyntacticDependency.Direction) : Contin(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.ContinNumber
-  }
+  class Number(direction: SyntacticDependency.Direction)
+    : Contin(type = SyntacticType.ContinNumber, direction = direction)
 
   /**
    *
    */
-  class Coord(direction: SyntacticDependency.Direction) : Contin(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.ContinCoord
-  }
+  class Coord(direction: SyntacticDependency.Direction)
+    : Contin(type = SyntacticType.ContinCoord, direction = direction)
 }

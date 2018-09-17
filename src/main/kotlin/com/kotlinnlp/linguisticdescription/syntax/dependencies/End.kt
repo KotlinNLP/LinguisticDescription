@@ -13,40 +13,27 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'auxiliary' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class End(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
+sealed class End(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Assertive(direction: SyntacticDependency.Direction) : End(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.EndAssertive
-  }
+  class Assertive(direction: SyntacticDependency.Direction)
+    : End(type = SyntacticType.EndAssertive, direction = direction)
 
   /**
    *
    */
-  class Interrogative(direction: SyntacticDependency.Direction) : End(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.EndInterrogative
-  }
+  class Interrogative(direction: SyntacticDependency.Direction)
+    : End(type = SyntacticType.EndInterrogative, direction = direction)
 
   /**
    *
    */
-  class Imperative(direction: SyntacticDependency.Direction) : End(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.EndImperative
-  }
+  class Imperative(direction: SyntacticDependency.Direction)
+    : End(type = SyntacticType.EndImperative, direction = direction)
 }

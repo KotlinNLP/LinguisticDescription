@@ -13,52 +13,33 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'subject' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Subject(override val direction: SyntacticDependency.Direction)
-  : SyntacticDependency<SyntacticType>, VerbalCoreArgument {
+sealed class Subject(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : VerbalCoreArgument, SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Base(direction: SyntacticDependency.Direction) : Subject(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.Subject
-  }
+  class Base(direction: SyntacticDependency.Direction)
+    : Subject(type = SyntacticType.Subject, direction = direction)
 
   /**
    *
    */
-  class Passive(direction: SyntacticDependency.Direction) : Subject(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.PassiveSubject
-  }
+  class Passive(direction: SyntacticDependency.Direction)
+    : Subject(type = SyntacticType.PassiveSubject, direction = direction)
 
   /**
    *
    */
-  class Interrogative(direction: SyntacticDependency.Direction) : Subject(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.InterrogativeSubject
-  }
+  class Interrogative(direction: SyntacticDependency.Direction)
+    : Subject(type = SyntacticType.InterrogativeSubject, direction = direction)
 
   /**
    *
    */
-  class Extra(direction: SyntacticDependency.Direction) : Subject(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.ExtraSubject
-  }
+  class Extra(direction: SyntacticDependency.Direction)
+    : Subject(type = SyntacticType.ExtraSubject, direction = direction)
 }

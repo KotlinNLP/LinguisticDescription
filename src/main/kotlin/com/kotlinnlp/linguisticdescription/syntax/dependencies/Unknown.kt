@@ -15,10 +15,5 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
  *
  * @property direction the direction of the dependency, related to the governor
  */
-class Unknown(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
-
-  /**
-   * The type associated to this dependency.
-   */
-  override val type: SyntacticType = SyntacticType.Unknown
-}
+class Unknown(direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = SyntacticType.Unknown, direction = direction)

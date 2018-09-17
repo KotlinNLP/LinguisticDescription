@@ -13,73 +13,45 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'restrictive modifier' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class RestrictiveModifier(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
+sealed class RestrictiveModifier(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Base(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RMod
-  }
+  class Base(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RMod, direction = direction)
 
   /**
    *
    */
-  class Comparative(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RModCompar
-  }
+  class Comparative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModCompar, direction = direction)
 
   /**
    *
    */
-  class Interrogative(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RModInterr
-  }
+  class Interrogative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModInterr, direction = direction)
 
   /**
    *
    */
-  class Negative(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RModNeg
-  }
+  class Negative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModNeg, direction = direction)
 
   /**
    *
    */
-  class Possessive(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RModPoss
-  }
+  class Possessive(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModPoss, direction = direction)
 
   /**
    *
    */
-  class Quantitative(direction: SyntacticDependency.Direction) : RestrictiveModifier(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.RModQuant
-  }
+  class Quantitative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModQuant, direction = direction)
 }

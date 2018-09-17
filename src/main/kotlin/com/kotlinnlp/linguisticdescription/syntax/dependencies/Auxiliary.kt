@@ -13,51 +13,33 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'auxiliary' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Auxiliary(override val direction: SyntacticDependency.Direction) : SyntacticDependency<SyntacticType> {
+sealed class Auxiliary(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Base(direction: SyntacticDependency.Direction) : Auxiliary(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.Aux
-  }
+  class Base(direction: SyntacticDependency.Direction)
+    : Auxiliary(type = SyntacticType.Aux, direction = direction)
 
   /**
    *
    */
-  class Tense(direction: SyntacticDependency.Direction) : Auxiliary(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.AuxTense
-  }
+  class Tense(direction: SyntacticDependency.Direction)
+    : Auxiliary(type = SyntacticType.AuxTense, direction = direction)
 
   /**
    *
    */
-  class Passive(direction: SyntacticDependency.Direction) : Auxiliary(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.AuxPassive
-  }
+  class Passive(direction: SyntacticDependency.Direction)
+    : Auxiliary(type = SyntacticType.AuxPassive, direction = direction)
 
   /**
    *
    */
-  class Progressive(direction: SyntacticDependency.Direction) : Auxiliary(direction) {
-
-    /**
-     * The type associated to this dependency.
-     */
-    override val type: SyntacticType = SyntacticType.AuxProgressive
-  }
+  class Progressive(direction: SyntacticDependency.Direction)
+    : Auxiliary(type = SyntacticType.AuxProgressive, direction = direction)
 }
