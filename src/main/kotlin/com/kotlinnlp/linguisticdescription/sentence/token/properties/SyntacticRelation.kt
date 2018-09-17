@@ -9,18 +9,18 @@ package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
-import com.kotlinnlp.linguisticdescription.GrammaticalConfiguration
+import com.kotlinnlp.linguisticdescription.Deprel
 
 /**
  * The syntactic relation of a token.
  *
  * @property governor the id of the governor token (can be null if the governor is the root)
- * @property grammaticalConfiguration the grammatical configuration
+ * @property dependency the syntactic dependency
  * @property attachmentScore the attachment confidence score
  */
 data class SyntacticRelation(
   val governor: Int?,
-  val grammaticalConfiguration: GrammaticalConfiguration,
+  val dependency: Deprel,
   val attachmentScore: Double
 ) {
 
@@ -29,7 +29,7 @@ data class SyntacticRelation(
    */
   override fun toString(): String = "%s %s (%.2f%)".format(
     this.governor?.toString() ?: "R",
-    this.grammaticalConfiguration,
+    this.dependency,
     this.attachmentScore)
 
   /**
@@ -42,8 +42,7 @@ data class SyntacticRelation(
     obj(
       "head" to self.governor,
       "relation" to obj(
-        "posTags" to self.grammaticalConfiguration.posTag?.let { array(it.labels) },
-        "deprels" to array(self.grammaticalConfiguration.deprel.labels)
+        "type" to array(self.dependency.labels.joinToString("+"))
       ),
       "attachmentScore" to self.attachmentScore
     )
