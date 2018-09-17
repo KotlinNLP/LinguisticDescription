@@ -156,6 +156,11 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   companion object {
 
     /**
+     * Raised when trying to build a [POS] through an invalid annotation.
+     */
+    class InvalidAnnotation(annotation: String) : RuntimeException(annotation)
+
+    /**
      * POS associated by base annotation.
      */
     private val basePOSMap: Map<String, POS> =
@@ -170,15 +175,19 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
     /**
      * @param annotation a POS base annotation
      *
+     * @throws InvalidAnnotation when the annotation is not valid
+     *
      * @return the base POS with the given annotation
      */
-    fun byBaseAnnotation(annotation: String): POS = this.basePOSMap.getValue(annotation)
+    fun byBaseAnnotation(annotation: String): POS = this.basePOSMap[annotation] ?: throw InvalidAnnotation(annotation)
 
     /**
      * @param annotation a POS annotation
      *
+     * @throws InvalidAnnotation when the annotation is not valid
+     *
      * @return the POS with the given annotation
      */
-    fun byAnnotation(annotation: String): POS = this.posMap.getValue(annotation)
+    fun byAnnotation(annotation: String): POS = this.posMap[annotation] ?: throw InvalidAnnotation(annotation)
   }
 }
