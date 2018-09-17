@@ -153,7 +153,7 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   /**
    * Factory object.
    */
-  companion object {
+  companion object Factory {
 
     /**
      * Raised when trying to build a [POS] through an invalid annotation.

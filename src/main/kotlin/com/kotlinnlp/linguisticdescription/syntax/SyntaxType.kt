@@ -115,7 +115,7 @@ enum class SyntaxType(val annotation: String, val baseAnnotation: String) {
   /**
    * Factory object.
    */
-  companion object {
+  companion object Factory {
 
     /**
      * Raised when trying to build a [SyntaxType] through an invalid annotation.
