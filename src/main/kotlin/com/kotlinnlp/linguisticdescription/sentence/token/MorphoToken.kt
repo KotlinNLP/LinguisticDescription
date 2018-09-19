@@ -21,7 +21,7 @@ interface MorphoToken : Token {
   val morphologies: List<Morphology>
 
   /**
-   * The Part-Of-Speech (can be null).
+   * The list of Parts-Of-Speech (more for composite words, can be null).
    */
-  val pos: POSTag?
+  val pos: List<POSTag>?
 }
