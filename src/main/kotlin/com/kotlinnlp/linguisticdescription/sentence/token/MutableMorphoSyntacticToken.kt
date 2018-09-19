@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
@@ -30,6 +31,14 @@ abstract class MutableMorphoSyntacticToken(override val id: Int) : MorphoSyntact
    * The list of scored morphologies, sorted by descending score.
    */
   override val morphologies: List<ScoredMorphology> get() = this._morphologies
+
+  /**
+   * The list of single morphologies, eventually flatting the components morphologies.
+   * This property should be accessed only if this token contains only single morphologies.
+   */
+  val flatMorphologies: List<SingleMorphology> get() =
+    (this as? WordComposite)?.components?.flatMap { it._morphologies.map { it.components.single() } }
+      ?: this._morphologies.map { it.components.single() }
 
   /**
    * The syntactic relation.
