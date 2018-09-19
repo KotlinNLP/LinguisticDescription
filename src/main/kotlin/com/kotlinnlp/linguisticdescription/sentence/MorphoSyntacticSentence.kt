@@ -12,6 +12,7 @@ import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
 import com.kotlinnlp.linguisticdescription.sentence.token.MutableMorphoSyntacticToken
+import com.kotlinnlp.linguisticdescription.sentence.token.WordComposite
 
 /**
  * A sentence with morphological and syntactic information.
@@ -145,8 +146,12 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
    *
    * @return a list of dependents tokens
    */
-  fun getDependents(governorId: Int): List<MutableMorphoSyntacticToken> = this.tokens.filter {
-    it.syntacticRelation.governor == governorId
+  fun getDependents(governorId: Int): List<MutableMorphoSyntacticToken> = this.tokens.flatMap {
+    when {
+      it is WordComposite -> it.components.filter { it.syntacticRelation.governor == governorId }
+      it.syntacticRelation.governor == governorId -> listOf(it)
+      else -> listOf()
+    }
   }
 
   /**
