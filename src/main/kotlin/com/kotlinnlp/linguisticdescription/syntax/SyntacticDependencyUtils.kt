@@ -91,6 +91,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.Interj to Interjection::class,
 
+//  SyntacticType.Undefined to , TODO: add related class
   SyntacticType.Unknown to Unknown::class,
   SyntacticType.Wrong to Wrong::class
 )

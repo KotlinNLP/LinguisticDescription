@@ -95,6 +95,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
 
   Interj("INTERJ", "INTERJ"),
 
+  Undefined("_", "_"), // TODO: add related class
   Unknown("UNKNOWN", "UNKNOWN"),
   Wrong("WRONG", "WRONG");
 
