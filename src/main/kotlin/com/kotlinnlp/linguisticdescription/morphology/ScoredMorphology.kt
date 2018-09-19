@@ -13,7 +13,7 @@ import com.beust.klaxon.JsonObject
  * Extension of the [Morphology] with a [score] property.
  *
  * @property type the type of this morphology (Single or Multiple)
- * @property list a list of single morphologies
+ * @property components the list of single morphologies that compose this morphology (one for a Single morphology)
  * @property score the score assigned to this morphology
  */
 class ScoredMorphology(
@@ -46,7 +46,7 @@ class ScoredMorphology(
    */
   fun copy(type: Type? = null, list: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
     type = type ?: this.type,
-    list = list ?: this.list,
+    list = list ?: this.components,
     score = score ?: this.score
   )
 }

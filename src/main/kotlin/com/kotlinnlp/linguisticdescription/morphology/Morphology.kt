@@ -16,9 +16,9 @@ import com.beust.klaxon.json
  * If [type] is [Type.Single] the list contains only one single morphology, otherwise more.
  *
  * @property type the type of this morphology (Single or Multiple)
- * @property list a list of single morphologies
+ * @property components the list of single morphologies that compose this morphology (one for a Single morphology)
  */
-open class Morphology(val type: Type, val list: List<SingleMorphology>) {
+open class Morphology(val type: Type, val components: List<SingleMorphology>) {
 
   /**
    * The [Morphology] type.
@@ -32,13 +32,13 @@ open class Morphology(val type: Type, val list: List<SingleMorphology>) {
    */
   constructor(morphologies: List<SingleMorphology>): this(
     type = if (morphologies.size == 1) Type.Single else Type.Multiple,
-    list = morphologies
+    components = morphologies
   )
 
   /**
    * @return a string representation of this morphology
    */
-  override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.list.joinToString(separator = "\n\t\t"))
+  override fun toString(): String = "[%s]\n\t\t%s".format(this.type, this.components.joinToString(separator = "\n\t\t"))
 
   /**
    * @return the hash code of this object
@@ -70,7 +70,7 @@ open class Morphology(val type: Type, val list: List<SingleMorphology>) {
 
     obj(
       "type" to self.type.toString().toUpperCase(),
-      "list" to array(self.list.map { it.toJSON() })
+      "list" to array(self.components.map { it.toJSON() })
     )
   }
 }

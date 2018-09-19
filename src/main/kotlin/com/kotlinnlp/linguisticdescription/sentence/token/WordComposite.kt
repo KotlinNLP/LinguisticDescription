@@ -83,7 +83,7 @@ class WordComposite(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphologies.joinToString(" | ") { it.list.joinToString(" ") { it.pos.annotation } },
+    this.morphologies.joinToString(" | ") { it.components.joinToString(" ") { it.pos.annotation } },
     this.components.joinToString(" + ") { it.form },
     this.syntacticRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
