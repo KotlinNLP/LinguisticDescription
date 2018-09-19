@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.token.properties
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
-import com.kotlinnlp.linguisticdescription.Deprel
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
 
 /**
  * The syntactic relation of a token.
@@ -20,7 +20,7 @@ import com.kotlinnlp.linguisticdescription.Deprel
  */
 data class SyntacticRelation(
   val governor: Int?,
-  val dependency: Deprel,
+  val dependency: SyntacticDependency,
   val attachmentScore: Double
 ) {
 
@@ -41,9 +41,7 @@ data class SyntacticRelation(
 
     obj(
       "head" to self.governor,
-      "relation" to obj(
-        "type" to array(self.dependency.labels.joinToString("+"))
-      ),
+      "relation" to self.dependency.toString(),
       "attachmentScore" to self.attachmentScore
     )
   }

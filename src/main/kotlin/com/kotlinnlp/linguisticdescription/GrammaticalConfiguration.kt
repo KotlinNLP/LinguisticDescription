@@ -7,15 +7,23 @@
 
 package com.kotlinnlp.linguisticdescription
 
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
 import java.io.Serializable
 
 /**
  * The grammatical configuration of a token, defined by a POS and a syntax type.
  *
- * @property posTag the POS tag (can be null)
- * @property deprel the deprel
+ * @property components the grammatical components
  */
-data class GrammaticalConfiguration(val posTag: POSTag? = null, val deprel: Deprel) : Serializable {
+class GrammaticalConfiguration(vararg val components: Component) : Serializable {
+
+  /**
+   * A component of the configuration (more in case of composite tokens).
+   *
+   * @property syntacticDependency the syntactic dependency
+   * @property pos the POS (can be null)
+   */
+  data class Component(val syntacticDependency: SyntacticDependency, val pos: POSTag? = null)
 
   companion object {
 
@@ -24,5 +32,35 @@ data class GrammaticalConfiguration(val posTag: POSTag? = null, val deprel: Depr
      */
     @Suppress("unused")
     private const val serialVersionUID: Long = 1L
+
+    /**
+     * The string used to separate an annotation with more components.
+     */
+    const val COMPONENTS_SEP = "+"
+  }
+
+  /**
+   * The number of components of this configuration.
+   */
+  val size: Int = this.components.size
+
+  /**
+   * The direction of the syntactic dependency defined in this configuration.
+   */
+  val direction: SyntacticDependency.Direction = this.components.first().syntacticDependency.direction
+
+  /**
+   * The string representation of all the dependencies of this configuration.
+   */
+  val dependencyToString: String by lazy {
+    this.components.joinToString(COMPONENTS_SEP) { it.syntacticDependency.toString() }
+  }
+
+  /**
+   * The string representation of all the POS of this configuration.
+   */
+  val posToString: String? by lazy {
+    val s: String = this.components.mapNotNull { it.pos }.joinToString(COMPONENTS_SEP) { it.toString() }
+    if (s.isNotEmpty()) s else null
   }
 }

@@ -17,7 +17,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 interface SyntacticToken : TokenIdentificable {
 
   /**
-   * The syntactic relation with its governor.
+   * The syntactic relation.
    */
   val syntacticRelation: SyntacticRelation
 
