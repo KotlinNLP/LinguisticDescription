@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.syntax
 
-import com.kotlinnlp.linguisticdescription.Deprel
+import java.io.Serializable
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
@@ -17,7 +17,7 @@ import kotlin.reflect.KFunction
  * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class SyntacticDependency<T: Any>(val type: T, val direction: Direction) {
+sealed class SyntacticDependency(open val type: Any, val direction: Direction) : Serializable {
 
   /**
    * The direction of the dependency.
@@ -35,64 +35,83 @@ sealed class SyntacticDependency<T: Any>(val type: T, val direction: Direction) 
   companion object {
 
     /**
-     * Create a new [SyntacticDependency] given its [SyntacticType].
+     * Create a new [SyntacticDependency] given its annotation.
      *
-     * @param type the syntactic type
+     * @param annotation the syntactic type annotation
      * @param direction the direction of the dependency
      *
      * @return a new syntactic dependency
      */
-    operator fun invoke(type: SyntacticType, direction: SyntacticDependency.Direction): SyntacticDependency.Base {
+    operator fun invoke(annotation: kotlin.String, direction: Direction = Direction.NULL): SyntacticDependency =
 
-      val kClass: KClass<*> = syntacticDependencyClasses.getValue(type)
-      val constructor: KFunction<Any> = kClass.constructors.last()
+      try {
 
-      @Suppress("UNCHECKED_CAST")
-      return constructor.call(direction) as SyntacticDependency.Base
-    }
+        val kClass: KClass<*> = syntacticDependencyClasses.getValue(SyntacticType.byAnnotation(annotation))
+        val constructor: KFunction<Any> = kClass.constructors.last()
+
+        constructor.call(direction) as SyntacticDependency
+
+      } catch (e: SyntacticType.Factory.InvalidAnnotation) {
+        SyntacticDependency.String(type = annotation, direction = direction)
+      }
   }
-
-  /**
-   * @return the string representation of this syntactic dependency
-   */
-  override fun toString(): kotlin.String = this.type.toString() + ":" + this.direction
 
   /**
    * @return a Boolean indicating whether the given [other] object is equal to this syntactic dependency, checking only
    *         the type
    */
-  fun softEquals(other: Any?): Boolean = other is SyntacticDependency<*> && other.type == this.type
+  fun softEquals(other: Any?): Boolean = other is SyntacticDependency && other.type == this.type
 
   /**
    * @return a Boolean indicating whether the given [other] object is equal to this syntactic dependency
    */
   override fun equals(other: Any?): Boolean
-    = other is SyntacticDependency<*> && other.type == this.type && other.direction == this.direction
+    = other is SyntacticDependency && other.type == this.type && other.direction == this.direction
 
   /**
-   * @return the hash code of this [Deprel]
+   * @return the hash code of this syntactic dependency
    */
   override fun hashCode(): Int = this.type.hashCode() * 31 + this.direction.hashCode()
 
   /**
    * The [SyntacticDependency] with a [SyntacticType].
    */
-  abstract class Base(
-    type: SyntacticType,
-    direction: SyntacticDependency.Direction
-  ) : SyntacticDependency<SyntacticType>(
-    type = type,
-    direction = direction
-  )
+  abstract class Base(override val type: SyntacticType, direction: Direction)
+    : SyntacticDependency(type = type, direction = direction) {
+
+    companion object {
+
+      /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+    }
+
+    /**
+     * @return the string representation of this syntactic dependency
+     */
+    override fun toString(): kotlin.String = this.type.annotation
+  }
 
   /**
    * The [SyntacticDependency] with a [kotlin.String] type.
    */
-  class String(
-    type: kotlin.String,
-    direction: SyntacticDependency.Direction
-  ) : SyntacticDependency<kotlin.String>(
-    type = type,
-    direction = direction
-  )
+  class String(override val type: kotlin.String, direction: Direction)
+    : SyntacticDependency(type = type, direction = direction) {
+
+    companion object {
+
+      /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+    }
+
+    /**
+     * @return the string representation of this syntactic dependency
+     */
+    override fun toString(): kotlin.String = this.type
+  }
 }
