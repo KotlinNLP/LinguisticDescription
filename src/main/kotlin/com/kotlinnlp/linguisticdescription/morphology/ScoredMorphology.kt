@@ -33,4 +33,20 @@ class ScoredMorphology(
 
     return jsonObject
   }
+
+  /**
+   * Copy this morphology with no or some value updated.
+   * Null values will not be replaced.
+   *
+   * @param type the new type of morphology (Single or Multiple)
+   * @param list a new list of single morphologies
+   * @param score the new score
+   *
+   * @return a new scored morphology with values updated
+   */
+  fun copy(type: Type? = null, list: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
+    type = type ?: this.type,
+    list = list ?: this.list,
+    score = score ?: this.score
+  )
 }
