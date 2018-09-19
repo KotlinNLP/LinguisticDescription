@@ -9,6 +9,9 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import kotlin.reflect.KClass
+import kotlin.reflect.full.isSubclassOf
 
 /**
  * A token with morphological and syntactic information.
@@ -52,4 +55,14 @@ interface MorphoSyntacticToken : ScoredMorphoToken, SyntacticToken {
 
     return jsonObject
   }
+
+  /**
+   * @param syntaxClass the [KClass] of a [SyntacticDependency]
+   *
+   * @return true if this token is a dependent of the given type, otherwise false
+   */
+  fun <T : SyntacticDependency.Base>isDependentAs(syntaxClass: KClass<T>): Boolean = if (this is WordComposite)
+    this.components.any { it.syntacticRelation.dependency::class.isSubclassOf(this::class) }
+  else
+    this.syntacticRelation.dependency::class.isSubclassOf(this::class)
 }
