@@ -223,11 +223,12 @@ abstract class MorphoSynToken(override val id: Int) : ScoredMorphoToken, Syntact
 
   /**
    * @param token another morpho-syn token
+   * @param weakMatch whether to allows the match between undefined properties or not (default false)
    *
    * @return true if this token matches at least one morphology of the given one, otherwise false
    */
-  fun agreeMorphology(token: MorphoSynToken): Boolean {
+  fun agreeMorphology(token: MorphoSynToken, weakMatch: Boolean = false): Boolean {
     val tokenMorphologies: List<SingleMorphology> = token.flatMorphologies
-    return this.flatMorphologies.any { tokenMorphologies.any { tMorpho -> tMorpho.agree(it) } }
+    return this.flatMorphologies.any { tokenMorphologies.any { tMorpho -> tMorpho.agree(it, weakMatch = weakMatch) } }
   }
 }
