@@ -51,7 +51,7 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
     /**
      * The string used to separate an annotation with more components.
      */
-    const val COMPONENTS_SEP = "+"
+    private const val COMPONENTS_SEP = "+"
   }
 
   /**
