@@ -11,29 +11,17 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
 import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
- * The 'parenthetical' dependency.
+ * The 'conjunct coordinator' dependency.
  *
  * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class Parenthetical(type: SyntacticType, direction: SyntacticDependency.Direction)
+sealed class CoordinatorConjunct(type: SyntacticType, direction: SyntacticDependency.Direction)
   : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
   class Base(direction: SyntacticDependency.Direction)
-    : Parenthetical(type = SyntacticType.Parenthetical, direction = direction)
-
-  /**
-   *
-   */
-  class Open(direction: SyntacticDependency.Direction)
-    : Parenthetical(type = SyntacticType.OpenParenthetical, direction = direction)
-
-  /**
-   *
-   */
-  class Close(direction: SyntacticDependency.Direction)
-    : Parenthetical(type = SyntacticType.CloseParenthetical, direction = direction)
+    : CoordinatorConjunct(type = SyntacticType.Coord2Nd, direction = direction)
 }

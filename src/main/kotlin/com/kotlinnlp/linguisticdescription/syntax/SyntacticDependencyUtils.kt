@@ -26,7 +26,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.InterrogativeObject to Object.Interrogative::class,
   SyntacticType.IndirectObject to IndirectObject.Base::class,
   SyntacticType.InterrogativeIndirectObject to IndirectObject.Interrogative::class,
-//  SyntaxType.IndirectComplement to , TODO: add related class
+  SyntacticType.IndirectComplement to IndirectComplement::class,
 
   SyntacticType.PredCompl to PredCompl.Base::class,
   SyntacticType.PredComplSubj to PredCompl.Subj.Base::class,
@@ -44,7 +44,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.ExtraObject to Object.Extra::class,
   SyntacticType.ExtraSubject to Subject.Extra::class,
-//  SyntaxType.EmptyCompl to , TODO: add related class
+  SyntacticType.EmptyCompl to EmptyComplement::class,
 
   SyntacticType.Locative to Locative::class,
   SyntacticType.Partitive to Partitive::class,
@@ -61,21 +61,21 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.AuxPassive to Auxiliary.Passive::class,
   SyntacticType.AuxProgressive to Auxiliary.Progressive::class,
 
-//  SyntaxType.Coord to , TODO: add related class
-//  SyntaxType.CoordAntec to , TODO: add related class
-//  SyntaxType.Coord2Nd to , TODO: add related class
-//  SyntaxType.Coord2NdAdvers to , TODO: add related class
-//  SyntaxType.Coord2NdCompar to , TODO: add related class
-//  SyntaxType.Coord2NdCorrelat to , TODO: add related class
-//  SyntaxType.Coord2NdExplic to , TODO: add related class
-//  SyntaxType.Coord2NdNeg to , TODO: add related class
-//  SyntaxType.Coord2NdSymmetric to , TODO: add related class
+  SyntacticType.Coord to Coordinator.Base::class,
+  SyntacticType.CoordAntec to Coordinator.Antecedent::class,
+  SyntacticType.Coord2Nd to CoordinatorConjunct.Base::class,
+  SyntacticType.Coord2NdAdvers to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdCompar to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdCorrelat to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdExplic to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdNeg to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdSymmetric to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
 
-  SyntacticType.Parenthetical to Parenthetical::class,
-//  SyntaxType.CloseParenthetical to , TODO: add related class
-//  SyntaxType.OpenParenthetical to , TODO: add related class
-//  SyntaxType.CloseQuotes to , TODO: add related class
-//  SyntaxType.OpenQuotes to , TODO: add related class
+  SyntacticType.Parenthetical to Parenthetical.Base::class,
+  SyntacticType.OpenParenthetical to Parenthetical.Close::class,
+  SyntacticType.CloseParenthetical to Parenthetical.Open::class,
+  SyntacticType.OpenQuotes to Quotes.Open::class,
+  SyntacticType.CloseQuotes to Quotes.Close::class,
 
   SyntacticType.Connector to Connector::class,
 
@@ -91,7 +91,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.Interj to Interjection::class,
 
-//  SyntacticType.Undefined to , TODO: add related class
+  SyntacticType.Undefined to Undefined::class,
   SyntacticType.Unknown to Unknown::class,
   SyntacticType.Wrong to Wrong::class
 )
