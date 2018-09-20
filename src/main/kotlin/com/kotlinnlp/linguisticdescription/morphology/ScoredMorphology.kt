@@ -18,6 +18,14 @@ import com.beust.klaxon.JsonObject
 class ScoredMorphology(list: List<SingleMorphology>, val score: Double): Morphology(list) {
 
   /**
+   * Build a [ScoredMorphology] with only one single morphology.
+   *
+   * @property components the single morphologies that compose this morphology
+   * @property score the score assigned to this morphology
+   */
+  constructor(morphology: SingleMorphology, score: Double): this(list = listOf(morphology), score = score)
+
+  /**
    * @return the JSON object that represents this morphology
    */
   override fun toJSON(): JsonObject {
