@@ -318,7 +318,6 @@ sealed class MorphoSynToken : TokenIdentificable {
      */
     override fun toString(): String = """
     [%d] '%s'
-        %s
         components:
           %s
   """.trimIndent().format(
