@@ -282,11 +282,6 @@ sealed class MorphoSynToken : TokenIdentificable {
   ) : RealToken, TokenIdentificable, MorphoSynToken() {
 
     /**
-     * The label that defines the type of this token.
-     */
-    val type: String = "WORD"
-
-    /**
      * The set of ids of the components.
      */
     val componentsIds: Set<Int> by lazy { this.components.map { it.id }.toSet() }
