@@ -25,7 +25,7 @@ import kotlin.reflect.full.isSubclassOf
  * @property id the id of the token, unique within its sentence
  */
 @Suppress("PropertyName")
-abstract class MorphoSyntacticToken(override val id: Int) : ScoredMorphoToken, SyntacticToken {
+abstract class MorphoSynToken(override val id: Int) : ScoredMorphoToken, SyntacticToken {
 
   /**
    * The label that defines the type of this token.
@@ -185,7 +185,7 @@ abstract class MorphoSyntacticToken(override val id: Int) : ScoredMorphoToken, S
 
     val jsonObject = json {
 
-      val self = this@MorphoSyntacticToken
+      val self = this@MorphoSynToken
 
       obj(
         "id" to self.id,
@@ -201,8 +201,8 @@ abstract class MorphoSyntacticToken(override val id: Int) : ScoredMorphoToken, S
     if (this is RealToken) {
       jsonObject["surface"] = json {
         obj(
-          "form" to this@MorphoSyntacticToken.form,
-          "translitForm" to this@MorphoSyntacticToken.form // TODO: set it properly
+          "form" to this@MorphoSynToken.form,
+          "translitForm" to this@MorphoSynToken.form // TODO: set it properly
         )
       }
       jsonObject["position"] = this.position.toJSON()

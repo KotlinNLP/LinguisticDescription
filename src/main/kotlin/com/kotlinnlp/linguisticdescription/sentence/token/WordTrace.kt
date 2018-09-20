@@ -22,7 +22,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
 data class WordTrace(
   override val id: Int,
   override val form: String
-) : FormToken, MutableMorphoSyntacticToken(id) {
+) : FormToken, MorphoSynToken(id) {
 
   companion object {
 

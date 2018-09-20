@@ -11,7 +11,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
-import com.kotlinnlp.linguisticdescription.sentence.token.MutableMorphoSyntacticToken
+import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 import com.kotlinnlp.linguisticdescription.sentence.token.WordComposite
 
 /**
@@ -19,7 +19,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.WordComposite
  *
  * @property id the sentence id
  */
-data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableMorphoSyntacticToken>() {
+data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MorphoSynToken>() {
 
   companion object {
 
@@ -37,7 +37,7 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
     operator fun invoke(
       id: Int,
       confidence: Double,
-      tokens: List<MutableMorphoSyntacticToken>,
+      tokens: List<MorphoSynToken>,
       dateTimes: List<DateTime>?,
       entities: List<Entity>?
     ): MorphoSyntacticSentence {
@@ -56,12 +56,12 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
   /**
    * The list of tokens of this sentence.
    */
-  override val tokens: List<MutableMorphoSyntacticToken> get() = this._tokens
+  override val tokens: List<MorphoSynToken> get() = this._tokens
 
   /**
    * The mutable list of tokens of this sentence.
    */
-  private val _tokens: MutableList<MutableMorphoSyntacticToken> = mutableListOf()
+  private val _tokens: MutableList<MorphoSynToken> = mutableListOf()
 
   /**
    * The confidence score.
@@ -108,7 +108,7 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
    * @param index the index of the [tokens] list at which to insert the token
    * @param token the token to add
    */
-  fun addToken(index: Int, token: MutableMorphoSyntacticToken) {
+  fun addToken(index: Int, token: MorphoSynToken) {
 
     this._tokens.add(index, token)
 
@@ -146,7 +146,7 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MutableM
    *
    * @return a list of dependents tokens
    */
-  fun getDependents(governorId: Int): List<MutableMorphoSyntacticToken> = this.tokens.flatMap {
+  fun getDependents(governorId: Int): List<MorphoSynToken> = this.tokens.flatMap {
     when {
       it is WordComposite -> it.components.filter { it.syntacticRelation.governor == governorId }
       it.syntacticRelation.governor == governorId -> listOf(it)

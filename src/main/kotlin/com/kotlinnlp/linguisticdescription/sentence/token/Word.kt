@@ -22,7 +22,7 @@ open class Word(
   override val id: Int,
   override val form: String,
   override val position: Position
-) : RealToken, MutableMorphoSyntacticToken(id) {
+) : RealToken, MorphoSynToken(id) {
 
   companion object {
 
