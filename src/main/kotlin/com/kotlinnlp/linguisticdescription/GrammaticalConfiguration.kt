@@ -15,7 +15,7 @@ import java.io.Serializable
  *
  * @property components the grammatical components
  */
-class GrammaticalConfiguration(vararg val components: Component) : Serializable {
+data class GrammaticalConfiguration(val components: List<Component>) : Serializable {
 
   /**
    * A component of the configuration (more in case of composite tokens).
@@ -24,6 +24,13 @@ class GrammaticalConfiguration(vararg val components: Component) : Serializable 
    * @property pos the POS (can be null)
    */
   data class Component(val syntacticDependency: SyntacticDependency, val pos: POSTag? = null)
+
+  /**
+   * Build a [GrammaticalConfiguration] given the components as varargs.
+   *
+   * @param components the grammatical components
+   */
+  constructor(vararg components: Component): this(components.toList())
 
   companion object {
 
