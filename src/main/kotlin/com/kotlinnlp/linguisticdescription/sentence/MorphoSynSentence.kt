@@ -19,12 +19,12 @@ import com.kotlinnlp.linguisticdescription.sentence.token.WordComposite
  *
  * @property id the sentence id
  */
-data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MorphoSynToken>() {
+data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken>() {
 
   companion object {
 
     /**
-     * Build a [MorphoSyntacticSentence] with the given properties already assigned.
+     * Build a [MorphoSynSentence] with the given properties already assigned.
      *
      * @param id the id of the token, unique within its sentence
      * @param confidence the confidence score
@@ -40,9 +40,9 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MorphoSy
       tokens: List<MorphoSynToken>,
       dateTimes: List<DateTime>?,
       entities: List<Entity>?
-    ): MorphoSyntacticSentence {
+    ): MorphoSynSentence {
 
-      val sentence = MorphoSyntacticSentence(id)
+      val sentence = MorphoSynSentence(id)
 
       sentence._confidence = confidence
       sentence._tokens.addAll(tokens)
@@ -176,7 +176,7 @@ data class MorphoSyntacticSentence(val id: Int) : SentenceIdentificable<MorphoSy
    */
   fun toJSON(): JsonObject = json {
 
-    val self = this@MorphoSyntacticSentence
+    val self = this@MorphoSynSentence
 
     obj(
       "id" to self.id,
