@@ -27,9 +27,9 @@ data class SyntacticRelation(
   /**
    * @return a string representation of this syntactic relation
    */
-  override fun toString(): String = "%s %s (%.2f%)".format(
+  override fun toString(): String = "%s %s (%.2f)".format(
     this.governor?.toString() ?: "R",
-    this.dependency,
+    this.dependency.toString(),
     this.attachmentScore)
 
   /**
