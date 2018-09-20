@@ -220,4 +220,14 @@ abstract class MorphoSynToken(override val id: Int) : ScoredMorphoToken, Syntact
     this.components.any { it.syntacticRelation.dependency::class.isSubclassOf(syntaxClass) }
   else
     this.syntacticRelation.dependency::class.isSubclassOf(syntaxClass)
+
+  /**
+   * @param token another morpho-syn token
+   *
+   * @return true if this token matches at least one morphology of the given one, otherwise false
+   */
+  fun agreeMorphology(token: MorphoSynToken): Boolean {
+    val tokenMorphologies: List<SingleMorphology> = token.flatMorphologies
+    return this.flatMorphologies.any { tokenMorphologies.any { tMorpho -> tMorpho.agree(it) } }
+  }
 }
