@@ -12,15 +12,10 @@ import com.beust.klaxon.JsonObject
 /**
  * Extension of the [Morphology] with a [score] property.
  *
- * @property type the type of this morphology (Single or Multiple)
  * @property components the list of single morphologies that compose this morphology (one for a Single morphology)
  * @property score the score assigned to this morphology
  */
-class ScoredMorphology(
-  type: Type,
-  list: List<SingleMorphology>,
-  val score: Double
-): Morphology(type, list) {
+class ScoredMorphology(list: List<SingleMorphology>, val score: Double): Morphology(list) {
 
   /**
    * @return the JSON object that represents this morphology
@@ -38,14 +33,12 @@ class ScoredMorphology(
    * Copy this morphology with no or some value updated.
    * Null values will not be replaced.
    *
-   * @param type the new type of morphology (Single or Multiple)
    * @param list a new list of single morphologies
    * @param score the new score
    *
    * @return a new scored morphology with values updated
    */
-  fun copy(type: Type? = null, list: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
-    type = type ?: this.type,
+  fun copy(list: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
     list = list ?: this.components,
     score = score ?: this.score
   )

@@ -15,10 +15,9 @@ import com.beust.klaxon.json
  *
  * If [type] is [Type.Single] the list contains only one single morphology, otherwise more.
  *
- * @property type the type of this morphology (Single or Multiple)
  * @property components the list of single morphologies that compose this morphology (one for a Single morphology)
  */
-open class Morphology(val type: Type, val components: List<SingleMorphology>) {
+open class Morphology(val components: List<SingleMorphology>) {
 
   /**
    * The [Morphology] type.
@@ -26,14 +25,20 @@ open class Morphology(val type: Type, val components: List<SingleMorphology>) {
   enum class Type { Single, Multiple }
 
   /**
-   * Build a [Morphology] given a list of [SingleMorphology].
+   * Build a [Morphology] given a single [SingleMorphology].
    *
-   * @param morphologies the list of single morphologies
+   * @param morphology a single morphology
    */
-  constructor(morphologies: List<SingleMorphology>): this(
-    type = if (morphologies.size == 1) Type.Single else Type.Multiple,
-    components = morphologies
-  )
+  constructor(morphology: SingleMorphology): this(listOf(morphology))
+
+  /**
+   * The type of this morphology (Single or Multiple).
+   */
+  val type: Type = when (this.components.size) {
+    0 -> throw RuntimeException("The components list of a Morphology cannot be empty.")
+    1 -> Type.Single
+    else -> Type.Multiple
+  }
 
   /**
    * @return a string representation of this morphology
