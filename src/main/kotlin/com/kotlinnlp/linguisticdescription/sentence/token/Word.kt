@@ -80,7 +80,7 @@ open class Word(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphologies.joinToString(" | ") { it.components.joinToString(" ") { it.pos.annotation  } },
+    this.morphologies.joinToString(" | ") { it.components.joinToString(" ") { it.pos.annotation } },
     this.syntacticRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"
