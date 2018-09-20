@@ -30,11 +30,4 @@ interface SyntacticToken : TokenIdentificable {
    * The list of semantic relations (can be null).
    */
   val semanticRelations: List<SemanticRelation>?
-
-  /**
-   * @param prefix a prefix to prepend to each line that composes the string representation of this token
-   *
-   * @return a prefixed string representation of this token
-   */
-  fun toString(prefix: String): String = prefix + this.toString().replace("\n", "\n" + prefix)
 }
