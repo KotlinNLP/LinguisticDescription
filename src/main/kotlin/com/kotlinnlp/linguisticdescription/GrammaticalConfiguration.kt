@@ -18,6 +18,14 @@ import java.io.Serializable
 data class GrammaticalConfiguration(val components: List<Component>) : Serializable {
 
   /**
+   * The configuration type.
+   *
+   * @property Single if the configuration has only one component
+   * @property Multiple if the configuration has more components
+   */
+  enum class Type { Single, Multiple }
+
+  /**
    * A component of the configuration (more in case of composite tokens).
    *
    * @property syntacticDependency the syntactic dependency
@@ -50,6 +58,15 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
    * The number of components of this configuration.
    */
   val size: Int = this.components.size
+
+  /**
+   * The type of configuration (Single or Multiple).
+   */
+  val type: Type = when (this.size) {
+    0 -> throw RuntimeException("A grammatical configuration cannot be empty.")
+    1 -> Type.Single
+    else -> Type.Multiple
+  }
 
   /**
    * The direction of the syntactic dependency defined in this configuration.
