@@ -22,7 +22,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
 
 /**
- *
+ * A token with morphological and syntactic properties.
  */
 sealed class MorphoSynToken : TokenIdentificable {
 
@@ -79,7 +79,7 @@ sealed class MorphoSynToken : TokenIdentificable {
   fun toString(prefix: String): String = prefix + this.toString().replace("\n", "\n" + prefix)
 
   /**
-   *
+   * A single [MorphoSynToken].
    */
   @Suppress("PropertyName")
   abstract class Single : MorphoSynToken(), ScoredMorphoToken, SyntacticToken {
@@ -272,7 +272,11 @@ sealed class MorphoSynToken : TokenIdentificable {
   }
 
   /**
+   * A [MorphoSynToken] with more single components.
    *
+   * @property id the id of the token, unique within its sentence
+   * @property form the form of the token
+   * @property position the position of the token
    */
   class Composite(
     override val id: Int,
