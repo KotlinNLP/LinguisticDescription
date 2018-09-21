@@ -40,6 +40,12 @@ sealed class RestrictiveModifier(type: SyntacticType, direction: SyntacticDepend
   /**
    *
    */
+  class Exclamative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier(type = SyntacticType.RModExclamative, direction = direction)
+
+  /**
+   *
+   */
   class Negative(direction: SyntacticDependency.Direction)
     : RestrictiveModifier(type = SyntacticType.RModNeg, direction = direction)
 

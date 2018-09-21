@@ -37,6 +37,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.RMod to RestrictiveModifier.Base::class,
   SyntacticType.RModInterr to RestrictiveModifier.Interrogative::class,
+  SyntacticType.RModExclamative to RestrictiveModifier.Exclamative::class,
   SyntacticType.RModNeg to RestrictiveModifier.Negative::class,
   SyntacticType.RModPoss to RestrictiveModifier.Possessive::class,
   SyntacticType.RModCompar to RestrictiveModifier.Comparative::class,

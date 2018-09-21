@@ -40,6 +40,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   PredComplInterr("PREDCOMPL-INTERR", "PREDCOMPL"),
 
   RMod("RMOD", "RMOD"),
+  RModExclamative("RMOD-EXCLAM", "RMOD"),
   RModInterr("RMOD-INTERR", "RMOD"),
   RModNeg("RMOD-NEG", "RMOD"),
   RModPoss("RMOD-POSS", "RMOD"),
