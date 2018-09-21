@@ -31,7 +31,17 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
    * @property syntacticDependency the syntactic dependency
    * @property pos the POS (can be null)
    */
-  data class Component(val syntacticDependency: SyntacticDependency, val pos: POSTag? = null)
+  data class Component(val syntacticDependency: SyntacticDependency, val pos: POSTag? = null) : Serializable {
+
+    companion object {
+
+      /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+    }
+  }
 
   /**
    * Build a [GrammaticalConfiguration] given the components as varargs.
