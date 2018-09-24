@@ -66,9 +66,9 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   AuxPassive("AUX-PASSIVE", "AUX"),
   AuxProgressive("AUX-PROGRESSIVE", "AUX"),
 
-  Coord("COORD", "COORD"), // TODO: add related class
-  CoordAntec("COORD-ANTEC", "COORD"), // TODO: add related class
-  Coord2Nd("COORD2ND", "COORD2ND"), // TODO: add related class
+  Coord("COORD", "COORD"),
+  CoordAntecedent("COORD-ANTEC", "COORD"),
+  Coord2Nd("COORD2ND", "COORD2ND"),
   Coord2NdAdvers("COORD2ND-ADVERS", "COORD2ND"), // TODO: add related class
   Coord2NdCompar("COORD2ND-COMPAR", "COORD2ND"), // TODO: add related class
   Coord2NdCorrelat("COORD2ND-CORRELAT", "COORD2ND"), // TODO: add related class

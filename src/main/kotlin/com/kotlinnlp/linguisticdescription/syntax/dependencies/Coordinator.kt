@@ -29,5 +29,5 @@ sealed class Coordinator(type: SyntacticType, direction: SyntacticDependency.Dir
    *
    */
   class Antecedent(direction: SyntacticDependency.Direction)
-    : Coordinator(type = SyntacticType.CoordAntec, direction = direction)
+    : Coordinator(type = SyntacticType.CoordAntecedent, direction = direction)
 }

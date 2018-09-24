@@ -63,7 +63,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.AuxProgressive to Auxiliary.Progressive::class,
 
   SyntacticType.Coord to Coordinator.Base::class,
-  SyntacticType.CoordAntec to Coordinator.Antecedent::class,
+  SyntacticType.CoordAntecedent to Coordinator.Antecedent::class,
   SyntacticType.Coord2Nd to CoordinatorConjunct.Base::class,
   SyntacticType.Coord2NdAdvers to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdCompar to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
