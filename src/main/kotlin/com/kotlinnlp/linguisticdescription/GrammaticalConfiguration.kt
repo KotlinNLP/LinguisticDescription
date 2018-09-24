@@ -7,7 +7,9 @@
 
 package com.kotlinnlp.linguisticdescription
 
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.dependencies.Contin
 import java.io.Serializable
 
 /**
@@ -97,4 +99,32 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
     val s: String = this.components.mapNotNull { it.pos }.joinToString(COMPONENTS_SEP) { it.toString() }
     if (s.isNotEmpty()) s else null
   }
+
+  /**
+   * Note: this method should be used only if this configuration contains 'Base' components only (not String).
+   *
+   * @param morphology a morphology
+   *
+   * @return true if this all the components of this grammatical configuration is compatible with the given morphology,
+   *         otherwise false
+   */
+  fun isCompatible(morphology: Morphology): Boolean =
+    morphology.components.size == this.components.size &&
+      morphology.components.zip(this.components).all {
+        it.first.pos.baseAnnotation == (it.second.pos as POSTag.Base).type.baseAnnotation
+      }
+
+  /**
+   * Note: this method should be used only if this configuration contains 'Base' components only (not String).
+   *
+   * @param morphology a morphology
+   *
+   * @return true if any 'CONTIN' component of this grammatical configuration is compatible with the given morphology,
+   *         otherwise false
+   */
+  fun isPartiallyCompatible(morphology: Morphology): Boolean =
+    this.components.any {
+      (it.syntacticDependency as SyntacticDependency.Base) is Contin &&
+        morphology.components.any { morpho -> morpho.pos.baseAnnotation == (it.pos as POSTag.Base).type.baseAnnotation }
+    }
 }
