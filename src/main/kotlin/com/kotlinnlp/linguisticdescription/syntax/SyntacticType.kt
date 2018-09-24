@@ -46,6 +46,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   RModPoss("RMOD-POSS", "RMOD"),
   RModCompar("RMOD-COMPAR", "RMOD"),
   RModQuant("RMOD-QUANT", "RMOD"),
+  RMod2NDNeg("RMOD2ND-NEG", "RMOD"),
 
   ExtraObject("EXTRAOBJ", "EXTRAOBJ"),
   ExtraSubject("EXTRASUBJ", "EXTRASUBJ"),
@@ -68,7 +69,9 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
 
   Coord("COORD", "COORD"),
   CoordAntecedent("COORD-ANTEC", "COORD"),
+  CoordNegative("COORD-NEG", "COORD"),
   Coord2Nd("COORD2ND", "COORD2ND"),
+  Coord2NdNegative("COORD2ND-ADVERS", "COORD2ND"), // TODO: add related class
   Coord2NdAdvers("COORD2ND-ADVERS", "COORD2ND"), // TODO: add related class
   Coord2NdCompar("COORD2ND-COMPAR", "COORD2ND"), // TODO: add related class
   Coord2NdCorrelat("COORD2ND-CORRELAT", "COORD2ND"), // TODO: add related class

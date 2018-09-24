@@ -42,6 +42,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.RModPoss to RestrictiveModifier.Possessive::class,
   SyntacticType.RModCompar to RestrictiveModifier.Comparative::class,
   SyntacticType.RModQuant to RestrictiveModifier.Quantitative::class,
+  SyntacticType.RMod2NDNeg to RestrictiveModifier2ND::class,
 
   SyntacticType.ExtraObject to Object.Extra::class,
   SyntacticType.ExtraSubject to Subject.Extra::class,
@@ -64,7 +65,9 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.Coord to Coordinator.Base::class,
   SyntacticType.CoordAntecedent to Coordinator.Antecedent::class,
+  SyntacticType.CoordNegative to Coordinator.Negative::class,
   SyntacticType.Coord2Nd to CoordinatorConjunct.Base::class,
+  SyntacticType.Coord2NdNegative to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdAdvers to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdCompar to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdCorrelat to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class

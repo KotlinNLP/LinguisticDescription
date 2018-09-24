@@ -30,4 +30,10 @@ sealed class Coordinator(type: SyntacticType, direction: SyntacticDependency.Dir
    */
   class Antecedent(direction: SyntacticDependency.Direction)
     : Coordinator(type = SyntacticType.CoordAntecedent, direction = direction)
+
+  /**
+   *
+   */
+  class Negative(direction: SyntacticDependency.Direction)
+    : Coordinator(type = SyntacticType.CoordNegative, direction = direction)
 }
