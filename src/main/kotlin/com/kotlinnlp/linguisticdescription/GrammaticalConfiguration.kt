@@ -109,9 +109,9 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
    *         otherwise false
    */
   fun isCompatible(morphology: Morphology): Boolean =
-    morphology.components.size == this.components.size &&
-      morphology.components.zip(this.components).all {
-        it.first.pos.baseAnnotation == (it.second.pos as POSTag.Base).type.baseAnnotation
+    this.components.size == morphology.components.size &&
+      this.components.zip(morphology.components).all {
+        it.first.pos != null && (it.first.pos as POSTag.Base).type.baseAnnotation == it.second.pos.baseAnnotation
       }
 
   /**
@@ -125,6 +125,7 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
   fun isPartiallyCompatible(morphology: Morphology): Boolean =
     this.components.any {
       (it.syntacticDependency as SyntacticDependency.Base) is Contin &&
+        it.pos != null &&
         morphology.components.any { morpho -> morpho.pos.baseAnnotation == (it.pos as POSTag.Base).type.baseAnnotation }
     }
 }
