@@ -50,4 +50,12 @@ class ScoredMorphology(components: List<SingleMorphology>, val score: Double): M
     components = components ?: this.components,
     score = score ?: this.score
   )
+
+  /**
+   * Convert this [ScoredMorphology] to a [ScoredSingleMorphology].
+   * It is required that the [components] size is 1.
+   *
+   * @return a new scored single morphology containing the single component of this
+   */
+  fun toSingle() = ScoredSingleMorphology(value = this.components.single(), score = this.score)
 }
