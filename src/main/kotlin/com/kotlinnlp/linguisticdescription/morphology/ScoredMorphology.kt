@@ -15,7 +15,7 @@ import com.beust.klaxon.JsonObject
  * @property components the list of single morphologies that compose this morphology (one for a Single morphology)
  * @property score the score assigned to this morphology
  */
-class ScoredMorphology(list: List<SingleMorphology>, val score: Double): Morphology(list) {
+class ScoredMorphology(components: List<SingleMorphology>, val score: Double): Morphology(components) {
 
   /**
    * Build a [ScoredMorphology] with only one single morphology.
@@ -23,7 +23,7 @@ class ScoredMorphology(list: List<SingleMorphology>, val score: Double): Morphol
    * @property components the single morphologies that compose this morphology
    * @property score the score assigned to this morphology
    */
-  constructor(morphology: SingleMorphology, score: Double): this(list = listOf(morphology), score = score)
+  constructor(morphology: SingleMorphology, score: Double): this(components = listOf(morphology), score = score)
 
   /**
    * @return the JSON object that represents this morphology
@@ -41,13 +41,13 @@ class ScoredMorphology(list: List<SingleMorphology>, val score: Double): Morphol
    * Copy this morphology with no or some value updated.
    * Null values will not be replaced.
    *
-   * @param list a new list of single morphologies
+   * @param components a new list of single morphologies
    * @param score the new score
    *
    * @return a new scored morphology with values updated
    */
-  fun copy(list: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
-    list = list ?: this.components,
+  fun copy(components: List<SingleMorphology>? = null, score: Double? = null) = ScoredMorphology(
+    components = components ?: this.components,
     score = score ?: this.score
   )
 }
