@@ -132,6 +132,11 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   Predet("PREDET", "PREDET");
 
   /**
+   * The list of annotation components.
+   */
+  val annotationComponents: List<String> by lazy { this.annotation.split('-') }
+
+  /**
    * Whether this POS is a [ContentWord].
    */
   val isContentWord: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(ContentWord::class) }
