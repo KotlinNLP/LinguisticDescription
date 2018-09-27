@@ -253,7 +253,7 @@ sealed class MorphoSynToken : TokenIdentificable {
           "dependency" to self.syntacticRelation.toJSON(),
           "coReferences" to self.coReferences?.let { array(it.map { it.toJSON() }) },
           "semanticRelations" to self.semanticRelations?.let { array(it.map { it.toString() }) },
-          "morphology" to if (self.morphologies.isNotEmpty()) array(self.morphologies.map { it.toJSON() }) else null
+          "morphologies" to if (self.morphologies.isNotEmpty()) array(self.morphologies.map { it.toJSON() }) else null
         )
       }
 
