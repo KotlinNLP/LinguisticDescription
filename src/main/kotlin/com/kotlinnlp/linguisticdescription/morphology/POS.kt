@@ -109,7 +109,7 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   PronRelatDouble("PRON-RELAT-DOUBLE", "PRON"),
 
   Prep("PREP", "PREP"),
-  PrepArt("PREPART", "PREP"),
+  PrepArt("PREP-ART", "PREP"),
   PrepPoss("PREP-POSS", "PREP"),
 
   Postpos("POSTPOS", "POSTPOS"),
