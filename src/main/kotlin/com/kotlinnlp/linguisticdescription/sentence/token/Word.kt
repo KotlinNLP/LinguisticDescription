@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.POSTag
-import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.ScoredSingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 
 /**
@@ -33,7 +33,7 @@ open class Word(
      * @param form the form of the token
      * @param position the position of the token
      * @param pos the Part-Of-Speech
-     * @param morphologies the list of scored morphologies, sorted by descending score
+     * @param morphologies the list of scored single morphologies, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
      * @param semanticRelations the list of semantic relations (can be null)
@@ -45,7 +45,7 @@ open class Word(
       form: String,
       position: Position,
       pos: POSTag?,
-      morphologies: List<ScoredMorphology>,
+      morphologies: List<ScoredSingleMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
       semanticRelations: List<SemanticRelation>?
@@ -80,7 +80,7 @@ open class Word(
   """.trimIndent().format(
     this.id,
     this.form,
-    this.morphologies.joinToString(" | ") { it.components.joinToString(" ") { it.pos.annotation } },
+    this.morphologies.joinToString(" | ") { it.value.pos.annotation },
     this.syntacticRelation,
     this.coReferences?.joinToString(separator = ", ") ?: "None",
     this.semanticRelations?.joinToString(separator = ", ") ?: "None"

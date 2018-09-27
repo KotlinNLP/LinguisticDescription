@@ -11,7 +11,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
-import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.ScoredSingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
@@ -27,8 +27,7 @@ import kotlin.reflect.full.isSubclassOf
 sealed class MorphoSynToken : TokenIdentificable {
 
   /**
-   * The list of flattened single morphologies.
-   * This property should be accessed only if this token contains only [Morphology.Type.Single] morphologies.
+   * The list of single morphologies (flattened in case of composite token).
    */
   abstract val flatMorphologies: List<SingleMorphology>
 
@@ -100,15 +99,15 @@ sealed class MorphoSynToken : TokenIdentificable {
     override val flatPOS: List<POSTag> get() = this._pos?.let { listOf(it) } ?: listOf()
 
     /**
-     * The list of scored morphologies, sorted by descending score.
+     * The list of scored single morphologies, sorted by descending score.
      */
-    override val morphologies: List<ScoredMorphology> get() = this._morphologies
+    override val morphologies: List<ScoredSingleMorphology> get() = this._morphologies
 
     /**
      * The list of single morphologies.
      * This property should be accessed only if this token contains only [Morphology.Type.Single] morphologies.
      */
-    override val flatMorphologies: List<SingleMorphology> get() = this._morphologies.map { it.components.single() }
+    override val flatMorphologies: List<SingleMorphology> get() = this._morphologies.map { it.value }
 
     /**
      * The syntactic relation.
@@ -140,7 +139,7 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The mutable list of scored morphologies, sorted by descending score.
      */
-    internal val _morphologies: MutableList<ScoredMorphology> = mutableListOf()
+    internal val _morphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
 
     /**
      * The variable syntactic relation.
@@ -171,7 +170,7 @@ sealed class MorphoSynToken : TokenIdentificable {
      *
      * @param morphology the morphology to add
      */
-    fun addMorphology(morphology: ScoredMorphology) {
+    fun addMorphology(morphology: ScoredSingleMorphology) {
       this._morphologies.add(morphology)
     }
 
@@ -297,10 +296,9 @@ sealed class MorphoSynToken : TokenIdentificable {
 
     /**
      * The list of the flattened single morphologies of the components.
-     * This property should be accessed only if the components contain only [Morphology.Type.Single] morphologies.
      */
     override val flatMorphologies: List<SingleMorphology> get() =
-      this.components.flatMap { it._morphologies.map { it.components.single() } }
+      this.components.flatMap { it._morphologies.map { it.value } }
 
     /**
      * A list containing the single POS of this token.

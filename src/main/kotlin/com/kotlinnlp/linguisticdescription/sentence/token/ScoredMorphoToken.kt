@@ -8,17 +8,17 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.POSTag
-import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.ScoredSingleMorphology
 
 /**
- * A token with a list of possible scored morphologies.
+ * A token with a list of possible scored single morphologies.
  */
 interface ScoredMorphoToken : Token {
 
   /**
-   * The list of possible scored morphologies, sorted by descending score (can be empty).
+   * The list of possible scored single morphologies, sorted by descending score (can be empty).
    */
-  val morphologies: List<ScoredMorphology>
+  val morphologies: List<ScoredSingleMorphology>
 
   /**
    * The Part-Of-Speech (can be null).

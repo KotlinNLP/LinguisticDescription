@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.token
 
 import com.kotlinnlp.linguisticdescription.POSTag
-import com.kotlinnlp.linguisticdescription.morphology.ScoredMorphology
+import com.kotlinnlp.linguisticdescription.morphology.ScoredSingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
@@ -27,7 +27,7 @@ data class Trace(override val id: Int) : MorphoSynToken.Single() {
      *
      * @param id the id of the token, unique within its sentence
      * @param pos the Part-Of-Speech
-     * @param morphologies the list of scored morphologies, sorted by descending score
+     * @param morphologies the list of scored single morphologies, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
      * @param semanticRelations the list of semantic relations (can be null)
@@ -37,7 +37,7 @@ data class Trace(override val id: Int) : MorphoSynToken.Single() {
     operator fun invoke(
       id: Int,
       pos: POSTag?,
-      morphologies: List<ScoredMorphology>,
+      morphologies: List<ScoredSingleMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
       semanticRelations: List<SemanticRelation>?
