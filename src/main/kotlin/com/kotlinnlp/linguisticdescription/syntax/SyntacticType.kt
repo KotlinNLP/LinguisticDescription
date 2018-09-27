@@ -104,6 +104,11 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   Wrong("WRONG", "WRONG");
 
   /**
+   * The list of annotation components.
+   */
+  val annotationComponents: List<String> by lazy { this.annotation.split('-') }
+
+  /**
    * Whether this Syntax Type is a [NominalModifier].
    */
   val isNominalModifier: Boolean by lazy {
