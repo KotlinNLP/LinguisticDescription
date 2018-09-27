@@ -11,6 +11,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.ContentWord
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Discourse
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Relation
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Thing
+import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
 
 /**
@@ -149,6 +150,14 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
    * Whether this POS is a [Thing].
    */
   val isThing: Boolean by lazy { morphologyClasses.getValue(this).isSubclassOf(Thing::class) }
+
+  /**
+   * @param morphologyClass the KClass of a single morphology
+   *
+   * @return true if this POS is a subtype of the type of given morphology, otherwise false
+   */
+  fun <T : SingleMorphology>isSubTypeOf(morphologyClass: KClass<T>): Boolean =
+    morphologyClasses.getValue(this).isSubclassOf(morphologyClass)
 
   /**
    * Factory object.
