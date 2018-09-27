@@ -106,7 +106,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   /**
    * The list of annotation components.
    */
-  val annotationComponents: List<String> by lazy { this.annotation.split('-') }
+  val annotationComponents: List<String> by lazy { this.annotation.split(COMPONENTS_SEP) }
 
   /**
    * Whether this Syntax Type is a [NominalModifier].
@@ -126,6 +126,11 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
    * Factory object.
    */
   companion object Factory {
+
+    /**
+     * The separator of components in the annotation string.
+     */
+    private const val COMPONENTS_SEP = '-'
 
     /**
      * Raised when trying to build a [SyntacticType] through an invalid annotation.

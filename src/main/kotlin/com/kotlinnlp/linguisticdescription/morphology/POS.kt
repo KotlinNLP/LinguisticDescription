@@ -175,6 +175,11 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
     class InvalidAnnotation(annotation: String) : RuntimeException(annotation)
 
     /**
+     * The separator of components in the annotation string.
+     */
+    private const val COMPONENTS_SEP = '-'
+
+    /**
      * POS associated by base annotation.
      */
     private val basePOSMap: Map<String, POS> =
