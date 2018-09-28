@@ -40,6 +40,7 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   AdjQualifPost("ADJ-QUALIF-POST", "ADJ"),
   AdjRelat("ADJ-RELAT", "ADJ"),
 
+  AdvModal("ADV", "ADV"),
   AdvAdvers("ADV-ADVERS", "ADV"),
   AdvCompar("ADV-COMPAR", "ADV"),
   AdvConcess("ADV-CONCESS", "ADV"),
@@ -49,7 +50,6 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   AdvInterr("ADV-INTERR", "ADV"),
   AdvLimit("ADV-LIMIT", "ADV"),
   AdvLoc("ADV-LOC", "ADV"),
-  AdvModal("ADV", "ADV"),
   AdvNeg("ADV-NEG", "ADV"),
   AdvPhras("ADV-PHRAS", "ADV"),
   AdvQuant("ADV-QUANT", "ADV"),
@@ -132,9 +132,14 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   Predet("PREDET", "PREDET");
 
   /**
-   * The list of annotation components.
+   * The list of components.
    */
-  val annotationComponents: List<String> by lazy { this.annotation.split('-') }
+  val components: List<POS> by lazy {
+    val components: List<String> = this.annotation.split(COMPONENTS_SEP)
+    components.indices.map { i ->
+      POS.byAnnotation(components.subList(0, i + 1).joinToString(COMPONENTS_SEP))
+    }
+  }
 
   /**
    * Whether this POS is a [ContentWord].
@@ -177,7 +182,7 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
     /**
      * The separator of components in the annotation string.
      */
-    private const val COMPONENTS_SEP = '-'
+    private const val COMPONENTS_SEP = "-"
 
     /**
      * POS associated by base annotation.
