@@ -170,6 +170,13 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
     morphologyClasses.getValue(this).isSubclassOf(morphologyClass)
 
   /**
+   * @param component a component of this POS
+   *
+   * @return true if any component of this POS is equal to the given one, otherwise false
+   */
+  fun isComposedBy(component: POS): Boolean = this.components.any { it == component }
+
+  /**
    * Factory object.
    */
   companion object Factory {
