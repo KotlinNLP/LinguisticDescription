@@ -104,6 +104,11 @@ sealed class MorphoSynToken : TokenIdentificable {
     override val morphologies: List<ScoredSingleMorphology> get() = this._morphologies
 
     /**
+     * The list of possible scored single morphologies of context, sorted by descending score (can be empty).
+     */
+    override val contextMorphologies: List<ScoredSingleMorphology> get() = this._contextMorphologies
+
+    /**
      * The list of single morphologies.
      * This property should be accessed only if this token contains only [Morphology.Type.Single] morphologies.
      */
@@ -140,6 +145,11 @@ sealed class MorphoSynToken : TokenIdentificable {
      * The mutable list of scored morphologies, sorted by descending score.
      */
     internal val _morphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
+
+    /**
+     * The list of possible scored single morphologies of context, sorted by descending score (can be empty).
+     */
+    internal val _contextMorphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
 
     /**
      * The variable syntactic relation.
@@ -181,6 +191,24 @@ sealed class MorphoSynToken : TokenIdentificable {
      */
     fun removeMorphology(index: Int) {
       this._morphologies.removeAt(index)
+    }
+
+    /**
+     * Add a new context morphology.
+     *
+     * @param morphology the morphology to add
+     */
+    fun addContextMorphology(morphology: ScoredSingleMorphology) {
+      this._contextMorphologies.add(morphology)
+    }
+
+    /**
+     * Remove the context morphology at a given index.
+     *
+     * @param index an index of a morphology in [contextMorphologies]
+     */
+    fun removeContextMorphology(index: Int) {
+      this._contextMorphologies.removeAt(index)
     }
 
     /**

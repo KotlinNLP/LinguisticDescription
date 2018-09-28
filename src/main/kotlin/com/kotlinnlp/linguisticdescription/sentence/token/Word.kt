@@ -34,6 +34,7 @@ open class Word(
      * @param position the position of the token
      * @param pos the Part-Of-Speech
      * @param morphologies the list of scored single morphologies, sorted by descending score
+     * @param contextMorphologies the list of scored single morphologies of context, sorted by descending score
      * @param syntacticRelation the syntactic relation with the governor
      * @param coReferences the list of co-references (can be null)
      * @param semanticRelations the list of semantic relations (can be null)
@@ -46,6 +47,7 @@ open class Word(
       position: Position,
       pos: POSTag?,
       morphologies: List<ScoredSingleMorphology>,
+      contextMorphologies: List<ScoredSingleMorphology>,
       syntacticRelation: SyntacticRelation,
       coReferences: List<CoReference>?,
       semanticRelations: List<SemanticRelation>?
@@ -55,6 +57,7 @@ open class Word(
 
       token._pos = pos
       token._morphologies.addAll(morphologies)
+      token._contextMorphologies.addAll(contextMorphologies)
       token._syntacticRelation = syntacticRelation
       coReferences?.let { token._coReferences = it.toMutableList() }
       semanticRelations?.let { token._semanticRelations = it.toMutableList() }

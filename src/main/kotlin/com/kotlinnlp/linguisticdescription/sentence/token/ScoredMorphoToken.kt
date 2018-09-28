@@ -21,6 +21,11 @@ interface ScoredMorphoToken : Token {
   val morphologies: List<ScoredSingleMorphology>
 
   /**
+   * The list of possible scored single morphologies of context, sorted by descending score (can be empty).
+   */
+  val contextMorphologies: List<ScoredSingleMorphology>
+
+  /**
    * The Part-Of-Speech (can be null).
    */
   val pos: POSTag?
