@@ -128,6 +128,13 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   }
 
   /**
+   * @param component a component of this syntactic type
+   *
+   * @return true if any component of this syntactic type is equal to the given one, otherwise false
+   */
+  fun isComposedBy(component: SyntacticType): Boolean = this.components.any { it == component }
+
+  /**
    * Factory object.
    */
   companion object Factory {
