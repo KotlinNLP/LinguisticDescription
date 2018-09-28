@@ -104,9 +104,14 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   Wrong("WRONG", "WRONG");
 
   /**
-   * The list of annotation components.
+   * The list of components.
    */
-  val annotationComponents: List<String> by lazy { this.annotation.split(COMPONENTS_SEP) }
+  val components: List<SyntacticType> by lazy {
+    val components: List<String> = this.annotation.split(COMPONENTS_SEP)
+    components.indices.map { i ->
+      SyntacticType.byAnnotation(components.subList(0, i + 1).joinToString(COMPONENTS_SEP))
+    }
+  }
 
   /**
    * Whether this Syntax Type is a [NominalModifier].
@@ -130,7 +135,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
     /**
      * The separator of components in the annotation string.
      */
-    private const val COMPONENTS_SEP = '-'
+    private const val COMPONENTS_SEP = "-"
 
     /**
      * Raised when trying to build a [SyntacticType] through an invalid annotation.
