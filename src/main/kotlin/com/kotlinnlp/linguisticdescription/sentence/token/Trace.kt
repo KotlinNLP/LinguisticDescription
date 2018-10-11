@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  *
  * @property id the id of the token, unique within its sentence
  */
-data class Trace(override val id: Int) : MorphoSynToken.Single() {
+class Trace(override val id: Int) : MorphoSynToken.Single() {
 
   companion object {
 

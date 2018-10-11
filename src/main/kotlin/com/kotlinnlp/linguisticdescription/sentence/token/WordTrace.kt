@@ -19,7 +19,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRel
  * @property id the id of the token, unique within its sentence
  * @property form the form of the token
  */
-data class WordTrace(
+class WordTrace(
   override val id: Int,
   override val form: String
 ) : FormToken, MorphoSynToken.Single() {

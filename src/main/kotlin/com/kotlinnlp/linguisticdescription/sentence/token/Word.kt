@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
  * @property form the form of the token
  * @property position the position of the token
  */
-open class Word(
+class Word(
   override val id: Int,
   override val form: String,
   override val position: Position
