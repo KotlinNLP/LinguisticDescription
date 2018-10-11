@@ -278,8 +278,8 @@ sealed class MorphoSynToken : TokenIdentificable {
           "type" to self.type,
           "pos" to self.pos?.toString(),
           "dependency" to self.syntacticRelation.toJSON(),
-          "coReferences" to self.coReferences?.let { array(it.map { it.toJSON() }) },
-          "semanticRelations" to self.semanticRelations?.let { array(it.map { it.toString() }) },
+          "coReferences" to self.coReferences?.let { coRef -> array(coRef.map { it.toJSON() }) },
+          "semanticRelations" to self.semanticRelations?.let { semRel -> array(semRel.map { it.toString() }) },
           "morphologies" to if (self.morphologies.isNotEmpty()) array(self.morphologies.map { it.toJSON() }) else null
         )
       }
@@ -315,7 +315,7 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The set of ids of the components.
      */
-    val componentsIds: Set<Int> by lazy { this.components.map { it.id }.toSet() }
+    val componentsIds: Set<Int> by lazy { this.components.asSequence().map { it.id }.toSet() }
 
     /**
      * The list of syntactic relations. It contains always more than one element.
@@ -326,7 +326,7 @@ sealed class MorphoSynToken : TokenIdentificable {
      * The list of the flattened single morphologies of the components.
      */
     override val flatMorphologies: List<SingleMorphology> get() =
-      this.components.flatMap { it._morphologies.map { it.value } }
+      this.components.flatMap { component ->  component._morphologies.map { it.value } }
 
     /**
      * A list containing the single POS of this token.
