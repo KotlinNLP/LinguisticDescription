@@ -194,6 +194,13 @@ sealed class MorphoSynToken : TokenIdentificable {
     }
 
     /**
+     * Remove all the morphologies.
+     */
+    fun removeAllMorphologies() {
+      this._morphologies.clear()
+    }
+
+    /**
      * Add a new context morphology.
      *
      * @param morphology the morphology to add
@@ -209,6 +216,13 @@ sealed class MorphoSynToken : TokenIdentificable {
      */
     fun removeContextMorphology(index: Int) {
       this._contextMorphologies.removeAt(index)
+    }
+
+    /**
+     * Remove all the context morphologies.
+     */
+    fun removeAllContextMorphologies() {
+      this._contextMorphologies.clear()
     }
 
     /**
@@ -243,6 +257,13 @@ sealed class MorphoSynToken : TokenIdentificable {
     }
 
     /**
+     * Remove all the co-references.
+     */
+    fun removeAllCoreferences() {
+      this._coReferences.clear()
+    }
+
+    /**
      * Add a new semantic relation.
      *
      * @param semanticRelation the semantic relation to add
@@ -262,6 +283,13 @@ sealed class MorphoSynToken : TokenIdentificable {
      */
     fun removeSemanticRelation(index: Int) {
       this._semanticRelations.removeAt(index)
+    }
+
+    /**
+     * Remove all the semantic relations.
+     */
+    fun removeAllSemanticRelations() {
+      this._semanticRelations.clear()
     }
 
     /**
