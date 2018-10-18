@@ -135,6 +135,7 @@ abstract class SingleMorphology(val lemma: String) {
   fun getProperties(): Map<String, MorphologyProperty> {
 
     val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters
+      .asSequence()
       .filter { it.type.isSubtypeOf(MorphologyProperty::class.starProjectedType) }
       .map { it.name!! }
       .toSet()
