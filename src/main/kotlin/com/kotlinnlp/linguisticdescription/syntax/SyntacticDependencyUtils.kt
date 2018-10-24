@@ -17,7 +17,6 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
 
   SyntacticType.Top to Top::class,
   SyntacticType.Initiator to Initiator::class,
-  SyntacticType.Separator to Separator::class,
 
   SyntacticType.Subject to Subject.Base::class,
   SyntacticType.InterrogativeSubject to Subject.Interrogative::class,
@@ -75,9 +74,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.Coord2NdNeg to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdSymmetric to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
 
-  SyntacticType.Parenthetical to Parenthetical.Base::class,
-  SyntacticType.OpenParenthetical to Parenthetical.Close::class,
-  SyntacticType.CloseParenthetical to Parenthetical.Open::class,
+  SyntacticType.Separator to Separator::class,
   SyntacticType.OpenQuotes to Quotes.Open::class,
   SyntacticType.CloseQuotes to Quotes.Close::class,
 

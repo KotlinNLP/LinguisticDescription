@@ -21,7 +21,6 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
 
   Top("TOP", "TOP"),
   Initiator("INITIATOR", "INITIATOR"),
-  Separator("SEPARATOR", "SEPARATOR"),
 
   Subject("SUBJ", "SUBJ"),
   InterrogativeSubject("SUBJ-INTERR", "SUBJ"),
@@ -79,9 +78,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   Coord2NdNeg("COORD2ND-NEG", "COORD2ND"),
   Coord2NdSymmetric("COORD2ND-SYMMETRIC", "COORD2ND"),
 
-  Parenthetical("PARENTHETICAL", "PARENTHETICAL"),
-  CloseParenthetical("CLOSE-PARENTHETICAL", "CLOSE"),
-  OpenParenthetical("OPEN-PARENTHETICAL", "OPEN"),
+  Separator("SEPARATOR", "SEPARATOR"),
   CloseQuotes("CLOSE-QUOTES", "CLOSE"),
   OpenQuotes("OPEN-QUOTES", "OPEN"),
 
