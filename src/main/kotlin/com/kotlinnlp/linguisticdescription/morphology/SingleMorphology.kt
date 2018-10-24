@@ -104,10 +104,10 @@ abstract class SingleMorphology(val lemma: String) {
   abstract val pos: POS
 
   /**
-   * @param other a morphology
+   * @param other another morphology
    * @param weakMatch whether to allows the match between undefined properties or not (default false)
    *
-   * @return 'true' whether this morphology and [other] morphologies agree morphologically
+   * @return true if this morphology and [other] morphologies agree morphologically, otherwise false
    */
   fun agree(other: SingleMorphology, weakMatch: Boolean = false): Boolean {
 
@@ -128,6 +128,62 @@ abstract class SingleMorphology(val lemma: String) {
     else
       false
   }
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the gender properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInGender(other: SingleMorphology): Boolean =
+    this is Genderable && other is Genderable && this.gender == other.gender
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the number properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInNumber(other: SingleMorphology): Boolean =
+    this is Numerable && other is Numerable && this.number == other.number
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the person properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInPerson(other: SingleMorphology): Boolean =
+    this is PersonDeclinable && other is PersonDeclinable && this.person == other.person
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the case properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInCase(other: SingleMorphology): Boolean =
+    this is CaseDeclinable && other is CaseDeclinable && this.case == other.case
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the degree properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInDegree(other: SingleMorphology): Boolean =
+    this is Gradable && other is Gradable && this.degree == other.degree
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the mood properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInMood(other: SingleMorphology): Boolean =
+    this is Conjugable && other is Conjugable && this.mood == other.mood
+
+  /**
+   * @param other another morphology
+   *
+   * @return true if the tense properties of this morphology and the [other] are equal, otherwise false
+   */
+  fun agreeInTense(other: SingleMorphology): Boolean =
+    this is Conjugable && other is Conjugable && this.tense == other.tense
 
   /**
    * @return a map of properties names to values
