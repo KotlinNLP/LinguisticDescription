@@ -79,6 +79,8 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   Coord2NdSymmetric("COORD2ND-SYMMETRIC", "COORD2ND"),
 
   Separator("SEPARATOR", "SEPARATOR"),
+  SeparatorOpen("SEPARATOR-OPEN", "SEPARATOR"),
+  SeparatorClose("SEPARATOR-CLOSE", "SEPARATOR"),
   CloseQuotes("CLOSE-QUOTES", "CLOSE"),
   OpenQuotes("OPEN-QUOTES", "OPEN"),
 

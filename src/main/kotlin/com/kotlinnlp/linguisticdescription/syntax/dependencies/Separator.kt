@@ -13,7 +13,28 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'separator' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-class Separator(direction: SyntacticDependency.Direction)
-  : SyntacticDependency.Base(type = SyntacticType.Separator, direction = direction)
+sealed class Separator(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
+
+  /**
+   *
+   */
+  class Base(direction: SyntacticDependency.Direction)
+    : Separator(type = SyntacticType.Separator, direction = direction)
+
+  /**
+   *
+   */
+  class Open(direction: SyntacticDependency.Direction)
+    : Separator(type = SyntacticType.SeparatorOpen, direction = direction)
+
+  /**
+   *
+   */
+  class Close(direction: SyntacticDependency.Direction)
+    : Separator(type = SyntacticType.SeparatorClose, direction = direction)
+}
+
