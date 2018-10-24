@@ -38,7 +38,7 @@ class SingleMorphologySpec : Spek({
           properties = mapOf(
             "gender" to Gender.Masculine,
             "number" to Number.Singular,
-            "case" to GrammaticalCase.Subject
+            "case" to GrammaticalCase.Nominative
           ))
 
         it("should return a Morphology of the expected type") {
@@ -54,7 +54,7 @@ class SingleMorphologySpec : Spek({
         }
 
         it("should return a Morphology with the expected gender") {
-          assertEquals(GrammaticalCase.Subject, (morpho as Article.Indefinite).case)
+          assertEquals(GrammaticalCase.Nominative, (morpho as Article.Indefinite).case)
         }
 
         it("should return the expected string calling the toString() method") {
@@ -75,7 +75,7 @@ class SingleMorphologySpec : Spek({
               pos = POS.ArtIndef,
               properties = mapOf(
                 "number" to Number.Singular,
-                "case" to GrammaticalCase.Subject
+                "case" to GrammaticalCase.Nominative
               ))
           }
         }
@@ -88,14 +88,14 @@ class SingleMorphologySpec : Spek({
           val morpho = SingleMorphology(
             lemma = "x",
             pos = POS.ArtIndef,
-            properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Subject),
+            properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Nominative),
             allowIncompleteProperties = true)
 
           val expected = Article.Indefinite.Base(
             lemma = "x",
             gender = Gender.Undefined,
             number = Number.Singular,
-            case = GrammaticalCase.Subject)
+            case = GrammaticalCase.Nominative)
 
           assertEquals(expected, morpho)
         }
@@ -127,7 +127,7 @@ class SingleMorphologySpec : Spek({
           properties = mapOf(
             "gender" to Gender.Masculine,
             "number" to Number.Singular,
-            "case" to GrammaticalCase.Subject
+            "case" to GrammaticalCase.Nominative
           ))
 
         it("should return a Morphology of the expected type") {

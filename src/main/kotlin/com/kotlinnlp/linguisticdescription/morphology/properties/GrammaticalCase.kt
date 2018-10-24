@@ -15,9 +15,9 @@ package com.kotlinnlp.linguisticdescription.morphology.properties
 enum class GrammaticalCase(override val annotation: String) : MorphologyProperty {
   Undefined("_"),
   Unknown("UNKNOWN"),
-  Subject("SUBJ"),
-  Object("OBJ"),
-  IndirectObject("IOBJ"),
+  Nominative("SUBJ"),
+  Accusative("OBJ"),
+  Dative("IOBJ"),
   Vocative("VOC"),
   Partitive("PART"),
   Locative("LOC"),
