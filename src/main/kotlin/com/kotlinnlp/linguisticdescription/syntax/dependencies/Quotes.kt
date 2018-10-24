@@ -22,12 +22,18 @@ sealed class Quotes(type: SyntacticType, direction: SyntacticDependency.Directio
   /**
    *
    */
+  class Base(direction: SyntacticDependency.Direction)
+    : Quotes(type = SyntacticType.Quotes, direction = direction)
+
+  /**
+   *
+   */
   class Open(direction: SyntacticDependency.Direction)
-    : Quotes(type = SyntacticType.OpenQuotes, direction = direction)
+    : Quotes(type = SyntacticType.QuotesOpen, direction = direction)
 
   /**
    *
    */
   class Close(direction: SyntacticDependency.Direction)
-    : Quotes(type = SyntacticType.CloseQuotes, direction = direction)
+    : Quotes(type = SyntacticType.QuotesClose, direction = direction)
 }

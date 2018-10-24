@@ -77,8 +77,9 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.Separator to Separator.Base::class,
   SyntacticType.SeparatorOpen to Separator.Open::class,
   SyntacticType.SeparatorClose to Separator.Close::class,
-  SyntacticType.OpenQuotes to Quotes.Open::class,
-  SyntacticType.CloseQuotes to Quotes.Close::class,
+  SyntacticType.Quotes to Quotes.Base::class,
+  SyntacticType.QuotesOpen to Quotes.Open::class,
+  SyntacticType.QuotesClose to Quotes.Close::class,
 
   SyntacticType.Connector to Connector::class,
 

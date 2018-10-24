@@ -81,8 +81,9 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   Separator("SEPARATOR", "SEPARATOR"),
   SeparatorOpen("SEPARATOR-OPEN", "SEPARATOR"),
   SeparatorClose("SEPARATOR-CLOSE", "SEPARATOR"),
-  CloseQuotes("CLOSE-QUOTES", "CLOSE"),
-  OpenQuotes("OPEN-QUOTES", "OPEN"),
+  Quotes("QUOTES", "QUOTES"),
+  QuotesOpen("OPEN-QUOTES", "QUOTES"),
+  QuotesClose("CLOSE-QUOTES", "QUOTES"),
 
   Connector("CONN", "CONN"),
 
