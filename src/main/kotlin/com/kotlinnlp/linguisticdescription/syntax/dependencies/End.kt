@@ -22,6 +22,12 @@ sealed class End(type: SyntacticType, direction: SyntacticDependency.Direction)
   /**
    *
    */
+  class Base(direction: SyntacticDependency.Direction)
+    : End(type = SyntacticType.End, direction = direction)
+
+  /**
+   *
+   */
   class Assertive(direction: SyntacticDependency.Direction)
     : End(type = SyntacticType.EndAssertive, direction = direction)
 

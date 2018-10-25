@@ -93,6 +93,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   ContinNumber("CONTIN-NUM", "CONTIN"),
   ContinCoord("CONTIN-COORD", "CONTIN"),
 
+  End("END", "END"),
   EndInterrogative("END-INTERROGATIVE", "END"),
   EndAssertive("END-ASSERTIVE", "END"),
   EndImperative("END-IMPERATIVE", "END"),

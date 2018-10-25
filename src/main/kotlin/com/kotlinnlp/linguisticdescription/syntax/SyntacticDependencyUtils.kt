@@ -89,6 +89,7 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.ContinNumber to Contin.Number::class,
   SyntacticType.ContinCoord to Contin.Coord::class,
 
+  SyntacticType.End to End.Base::class,
   SyntacticType.EndAssertive to End.Assertive::class,
   SyntacticType.EndInterrogative to End.Interrogative::class,
   SyntacticType.EndImperative to End.Imperative::class,
