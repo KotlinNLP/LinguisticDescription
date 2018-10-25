@@ -45,7 +45,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   RModPoss("RMOD-POSS", "RMOD"),
   RModCompar("RMOD-COMPAR", "RMOD"),
   RModQuant("RMOD-QUANT", "RMOD"),
-  RMod2NDNeg("RMOD2ND-NEG", "RMOD"),
+  RMod2NDNeg("RMOD2ND-NEG", "RMOD2ND"),
 
   ExtraObject("EXTRAOBJ", "EXTRAOBJ"),
   ExtraSubject("EXTRASUBJ", "EXTRASUBJ"),
