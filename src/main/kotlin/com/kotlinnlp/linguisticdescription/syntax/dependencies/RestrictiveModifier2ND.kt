@@ -13,7 +13,21 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 /**
  * The 'restrictive modifier 2nd' dependency.
  *
+ * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-class RestrictiveModifier2ND(direction: SyntacticDependency.Direction)
-  : SyntacticDependency.Base(type = SyntacticType.RMod2NDNeg, direction = direction)
+sealed class RestrictiveModifier2ND(type: SyntacticType, direction: SyntacticDependency.Direction)
+  : SyntacticDependency.Base(type = type, direction = direction) {
+
+  /**
+   *
+   */
+  class Base(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier2ND(type = SyntacticType.RMod2ND, direction = direction)
+
+  /**
+   *
+   */
+  class Negative(direction: SyntacticDependency.Direction)
+    : RestrictiveModifier2ND(type = SyntacticType.RMod2NDNeg, direction = direction)
+}

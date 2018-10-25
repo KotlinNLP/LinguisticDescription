@@ -29,7 +29,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   InterrogativeObject("OBJ-INTERR", "OBJ"),
   IndirectObject("IOBJ", "IOBJ"),
   InterrogativeIndirectObject("IOBJ-INTERR", "IOBJ"),
-  IndirectComplement("INDCOMPL", "INDCOMPL"), // TODO: Add related class
+  IndirectComplement("INDCOMPL", "INDCOMPL"),
 
   PredCompl("PREDCOMPL", "PREDCOMPL"),
   PredComplSubj("PREDCOMPL-SUBJ", "PREDCOMPL"),
@@ -45,11 +45,12 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   RModPoss("RMOD-POSS", "RMOD"),
   RModCompar("RMOD-COMPAR", "RMOD"),
   RModQuant("RMOD-QUANT", "RMOD"),
+  RMod2ND("RMOD2ND", "RMOD2ND"),
   RMod2NDNeg("RMOD2ND-NEG", "RMOD2ND"),
 
   ExtraObject("EXTRAOBJ", "EXTRAOBJ"),
   ExtraSubject("EXTRASUBJ", "EXTRASUBJ"),
-  EmptyCompl("EMPTYCOMPL", "EMPTYCOMPL"), // TODO: add related class
+  EmptyCompl("EMPTYCOMPL", "EMPTYCOMPL"),
 
   Locative("LOC", "LOC"),
   Partitive("PART", "PART"),
@@ -100,7 +101,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
 
   Interj("INTERJ", "INTERJ"),
 
-  Undefined("_", "_"), // TODO: add related class
+  Undefined("_", "_"),
   Unknown("UNKNOWN", "UNKNOWN"),
   Wrong("WRONG", "WRONG");
 
