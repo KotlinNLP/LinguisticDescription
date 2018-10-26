@@ -38,7 +38,7 @@ sealed class Adjective(
    */ class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
                  person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined,
                  degree: Degree = Degree.Base)
-    : Adjective(lemma, gender, number, person, case, degree) {
+    : ContentWord, Adjective(lemma, gender, number, person, case, degree) {
 
     override val pos: POS = POS.Adj
   }
@@ -72,7 +72,7 @@ sealed class Adjective(
   ) : Adjective(lemma, gender, number, person, case, degree) {
 
     /**
-     * The 'qualifying adjective' morphology.
+     * The 'demonstrative adjective' morphology.
      */
     class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
                person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined,
@@ -83,7 +83,7 @@ sealed class Adjective(
     }
 
     /**
-     * The 'antecedent qualifying adjective' morphology.
+     * The 'antecedent demonstrative adjective' morphology.
      */
     class Antecedent(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined,
@@ -94,7 +94,7 @@ sealed class Adjective(
     }
 
     /**
-     * The 'successive qualifying adjective' morphology.
+     * The 'successive demonstrative adjective' morphology.
      */
     class Successive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined,
@@ -206,7 +206,7 @@ sealed class Adjective(
    */
   sealed class Qualifying(
     lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase, degree: Degree
-  ) : Adjective(lemma, gender, number, person, case, degree), ContentWord {
+  ) : ContentWord, Adjective(lemma, gender, number, person, case, degree) {
 
     /**
      * The 'qualifying adjective' morphology.
