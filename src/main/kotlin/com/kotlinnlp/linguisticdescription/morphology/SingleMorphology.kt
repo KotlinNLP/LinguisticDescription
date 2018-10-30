@@ -211,7 +211,7 @@ abstract class SingleMorphology(val lemma: String) {
     return "`%s`: %s%s%s".format(
       this.lemma,
       this.getSuperClassesNames().joinToString(separator = "."),
-      if (this is Number) " ${this.numericForm}" else "",
+      if (this is Number && this.numericForm != null) " ${this.numericForm}" else "",
       if (properties.isNotEmpty()) " (" + properties.joinToString { "${it.key}: ${it.value}" } + ")" else ""
     )
   }
