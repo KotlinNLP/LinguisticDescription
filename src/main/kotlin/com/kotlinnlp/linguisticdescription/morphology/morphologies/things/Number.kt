@@ -22,13 +22,13 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
  *  They should be created using a Morphological Analyzer.
  *
  * @property lemma the lemma (the standard representation of the number in digits)
- * @property numericForm the numeric value
+ * @property numericForm the numeric value (default = null)
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  */
 class Number(
   lemma: String,
-  val numericForm: kotlin.Number,
+  val numericForm: kotlin.Number? = null,
   override val gender: Gender = Gender.Undefined,
   override val number: NumberProp = NumberProp.Undefined
 ) : SingleMorphology(lemma), Thing, Genderable, Numerable {
