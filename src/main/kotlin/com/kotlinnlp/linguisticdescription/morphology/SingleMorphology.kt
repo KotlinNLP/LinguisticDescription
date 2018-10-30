@@ -48,10 +48,6 @@ abstract class SingleMorphology(val lemma: String) {
                         properties: Map<String, MorphologyProperty> = mapOf(),
                         allowIncompleteProperties: Boolean = false): SingleMorphology {
 
-      require(pos != POS.Num) {
-        "'NUM' morphologies cannot be created with the factory because they have an adding 'numericForm' property."
-      }
-
       val kClass: KClass<*> = morphologyClasses.getValue(pos)
       val constructor: KFunction<Any> = kClass.constructors.last()
 
