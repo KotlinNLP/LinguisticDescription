@@ -59,7 +59,7 @@ class SingleMorphologySpec : Spek({
 
         it("should return the expected string calling the toString() method") {
           assertEquals(
-            "`x`: Article.Indefinite.Base (case: Subject, gender: Masculine, number: Singular)",
+            "`x`: Article.Indefinite.Base (case: Nominative, gender: Masculine, number: Singular)",
             morpho.toString())
         }
       }
@@ -163,7 +163,7 @@ class SingleMorphologySpec : Spek({
       on("factory") {
 
         it("should raise an exception") {
-          assertFailsWith<IllegalArgumentException> {
+          assertFailsWith<MissingMorphologyProperty> {
             SingleMorphology(lemma = "x", pos = POS.Num, properties = mapOf())
           }
         }
