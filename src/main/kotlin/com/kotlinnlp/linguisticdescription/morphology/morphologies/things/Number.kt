@@ -22,6 +22,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
  *  They should be created using a Morphological Analyzer.
  *
  * @property lemma the lemma (the standard representation of the number in digits)
+ * @property numericForm the numeric value
  * @property gender the 'gender' morphology property
  * @property number the 'number' morphology property
  */
