@@ -11,17 +11,17 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
 import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
- * The 'conjunct coordinator' dependency.
+ * The 'coordinated' dependency.
  *
  * @property type the type of this dependency
  * @property direction the direction of the dependency, related to the governor
  */
-sealed class CoordinatorConjunct(type: SyntacticType, direction: SyntacticDependency.Direction)
+sealed class Coordinated(type: SyntacticType, direction: SyntacticDependency.Direction)
   : SyntacticDependency.Base(type = type, direction = direction) {
 
   /**
    *
    */
-  class Base(direction: SyntacticDependency.Direction)
-    : CoordinatorConjunct(type = SyntacticType.Coord2Nd, direction = direction)
+  class Conjunct(direction: SyntacticDependency.Direction)
+    : Coordinated(type = SyntacticType.Coord2Nd, direction = direction)
 }

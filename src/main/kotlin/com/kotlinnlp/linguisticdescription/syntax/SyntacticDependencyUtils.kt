@@ -66,14 +66,14 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.Coord to Coordinator.Base::class,
   SyntacticType.CoordAntecedent to Coordinator.Antecedent::class,
   SyntacticType.CoordNegative to Coordinator.Negative::class,
-  SyntacticType.Coord2Nd to CoordinatorConjunct.Base::class,
-  SyntacticType.Coord2NdNegative to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdAdvers to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdCompar to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdCorrelat to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdExplic to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdNeg to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdSymmetric to CoordinatorConjunct.Base::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2Nd to Coordinated.Conjunct::class,
+  SyntacticType.Coord2NdNegative to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdAdvers to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdCompar to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdCorrelat to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdExplic to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdNeg to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
+  SyntacticType.Coord2NdSymmetric to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
 
   SyntacticType.Separator to Separator.Base::class,
   SyntacticType.SeparatorOpen to Separator.Open::class,
