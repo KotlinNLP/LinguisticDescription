@@ -36,6 +36,7 @@ abstract class SingleMorphology(val lemma: String) {
      * @param lemma the lemma of the morphology
      * @param pos the POS of the morphology
      * @param properties the map of property names to their values (optional, unnecessary adding properties are ignored)
+     * @param numericForm the numeric form in case the building morphology is a Number
      * @param allowIncompleteProperties allow to build the morphology even if the [properties] map does not contain all
      *                                  the required properties (default = false)
      *
@@ -46,6 +47,7 @@ abstract class SingleMorphology(val lemma: String) {
     operator fun invoke(lemma: String,
                         pos: POS,
                         properties: Map<String, MorphologyProperty> = mapOf(),
+                        numericForm: kotlin.Number? = null,
                         allowIncompleteProperties: Boolean = false): SingleMorphology {
 
       val kClass: KClass<*> = morphologyClasses.getValue(pos)
@@ -57,6 +59,7 @@ abstract class SingleMorphology(val lemma: String) {
             val propertyName: String = it.name!!
             when {
               propertyName == "lemma" -> it to lemma
+              propertyName == "numericForm" && numericForm != null -> it to numericForm
               propertyName in properties -> it to properties.getValue(propertyName)
               allowIncompleteProperties -> null
               else -> throw MissingMorphologyProperty(propertyName = propertyName, pos = pos, lemma = lemma)
@@ -80,6 +83,7 @@ abstract class SingleMorphology(val lemma: String) {
       val requiredProperties = mutableListOf<String>()
       val morphologyClass: KClass<*> = morphologyClasses.getValue(pos)
 
+      if (morphologyClass.isSubclassOf(Number::class)) requiredProperties.add("numericForm")
       if (morphologyClass.isSubclassOf(Genderable::class)) requiredProperties.add("gender")
       if (morphologyClass.isSubclassOf(Numerable::class)) requiredProperties.add("number")
       if (morphologyClass.isSubclassOf(PersonDeclinable::class)) requiredProperties.add("person")
