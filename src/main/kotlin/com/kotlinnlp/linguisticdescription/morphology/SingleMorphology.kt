@@ -12,6 +12,7 @@ import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.MissingMorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.Person
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as LDNumber
@@ -132,34 +133,38 @@ abstract class SingleMorphology(val lemma: String) {
   /**
    * @param other another morphology
    *
-   * @return true if the gender properties of this morphology and the [other] are equal, otherwise false
+   * @return true if the gender properties of this morphology and the [other] are equal or undefined, otherwise false
    */
   fun agreeInGender(other: SingleMorphology): Boolean =
-    this is Genderable && other is Genderable && this.gender == other.gender
+    this is Genderable && other is Genderable &&
+      (this.gender == Gender.Undefined || other.gender == Gender.Undefined || this.gender == other.gender)
 
   /**
    * @param other another morphology
    *
-   * @return true if the number properties of this morphology and the [other] are equal, otherwise false
+   * @return true if the number properties of this morphology and the [other] are equal or undefined, otherwise false
    */
   fun agreeInNumber(other: SingleMorphology): Boolean =
-    this is Numerable && other is Numerable && this.number == other.number
+    this is Numerable && other is Numerable &&
+      (this.number == LDNumber.Undefined || other.number == LDNumber.Undefined || this.number == other.number)
 
   /**
    * @param other another morphology
    *
-   * @return true if the person properties of this morphology and the [other] are equal, otherwise false
+   * @return true if the person properties of this morphology and the [other] are equal or undefined, otherwise false
    */
   fun agreeInPerson(other: SingleMorphology): Boolean =
-    this is PersonDeclinable && other is PersonDeclinable && this.person == other.person
+    this is PersonDeclinable && other is PersonDeclinable  &&
+      (this.person == Person.Undefined || other.person == Person.Undefined || this.person == other.person)
 
   /**
    * @param other another morphology
    *
-   * @return true if the case properties of this morphology and the [other] are equal, otherwise false
+   * @return true if the case properties of this morphology and the [other] are equal or undefined, otherwise false
    */
   fun agreeInCase(other: SingleMorphology): Boolean =
-    this is CaseDeclinable && other is CaseDeclinable && this.case == other.case
+    this is CaseDeclinable && other is CaseDeclinable &&
+      (this.case == GrammaticalCase.Undefined || other.case == GrammaticalCase.Undefined || this.case == other.case)
 
   /**
    * @param other another morphology
