@@ -101,12 +101,12 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The list of scored single morphologies, sorted by descending score.
      */
-    override val morphologies: List<ScoredSingleMorphology> get() = this._morphologies
+    override val morphologies: List<ScoredSingleMorphology> get() = this._morphologies.toList()
 
     /**
      * The list of possible scored single morphologies of context, sorted by descending score (can be empty).
      */
-    override val contextMorphologies: List<ScoredSingleMorphology> get() = this._contextMorphologies
+    override val contextMorphologies: List<ScoredSingleMorphology> get() = this._contextMorphologies.toList()
 
     /**
      * The list of single morphologies.
@@ -128,13 +128,13 @@ sealed class MorphoSynToken : TokenIdentificable {
      * The list of co-references (can be null).
      */
     override val coReferences: List<CoReference>? get() =
-      if (this::_coReferences.isInitialized) this._coReferences else null
+      if (this::_coReferences.isInitialized) this._coReferences.toList() else null
 
     /**
      * The list of semantic relations (can be null).
      */
     override val semanticRelations: List<SemanticRelation>? get() =
-      if (this::_semanticRelations.isInitialized) this._semanticRelations else null
+      if (this::_semanticRelations.isInitialized) this._semanticRelations.toList() else null
 
     /**
      * The variable Part-Of-Speech.
