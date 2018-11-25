@@ -80,6 +80,14 @@ sealed class SyntacticDependency(open val type: Any, val direction: Direction) :
   fun softEquals(other: Any?): Boolean = other is SyntacticDependency && other.type == this.type
 
   /**
+   * @param syntacticType a syntactic type
+   *
+   * @return true if the type of this dependency is a subtype of the given syntactic type, otherwise false
+   */
+  fun isSubTypeOf(syntacticType: SyntacticType): Boolean =
+    this is SyntacticDependency.Base && this.type.isComposedBy(syntacticType)
+
+  /**
    * @return a Boolean indicating whether the given [other] object is equal to this syntactic dependency
    */
   override fun equals(other: Any?): Boolean

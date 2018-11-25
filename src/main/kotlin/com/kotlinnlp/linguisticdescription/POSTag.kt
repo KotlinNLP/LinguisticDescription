@@ -45,6 +45,13 @@ sealed class POSTag(open val type: Any): Serializable {
   override fun hashCode(): Int = this.type.hashCode()
 
   /**
+   * @param pos a POS type
+   *
+   * @return true if the type of this POS tag is a subtype of the given POS, otherwise false
+   */
+  fun isSubTypeOf(pos: POS): Boolean = this is POSTag.Base && this.type.isComposedBy(pos)
+
+  /**
    * The [POSTag] with the [POS] type.
    */
   class Base(override val type: POS) : POSTag(type) {
