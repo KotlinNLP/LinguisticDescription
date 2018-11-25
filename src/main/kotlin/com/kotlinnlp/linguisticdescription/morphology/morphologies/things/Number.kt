@@ -13,6 +13,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Genderable
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Numerable
+import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.PersonDeclinable
 
 /**
  * The 'number' morphology.
@@ -31,7 +32,12 @@ class Number(
   val numericForm: kotlin.Number? = null,
   override val gender: Gender = Gender.Undefined,
   override val number: NumberProp = NumberProp.Undefined
-) : SingleMorphology(lemma), Thing, Genderable, Numerable {
+) : SingleMorphology(lemma), Thing, Genderable, Numerable, PersonDeclinable {
 
   override val pos: POS = POS.Num
+
+  /**
+   * By default a Number is third person.
+   */
+  override val person: Person = Person.Third
 }
