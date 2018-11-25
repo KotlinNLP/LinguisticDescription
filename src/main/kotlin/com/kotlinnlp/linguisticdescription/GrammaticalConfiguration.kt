@@ -128,4 +128,11 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
         it.pos != null &&
         morphology.components.any { morpho -> morpho.pos.baseAnnotation == (it.pos as POSTag.Base).type.baseAnnotation }
     }
+
+  /**
+   * @return whether this grammatical configuration defines a content word with a single morphology
+   */
+  fun isSingleContentWord(): Boolean =
+    this.type == GrammaticalConfiguration.Type.Single
+      && (this.components.single().pos as POSTag.Base).type.isContentWord
 }
