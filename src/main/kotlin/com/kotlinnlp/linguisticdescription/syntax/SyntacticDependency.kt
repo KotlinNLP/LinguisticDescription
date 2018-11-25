@@ -26,7 +26,24 @@ sealed class SyntacticDependency(open val type: Any, val direction: Direction) :
     ROOT,
     LEFT,
     RIGHT,
-    NULL
+    NULL;
+
+    companion object {
+
+      /**
+       * Get the direction of a syntactic dependency.
+       *
+       * @param tokenIndex the index of the token to which the deprel must be assigned
+       * @param headIndex the index of the token head (can be null)
+       *
+       * @return the direction of the syntactic dependency between the given token and its head
+       */
+      operator fun invoke(tokenIndex: Int, headIndex: Int?): SyntacticDependency.Direction = when {
+        headIndex == null -> SyntacticDependency.Direction.ROOT
+        tokenIndex < headIndex -> SyntacticDependency.Direction.LEFT
+        else -> SyntacticDependency.Direction.RIGHT
+      }
+    }
   }
 
   /**
