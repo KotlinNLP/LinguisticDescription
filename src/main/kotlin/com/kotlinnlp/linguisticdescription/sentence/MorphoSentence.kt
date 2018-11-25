@@ -7,26 +7,18 @@
 
 package com.kotlinnlp.linguisticdescription.sentence
 
-import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
-import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
-import com.kotlinnlp.linguisticdescription.sentence.token.MorphoToken
+import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
+import com.kotlinnlp.linguisticdescription.sentence.token.FormToken
 
 /**
  * A sentence with morphological and syntactic information.
  *
  * @property tokens the list of tokens of this sentence
- * @property dateTimes
- * @property multiWords
  */
-interface MorphoSentence<TokenType: MorphoToken> : Sentence<TokenType> {
+interface MorphoSentence<TokenType: FormToken> : Sentence<TokenType> {
 
   /**
-   * The list of date-time expressions contained in this sentence (can be null).
+   * The morphological analysis of the sentence (can be null)
    */
-  val dateTimes: List<DateTime>?
-
-  /**
-   * The list of multi-words expressions contained in this sentence (can be null).
-   */
-  val multiWords: List<MultiWords>?
+  val morphoAnalysis: MorphologicalAnalysis?
 }
