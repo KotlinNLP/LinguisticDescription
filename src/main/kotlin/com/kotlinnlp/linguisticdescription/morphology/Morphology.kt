@@ -9,6 +9,11 @@ package com.kotlinnlp.linguisticdescription.morphology
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import com.kotlinnlp.linguisticdescription.GrammaticalConfiguration
+import com.kotlinnlp.linguisticdescription.POSTag
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
+import com.kotlinnlp.linguisticdescription.syntax.dependencies.Top
+import com.kotlinnlp.linguisticdescription.syntax.dependencies.Unknown
 
 /**
  * A morphology of a lexical form.
@@ -78,4 +83,22 @@ open class Morphology(val components: List<SingleMorphology>) {
       "list" to array(self.components.map { it.toJSON() })
     )
   }
+
+  /**
+   * Build a grammatical configuration from this [Morphology] with TOP or UNKNOWN dependency.
+   *
+   * @param direction the direction to set to the grammatical configuration
+   *
+   * @return a new grammatical configuration built from this morphology
+   */
+  fun buildUnknownConfig(direction: SyntacticDependency.Direction) = GrammaticalConfiguration(
+    components = this.components.mapIndexed { i, it ->
+      GrammaticalConfiguration.Component(
+        syntacticDependency = if (i == 0 && direction == SyntacticDependency.Direction.ROOT)
+          Top(direction)
+        else
+          Unknown(direction),
+        pos = POSTag.Base(POS.byBaseAnnotation(it.pos.baseAnnotation)))
+    }
+  )
 }
