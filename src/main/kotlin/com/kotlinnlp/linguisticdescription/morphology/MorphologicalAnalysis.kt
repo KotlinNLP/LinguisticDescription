@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.linguisticdescription.morphology
 
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Preposition
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Article
 import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 
@@ -45,7 +47,11 @@ data class MorphologicalAnalysis(
    */
   val allMorphologies: List<Morphologies> by lazy {
     this.tokensMorphologies.indices.map { tokenIndex ->
-      Morphologies(this.startMorphologies[tokenIndex] + this.middleMWMorphologies[tokenIndex])
+      Morphologies(
+        this.startMorphologies[tokenIndex] +
+          this.middleMWMorphologies[tokenIndex] +
+          this.getPrepArtMWMorphologies(tokenIndex)
+      )
     }
   }
 
@@ -92,4 +98,25 @@ data class MorphologicalAnalysis(
       .filter { tokenIndex in (it.startToken + 1)..it.endToken }
       .flatMap { it.morphologies }
   )
+
+  /**
+   * @param tokenIndex the index of the token
+   *
+   * @return a list of morphologies
+   */
+  private fun getPrepArtMWMorphologies(tokenIndex: Int): Morphologies {
+
+    val prepArt: Morphology? = this.tokensMorphologies[tokenIndex].firstOrNull {
+      it.components.size == 2 && it.components[0] is Preposition && it.components[1] is Article
+    }
+
+    return if (prepArt != null)
+      Morphologies(this.multiWords
+        .filter { tokenIndex == it.endToken }
+        .flatMap { it.morphologies }
+        .filter { it.components.single() is Preposition }
+        .map { Morphology(listOf(it.components.single(), prepArt.components[1])) })
+    else
+      Morphologies()
+  }
 }
