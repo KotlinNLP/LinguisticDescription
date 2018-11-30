@@ -31,6 +31,12 @@ sealed class SyntacticDependency(open val type: Any, val direction: Direction) :
     companion object {
 
       /**
+       * Private val used to serialize the class (needed by Serializable).
+       */
+      @Suppress("unused")
+      private const val serialVersionUID: Long = 1L
+
+      /**
        * Get the direction of a syntactic dependency.
        *
        * @param tokenIndex the index of the token to which the deprel must be assigned
