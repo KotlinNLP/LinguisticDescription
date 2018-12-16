@@ -53,6 +53,17 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
   )
 
   /**
+   * Build an [Entity] given an annotated segment.
+   *
+   * @param s the annotated segment
+   */
+  constructor(s: AnnotatedSegment): this(
+    startToken = s.startToken,
+    endToken = s.endToken,
+    type = annotationsToTypes.getValue(s.annotation)
+  )
+
+  /**
    * @param tokens the list of tokens in which to find the reference of this entity
    *
    * @return a string representation of this entity
