@@ -28,6 +28,7 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
     Organization("ORG"),
     Person("PER"),
     GeoPolitical("GPE"),
+    MISC("MISC"),
     Undefined("")
   }
 
