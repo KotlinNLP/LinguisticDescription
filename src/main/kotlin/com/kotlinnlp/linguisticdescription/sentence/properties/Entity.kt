@@ -65,20 +65,27 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
   )
 
   /**
+   * @param tokens the list of all the sentence tokens in which to find the reference of this entity
+   *
+   * @return the form of this entity
+   */
+  fun getForm(tokens: List<Token>): String = this.getRefTokens(tokens).joinToString(separator = " ") {
+    when (it) {
+      is Trace -> "-"
+      is Word -> it.form
+      is WordTrace -> it.form
+      else -> throw RuntimeException("Invalid token.")
+    }
+  }
+
+  /**
    * @param tokens the list of tokens in which to find the reference of this entity
    *
    * @return a string representation of this entity
    */
   fun toString(tokens: List<Token>): String = "[%s] %s".format(
     this.type,
-    this.getRefTokens(tokens).joinToString(separator = " ") {
-      when (it) {
-        is Trace -> "-"
-        is Word -> it.form
-        is WordTrace -> it.form
-        else -> throw RuntimeException("Invalid token.")
-      }
-    }
+    this.getForm(tokens)
   )
 
   /**
