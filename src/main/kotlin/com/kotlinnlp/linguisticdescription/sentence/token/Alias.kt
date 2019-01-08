@@ -10,3 +10,6 @@ package com.kotlinnlp.linguisticdescription.sentence.token
 import com.kotlinnlp.linguisticdescription.sentence.Sentence
 
 typealias SentenceOfRealTokens = Sentence<RealToken>
+typealias SentenceOfFormTokens = Sentence<FormToken>
+typealias SentencesOfRealTokens = List<SentenceOfRealTokens>
+typealias SentencesOfFormTokens = List<SentenceOfFormTokens>
