@@ -51,4 +51,11 @@ data class DateTimeSimple(
       "time" to this@DateTimeSimple.time.toJSON()
     )
   }
+
+  /**
+   * @return the Java Date object representing this date-time expression
+   */
+  override fun toJavaDate(): java.util.Date {
+    TODO("not implemented")
+  }
 }

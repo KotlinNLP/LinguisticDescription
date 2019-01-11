@@ -83,4 +83,11 @@ data class Time(
       "timezone" to this@Time.timezone?.id
     )
   }
+
+  /**
+   * @return the Java Date object representing this date-time expression
+   */
+  override fun toJavaDate(): java.util.Date {
+    TODO("not implemented")
+  }
 }

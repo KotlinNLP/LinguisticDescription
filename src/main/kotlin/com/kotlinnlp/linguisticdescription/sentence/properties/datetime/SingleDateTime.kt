@@ -10,4 +10,10 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 /**
  * A date-time composed by a single element (not an interval).
  */
-interface SingleDateTime : DateTime
+interface SingleDateTime : DateTime {
+
+  /**
+   * @return the Java Date object representing this date-time expression
+   */
+  fun toJavaDate(): java.util.Date
+}

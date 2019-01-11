@@ -116,6 +116,13 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 
   /**
@@ -132,6 +139,13 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 
   /**
@@ -148,6 +162,13 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 
   /**
@@ -164,6 +185,13 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 
   /**
@@ -180,6 +208,13 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 
   /**
@@ -196,5 +231,12 @@ sealed class DateOrdinal : SingleDateTime {
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
+
+    /**
+     * @return the Java Date object representing this date-time expression
+     */
+    override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
   }
 }

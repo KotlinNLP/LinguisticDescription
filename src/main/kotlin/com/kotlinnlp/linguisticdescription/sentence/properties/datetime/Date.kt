@@ -95,4 +95,11 @@ data class Date(
       "holiday" to this@Date.holiday?.toString()
     )
   }
+
+  /**
+   * @return the Java Date object representing this date-time expression
+   */
+  override fun toJavaDate(): java.util.Date {
+    TODO("not implemented")
+  }
 }
