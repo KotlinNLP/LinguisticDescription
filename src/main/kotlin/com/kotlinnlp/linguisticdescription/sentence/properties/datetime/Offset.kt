@@ -36,7 +36,7 @@ sealed class Offset : SingleDateTime {
   override fun toStandardFormat(): String = "%+d %s".format(this.units, this.unitType.toLowerCase())
 
   /**
-   * @return the JSON object that represents this date-time expression
+   * @return the JSON object that represents this offset
    */
   override fun toJSON(): JsonObject = json {
     obj(
@@ -46,6 +46,13 @@ sealed class Offset : SingleDateTime {
       "units" to this@Offset.units
     )
   }
+
+  /**
+   * @param ref a reference date to which this offset will be added
+   *
+   * @return the Java Date object representing this offset, after it has been added to a given reference date
+   */
+  abstract fun toJavaDate(ref: java.util.Date): java.util.Date
 
   /**
    * An offset of [DateObj].
@@ -76,9 +83,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -112,9 +128,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -134,9 +159,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -156,9 +190,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -178,9 +221,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -200,9 +252,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -222,9 +283,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -244,9 +314,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -266,9 +345,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -288,9 +376,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -310,9 +407,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
@@ -332,9 +438,18 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the Java Date object representing this offset
      */
     override fun toJavaDate(): java.util.Date {
+      TODO("not implemented")
+    }
+
+    /**
+     * @param ref a reference date to which this offset will be added
+     *
+     * @return the Java Date object representing this offset, after it has been added to a given reference date
+     */
+    override fun toJavaDate(ref: java.util.Date): java.util.Date {
       TODO("not implemented")
     }
   }
