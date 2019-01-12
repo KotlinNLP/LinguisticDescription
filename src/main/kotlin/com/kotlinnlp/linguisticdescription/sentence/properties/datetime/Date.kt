@@ -45,8 +45,15 @@ data class Date(
 
   /**
    * A holiday name.
+   *
+   * @property month the month of the holiday (can be null)
+   * @property day the day of the holiday (can be null)
    */
-  enum class Holiday { Christmas, ChristmasEve, Easter }
+  enum class Holiday(val month: Int? = null, val day: Int? = null) {
+    Christmas(12, 25),
+    ChristmasEve(12, 24),
+    Easter
+  }
 
   /**
    * The full number of the year.
