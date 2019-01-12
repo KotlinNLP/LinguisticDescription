@@ -40,8 +40,10 @@ data class Time(
 
   /**
    * A generic time.
+   *
+   * @property hour the hour representing this generic time
    */
-  enum class Generic { Morning, Noon, Afternoon, Evening, Night }
+  enum class Generic(val hour: Int) { Morning(6), Noon(12), Afternoon(15), Evening(18), Night(0) }
 
   /**
    * Check that at least one required property is defined.
