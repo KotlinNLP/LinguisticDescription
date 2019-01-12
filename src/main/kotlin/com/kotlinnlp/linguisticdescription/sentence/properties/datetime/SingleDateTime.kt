@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 /**
  * A date-time composed by a single element (not an interval).
@@ -18,4 +19,9 @@ interface SingleDateTime : DateTime {
    * @return the LocalDateTime object representing this date-time expression
    */
   fun toLocalDateTime(): LocalDateTime
+
+  /**
+   * @return the representation of this date-time expression in the ISO format 'YYYY-MM-DDThh:mm:ss'
+   */
+  fun isoFormat(): String = this.toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 }
