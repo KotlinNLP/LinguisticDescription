@@ -49,6 +49,17 @@ data class Date(
   enum class Holiday { Christmas, ChristmasEve, Easter }
 
   /**
+   * The full number of the year.
+   * In case of abbreviation, from '0 to '50 it becomes 20XX, otherwise 19XX.
+   */
+  val yearFull: Int? = this.year?.let {
+    if (this.yearAbbr)
+      (if (it < 50) 2000 else 1900) + it
+    else
+      it
+  }
+
+  /**
    * Check that at least one property is defined.
    */
   init {
