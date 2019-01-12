@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.LocalDateTime
 
 /**
  * An ordinal date object.
@@ -118,9 +119,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -141,9 +142,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -164,9 +165,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -187,9 +188,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -210,9 +211,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -233,9 +234,9 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the Java Date object representing this date-time expression
+     * @return the LocalDateTime object representing this date-time expression
      */
-    override fun toJavaDate(): java.util.Date {
+    override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
   }

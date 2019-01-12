@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.LocalDateTime
 
 /**
  * A date-offset object.
@@ -53,9 +54,9 @@ data class DateOffset(
   }
 
   /**
-   * @return the Java Date object representing this date-time expression
+   * @return the LocalDateTime object representing this date-time expression
    */
-  override fun toJavaDate(): java.util.Date {
+  override fun toLocalDateTime(): LocalDateTime {
     TODO("not implemented")
   }
 }

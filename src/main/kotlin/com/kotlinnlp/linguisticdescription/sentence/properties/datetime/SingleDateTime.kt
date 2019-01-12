@@ -7,13 +7,15 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import java.time.LocalDateTime
+
 /**
  * A date-time composed by a single element (not an interval).
  */
 interface SingleDateTime : DateTime {
 
   /**
-   * @return the Java Date object representing this date-time expression
+   * @return the LocalDateTime object representing this date-time expression
    */
-  fun toJavaDate(): java.util.Date
+  fun toLocalDateTime(): LocalDateTime
 }
