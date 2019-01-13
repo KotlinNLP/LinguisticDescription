@@ -49,13 +49,6 @@ sealed class Offset : SingleDateTime {
   }
 
   /**
-   * @param ref a reference date to which this offset will be added
-   *
-   * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-   */
-  abstract fun toLocalDateTime(ref: LocalDateTime): LocalDateTime
-
-  /**
    * An offset of [DateObj].
    *
    * @property startToken the index of the first token of this expression
@@ -87,15 +80,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -134,15 +118,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -163,15 +138,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -196,15 +162,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -225,15 +182,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -258,15 +206,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -287,15 +226,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -320,15 +250,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -349,15 +270,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -382,15 +294,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -413,15 +316,6 @@ sealed class Offset : SingleDateTime {
     override fun toLocalDateTime(): LocalDateTime {
       TODO("not implemented")
     }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
   }
 
   /**
@@ -442,15 +336,6 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
-
-    /**
-     * @param ref a reference date to which this offset will be added
-     *
-     * @return the LocalDateTime object representing this offset, after it has been added to a given reference date
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
