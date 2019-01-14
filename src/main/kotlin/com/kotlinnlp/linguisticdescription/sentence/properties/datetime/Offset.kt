@@ -20,14 +20,6 @@ import java.time.ZoneOffset
  */
 sealed class Offset : SingleDateTime {
 
-  companion object {
-
-    /**
-     * The offset of seconds of the date '0000-01-01T00:00:00Z' respect to the UNIX epoch date '1970-01-01T00:00:00Z'.
-     */
-    private val secondsOffsetFrom0: Long = LocalDate.of(0, 1, 1).atStartOfDay().toEpochSecond(ZoneOffset.UTC)
-  }
-
   /**
    * The count of offset units, in the range [0, +inf] (e.g. + 2 weeks).
    */
@@ -57,11 +49,6 @@ sealed class Offset : SingleDateTime {
       "units" to this@Offset.units
     )
   }
-
-  /**
-   * @return the number of total seconds of this offset
-   */
-  fun toSeconds(): Long = this.toLocalDateTime().toEpochSecond(ZoneOffset.UTC) - secondsOffsetFrom0
 
   /**
    * An offset of [DateObj].
