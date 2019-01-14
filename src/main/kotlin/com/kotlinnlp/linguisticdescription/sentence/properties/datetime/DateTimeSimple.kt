@@ -9,7 +9,9 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 /**
  * A simple date-time object.
@@ -57,6 +59,10 @@ data class DateTimeSimple(
    * @return the LocalDateTime object representing this date-time expression
    */
   override fun toLocalDateTime(): LocalDateTime {
-    TODO("not implemented")
+
+    val date: LocalDate = this.date.toLocalDateTime().toLocalDate()
+    val time: LocalTime = this.time.toLocalDateTime().toLocalTime()
+
+    return date.atTime(time)
   }
 }

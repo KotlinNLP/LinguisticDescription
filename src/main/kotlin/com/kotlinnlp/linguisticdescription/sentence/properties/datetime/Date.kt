@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 /**
@@ -116,9 +117,21 @@ data class Date(
   }
 
   /**
-   * @return the LocalDateTime object representing this date-time expression
+   * The time is set to the start of the day (00:00:00).
+   *
+   * Default values when they're not defined:
+   *  year = 0
+   *  month = 1
+   *  day = 1
+   *
+   * @return the LocalDateTime object representing this date expression
    */
   override fun toLocalDateTime(): LocalDateTime {
-    TODO("not implemented")
+
+    val day: Int = this.holiday?.day ?: this.day ?: 1
+    val month: Int = this.holiday?.month ?: this.month ?: 1
+    val year: Int = this.yearFull ?: 0
+
+    return LocalDate.of(year, month, day).atStartOfDay()
   }
 }

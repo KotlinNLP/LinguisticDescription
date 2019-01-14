@@ -56,7 +56,6 @@ data class DateOffset(
   /**
    * @return the LocalDateTime object representing this date-time expression
    */
-  override fun toLocalDateTime(): LocalDateTime {
-    TODO("not implemented")
-  }
+  override fun toLocalDateTime(): LocalDateTime =
+    this.dateTime.toLocalDateTime().plusSeconds(this.offset.toSeconds())
 }

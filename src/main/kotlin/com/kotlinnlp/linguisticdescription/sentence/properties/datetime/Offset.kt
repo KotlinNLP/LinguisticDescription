@@ -11,7 +11,8 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.ZoneOffset
+import java.time.LocalTime
+import kotlin.math.abs
 
 /**
  * An offset object.
@@ -24,6 +25,11 @@ sealed class Offset : SingleDateTime {
    * The count of offset units, in the range [0, +inf] (e.g. + 2 weeks).
    */
   abstract val units: Int
+
+  /**
+   * The absolute value of [units].
+   */
+  val absUnits: Int by lazy { abs(this.units) }
 
   /**
    * The offset unit type.
@@ -82,7 +88,8 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
+      throw NotImplementedError("Impossible to convert an offset of date into a LocalDateTime. " +
+        "It must be done manually, using a reference date.")
     }
   }
 
@@ -118,7 +125,8 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
+      throw NotImplementedError("Impossible to convert an offset of time into a LocalDateTime. " +
+        "It must be done manually, using a reference date.")
     }
   }
 
@@ -139,9 +147,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusHours(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusHours(this.absUnits.toLong())
   }
 
   /**
@@ -161,9 +170,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusMinutes(15 * this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusMinutes(15 * this.absUnits.toLong())
   }
 
   /**
@@ -183,9 +193,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusMinutes(30 * this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusMinutes(30 * this.absUnits.toLong())
   }
 
   /**
@@ -205,9 +216,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusMinutes(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusMinutes(this.absUnits.toLong())
   }
 
   /**
@@ -227,9 +239,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusSeconds(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusSeconds(this.absUnits.toLong())
   }
 
   /**
@@ -249,9 +262,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusDays(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusDays(this.absUnits.toLong())
   }
 
   /**
@@ -271,9 +285,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusDays(7 * this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusDays(7 * this.absUnits.toLong())
   }
 
   /**
@@ -294,7 +309,8 @@ sealed class Offset : SingleDateTime {
      * @return the LocalDateTime object representing this offset
      */
     override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
+      throw NotImplementedError("Impossible to convert an offset of weekends into a LocalDateTime. " +
+        "It must be done manually, using a reference date.")
     }
   }
 
@@ -315,9 +331,10 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusMonths(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusMonths(this.absUnits.toLong())
   }
 
   /**
@@ -337,8 +354,9 @@ sealed class Offset : SingleDateTime {
     /**
      * @return the LocalDateTime object representing this offset
      */
-    override fun toLocalDateTime(): LocalDateTime {
-      TODO("not implemented")
-    }
+    override fun toLocalDateTime(): LocalDateTime = if (this.units >= 0)
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).plusYears(this.absUnits.toLong())
+    else
+      LocalDate.of(0, 1, 1).atTime(LocalTime.of(0, 0, 0)).minusYears(this.absUnits.toLong())
   }
 }

@@ -9,7 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
-import java.time.LocalDateTime
+import java.time.*
 import java.util.*
 
 /**
@@ -37,6 +37,14 @@ data class Time(
   val generic: Generic?,
   val timezone: TimeZone?
 ) : SingleDateTime {
+
+  companion object {
+
+    /**
+     * The default LocalDate (0000-01-01) to which to reference the conversion to LocalTime.
+     */
+    private val defaultDate = LocalDate.of(0, 1, 1)
+  }
 
   /**
    * A generic time.
@@ -88,9 +96,21 @@ data class Time(
   }
 
   /**
-   * @return the LocalDateTime object representing this date-time expression
+   * Default values when they're not defined:
+   *  hour = 0
+   *  minute = 0
+   *  second = 0
+   *
+   * @return the LocalDateTime object representing this date-time expression in the UTC
    */
   override fun toLocalDateTime(): LocalDateTime {
-    TODO("not implemented")
+
+    val time = LocalTime.of(
+      this.generic?.hour ?: hour ?: 0,
+      this.min ?: 0,
+      this.sec ?: 0,
+      this.millisec?.let { it * 1000000 } ?: 0)
+
+    return time.atDate(defaultDate).minusSeconds(this.timezone?.let { it.rawOffset.toLong() / 1000 } ?: 0)
   }
 }
