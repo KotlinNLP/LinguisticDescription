@@ -26,7 +26,7 @@ data class DateOffset(
   override val endToken: Int,
   val dateTime: SingleDateTime,
   val offset: Offset
-) : SingleDateTime {
+) : AbsoluteDateTime, SingleDateTime {
 
   /**
    * Get the string representing this date-offset in the following standard format:
@@ -56,6 +56,21 @@ data class DateOffset(
   /**
    * @return the LocalDateTime object representing this date-time expression
    */
-  override fun toLocalDateTime(): LocalDateTime =
-    this.dateTime.toLocalDateTime().plusSeconds(this.offset.toSeconds())
+  override fun toLocalDateTime(): LocalDateTime {
+
+    require (this.dateTime is AbsoluteDateTime) {
+      "[DateOffset Conversion] Impossible to convert to LocalDateTime if the reference is not an AbsoluteDateTime."
+    }
+
+    return this.offset.toLocalDateTime(ref = this.dateTime.toLocalDateTime())
+  }
+
+  /**
+   *
+   * @param ref a reference date-time from which to take the missing properties of the [dateTime]
+   *
+   * @return the LocalDateTime object representing this date-time expression
+   */
+  override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime =
+    this.offset.toLocalDateTime(ref = this.dateTime.toLocalDateTime(ref))
 }

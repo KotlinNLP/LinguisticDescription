@@ -36,7 +36,7 @@ data class Time(
   val millisec: Int?,
   val generic: Generic?,
   val timezone: TimeZone?
-) : SingleDateTime {
+) : AbsoluteDateTime {
 
   companion object {
 
@@ -101,7 +101,7 @@ data class Time(
    *  minute = 0
    *  second = 0
    *
-   * @return the LocalDateTime object representing this date-time expression in the UTC
+   * @return the LocalDateTime object representing this date-time expression in UTC
    */
   override fun toLocalDateTime(): LocalDateTime {
 
@@ -110,6 +110,27 @@ data class Time(
       this.min ?: 0,
       this.sec ?: 0,
       this.millisec?.let { it * 1000000 } ?: 0)
+
+    return time.atDate(defaultDate).minusSeconds(this.timezone?.let { it.rawOffset.toLong() / 1000 } ?: 0)
+  }
+
+  /**
+   * Default values when they're not defined:
+   *  hour = 0
+   *  minute = 0
+   *  second = 0
+   *
+   * @param ref a reference date-time from which to take the missing properties
+   *
+   * @return the LocalDateTime object representing this date-time expression in UTC, respect to the given reference
+   */
+  override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
+
+    val time = LocalTime.of(
+      this.generic?.hour ?: hour ?: ref.hour,
+      this.min ?: ref.minute,
+      this.sec ?: ref.second,
+      this.millisec?.let { it * 1000000 } ?: ref.nano)
 
     return time.atDate(defaultDate).minusSeconds(this.timezone?.let { it.rawOffset.toLong() / 1000 } ?: 0)
   }

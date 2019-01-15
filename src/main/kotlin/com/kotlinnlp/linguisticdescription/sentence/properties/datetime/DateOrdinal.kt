@@ -119,9 +119,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -142,9 +144,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -165,9 +169,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -188,9 +194,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -211,9 +219,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }
@@ -234,9 +244,11 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this date-time expression
+     * @param ref a reference date-time from which to take the missing properties
+     *
+     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
-    override fun toLocalDateTime(): LocalDateTime {
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
       TODO("not implemented")
     }
   }

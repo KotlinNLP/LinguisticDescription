@@ -7,9 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
@@ -17,26 +15,17 @@ import java.time.format.DateTimeFormatter
  */
 interface SingleDateTime : DateTime {
 
-  companion object {
-
-    /**
-     * The offset of seconds of the date '0000-01-01T00:00:00Z' respect to the UNIX epoch date '1970-01-01T00:00:00Z'.
-     */
-    private val secondsOffsetFrom0: Long = LocalDate.of(0, 1, 1).atStartOfDay().toEpochSecond(ZoneOffset.UTC)
-  }
+  /**
+   * @param ref a reference date-time from which to take the missing properties
+   *
+   * @return the LocalDateTime object representing this date-time expression, respect to the given reference
+   */
+  fun toLocalDateTime(ref: LocalDateTime): LocalDateTime
 
   /**
-   * @return the LocalDateTime object representing this date-time expression
+   * @param ref a reference date-time from which to take the missing properties
+   *
+   * @return the representation of the date-time expression in the ISO format 'YYYY-MM-DDThh:mm:ss'
    */
-  fun toLocalDateTime(): LocalDateTime
-
-  /**
-   * @return the representation of this date-time expression in the ISO format 'YYYY-MM-DDThh:mm:ss'
-   */
-  fun isoFormat(): String = this.toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-
-  /**
-   * @return the number of total seconds of this date as offset from the date '0000-01-01T00:00:00Z'
-   */
-  fun toSeconds(): Long = this.toLocalDateTime().toEpochSecond(ZoneOffset.UTC) - secondsOffsetFrom0
+  fun isoFormat(ref: LocalDateTime): String = this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 }
