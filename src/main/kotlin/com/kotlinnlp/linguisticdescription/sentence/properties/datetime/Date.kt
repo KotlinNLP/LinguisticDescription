@@ -149,10 +149,46 @@ data class Date(
    */
   override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
 
-    val day: Int = this.holiday?.day ?: this.day ?: ref.dayOfMonth // TODO: manage week days
-    val month: Int = this.holiday?.month ?: this.month ?: ref.monthValue
     val year: Int = this.yearFull ?: ref.year
 
-    return LocalDate.of(year, month, day).atStartOfDay()
+    return if (this.holiday == Holiday.Easter) {
+
+      this.getEasterDate(year).atStartOfDay()
+
+    } else {
+
+      val month: Int = this.holiday?.month ?: this.month ?: if (this.yearFull != null) 1 else ref.monthValue
+      val day: Int = this.holiday?.day
+        ?: this.day
+        ?: this.weekDay?.let { ref.findNearestByWeekDay(weekDay = it, count = 0).dayOfMonth }
+        ?: 1
+
+      LocalDate.of(year, month, day).atStartOfDay()
+    }
+  }
+
+  /**
+   * @param year the value of an year
+   *
+   * @return the date of the Easter holiday in the given year
+   */
+  private fun getEasterDate(year: Int): LocalDate {
+
+    val a: Int = year % 19
+    val b: Int = year / 100
+    val c: Int = year % 100
+    val d: Int = b / 4
+    val e: Int = b % 4
+    val g: Int = (8 * b + 13) / 25
+    val h: Int = (19 * a + b - d - g + 15) % 30
+    val j: Int = c / 4
+    val k: Int = c % 4
+    val m: Int = (a + 11 * h) / 319
+    val r: Int = (2 * e + 2 * j - k - h + m + 32) % 7
+
+    val month: Int = (h - m + r + 90) / 25
+    val day: Int = (h - m + r + month + 19) % 32
+
+    return LocalDate.of(year, month, day)
   }
 }
