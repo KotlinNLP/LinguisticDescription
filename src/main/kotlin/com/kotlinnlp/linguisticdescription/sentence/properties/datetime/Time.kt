@@ -128,10 +128,14 @@ data class Time(
 
     val time = LocalTime.of(
       this.generic?.hour ?: hour ?: ref.hour,
-      this.min ?: ref.minute,
-      this.sec ?: ref.second,
-      this.millisec?.let { it * 1000000 } ?: ref.nano)
+      this.min ?: 0,
+      this.sec ?: 0,
+      this.millisec?.let { it * 1000000 } ?: 0)
 
-    return time.atDate(defaultDate).minusSeconds(this.timezone?.let { it.rawOffset.toLong() / 1000 } ?: 0)
+    val dateTime: LocalDateTime = time.atDate(ref.toLocalDate())
+    val zonedDateTime: ZonedDateTime = dateTime.atZone(this.timezone?.toZoneId() ?: ZoneOffset.UTC)
+    val utcDateTime: ZonedDateTime = zonedDateTime.withZoneSameInstant(ZoneId.from(ZoneOffset.UTC))
+
+    return utcDateTime.toLocalDateTime()
   }
 }
