@@ -13,6 +13,7 @@ import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
 /**
@@ -40,9 +41,18 @@ class DateSpec : Spek({
           assertEquals("0000-01-01T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-04-11T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("12") {
+    context("the 12th") {
 
       val date = Date(
         startToken = 0,
@@ -60,9 +70,18 @@ class DateSpec : Spek({
           assertEquals("0000-01-12T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-04-12T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("Set") {
+    context("September") {
 
       val date = Date(
         startToken = 0,
@@ -80,9 +99,18 @@ class DateSpec : Spek({
           assertEquals("0000-09-01T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-09-01T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("2018") {
+    context("the 2018") {
 
       val date = Date(
         startToken = 0,
@@ -100,9 +128,18 @@ class DateSpec : Spek({
           assertEquals("2018-01-01T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-01-01T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("Set 2018") {
+    context("September 2018") {
 
       val date = Date(
         startToken = 0,
@@ -120,9 +157,18 @@ class DateSpec : Spek({
           assertEquals("2018-09-01T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-09-01T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("12 Set 2018") {
+    context("12th September 2018") {
 
       val date = Date(
         startToken = 0,
@@ -140,9 +186,18 @@ class DateSpec : Spek({
           assertEquals("2018-09-12T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-09-12T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
-    context("12 Set '18") {
+    context("12th September '18") {
 
       val date = Date(
         startToken = 0,
@@ -167,6 +222,15 @@ class DateSpec : Spek({
           assertEquals("2018-09-12T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-09-12T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
     context("Easter") {
@@ -185,6 +249,24 @@ class DateSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("0000-01-01T00:00:00", date.isoFormat())
+        }
+      }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-04-01T00:00:00", date.isoFormat(ref))
+        }
+      }
+
+      on("isoFormat(ref) based on Wednesday 2019-01-16T09:15:10") {
+
+        val ref = LocalDateTime.of(2019, 1, 16, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2019-04-21T00:00:00", date.isoFormat(ref))
         }
       }
     }
@@ -207,6 +289,15 @@ class DateSpec : Spek({
           assertEquals("0000-12-24T00:00:00", date.isoFormat())
         }
       }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-12-24T00:00:00", date.isoFormat(ref))
+        }
+      }
     }
 
     context("Christmas") {
@@ -225,6 +316,15 @@ class DateSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("0000-12-25T00:00:00", date.isoFormat())
+        }
+      }
+
+      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+
+        it("should return the expected string in ISO format") {
+          assertEquals("2018-12-25T00:00:00", date.isoFormat(ref))
         }
       }
     }
