@@ -73,7 +73,7 @@ sealed class DateOrdinal : SingleDateTime {
    */
   override fun toStandardFormat(): String {
 
-    val dateUnit: String = (this as? DateOrdinal.Date)?.dateTime?.toString() ?: this.dateUnit.toLowerCase()
+    val dateUnit: String = (this as? DateOrdinal.Date)?.value?.toString() ?: this.dateUnit.toLowerCase()
 
     return "the $position '$dateUnit' of '$dateTime'"
   }
