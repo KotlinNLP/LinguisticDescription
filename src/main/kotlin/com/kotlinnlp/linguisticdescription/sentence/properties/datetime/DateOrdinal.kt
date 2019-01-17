@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 /**
@@ -102,6 +103,7 @@ sealed class DateOrdinal : SingleDateTime {
 
   /**
    * An ordinal date of [DateObj] units.
+   * The reference [dateTime] can be only a week day, e.g. "The second Monday of August".
    *
    * @property value the date unit value
    */
@@ -114,6 +116,18 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
+     * Whether the reference [dateTime] indicates a whole year (e.g. "the first Monday of the next year").
+     */
+    private val hasYearReference: Boolean by lazy {
+      when (this.dateTime) {
+        is DateObj -> this.dateTime.month == null
+        is DateTimeSimple -> this.dateTime.date.month == null
+        is Offset.Date -> this.dateTime.value.month == null
+        else -> false
+      }
+    }
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -124,7 +138,39 @@ sealed class DateOrdinal : SingleDateTime {
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
     override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
+
+      val weekDay: Int = this.value.weekDay ?: throw InvalidDateTime("A DateOrdinal of Date units must have a value " +
+        "of week days only (e.g. 'The second Monday of August').")
+
+      var refDate: LocalDate = this.dateTime.toLocalDateTime(ref).toLocalDate()
+      var count = 0
+
+      refDate = LocalDate.of(refDate.year, refDate.month, 1)
+
+      if (this.position.count >= 0) {
+
+        val month: java.time.Month = refDate.month
+        val year: Int = refDate.year
+
+        refDate = refDate.minusDays(1)
+
+        while (count < this.position.count) {
+          refDate = refDate.plusDays(1)
+          if (refDate.dayOfWeek.value == weekDay) count++
+          if (!this.hasYearReference && refDate.month != month || this.hasYearReference && refDate.year != year)
+            throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference " +
+              "date-time '${this.dateTime.toLocalDateTime(ref)}'")
+        }
+
+      } else {
+
+        refDate = if (this.hasYearReference) refDate.plusYears(1) else refDate.plusMonths(1)
+        refDate = refDate.minusDays(1)
+
+        while (refDate.dayOfWeek.value != weekDay) refDate = refDate.minusDays(1)
+      }
+
+      return refDate.atStartOfDay()
     }
   }
 
