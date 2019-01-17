@@ -35,13 +35,6 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-01-01T00:00:00", date.isoFormat())
-        }
-      }
-
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
@@ -64,13 +57,6 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-01-12T00:00:00", date.isoFormat())
-        }
-      }
-
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
@@ -92,13 +78,6 @@ class DateSpec : Spek({
         year = null,
         yearAbbr = false,
         holiday = null)
-
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-09-01T00:00:00", date.isoFormat())
-        }
-      }
 
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
@@ -245,13 +224,6 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = Date.Holiday.Easter)
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-01-01T00:00:00", date.isoFormat())
-        }
-      }
-
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
@@ -283,13 +255,6 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = Date.Holiday.ChristmasEve)
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-12-24T00:00:00", date.isoFormat())
-        }
-      }
-
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
@@ -311,13 +276,6 @@ class DateSpec : Spek({
         year = null,
         yearAbbr = true,
         holiday = Date.Holiday.Christmas)
-
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-12-25T00:00:00", date.isoFormat())
-        }
-      }
 
       on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 

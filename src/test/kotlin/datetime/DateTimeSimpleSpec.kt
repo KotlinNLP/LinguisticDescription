@@ -25,7 +25,9 @@ class DateTimeSimpleSpec : Spek({
 
   describe("a DateTimeSimple") {
 
-    context("12th September at 10:35") {
+    context("12th September at 10:35 (based on Friday 2018-04-13T09:15:10)") {
+
+        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
       val dateTime = DateTimeSimple(
         startToken = 0,
@@ -49,16 +51,7 @@ class DateTimeSimpleSpec : Spek({
           generic = null,
           timezone = null))
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-09-12T10:35:00", dateTime.isoFormat())
-        }
-      }
-
-      on("isoFormat() based on Friday 2018-04-13T09:15:10") {
-
-        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+      on("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-12T10:35:00", dateTime.isoFormat(ref))

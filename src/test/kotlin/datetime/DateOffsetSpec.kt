@@ -23,7 +23,9 @@ class DateOffsetSpec : Spek({
 
   describe("a DateOffset") {
 
-    context("Monday of the next week") {
+    context("Monday of the next week (based on Friday 2018-04-13T09:15:10)") {
+
+      val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
       val date = Date(
         startToken = 0,
@@ -41,16 +43,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Weeks(startToken = 0, endToken = 0, units = 1))
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-01-08T00:00:00", dateOffset.isoFormat())
-        }
-      }
-
-      on("isoFormat(ref) (based on Friday 2018-04-13T09:15:10)") {
-
-        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+      on("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-16T00:00:00", dateOffset.isoFormat(ref))
@@ -58,7 +51,9 @@ class DateOffsetSpec : Spek({
       }
     }
 
-    context("3 days after the 12th September 2018") {
+    context("3 days after the 12th September 2018 (based on Friday 2018-04-13T09:15:10)") {
+
+      val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
       val date = Date(
         startToken = 0,
@@ -76,16 +71,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat())
-        }
-      }
-
-      on("isoFormat(ref) (based on Friday 2018-04-13T09:15:10)") {
-
-        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+      on("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))
@@ -93,7 +79,9 @@ class DateOffsetSpec : Spek({
       }
     }
 
-    context("3 days after the 12th September") {
+    context("3 days after the 12th September (based on Friday 2018-04-13T09:15:10)") {
+
+      val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
       val date = Date(
         startToken = 0,
@@ -111,16 +99,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
 
-      on("isoFormat()") {
-
-        it("should return the expected string in ISO format") {
-          assertEquals("0000-09-15T00:00:00", dateOffset.isoFormat())
-        }
-      }
-
-      on("isoFormat(ref) (based on Friday 2018-04-13T09:15:10)") {
-
-        val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
+      on("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))
