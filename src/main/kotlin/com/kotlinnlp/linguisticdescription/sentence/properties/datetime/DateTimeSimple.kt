@@ -28,7 +28,7 @@ data class DateTimeSimple(
   override val endToken: Int,
   val date: Date,
   val time: Time
-) : AbsoluteDateTime {
+) : SingleDateTime {
 
   /**
    * Get the string representing this date-time in the following standard formats:
@@ -56,18 +56,7 @@ data class DateTimeSimple(
   }
 
   /**
-   * @return the LocalDateTime object representing this date-time expression
-   */
-  override fun toLocalDateTime(): LocalDateTime {
-
-    val date: LocalDate = this.date.toLocalDateTime().toLocalDate()
-    val time: LocalTime = this.time.toLocalDateTime().toLocalTime()
-
-    return date.atTime(time)
-  }
-
-  /**
-   * @param ref a reference date-time from which to take the missing properties
+   * @param ref a reference date-time from which to take the missing properties (default = now)
    *
    * @return the LocalDateTime object representing this date-time expression, respect to the given reference
    */

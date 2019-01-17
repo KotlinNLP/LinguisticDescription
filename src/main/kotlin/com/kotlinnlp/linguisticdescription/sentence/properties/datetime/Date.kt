@@ -34,7 +34,7 @@ data class Date(
   val year: Int?,
   val yearAbbr: Boolean,
   val holiday: Holiday?
-) : AbsoluteDateTime {
+) : SingleDateTime {
 
   companion object {
 
@@ -119,31 +119,7 @@ data class Date(
   /**
    * The time is set to the start of the day (00:00:00).
    *
-   * Default values when they're not defined:
-   *  year = 0
-   *  month = 1
-   *  day = 1
-   *
-   * @return the LocalDateTime object representing this date expression
-   */
-  override fun toLocalDateTime(): LocalDateTime {
-
-    val day: Int = this.holiday?.day ?: this.day ?: 1
-    val month: Int = this.holiday?.month ?: this.month ?: 1
-    val year: Int = this.yearFull ?: 0
-
-    return LocalDate.of(year, month, day).atStartOfDay()
-  }
-
-  /**
-   * The time is set to the start of the day (00:00:00).
-   *
-   * Default values when they're not defined:
-   *  year = 0
-   *  month = 1
-   *  day = 1
-   *
-   * @param ref a reference date-time from which to take the missing properties
+   * @param ref a reference date-time from which to take the missing properties (default = now)
    *
    * @return the LocalDateTime object representing this date-time expression, respect to the given reference
    */

@@ -36,15 +36,7 @@ data class Time(
   val millisec: Int?,
   val generic: Generic?,
   val timezone: TimeZone?
-) : AbsoluteDateTime {
-
-  companion object {
-
-    /**
-     * The default LocalDate (0000-01-01) to which to reference the conversion to LocalTime.
-     */
-    private val defaultDate = LocalDate.of(0, 1, 1)
-  }
+) : SingleDateTime {
 
   /**
    * A generic time.
@@ -96,40 +88,17 @@ data class Time(
   }
 
   /**
-   * Default values when they're not defined:
-   *  hour = 0
-   *  minute = 0
-   *  second = 0
-   *
-   * @return the LocalDateTime object representing this date-time expression in UTC
-   */
-  override fun toLocalDateTime(): LocalDateTime {
-
-    val time = LocalTime.of(
-      this.generic?.hour ?: hour ?: 0,
-      this.min ?: 0,
-      this.sec ?: 0,
-      this.millisec?.let { it * 1000000 } ?: 0)
-
-    return time.atDate(defaultDate).minusSeconds(this.timezone?.let { it.rawOffset.toLong() / 1000 } ?: 0)
-  }
-
-  /**
-   * Default values when they're not defined:
-   *  hour = 0
-   *  minute = 0
-   *  second = 0
-   *
-   * @param ref a reference date-time from which to take the missing properties
+   * @param ref a reference date-time from which to take the missing properties (default = now)
    *
    * @return the LocalDateTime object representing this date-time expression in UTC, respect to the given reference
    */
   override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
 
+    val hour: Int? = this.generic?.hour ?: hour
     val time = LocalTime.of(
-      this.generic?.hour ?: hour ?: ref.hour,
-      this.min ?: 0,
-      this.sec ?: 0,
+      hour ?: ref.hour,
+      this.min ?: if (hour == null) ref.minute else 0,
+      this.sec ?: if (hour == null && this.min == null) ref.second else 0,
       this.millisec?.let { it * 1000000 } ?: 0)
 
     val dateTime: LocalDateTime = time.atDate(ref.toLocalDate())

@@ -193,7 +193,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -201,12 +201,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime = LocalDate.of(0, 1, 1).atStartOfDay().plusHours(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -224,7 +219,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -232,13 +227,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime =
-      LocalDate.of(0, 1, 1).atStartOfDay().plusMinutes(15 * this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -256,7 +245,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -264,13 +253,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime =
-      LocalDate.of(0, 1, 1).atStartOfDay().plusMinutes(30 * this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -288,7 +271,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -296,13 +279,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime =
-      LocalDate.of(0, 1, 1).atStartOfDay().plusMinutes(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -320,7 +297,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -328,13 +305,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime =
-      LocalDate.of(0, 1, 1).atStartOfDay().plusSeconds(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -352,7 +323,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -360,16 +331,12 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime = LocalDate.of(0, 1, 1).atStartOfDay().plusDays(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime = ref.plusDays(this.units.toLong())
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime =
+      ref.toLocalDate().plusDays(this.units.toLong()).atStartOfDay()
   }
 
   /**
@@ -383,7 +350,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -391,13 +358,7 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime =
-      LocalDate.of(0, 1, 1).atStartOfDay().plusDays(7 * this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
@@ -447,7 +408,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -455,16 +416,12 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime = LocalDate.of(0, 1, 1).atStartOfDay().plusMonths(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime = ref.plusMonths(this.units.toLong())
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime =
+      ref.toLocalDate().plusMonths(this.units.toLong()).atStartOfDay()
   }
 
   /**
@@ -478,7 +435,7 @@ sealed class Offset : SingleDateTime {
     override val startToken: Int,
     override val endToken: Int,
     override val units: Int
-  ) : AbsoluteDateTime, Offset() {
+  ) : SingleDateTime, Offset() {
 
     /**
      * @return a string representation of this date-time object
@@ -486,15 +443,11 @@ sealed class Offset : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @return the LocalDateTime object representing this offset
-     */
-    override fun toLocalDateTime(): LocalDateTime = LocalDate.of(0, 1, 1).atStartOfDay().plusYears(this.units.toLong())
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing the reference date-time with this offset applied to it
      */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime = ref.plusYears(this.units.toLong())
+    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime =
+      ref.toLocalDate().plusYears(this.units.toLong()).atStartOfDay()
   }
 }

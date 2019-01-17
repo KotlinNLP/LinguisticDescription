@@ -8,6 +8,7 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
@@ -16,16 +17,25 @@ import java.time.format.DateTimeFormatter
 interface SingleDateTime : DateTime {
 
   /**
-   * @param ref a reference date-time from which to take the missing properties
+   * @param ref a reference date-time from which to take the missing properties (default = now)
    *
    * @return the LocalDateTime object representing this date-time expression, respect to the given reference
    */
-  fun toLocalDateTime(ref: LocalDateTime): LocalDateTime
+  fun toLocalDateTime(ref: LocalDateTime = LocalDateTime.now()): LocalDateTime
 
   /**
-   * @param ref a reference date-time from which to take the missing properties
+   * @param ref a reference date-time from which to take the missing properties (default = now)
+   *
+   * @return the number of total seconds of the date-time as offset from the reference date
+   */
+  fun toSeconds(ref: LocalDateTime = LocalDateTime.now()): Long =
+    this.toLocalDateTime(ref).toEpochSecond(ZoneOffset.UTC) - ref.toEpochSecond(ZoneOffset.UTC)
+
+  /**
+   * @param ref a reference date-time from which to take the missing properties (default = now)
    *
    * @return the representation of the date-time expression in the ISO format 'YYYY-MM-DDThh:mm:ss'
    */
-  fun isoFormat(ref: LocalDateTime): String = this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+  fun isoFormat(ref: LocalDateTime = LocalDateTime.now()): String =
+    this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 }

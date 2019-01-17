@@ -119,7 +119,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
@@ -144,7 +144,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
@@ -169,7 +169,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
@@ -194,7 +194,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
@@ -219,7 +219,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
@@ -244,7 +244,7 @@ sealed class DateOrdinal : SingleDateTime {
     override fun toString(): String = this.toStandardFormat()
 
     /**
-     * @param ref a reference date-time from which to take the missing properties
+     * @param ref a reference date-time from which to take the missing properties (default = now)
      *
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
