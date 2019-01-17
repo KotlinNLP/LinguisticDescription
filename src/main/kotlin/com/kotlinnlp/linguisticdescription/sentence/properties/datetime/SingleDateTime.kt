@@ -8,7 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
