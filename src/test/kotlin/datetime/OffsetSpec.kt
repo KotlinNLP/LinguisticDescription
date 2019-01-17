@@ -824,13 +824,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 hours (based on Friday 2018-04-13T09:15:10)") {
@@ -842,13 +835,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T12:15:10", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 3600, offset.toSeconds(ref))
         }
       }
     }
@@ -864,13 +850,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-14T02:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 3600, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 hours (based on Friday 2018-04-13T09:15:10)") {
@@ -884,13 +863,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T06:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 3600, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 hours (based on Friday 2018-04-13T01:15:10)") {
@@ -902,13 +874,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T22:15:10", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 3600, offset.toSeconds(ref))
         }
       }
     }
@@ -927,13 +892,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 half-hours (based on Friday 2018-04-13T09:15:10)") {
@@ -947,13 +905,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T10:45:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 1800, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 half-hours (based on Friday 2018-04-13T09:15:10)") {
@@ -965,13 +916,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:45:10", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 1800, offset.toSeconds(ref))
         }
       }
     }
@@ -990,13 +934,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 quarters of hours (based on Friday 2018-04-13T09:15:10)") {
@@ -1010,13 +947,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T10:00:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 900, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 quarters of hours (based on Friday 2018-04-13T09:15:10)") {
@@ -1028,13 +958,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T08:30:10", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 900, offset.toSeconds(ref))
         }
       }
     }
@@ -1053,13 +976,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 minutes (based on Friday 2018-04-13T09:15:10)") {
@@ -1073,13 +989,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:18:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 60, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 minutes (based on Friday 2018-04-13T09:15:10)") {
@@ -1091,13 +1000,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:12:10", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 60, offset.toSeconds(ref))
         }
       }
     }
@@ -1116,13 +1018,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 seconds (based on Friday 2018-04-13T09:15:10)") {
@@ -1136,13 +1031,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T09:15:13", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 seconds (based on Friday 2018-04-13T09:15:10)") {
@@ -1154,13 +1042,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:07", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3, offset.toSeconds(ref))
         }
       }
     }
@@ -1179,13 +1060,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 days (based on Friday 2018-04-13T09:15:10)") {
@@ -1199,13 +1073,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-16T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 86400, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 days (based on Friday 2018-04-13T09:15:10)") {
@@ -1217,13 +1084,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-10T00:00:00", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 86400, offset.toSeconds(ref))
         }
       }
     }
@@ -1284,13 +1144,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 weeks (based on Friday 2018-04-13T09:15:10)") {
@@ -1304,13 +1157,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-05-04T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(3 * 7 * 86400, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 weeks (based on Friday 2018-04-13T09:15:10)") {
@@ -1322,13 +1168,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-03-23T00:00:00", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 7 * 86400, offset.toSeconds(ref))
         }
       }
     }
@@ -1347,13 +1186,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 months (based on Friday 2018-04-13T09:15:10)") {
@@ -1365,13 +1197,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-07-13T00:00:00", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals((31 + 29 + 31) * 86400, offset.toSeconds(ref))
         }
       }
     }
@@ -1387,13 +1212,6 @@ class OffsetSpec : Spek({
           assertEquals("2019-01-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals((31 + 29 + 31) * 86400, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 months (based on Friday 2018-04-13T09:15:10)") {
@@ -1407,13 +1225,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-01-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-(31 + 30 + 31) * 86400, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 months (based on Friday 2018-02-13T09:15:10)") {
@@ -1425,13 +1236,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-11-13T00:00:00", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-(31 + 30 + 31) * 86400, offset.toSeconds(ref))
         }
       }
     }
@@ -1450,13 +1254,6 @@ class OffsetSpec : Spek({
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(0, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("+3 years (based on Friday 2018-04-13T09:15:10)") {
@@ -1470,13 +1267,6 @@ class OffsetSpec : Spek({
           assertEquals("2021-04-13T00:00:00", offset.isoFormat(ref))
         }
       }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals((365 + 365 + 366) * 86400, offset.toSeconds(ref))
-        }
-      }
     }
 
     context("-3 years (based on Friday 2018-04-13T09:15:10)") {
@@ -1488,13 +1278,6 @@ class OffsetSpec : Spek({
 
         it("should return the expected string in ISO format") {
           assertEquals("2015-04-13T00:00:00", offset.isoFormat(ref))
-        }
-      }
-
-      on("toSeconds(ref)") {
-
-        it("should return the expected number") {
-          assertEquals(-3 * 365 * 86400, offset.toSeconds(ref))
         }
       }
     }
