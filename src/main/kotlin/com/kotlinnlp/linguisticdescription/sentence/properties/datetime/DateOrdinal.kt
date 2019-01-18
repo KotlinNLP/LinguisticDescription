@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -222,7 +223,14 @@ sealed class DateOrdinal : SingleDateTime {
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
     override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
+
+      val refDateTime: LocalDateTime = this.dateTime.toLocalDateTime(ref)
+      val refDateDay1: LocalDate = LocalDate.of(refDateTime.year, refDateTime.month, 1)
+
+      // Note: all the iterating days must be counted.
+      val matchingDate: LocalDate = this.findBy(refDateDay1) { true }
+
+      return matchingDate.atStartOfDay()
     }
   }
 
@@ -247,7 +255,16 @@ sealed class DateOrdinal : SingleDateTime {
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
     override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
+
+      val refDateTime: LocalDateTime = this.dateTime.toLocalDateTime(ref)
+      val refDateDay1: LocalDate = LocalDate.of(refDateTime.year, refDateTime.month, 1)
+
+      // Note: the ref date-time itself counts as first week.
+      val matchingDate: LocalDate = this.findBy(refDateDay1) {
+        (it.dayOfMonth == refDateDay1.dayOfMonth && it.month == refDateDay1.month) || it.dayOfWeek == DayOfWeek.MONDAY
+      }
+
+      return matchingDate.atStartOfDay()
     }
   }
 
@@ -272,7 +289,18 @@ sealed class DateOrdinal : SingleDateTime {
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
     override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
+
+      val refDateTime: LocalDateTime = this.dateTime.toLocalDateTime(ref)
+      val refDateDay1: LocalDate = LocalDate.of(refDateTime.year, refDateTime.month, 1)
+
+      val matchingDate: LocalDate = this.findBy(refDateDay1) {
+        if (it.dayOfMonth == 1)
+          it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY
+        else
+          it.dayOfWeek == DayOfWeek.SATURDAY
+      }
+
+      return matchingDate.atStartOfDay()
     }
   }
 
@@ -297,7 +325,14 @@ sealed class DateOrdinal : SingleDateTime {
      * @return the LocalDateTime object representing this date-time expression, respect to the given reference
      */
     override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
+
+      val refDateTime: LocalDateTime = this.dateTime.toLocalDateTime(ref)
+      val refDateDay1: LocalDate = LocalDate.of(refDateTime.year, refDateTime.month, 1)
+
+      // Note: all the iterating months must be counted.
+      val matchingDate: LocalDate = this.findBy(ref = refDateDay1, incrementByMonths = true) { true }
+
+      return matchingDate.atStartOfDay()
     }
   }
 }
