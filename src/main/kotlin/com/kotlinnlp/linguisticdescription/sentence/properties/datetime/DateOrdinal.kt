@@ -276,29 +276,4 @@ sealed class DateOrdinal : SingleDateTime {
       TODO("not implemented")
     }
   }
-
-  /**
-   * An ordinal date of 'year' units.
-   */
-  data class Year(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val position: Position,
-    override val dateTime: DateTimeObj
-  ) : DateOrdinal() {
-
-    /**
-     * @return a string representation of this date-time object
-     */
-    override fun toString(): String = this.toStandardFormat()
-
-    /**
-     * @param ref a reference date-time from which to take the missing properties (default = now)
-     *
-     * @return the LocalDateTime object representing this date-time expression, respect to the given reference
-     */
-    override fun toLocalDateTime(ref: LocalDateTime): LocalDateTime {
-      TODO("not implemented")
-    }
-  }
 }
