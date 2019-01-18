@@ -147,7 +147,8 @@ sealed class DateOrdinal : SingleDateTime {
         if (condition(iterDate)) count++
 
         if (!this.hasYearReference && iterDate.month != month || this.hasYearReference && iterDate.year != year)
-          throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference date '$ref'")
+          throw NotGregorianDateTime("Invalid ordinal position " +
+            "(${this::class.simpleName} ${this.position} based to the reference date '$ref'")
       }
 
     } else {
