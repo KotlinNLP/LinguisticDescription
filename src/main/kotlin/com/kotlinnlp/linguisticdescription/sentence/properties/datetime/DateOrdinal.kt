@@ -118,22 +118,20 @@ sealed class DateOrdinal : SingleDateTime {
 
   /**
    * Find the date that matches a given condition for a number of times given by the ordinal [position], starting
-   * from a reference date-time.
+   * from a reference date.
    *
-   * @param ref the reference date-time
+   * @param ref the reference date
    * @param incrementByMonths whether to increment the iteration by months instead of days (default = false)
    * @param condition the condition that must return a boolean depending on the iterating date
    *
    * @return the date that matches the condition for the number of times given by the ordinal [position]
    */
-  protected fun findBy(ref: LocalDateTime,
+  protected fun findBy(ref: LocalDate,
                        incrementByMonths: Boolean = false,
                        condition: (LocalDate) -> Boolean): LocalDate {
 
     var count = 0
-    var iterDate: LocalDate = this.dateTime.toLocalDateTime(ref).toLocalDate()
-
-    iterDate = LocalDate.of(iterDate.year, iterDate.month, 1)
+    var iterDate: LocalDate = ref
 
     if (this.position.count >= 0) {
 
@@ -149,8 +147,7 @@ sealed class DateOrdinal : SingleDateTime {
         if (condition(iterDate)) count++
 
         if (!this.hasYearReference && iterDate.month != month || this.hasYearReference && iterDate.year != year)
-          throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference " +
-            "date-time '${this.dateTime.toLocalDateTime(ref)}'")
+          throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference date '$ref'")
       }
 
     } else {
@@ -194,7 +191,10 @@ sealed class DateOrdinal : SingleDateTime {
       val weekDay: Int = this.value.weekDay ?: throw InvalidDateTime("A DateOrdinal of Date units must have a value " +
         "of week days only (e.g. 'The second Monday of August').")
 
-      val matchingDate: LocalDate = this.findBy(ref) { it.dayOfWeek.value == weekDay }
+      val refDateTime: LocalDateTime = this.dateTime.toLocalDateTime(ref)
+      val refDateDay1: LocalDate = LocalDate.of(refDateTime.year, refDateTime.month, 1)
+
+      val matchingDate: LocalDate = this.findBy(refDateDay1) { it.dayOfWeek.value == weekDay }
 
       return matchingDate.atStartOfDay()
     }
