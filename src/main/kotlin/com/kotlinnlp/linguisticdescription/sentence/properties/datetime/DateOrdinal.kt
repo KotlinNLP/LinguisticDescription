@@ -64,7 +64,7 @@ sealed class DateOrdinal : SingleDateTime {
   /**
    * Whether the reference [dateTime] indicates a whole year (e.g. "the first Monday of the next year").
    */
-  protected val hasYearReference: Boolean by lazy {
+  private val hasYearReference: Boolean by lazy {
 
     val refDateTime: DateTimeObj = this.dateTime
 
@@ -117,6 +117,55 @@ sealed class DateOrdinal : SingleDateTime {
   }
 
   /**
+   * Find the date that matches a given condition for a number of times given by the ordinal [position], starting
+   * from a reference date-time.
+   *
+   * @param ref the reference date-time
+   * @param incrementByMonths whether to increment the iteration by months instead of days (default = false)
+   * @param condition the condition that must return a boolean depending on the iterating date
+   *
+   * @return the date that matches the condition for the number of times given by the ordinal [position]
+   */
+  protected fun findBy(ref: LocalDateTime,
+                       incrementByMonths: Boolean = false,
+                       condition: (LocalDate) -> Boolean): LocalDate {
+
+    var count = 0
+    var iterDate: LocalDate = this.dateTime.toLocalDateTime(ref).toLocalDate()
+
+    iterDate = LocalDate.of(iterDate.year, iterDate.month, 1)
+
+    if (this.position.count >= 0) {
+
+      val month: java.time.Month = iterDate.month
+      val year: Int = iterDate.year
+
+      iterDate = iterDate.minusDays(1)
+
+      while (count < this.position.count) {
+
+        iterDate = if (incrementByMonths) iterDate.plusMonths(1) else iterDate.plusDays(1)
+
+        if (condition(iterDate)) count++
+
+        if (!this.hasYearReference && iterDate.month != month || this.hasYearReference && iterDate.year != year)
+          throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference " +
+            "date-time '${this.dateTime.toLocalDateTime(ref)}'")
+      }
+
+    } else {
+
+      iterDate = if (this.hasYearReference) iterDate.plusYears(1) else iterDate.plusMonths(1)
+      iterDate = if (incrementByMonths) iterDate.minusMonths(1) else iterDate.minusDays(1)
+
+      while (!condition(iterDate))
+        iterDate = if (incrementByMonths) iterDate.minusMonths(1) else iterDate.minusDays(1)
+    }
+
+    return iterDate
+  }
+
+  /**
    * An ordinal date of [DateObj] units.
    * The reference [dateTime] can be only a week day, e.g. "The second Monday of August".
    *
@@ -145,35 +194,9 @@ sealed class DateOrdinal : SingleDateTime {
       val weekDay: Int = this.value.weekDay ?: throw InvalidDateTime("A DateOrdinal of Date units must have a value " +
         "of week days only (e.g. 'The second Monday of August').")
 
-      var refDate: LocalDate = this.dateTime.toLocalDateTime(ref).toLocalDate()
-      var count = 0
+      val matchingDate: LocalDate = this.findBy(ref) { it.dayOfWeek.value == weekDay }
 
-      refDate = LocalDate.of(refDate.year, refDate.month, 1)
-
-      if (this.position.count >= 0) {
-
-        val month: java.time.Month = refDate.month
-        val year: Int = refDate.year
-
-        refDate = refDate.minusDays(1)
-
-        while (count < this.position.count) {
-          refDate = refDate.plusDays(1)
-          if (refDate.dayOfWeek.value == weekDay) count++
-          if (!this.hasYearReference && refDate.month != month || this.hasYearReference && refDate.year != year)
-            throw NotGregorianDateTime("Invalid ordinal position (${this.position} for the reference " +
-              "date-time '${this.dateTime.toLocalDateTime(ref)}'")
-        }
-
-      } else {
-
-        refDate = if (this.hasYearReference) refDate.plusYears(1) else refDate.plusMonths(1)
-        refDate = refDate.minusDays(1)
-
-        while (refDate.dayOfWeek.value != weekDay) refDate = refDate.minusDays(1)
-      }
-
-      return refDate.atStartOfDay()
+      return matchingDate.atStartOfDay()
     }
   }
 
