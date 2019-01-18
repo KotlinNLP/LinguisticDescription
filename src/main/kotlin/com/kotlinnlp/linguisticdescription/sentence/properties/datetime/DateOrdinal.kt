@@ -62,6 +62,21 @@ sealed class DateOrdinal : SingleDateTime {
   abstract val dateTime: DateTimeObj
 
   /**
+   * Whether the reference [dateTime] indicates a whole year (e.g. "the first Monday of the next year").
+   */
+  protected val hasYearReference: Boolean by lazy {
+
+    val refDateTime: DateTimeObj = this.dateTime
+
+    when (refDateTime) {
+      is DateObj -> refDateTime.month == null
+      is DateTimeSimple -> refDateTime.date.month == null
+      is Offset.Date -> refDateTime.value.month == null
+      else -> false
+    }
+  }
+
+  /**
    * The date unit as string.
    */
   val dateUnit: String get() = this::class.simpleName!!
@@ -114,18 +129,6 @@ sealed class DateOrdinal : SingleDateTime {
     override val dateTime: DateTimeObj,
     val value: DateObj
   ) : DateOrdinal() {
-
-    /**
-     * Whether the reference [dateTime] indicates a whole year (e.g. "the first Monday of the next year").
-     */
-    private val hasYearReference: Boolean by lazy {
-      when (this.dateTime) {
-        is DateObj -> this.dateTime.month == null
-        is DateTimeSimple -> this.dateTime.date.month == null
-        is Offset.Date -> this.dateTime.value.month == null
-        else -> false
-      }
-    }
 
     /**
      * @return a string representation of this date-time object
