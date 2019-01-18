@@ -134,12 +134,9 @@ sealed class DateOrdinal : SingleDateTime {
     var count = 0
     var iterDate: LocalDate = ref
 
+    iterDate = if (incrementByMonths) iterDate.minusMonths(1) else iterDate.minusDays(1)
+
     if (this.position.count >= 0) {
-
-      val month: java.time.Month = iterDate.month
-      val year: Int = iterDate.year
-
-      iterDate = iterDate.minusDays(1)
 
       while (count < this.position.count) {
 
@@ -147,7 +144,7 @@ sealed class DateOrdinal : SingleDateTime {
 
         if (condition(iterDate)) count++
 
-        if (!this.hasYearReference && iterDate.month != month || this.hasYearReference && iterDate.year != year)
+        if (!this.hasYearReference && iterDate.month != ref.month || this.hasYearReference && iterDate.year != ref.year)
           throw NotGregorianDateTime("Invalid ordinal position " +
             "(${this::class.simpleName} ${this.position} based to the reference date '$ref'")
       }
@@ -155,7 +152,6 @@ sealed class DateOrdinal : SingleDateTime {
     } else {
 
       iterDate = if (this.hasYearReference) iterDate.plusYears(1) else iterDate.plusMonths(1)
-      iterDate = if (incrementByMonths) iterDate.minusMonths(1) else iterDate.minusDays(1)
 
       while (!condition(iterDate))
         iterDate = if (incrementByMonths) iterDate.minusMonths(1) else iterDate.minusDays(1)
