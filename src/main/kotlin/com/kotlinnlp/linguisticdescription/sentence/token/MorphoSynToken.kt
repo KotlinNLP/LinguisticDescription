@@ -315,7 +315,7 @@ sealed class MorphoSynToken : TokenIdentificable {
 
         obj(
           "id" to self.id,
-          "type" to self.type,
+          "type" to self.type.annotation,
           "pos" to self.pos?.toString(),
           "dependency" to self.syntacticRelation.toJSON(),
           "coReferences" to self.coReferences?.let { coRef -> array(coRef.map { it.toJSON() }) },
