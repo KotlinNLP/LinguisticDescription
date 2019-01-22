@@ -69,7 +69,7 @@ class Word(
   /**
    * The label that defines the type of this token.
    */
-  override val type: String = "WORD"
+  override val type: Type = Type.Word
 
   /**
    * @return a string representation of this token

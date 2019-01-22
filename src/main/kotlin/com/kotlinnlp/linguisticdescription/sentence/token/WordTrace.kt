@@ -67,7 +67,7 @@ class WordTrace(
   /**
    * The label that defines the type of this token.
    */
-  override val type: String = "WORD-TRACE"
+  override val type: Type = Type.WordTrace
 
   /**
    * @return a string representation of this token

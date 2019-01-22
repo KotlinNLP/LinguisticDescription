@@ -61,7 +61,7 @@ class Trace(override val id: Int) : MorphoSynToken.Single() {
   /**
    * The label that defines the type of this token.
    */
-  override val type: String = "TRACE"
+  override val type: Type = Type.Trace
 
   /**
    * @return a string representation of this token

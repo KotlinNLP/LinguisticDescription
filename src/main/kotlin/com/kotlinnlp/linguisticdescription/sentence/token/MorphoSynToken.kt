@@ -27,6 +27,23 @@ import kotlin.reflect.full.isSubclassOf
 sealed class MorphoSynToken : TokenIdentificable {
 
   /**
+   * The type of token.
+   *
+   * @property annotation the type annotation
+   */
+  enum class Type(val annotation: String) {
+    Word("WORD"),
+    Trace("TRACE"),
+    WordTrace("WORD-TRACE"),
+    WordComposite("WORD-COMPOSITE")
+  }
+
+  /**
+   * The label that defines the type of this token.
+   */
+  abstract val type: Type
+
+  /**
    * The list of single morphologies (flattened in case of composite token).
    */
   abstract val flatMorphologies: List<SingleMorphology>
@@ -82,11 +99,6 @@ sealed class MorphoSynToken : TokenIdentificable {
    */
   @Suppress("PropertyName")
   abstract class Single : MorphoSynToken(), ScoredMorphoToken, SyntacticToken {
-
-    /**
-     * The label that defines the type of this token.
-     */
-    abstract val type: String
 
     /**
      * The Part-Of-Speech.
@@ -339,6 +351,11 @@ sealed class MorphoSynToken : TokenIdentificable {
     override val position: Position,
     val components: List<Word>
   ) : RealToken, TokenIdentificable, MorphoSynToken() {
+
+    /**
+     * The label that defines the type of this token.
+     */
+    override val type: Type = Type.WordComposite
 
     /**
      * The set of ids of the components.
