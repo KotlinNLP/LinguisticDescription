@@ -71,7 +71,7 @@ enum class SyntacticType(val annotation: String, val baseAnnotation: String) {
   CoordAntecedent("COORD-ANTEC", "COORD"),
   CoordNegative("COORD-NEG", "COORD"),
   Coord2Nd("COORD2ND", "COORD2ND"),
-  Coord2NdNegative("COORD2ND-ADVERS", "COORD2ND"),
+  Coord2NdNegative("COORD2ND-NEG", "COORD2ND"),
   Coord2NdAdvers("COORD2ND-ADVERS", "COORD2ND"),
   Coord2NdCompar("COORD2ND-COMPAR", "COORD2ND"),
   Coord2NdCorrelat("COORD2ND-CORRELAT", "COORD2ND"),
