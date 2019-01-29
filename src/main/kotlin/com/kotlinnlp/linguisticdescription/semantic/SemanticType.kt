@@ -16,7 +16,7 @@ package com.kotlinnlp.linguisticdescription.semantic
 enum class SemanticType(val annotation: String, val baseAnnotation: String) {
 
   SpaceTime("SPACETIME", "SPACETIME"),
-  SpaceTimeInterval("SPACETIME-END", "SPACETIME"),
+  SpaceTimeInterval("SPACETIME-INTERVAL", "SPACETIME"),
   SpaceTimeStart("SPACETIME-START", "SPACETIME"),
   SpaceTimeEnd("SPACETIME-END", "SPACETIME"),
 
