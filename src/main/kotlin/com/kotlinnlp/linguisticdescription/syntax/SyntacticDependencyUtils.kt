@@ -72,7 +72,6 @@ internal val syntacticDependencyClasses = mapOf<SyntacticType, KClass<*>>(
   SyntacticType.Coord2NdCompar to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdCorrelat to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdExplic to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
-  SyntacticType.Coord2NdNeg to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
   SyntacticType.Coord2NdSymmetric to Coordinated.Conjunct::class, // TODO: detail with a dedicated sub-class
 
   SyntacticType.Separator to Separator.Base::class,
