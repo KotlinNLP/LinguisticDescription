@@ -129,7 +129,9 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   Date("DATE", "DATE"),
   Hour("HOUR", "HOUR"),
   Num("NUM", "NUM"),
-  Predet("PREDET", "PREDET");
+  Predet("PREDET", "PREDET"),
+
+  Unknown("UNKNOWN", "UNKNOWN");
 
   /**
    * The list of components.

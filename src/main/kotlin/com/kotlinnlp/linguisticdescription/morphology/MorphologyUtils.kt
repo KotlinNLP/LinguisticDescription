@@ -125,5 +125,7 @@ internal val morphologyClasses = mapOf<POS, KClass<*>>(
   POS.Date to Date::class,
   POS.Hour to Hour::class,
   POS.Num to Number::class,
-  POS.Predet to Predeterminer::class
+  POS.Predet to Predeterminer::class,
+
+  POS.Unknown to Unknown::class
 )
