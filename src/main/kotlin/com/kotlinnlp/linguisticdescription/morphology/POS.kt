@@ -111,6 +111,7 @@ enum class POS(val annotation: String, val baseAnnotation: String) {
   Prep("PREP", "PREP"),
   PrepArt("PREP-ART", "PREP"),
   PrepPoss("PREP-POSS", "PREP"),
+  PrepCompar("PREP-COMPAR", "PREP"),
 
   Postpos("POSTPOS", "POSTPOS"),
   PostposPoss("POSTPOS-POSS", "POSTPOS"),

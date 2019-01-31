@@ -56,4 +56,12 @@ sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
 
     override val pos: POS = POS.PrepPoss
   }
+
+  /**
+   * The 'comparative preposition' morphology.
+   */
+  class Comparative(lemma: String) : Preposition(lemma) {
+
+    override val pos: POS = POS.PrepCompar
+  }
 }

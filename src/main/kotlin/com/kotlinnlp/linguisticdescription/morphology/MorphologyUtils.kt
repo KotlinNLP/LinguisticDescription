@@ -107,6 +107,7 @@ internal val morphologyClasses = mapOf<POS, KClass<*>>(
   POS.Prep to Preposition.Base::class,
   POS.PrepArt to Preposition.Articulated::class,
   POS.PrepPoss to Preposition.Possessive::class,
+  POS.PrepCompar to Preposition.Comparative::class,
 
   POS.Postpos to Postposition.Base::class,
   POS.PostposPoss to Postposition.Possessive::class,
