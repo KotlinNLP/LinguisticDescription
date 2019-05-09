@@ -63,6 +63,7 @@ abstract class SingleMorphology(val lemma: String) {
               propertyName == "numericForm" && numericForm != null -> it to numericForm
               propertyName in properties -> it to properties.getValue(propertyName)
               allowIncompleteProperties -> null
+              it.isOptional -> null
               else -> throw MissingMorphologyProperty(propertyName = propertyName, pos = pos, lemma = lemma)
             }
           }
