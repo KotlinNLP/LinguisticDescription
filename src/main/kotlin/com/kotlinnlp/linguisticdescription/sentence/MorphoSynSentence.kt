@@ -126,10 +126,10 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
    *
    * @return a list of dependents tokens
    */
-  fun getDependents(governorId: Int): List<MorphoSynToken.Single> = this.tokens.flatMap {
-    when(it) {
-      is MorphoSynToken.Single -> if (it._syntacticRelation.governor == governorId) listOf(it) else listOf()
-      is MorphoSynToken.Composite -> it.components.filter { it.syntacticRelation.governor == governorId }
+  fun getDependents(governorId: Int): List<MorphoSynToken.Single> = this.tokens.flatMap { tk ->
+    when (tk) {
+      is MorphoSynToken.Single -> if (tk._syntacticRelation.governor == governorId) listOf(tk) else listOf()
+      is MorphoSynToken.Composite -> tk.components.filter { it.syntacticRelation.governor == governorId }
     }
   }
 
