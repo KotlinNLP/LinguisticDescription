@@ -9,8 +9,6 @@ package com.kotlinnlp.linguisticdescription.sentence
 
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
-import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
-import com.kotlinnlp.linguisticdescription.sentence.properties.Entity
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
@@ -24,32 +22,17 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
   companion object {
 
     /**
-     * Build a [MorphoSynSentence] with the given properties already assigned.
+     * Build a [MorphoSynSentence] with a given list of tokens.
      *
      * @param id the id of the token, unique within its sentence
      * @param confidence the confidence score
      * @param tokens the list of tokens of this sentence
-     * @param dateTimes the list of date-times contained in this sentence (can be null)
-     * @param entities the list of entities contained in this sentence (can be null)
      *
      * @return a new sentence with the given properties
      */
-    operator fun invoke(
-      id: Int,
-      confidence: Double,
-      tokens: List<MorphoSynToken>,
-      dateTimes: List<DateTime>?,
-      entities: List<Entity>?
-    ): MorphoSynSentence {
-
-      val sentence = MorphoSynSentence(id = id, confidence = confidence)
-
-      sentence._tokens.addAll(tokens)
-      dateTimes?.let { sentence._dateTimes = it.toMutableList() }
-      entities?.let { sentence._entities = it.toMutableList() }
-
-      return sentence
-    }
+    operator fun invoke(id: Int, confidence: Double, tokens: List<MorphoSynToken>): MorphoSynSentence =
+      MorphoSynSentence(id = id, confidence = confidence)
+        .apply { _tokens.addAll(tokens) }
   }
 
   /**
@@ -63,26 +46,6 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
   private val _tokens: MutableList<MorphoSynToken> = mutableListOf()
 
   /**
-   * The list of date-times contained in this sentence (can be null).
-   */
-  val dateTimes: List<DateTime>? get() = if (this::_dateTimes.isInitialized) this._dateTimes else null
-
-  /**
-   * The list of entities contained in this sentence (can be null).
-   */
-  val entities: List<Entity>? get() = if (this::_entities.isInitialized) this._entities else null
-
-  /**
-   * The mutable list of date-times contained in this sentence.
-   */
-  private lateinit var _dateTimes: MutableList<DateTime>
-
-  /**
-   * The mutable list of entities contained in this sentence.
-   */
-  private lateinit var _entities: MutableList<Entity>
-
-  /**
    * Add a new token at a given index.
    *
    * @param index the index of the [tokens] list at which to insert the token
@@ -93,30 +56,6 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
     this._tokens.add(index, token)
 
     this.reIndexTokens()
-  }
-
-  /**
-   * Add a new date-time.
-   *
-   * @param dateTime the date-time to add
-   */
-  fun addDateTime(dateTime: DateTime) {
-
-    if (!this::_dateTimes.isInitialized) this._dateTimes = mutableListOf()
-
-    this._dateTimes.add(dateTime)
-  }
-
-  /**
-   * Add a new entity.
-   *
-   * @param entity the entity to add
-   */
-  fun addEntity(entity: Entity) {
-
-    if (!this::_entities.isInitialized) this._entities = mutableListOf()
-
-    this._entities.add(entity)
   }
 
   /**
@@ -145,8 +84,6 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
   """.trimIndent().format(
     "id", this.id,
     "confidence", 100.0 * this.confidence,
-    "date-times", this.dateTimes?.joinToString(separator = ", ") ?: "None",
-    "entities", this.entities?.joinToString(separator = ", ") ?: "None",
     "tokens", "\n\n" + this.tokens.joinToString(separator = "\n\n") { it.toString(prefix = "\t") }
   )
 
@@ -160,8 +97,6 @@ data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : Senten
     obj(
       "id" to self.id,
       "analysisConfidence" to self.confidence,
-      "entities" to self.entities?.let { array(it.map { it.toJSON() }) },
-      "dateTimes" to self.dateTimes?.let { array(it.map { it.toJSON() }) },
       "tokens" to array(self.tokens.map { it.toJSON() })
     )
   }
