@@ -17,8 +17,9 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * A sentence with morphological and syntactic information.
  *
  * @property id the sentence id
+ * @property confidence the confidence score given by the system to the analysis of this sentence
  */
-data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken>() {
+data class MorphoSynSentence(val id: Int, var confidence: Double = 0.0) : SentenceIdentificable<MorphoSynToken>() {
 
   companion object {
 
@@ -41,9 +42,8 @@ data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken
       entities: List<Entity>?
     ): MorphoSynSentence {
 
-      val sentence = MorphoSynSentence(id)
+      val sentence = MorphoSynSentence(id = id, confidence = confidence)
 
-      sentence._confidence = confidence
       sentence._tokens.addAll(tokens)
       dateTimes?.let { sentence._dateTimes = it.toMutableList() }
       entities?.let { sentence._entities = it.toMutableList() }
@@ -63,11 +63,6 @@ data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken
   private val _tokens: MutableList<MorphoSynToken> = mutableListOf()
 
   /**
-   * The confidence score.
-   */
-  val confidence: Double get() = this._confidence
-
-  /**
    * The list of date-times contained in this sentence (can be null).
    */
   val dateTimes: List<DateTime>? get() = if (this::_dateTimes.isInitialized) this._dateTimes else null
@@ -78,11 +73,6 @@ data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken
   val entities: List<Entity>? get() = if (this::_entities.isInitialized) this._entities else null
 
   /**
-   * The mutable confidence score.
-   */
-  private var _confidence: Double = 0.0
-
-  /**
    * The mutable list of date-times contained in this sentence.
    */
   private lateinit var _dateTimes: MutableList<DateTime>
@@ -91,15 +81,6 @@ data class MorphoSynSentence(val id: Int) : SentenceIdentificable<MorphoSynToken
    * The mutable list of entities contained in this sentence.
    */
   private lateinit var _entities: MutableList<Entity>
-
-  /**
-   * Update the [confidence] replacing it with a given one.
-   *
-   * @param confidence the confidence with which to replace the current one
-   */
-  fun updateConfidence(confidence: Double) {
-    this._confidence = confidence
-  }
 
   /**
    * Add a new token at a given index.
