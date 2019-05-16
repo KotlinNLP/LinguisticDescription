@@ -99,7 +99,7 @@ data class MorphoSynSentence(
    */
   fun getDependents(governorId: Int): List<MorphoSynToken.Single> = this.tokens.flatMap { tk ->
     when (tk) {
-      is MorphoSynToken.Single -> if (tk._syntacticRelation.governor == governorId) listOf(tk) else listOf()
+      is MorphoSynToken.Single -> if (tk.syntacticRelation.governor == governorId) listOf(tk) else listOf()
       is MorphoSynToken.Composite -> tk.components.filter { it.syntacticRelation.governor == governorId }
     }
   }
