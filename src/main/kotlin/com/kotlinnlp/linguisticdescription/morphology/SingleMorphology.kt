@@ -254,7 +254,7 @@ abstract class SingleMorphology(val lemma: String) {
   /**
    * @return the JSON object that represents this single morphology
    */
-  fun toJSON(): JsonObject {
+  open fun toJSON(): JsonObject {
 
     val jsonObject = json {
       obj(
