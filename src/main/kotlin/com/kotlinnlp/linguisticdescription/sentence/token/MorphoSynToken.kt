@@ -13,10 +13,7 @@ import com.kotlinnlp.linguisticdescription.POSTag
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.ScoredSingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.CoReference
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.SemanticRelation
-import com.kotlinnlp.linguisticdescription.sentence.token.properties.SyntacticRelation
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.*
 import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
@@ -305,24 +302,27 @@ sealed class MorphoSynToken : TokenIdentificable {
 
         val self = this@Single
 
+        require(self.pos is POSTag.Base) {
+          "The JSON representation of a token cannot be get if the property 'pos' is not a POSTag.Base."
+        }
+
         obj(
           "id" to self.id,
           "type" to self.type.annotation,
-          "pos" to self.pos?.toString(),
+          "posBase" to (self.pos as POSTag.Base).type.baseAnnotation,
           "dependency" to self.syntacticRelation.toJSON(),
-          "coReferences" to self.coReferences?.let { coRef -> array(coRef.map { it.toJSON() }) },
-          "semanticRelations" to self.semanticRelations?.let { semRel -> array(semRel.map { it.toString() }) },
-          "morphologies" to if (self.morphologies.isNotEmpty()) array(self.morphologies.map { it.toJSON() }) else null
+          "coReferences" to array(self.coReferences.map { it.toJSON() }),
+          "semanticRelations" to array(self.semanticRelations.map { it.toString() }),
+          "morphology" to array(self.morphologies.map { it.toJSON() })
         )
       }
 
-      if (this is RealToken) {
-        jsonObject["surface"] = json {
-          obj(
-            "form" to this@Single.form,
-            "translitForm" to this@Single.form // TODO: set it properly
-          )
-        }
+      if (this is FormToken) {
+        jsonObject["form"] = this.form
+        jsonObject["translitForm"] = this.form // TODO: set it properly
+      }
+
+      if (this is Positionable) {
         jsonObject["position"] = this.position.toJSON()
       }
 
@@ -393,11 +393,15 @@ sealed class MorphoSynToken : TokenIdentificable {
      * @return the JSON object that represents this token
      */
     override fun toJSON(): JsonObject = json {
+
+      val self = this@Composite
+
       obj(
-        "id" to this@Composite.id,
-        "form" to this@Composite.form,
-        "translitForm" to this@Composite.form, // TODO: set it properly
-        "components" to array(this@Composite.components.map { it.toJSON() })
+        "id" to self.id,
+        "form" to self.form,
+        "translitForm" to self.form, // TODO: set it properly
+        "position" to self.position.toJSON(),
+        "components" to array(self.components.map { it.toJSON() })
       )
     }
   }
