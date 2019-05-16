@@ -149,22 +149,22 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The variable Part-Of-Speech.
      */
-    internal var _pos: POSTag? = null
+    protected var _pos: POSTag? = null
 
     /**
      * The mutable list of scored morphologies, sorted by descending score.
      */
-    internal val _morphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
+    protected val _morphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
 
     /**
      * The list of possible scored single morphologies of context, sorted by descending score (can be empty).
      */
-    internal val _contextMorphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
+    protected val _contextMorphologies: MutableList<ScoredSingleMorphology> = mutableListOf()
 
     /**
      * The variable syntactic relation.
      */
-    internal lateinit var _syntacticRelation: SyntacticRelation
+    protected lateinit var _syntacticRelation: SyntacticRelation
 
     /**
      * The mutable list of co-references.
@@ -357,18 +357,18 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The list of syntactic relations. It contains always more than one element.
      */
-    override val flatSyntacticRelations: List<SyntacticRelation> get() = this.components.map { it._syntacticRelation }
+    override val flatSyntacticRelations: List<SyntacticRelation> get() = this.components.map { it.syntacticRelation }
 
     /**
      * The list of the flattened single morphologies of the components.
      */
     override val flatMorphologies: List<SingleMorphology> get() =
-      this.components.flatMap { component ->  component._morphologies.map { it.value } }
+      this.components.flatMap { component ->  component.morphologies.map { it.value } }
 
     /**
      * A list containing the single POS of this token.
      */
-    override val flatPOS: List<POSTag> get() = this.components.mapNotNull { it._pos }
+    override val flatPOS: List<POSTag> get() = this.components.mapNotNull { it.pos }
 
     /**
      * The syntactic relation.
