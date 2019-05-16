@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticDependency
  *
  * @property governor the id of the governor token (can be null if the governor is the root)
  * @property dependency the syntactic dependency
- * @property attachmentScore the attachment confidence score
+ * @property attachmentScore the confidence score of the attachment
  */
 data class SyntacticRelation(
   val governor: Int?,
@@ -25,12 +25,19 @@ data class SyntacticRelation(
 ) {
 
   /**
+   * The confidence score of the relation.
+   * TODO: set it properly with a dedicated score.
+   */
+  val relationScore: Double = this.attachmentScore
+
+  /**
    * @return a string representation of this syntactic relation
    */
-  override fun toString(): String = "%s %s (%.2f)".format(
+  override fun toString(): String = "%s %s (%.2f - %.2f)".format(
     this.governor?.toString() ?: "R",
     this.dependency.toString(),
-    this.attachmentScore)
+    this.attachmentScore,
+    this.relationScore)
 
   /**
    * @return the JSON object that represents this syntactic relation
@@ -42,7 +49,8 @@ data class SyntacticRelation(
     obj(
       "head" to self.governor,
       "relation" to self.dependency.toString(),
-      "attachmentScore" to self.attachmentScore
+      "attachmentScore" to self.attachmentScore,
+      "relationScore" to self.relationScore
     )
   }
 }
