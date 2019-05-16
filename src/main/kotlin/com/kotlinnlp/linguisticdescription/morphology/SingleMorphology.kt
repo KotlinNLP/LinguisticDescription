@@ -271,15 +271,15 @@ abstract class SingleMorphology(val pos: POS) {
       )
     }
 
-    if (this is Genderable) jsonObject["gender"] = this.gender.toString()
-    if (this is Numerable) jsonObject["number"] = this.number.toString()
-    if (this is PersonDeclinable) jsonObject["number"] = this.person.toString()
-    if (this is CaseDeclinable) jsonObject["case"] = this.case.toString()
-    if (this is Gradable) jsonObject["degree"] = this.degree.toString()
-    if (this is Conjugable) {
-      jsonObject["mood"] = this.mood.toString()
-      jsonObject["tense"] = this.tense.toString()
-    }
+//    if (this is Genderable) jsonObject["gender"] = this.gender.toString()
+//    if (this is Numerable) jsonObject["number"] = this.number.toString()
+//    if (this is PersonDeclinable) jsonObject["number"] = this.person.toString()
+//    if (this is CaseDeclinable) jsonObject["case"] = this.case.toString()
+//    if (this is Gradable) jsonObject["degree"] = this.degree.toString()
+//    if (this is Conjugable) {
+//      jsonObject["mood"] = this.mood.toString()
+//      jsonObject["tense"] = this.tense.toString()
+//    }
 
     return jsonObject
   }
