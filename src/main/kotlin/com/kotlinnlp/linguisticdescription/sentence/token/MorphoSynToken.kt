@@ -398,6 +398,7 @@ sealed class MorphoSynToken : TokenIdentificable {
 
       obj(
         "id" to self.id,
+        "type" to self.type.annotation,
         "form" to self.form,
         "translitForm" to self.form, // TODO: set it properly
         "position" to self.position.toJSON(),
