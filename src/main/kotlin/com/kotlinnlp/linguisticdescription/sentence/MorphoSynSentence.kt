@@ -139,15 +139,23 @@ data class MorphoSynSentence(
   )
 
   /**
-   * @return the JSON array (of Token objects) that represents this sentence
+   * Note: the property [position] must be set to use this method.
+   *
+   * @return the JSON object that represents this sentence
    */
   fun toJSON(): JsonObject = json {
 
     val self = this@MorphoSynSentence
 
+    require(self::_position.isInitialized) {
+      "The JSON representation of a sentence cannot be get if the property 'position' is not set (the methods " +
+        "'setPosition' and 'autoSetPosition' can be used for this purpose)."
+    }
+
     obj(
       "id" to self.id,
-      "analysisConfidence" to self.confidence,
+      "score" to self.confidence,
+      "position" to self.position.toJSON(),
       "tokens" to array(self.tokens.map { it.toJSON() })
     )
   }
