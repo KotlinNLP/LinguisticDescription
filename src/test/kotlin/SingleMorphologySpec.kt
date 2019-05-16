@@ -93,6 +93,7 @@ class SingleMorphologySpec : Spek({
 
           val expected = Article.Indefinite.Base(
             lemma = "x",
+            oov = false,
             gender = Gender.Undefined,
             number = Number.Singular,
             case = GrammaticalCase.Nominative)
