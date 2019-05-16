@@ -40,7 +40,7 @@ data class CoReference(
     obj(
       "tokenId" to self.tokenId,
       "sentenceId" to self.sentenceId,
-      "confidence" to self.confidence
+      "score" to self.confidence
     )
   }
 }
