@@ -16,235 +16,362 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
 /**
  * The 'pronoun' morphology.
  *
- * @property lemma the lemma
- * @property gender the 'gender' morphology property
- * @property number the 'number' morphology property
- * @property person the 'person' morphology property
- * @property case the 'grammatical case' morphology property
+ * @param pos the POS of this morphology
  */
-sealed class Pronoun(
-  lemma: String,
-  override val gender: Gender,
-  override val number: Number,
-  override val person: Person,
-  override val case: GrammaticalCase
-) : SingleMorphology(lemma), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
+sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numerable, PersonDeclinable, CaseDeclinable {
 
   /**
    * The 'pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-             person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.Pron
-  }
+  class Base(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.Pron)
 
   /**
    * The 'demonstrative pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Demonstrative(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.PronDemons
-  }
+  class Demonstrative(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.PronDemons)
 
   /**
    * The 'exclamative pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Exclamative(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                    person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.PronExclam
-  }
+  class Exclamative(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.PronExclam)
 
   /**
    * The 'indefinite pronoun' morphology.
+   *
+   * @param pos the POS of this morphology
    */
-  sealed class Indefinite(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-    : Pronoun(lemma, gender, number, person, case) {
+  sealed class Indefinite(pos: POS) : Pronoun(pos) {
 
     /**
      * The 'indefinite pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-               person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Indefinite(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronIndef
-    }
+    class Base(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Indefinite(POS.PronIndef)
 
     /**
      * The 'indefinite subordinating pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Subordinating(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                        person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Indefinite(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronIndefSubord
-    }
+    class Subordinating(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Indefinite(POS.PronIndefSubord)
 
     /**
      * The 'indefinite distributive pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Distributive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                       person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Indefinite(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronIndefDistr
-    }
+    class Distributive(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Indefinite(POS.PronIndefDistr)
 
     /**
      * The 'indefinite quantifying pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Quantifying(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Indefinite(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronIndefQuant
-    }
+    class Quantifying(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Indefinite(POS.PronIndefQuant)
   }
 
   /**
    * The 'interrogative pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Interrogative(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.PronInterr
-  }
+  class Interrogative(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.PronInterr)
 
   /**
    * The 'ordinal pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Ordinal(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.PronOrdin
-  }
+  class Ordinal(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.PronOrdin)
 
   /**
    * The 'personal pronoun' morphology.
+   *
+   * @param pos the POS of this morphology
    */
-  sealed class Personal(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-    : Pronoun(lemma, gender, number, person, case) {
+  sealed class Personal(pos: POS) : Pronoun(pos) {
 
     /**
      * The 'personal pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-               person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Personal(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronPers
-    }
+    class Base(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Personal(POS.PronPers)
 
     /**
      * The 'reflexive personal pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Reflexive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                    person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Personal(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronPersRefl
-    }
+    class Reflexive(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Personal(POS.PronPersRefl)
 
     /**
      * The 'variant personal pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Variant(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                  person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Personal(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronPersVariant
-    }
+    class Variant(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Personal(POS.PronPersVariant)
 
     /**
      * The 'enclitic personal pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Enclitic(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                   person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Personal(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronPersEnclit
-    }
+    class Enclitic(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Personal(POS.PronPersEnclit)
 
     /**
      * The 'proclitic personal pronoun' morphology.
+     *
+     * @param pos the POS of this morphology
      */
-    sealed class Proclitic(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-      : Pronoun(lemma, gender, number, person, case) {
+    sealed class Proclitic(pos: POS) : Pronoun(pos) {
 
       /**
        * The 'proclitic personal pronoun' morphology.
+       *
+       * @property lemma the lemma
+       * @property gender the 'gender' morphological property
+       * @property number the 'number' morphological property
+       * @property person the 'person' morphological property
+       * @property case the 'grammatical case' morphological property
        */
-      class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                 person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-        : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
-
-        override val pos: POS = POS.PronPersProclit
-      }
+      class Base(
+        override val lemma: String,
+        override val gender: Gender = Gender.Undefined,
+        override val number: Number = Number.Undefined,
+        override val person: Person = Person.Undefined,
+        override val case: GrammaticalCase = GrammaticalCase.Undefined
+      ) : Pronoun.Personal.Proclitic(POS.PronPersProclit)
 
       /**
        * The 'proclitic reflexive personal pronoun' morphology.
+       *
+       * @property lemma the lemma
+       * @property gender the 'gender' morphological property
+       * @property number the 'number' morphological property
+       * @property person the 'person' morphological property
+       * @property case the 'grammatical case' morphological property
        */
-      class Reflexive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                      person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-        : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
-
-        override val pos: POS = POS.PronPersProclitRefl
-      }
+      class Reflexive(
+        override val lemma: String,
+        override val gender: Gender = Gender.Undefined,
+        override val number: Number = Number.Undefined,
+        override val person: Person = Person.Undefined,
+        override val case: GrammaticalCase = GrammaticalCase.Undefined
+      ) : Pronoun.Personal.Proclitic(POS.PronPersProclitRefl)
 
       /**
        * The 'proclitic variant personal pronoun' morphology.
+       *
+       * @property lemma the lemma
+       * @property gender the 'gender' morphological property
+       * @property number the 'number' morphological property
+       * @property person the 'person' morphological property
+       * @property case the 'grammatical case' morphological property
        */
-      class Variant(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                    person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-        : Pronoun.Personal.Proclitic(lemma, gender, number, person, case) {
-
-        override val pos: POS = POS.PronPersProclitVariant
-      }
+      class Variant(
+        override val lemma: String,
+        override val gender: Gender = Gender.Undefined,
+        override val number: Number = Number.Undefined,
+        override val person: Person = Person.Undefined,
+        override val case: GrammaticalCase = GrammaticalCase.Undefined
+      ) : Pronoun.Personal.Proclitic(POS.PronPersProclitVariant)
     }
   }
 
   /**
    * The 'possessive pronoun' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property person the 'person' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Possessive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                   person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Pronoun(lemma, gender, number, person, case) {
-
-    override val pos: POS = POS.PronPoss
-  }
+  class Possessive(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val person: Person = Person.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Pronoun(POS.PronPoss)
 
   /**
    * The 'relative pronoun' morphology.
+   *
+   * @param pos the POS of this morphology
    */
-  sealed class Relative(lemma: String, gender: Gender, number: Number, person: Person, case: GrammaticalCase)
-    : Pronoun(lemma, gender, number, person, case) {
+  sealed class Relative(pos: POS) : Pronoun(pos) {
 
     /**
      * The 'relative pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-               person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Relative(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronRelat
-    }
+    class Base(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Relative(POS.PronRelat)
 
     /**
      * The 'relative double pronoun' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property person the 'person' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Double(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                 person: Person = Person.Undefined, case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Pronoun.Relative(lemma, gender, number, person, case) {
-
-      override val pos: POS = POS.PronRelatDouble
-    }
+    class Double(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val person: Person = Person.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Pronoun.Relative(POS.PronRelatDouble)
   }
 }

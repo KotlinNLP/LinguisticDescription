@@ -15,7 +15,4 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  *
  * @property lemma the lemma
  */
-class Date(lemma: String) : SingleMorphology(lemma), Thing {
-
-  override val pos: POS = POS.Date
-}
+class Date(override val lemma: String) : SingleMorphology(POS.Date), Thing

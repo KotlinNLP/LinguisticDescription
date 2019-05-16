@@ -25,9 +25,9 @@ import kotlin.reflect.full.*
 /**
  * The base interface implemented by all morphologies of single lemmas.
  *
- * @property lemma the lemma
+ * @property pos the POS of this morphology.
  */
-abstract class SingleMorphology(val lemma: String) {
+abstract class SingleMorphology(val pos: POS) {
 
   companion object {
 
@@ -101,9 +101,9 @@ abstract class SingleMorphology(val lemma: String) {
   }
 
   /**
-   * The POS of this morphology.
+   * The lemma.
    */
-  abstract val pos: POS
+  abstract val lemma: String
 
   /**
    * @param other another morphology

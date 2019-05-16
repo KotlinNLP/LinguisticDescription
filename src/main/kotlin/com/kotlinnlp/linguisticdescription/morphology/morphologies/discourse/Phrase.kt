@@ -13,39 +13,35 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 /**
  * The 'phrase' morphology.
  *
- * @property lemma the lemma
+ * @param pos the POS of this morphology
  */
-sealed class Phrase(lemma: String) : SingleMorphology(lemma), Discourse {
+sealed class Phrase(pos: POS) : SingleMorphology(pos), Discourse {
 
   /**
    * The 'affirmative phrase' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Affirmative(lemma: String) : Phrase(lemma) {
-
-    override val pos: POS = POS.PhrasAff
-  }
+  class Affirmative(override val lemma: String) : Phrase(POS.PhrasAff)
 
   /**
    * The 'exclamative phrase' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Exclamative(lemma: String) : Phrase(lemma) {
-
-    override val pos: POS = POS.PhrasExclam
-  }
+  class Exclamative(override val lemma: String) : Phrase(POS.PhrasExclam)
 
   /**
    * The 'interrogative phrase' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Interrogative(lemma: String) : Phrase(lemma) {
-
-    override val pos: POS = POS.PhrasInterr
-  }
+  class Interrogative(override val lemma: String) : Phrase(POS.PhrasInterr)
 
   /**
    * The 'negative phrase' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Negative(lemma: String) : Phrase(lemma) {
-
-    override val pos: POS = POS.PhrasNeg
-  }
+  class Negative(override val lemma: String) : Phrase(POS.PhrasNeg)
 }

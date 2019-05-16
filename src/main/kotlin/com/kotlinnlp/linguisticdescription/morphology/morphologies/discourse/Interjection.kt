@@ -15,7 +15,4 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  *
  * @property lemma the lemma
  */
-class Interjection(lemma: String) : SingleMorphology(lemma), Discourse {
-
-  override val pos: POS = POS.Interj
-}
+class Interjection(override val lemma: String) : SingleMorphology(POS.Interj), Discourse

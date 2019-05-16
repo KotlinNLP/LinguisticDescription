@@ -19,63 +19,75 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'article' morphology.
  *
- * @property lemma the lemma
- * @property gender the 'gender' morphology property
- * @property number the 'number' morphology property
- * @property case the 'grammatical case' morphology property
+ * @param pos the POS of this morphology
  */
-sealed class Article(
-  lemma: String,
-  override val gender: Gender,
-  override val number: Number,
-  override val case: GrammaticalCase
-) : SingleMorphology(lemma), Thing, Genderable, Numerable, CaseDeclinable {
+sealed class Article(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numerable, CaseDeclinable {
 
   /**
    * The 'article' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-             case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Article(lemma, gender, number, case) {
-
-    override val pos: POS = POS.Art
-  }
+  class Base(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Article(POS.Art)
 
   /**
    * The 'definite article' morphology.
+   *
+   * @property lemma the lemma
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property case the 'grammatical case' morphological property
    */
-  class Definite(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                 case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Article(lemma, gender, number, case) {
-
-    override val pos: POS = POS.ArtDef
-  }
+  class Definite(
+    override val lemma: String,
+    override val gender: Gender = Gender.Undefined,
+    override val number: Number = Number.Undefined,
+    override val case: GrammaticalCase = GrammaticalCase.Undefined
+  ) : Article(POS.ArtDef)
 
   /**
    * The 'indefinite article' morphology.
+   *
+   * @param pos the POS of this morphology
    */
-  sealed class Indefinite(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                          case: GrammaticalCase = GrammaticalCase.Undefined)
-    : Article(lemma, gender, number, case) {
+  sealed class Indefinite(pos: POS) : Article(pos) {
 
     /**
      * The 'indefinite article' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Base(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-               case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Article.Indefinite(lemma, gender, number, case) {
-
-      override val pos: POS = POS.ArtIndef
-    }
+    class Base(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Article.Indefinite(POS.ArtIndef)
 
     /**
      * The 'indefinite partitive article' morphology.
+     *
+     * @property lemma the lemma
+     * @property gender the 'gender' morphological property
+     * @property number the 'number' morphological property
+     * @property case the 'grammatical case' morphological property
      */
-    class Partitive(lemma: String, gender: Gender = Gender.Undefined, number: Number = Number.Undefined,
-                    case: GrammaticalCase = GrammaticalCase.Undefined)
-      : Article.Indefinite(lemma, gender, number, case) {
-
-      override val pos: POS = POS.ArtIndefPart
-    }
+    class Partitive(
+      override val lemma: String,
+      override val gender: Gender = Gender.Undefined,
+      override val number: Number = Number.Undefined,
+      override val case: GrammaticalCase = GrammaticalCase.Undefined
+    ) : Article.Indefinite(POS.ArtIndefPart)
   }
 }

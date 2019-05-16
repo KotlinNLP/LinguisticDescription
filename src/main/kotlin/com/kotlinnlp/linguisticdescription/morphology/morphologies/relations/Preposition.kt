@@ -19,49 +19,39 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Nume
 /**
  * The 'preposition' morphology.
  *
- * @property lemma the lemma
+ * @param pos the POS of this morphology
  */
-sealed class Preposition(lemma: String) : SingleMorphology(lemma), Relation {
+sealed class Preposition(pos: POS) : SingleMorphology(pos), Relation {
 
   /**
    * The 'preposition' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Base(lemma: String) : Preposition(lemma) {
-
-    override val pos: POS = POS.Prep
-  }
+  class Base(override val lemma: String) : Preposition(POS.Prep)
 
   /**
    * The 'articulated preposition' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphology property
-   * @property number the 'number' morphology property
-   * @property case the 'grammatical case' morphology property
+   * @property gender the 'gender' morphological property
+   * @property number the 'number' morphological property
+   * @property case the 'grammatical case' morphological property
    */
   class Articulated(
-    lemma: String,
+    override val lemma: String,
     override val gender: Gender = Gender.Undefined,
     override val number: Number = Number.Undefined,
     override val case: GrammaticalCase = GrammaticalCase.Undefined
-  ) : Preposition(lemma), Genderable, Numerable, CaseDeclinable {
-
-    override val pos: POS = POS.PrepArt
-  }
+  ) : Preposition(POS.PrepArt), Genderable, Numerable, CaseDeclinable
 
   /**
    * The 'possessive preposition' morphology.
    */
-  class Possessive(lemma: String) : Preposition(lemma) {
-
-    override val pos: POS = POS.PrepPoss
-  }
+  class Possessive(override val lemma: String) : Preposition(POS.PrepPoss)
 
   /**
    * The 'comparative preposition' morphology.
    */
-  class Comparative(lemma: String) : Preposition(lemma) {
-
-    override val pos: POS = POS.PrepCompar
-  }
+  class Comparative(override val lemma: String) : Preposition(POS.PrepCompar)
 }

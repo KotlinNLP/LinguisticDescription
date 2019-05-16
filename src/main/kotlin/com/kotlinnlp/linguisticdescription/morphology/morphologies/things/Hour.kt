@@ -15,7 +15,4 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  *
  * @property lemma the lemma
  */
-class Hour(lemma: String) : SingleMorphology(lemma), Thing {
-
-  override val pos: POS = POS.Hour
-}
+class Hour(override val lemma: String) : SingleMorphology(POS.Hour), Thing

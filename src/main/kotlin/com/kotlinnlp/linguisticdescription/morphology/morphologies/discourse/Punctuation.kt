@@ -15,7 +15,4 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  *
  * @property lemma the lemma
  */
-class Punctuation(lemma: String) : SingleMorphology(lemma), Discourse {
-
-  override val pos: POS = POS.Punct
-}
+class Punctuation(override val lemma: String) : SingleMorphology(POS.Punct), Discourse

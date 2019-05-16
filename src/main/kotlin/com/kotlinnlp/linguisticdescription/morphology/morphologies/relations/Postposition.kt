@@ -13,23 +13,21 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 /**
  * The 'postposition' morphology.
  *
- * @property lemma the lemma
+ * @param pos the POS of this morphology
  */
-sealed class Postposition(lemma: String) : SingleMorphology(lemma), Relation {
+sealed class Postposition(pos: POS) : SingleMorphology(pos), Relation {
 
   /**
    * The 'postposition' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Base(lemma: String) : Postposition(lemma) {
-
-    override val pos: POS = POS.Postpos
-  }
+  class Base(override val lemma: String) : Postposition(POS.Postpos)
 
   /**
    * The 'possessive postposition' morphology.
+   *
+   * @property lemma the lemma
    */
-  class Possessive(lemma: String) : Postposition(lemma) {
-
-    override val pos: POS = POS.PostposPoss
-  }
+  class Possessive(override val lemma: String) : Postposition(POS.PostposPoss)
 }

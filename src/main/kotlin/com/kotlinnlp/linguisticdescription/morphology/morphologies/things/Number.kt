@@ -24,24 +24,25 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
  *  They should be created using a Morphological Analyzer.
  *
  * @property lemma the lemma (the standard representation of the number in digits)
+ * @property gender the 'gender' morphological property
+ * @property number the 'number' morphological property
  * @property numericForm the numeric value (default = null)
- * @property gender the 'gender' morphology property
- * @property number the 'number' morphology property
  */
 class Number(
-  lemma: String,
-  val numericForm: kotlin.Number? = null,
+  override val lemma: String,
   override val gender: Gender = Gender.Undefined,
-  override val number: NumberProp = NumberProp.Undefined
-) : SingleMorphology(lemma), Thing, Genderable, Numerable, PersonDeclinable {
-
-  override val pos: POS = POS.Num
+  override val number: NumberProp = NumberProp.Undefined,
+  val numericForm: kotlin.Number? = null
+) : SingleMorphology(POS.Num), Thing, Genderable, Numerable, PersonDeclinable {
 
   /**
    * By default a Number is third person.
    */
   override val person: Person = Person.Third
 
+  /**
+   * @return the JSON object that represents this Number morphology
+   */
   override fun toJSON(): JsonObject {
 
     val jsonObj: JsonObject = super.toJSON()

@@ -15,7 +15,4 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
  *
  * @property lemma the lemma
  */
-class Unknown(lemma: String) : SingleMorphology(lemma), Thing {
-
-  override val pos: POS = POS.Unknown
-}
+class Unknown(override val lemma: String) : SingleMorphology(POS.Unknown), Thing
