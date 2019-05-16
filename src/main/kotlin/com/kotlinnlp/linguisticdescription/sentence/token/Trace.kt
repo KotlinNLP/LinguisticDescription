@@ -51,8 +51,8 @@ class Trace(override val id: Int) : MorphoSynToken.Single() {
       token._morphologies.addAll(morphologies)
       token._contextMorphologies.addAll(contextMorphologies)
       token._syntacticRelation = syntacticRelation
-      coReferences?.let { token._coReferences = it.toMutableList() }
-      semanticRelations?.let { token._semanticRelations = it.toMutableList() }
+      coReferences?.let { token._coReferences.addAll(it) }
+      semanticRelations?.let { token._semanticRelations.addAll(it) }
 
       return token
     }
@@ -74,7 +74,7 @@ class Trace(override val id: Int) : MorphoSynToken.Single() {
   """.trimIndent().format(
     this.id,
     this.syntacticRelation,
-    this.coReferences?.joinToString(separator = ", ") ?: "None",
-    this.semanticRelations?.joinToString(separator = ", ") ?: "None"
+    this.coReferences.joinToString(separator = ", ").ifBlank { "None" },
+    this.semanticRelations.joinToString(separator = ", ").ifBlank { "None" }
   )
 }

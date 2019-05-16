@@ -139,14 +139,12 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The list of co-references (can be null).
      */
-    override val coReferences: List<CoReference>? get() =
-      if (this::_coReferences.isInitialized) this._coReferences.toList() else null
+    override val coReferences: List<CoReference> get() = this._coReferences.toList()
 
     /**
      * The list of semantic relations (can be null).
      */
-    override val semanticRelations: List<SemanticRelation>? get() =
-      if (this::_semanticRelations.isInitialized) this._semanticRelations.toList() else null
+    override val semanticRelations: List<SemanticRelation> get() = this._semanticRelations.toList()
 
     /**
      * The variable Part-Of-Speech.
@@ -171,12 +169,12 @@ sealed class MorphoSynToken : TokenIdentificable {
     /**
      * The mutable list of co-references.
      */
-    internal lateinit var _coReferences: MutableList<CoReference>
+    protected val _coReferences: MutableList<CoReference> = mutableListOf()
 
     /**
      * The mutable list of semantic relations.
      */
-    internal lateinit var _semanticRelations: MutableList<SemanticRelation>
+    protected val _semanticRelations: MutableList<SemanticRelation> = mutableListOf()
 
     /**
      * Update the [pos] replacing it with a given one.
@@ -252,9 +250,6 @@ sealed class MorphoSynToken : TokenIdentificable {
      * @param coReference the co-reference to add
      */
     fun addCoReference(coReference: CoReference) {
-
-      if (!this::_coReferences.isInitialized) this._coReferences = mutableListOf()
-
       this._coReferences.add(coReference)
     }
 
@@ -281,9 +276,6 @@ sealed class MorphoSynToken : TokenIdentificable {
      * @param semanticRelation the semantic relation to add
      */
     fun addSemanticRelation(semanticRelation: SemanticRelation) {
-
-      if (!this::_semanticRelations.isInitialized) this._semanticRelations = mutableListOf()
-
       this._semanticRelations.add(semanticRelation)
     }
 
