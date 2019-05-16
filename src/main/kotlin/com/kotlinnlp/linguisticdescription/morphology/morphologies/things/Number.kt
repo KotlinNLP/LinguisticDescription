@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.morphologies.things
 
+import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
@@ -40,4 +41,13 @@ class Number(
    * By default a Number is third person.
    */
   override val person: Person = Person.Third
+
+  override fun toJSON(): JsonObject {
+
+    val jsonObj: JsonObject = super.toJSON()
+
+    jsonObj["numericForm"] = this.numericForm
+
+    return jsonObj
+  }
 }
