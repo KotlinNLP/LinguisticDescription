@@ -20,10 +20,10 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
  * The 'predeterminer' morphology.
  *
  * @property lemma the lemma
- * @property gender the 'gender' morphological property
- * @property number the 'number' morphological property
- * @property person the 'person' morphological property
- * @property case the 'grammatical case' morphological property
+ * @property gender the 'gender' grammatical property
+ * @property number the 'number' grammatical property
+ * @property person the 'person' grammatical property
+ * @property case the 'grammatical case' grammatical property
  */
 class Predeterminer(
   override val lemma: String,

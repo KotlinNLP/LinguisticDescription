@@ -138,7 +138,7 @@ class SingleMorphologySpec : Spek({
 
     context("All morphologies") {
 
-      val allProperties = mapOf<String, MorphologyProperty>( // unnecessary properties will be ignored
+      val allProperties = mapOf<String, GrammaticalProperty>( // unnecessary properties will be ignored
         "mood" to Mood.values().first(),
         "tense" to Tense.values().first(),
         "gender" to Gender.values().first(),

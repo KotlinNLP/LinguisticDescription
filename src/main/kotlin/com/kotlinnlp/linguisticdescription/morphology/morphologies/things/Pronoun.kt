@@ -24,10 +24,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Base(
     override val lemma: String,
@@ -41,10 +41,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'demonstrative pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Demonstrative(
     override val lemma: String,
@@ -58,10 +58,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'exclamative pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Exclamative(
     override val lemma: String,
@@ -82,10 +82,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -99,10 +99,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite subordinating pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Subordinating(
       override val lemma: String,
@@ -116,10 +116,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite distributive pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Distributive(
       override val lemma: String,
@@ -133,10 +133,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite quantifying pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Quantifying(
       override val lemma: String,
@@ -151,10 +151,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'interrogative pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Interrogative(
     override val lemma: String,
@@ -168,10 +168,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'ordinal pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Ordinal(
     override val lemma: String,
@@ -192,10 +192,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'personal pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -209,10 +209,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'reflexive personal pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Reflexive(
       override val lemma: String,
@@ -226,10 +226,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'variant personal pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Variant(
       override val lemma: String,
@@ -243,10 +243,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'enclitic personal pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Enclitic(
       override val lemma: String,
@@ -267,10 +267,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
        * The 'proclitic personal pronoun' morphology.
        *
        * @property lemma the lemma
-       * @property gender the 'gender' morphological property
-       * @property number the 'number' morphological property
-       * @property person the 'person' morphological property
-       * @property case the 'grammatical case' morphological property
+       * @property gender the 'gender' grammatical property
+       * @property number the 'number' grammatical property
+       * @property person the 'person' grammatical property
+       * @property case the 'grammatical case' grammatical property
        */
       class Base(
         override val lemma: String,
@@ -284,10 +284,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
        * The 'proclitic reflexive personal pronoun' morphology.
        *
        * @property lemma the lemma
-       * @property gender the 'gender' morphological property
-       * @property number the 'number' morphological property
-       * @property person the 'person' morphological property
-       * @property case the 'grammatical case' morphological property
+       * @property gender the 'gender' grammatical property
+       * @property number the 'number' grammatical property
+       * @property person the 'person' grammatical property
+       * @property case the 'grammatical case' grammatical property
        */
       class Reflexive(
         override val lemma: String,
@@ -301,10 +301,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
        * The 'proclitic variant personal pronoun' morphology.
        *
        * @property lemma the lemma
-       * @property gender the 'gender' morphological property
-       * @property number the 'number' morphological property
-       * @property person the 'person' morphological property
-       * @property case the 'grammatical case' morphological property
+       * @property gender the 'gender' grammatical property
+       * @property number the 'number' grammatical property
+       * @property person the 'person' grammatical property
+       * @property case the 'grammatical case' grammatical property
        */
       class Variant(
         override val lemma: String,
@@ -320,10 +320,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'possessive pronoun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Possessive(
     override val lemma: String,
@@ -344,10 +344,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'relative pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -361,10 +361,10 @@ sealed class Pronoun(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'relative double pronoun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Double(
       override val lemma: String,

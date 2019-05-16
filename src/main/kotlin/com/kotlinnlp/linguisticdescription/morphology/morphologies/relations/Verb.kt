@@ -28,11 +28,11 @@ sealed class Verb(pos: POS) : SingleMorphology(pos), Relation, ContentWord, Conj
    * The 'verb' morphology.
    *
    * @property lemma the lemma
-   * @property mood the 'mood' morphological property
-   * @property tense the 'tense' morphological property
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
+   * @property mood the 'mood' grammatical property
+   * @property tense the 'tense' grammatical property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
    */
   class Base(
     override val lemma: String,
@@ -47,11 +47,11 @@ sealed class Verb(pos: POS) : SingleMorphology(pos), Relation, ContentWord, Conj
    * The 'auxiliary verb' morphology.
    *
    * @property lemma the lemma
-   * @property mood the 'mood' morphological property
-   * @property tense the 'tense' morphological property
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
+   * @property mood the 'mood' grammatical property
+   * @property tense the 'tense' grammatical property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
    */
   class Auxiliary(
     override val lemma: String,
@@ -66,11 +66,11 @@ sealed class Verb(pos: POS) : SingleMorphology(pos), Relation, ContentWord, Conj
    * The 'modal verb' morphology.
    *
    * @property lemma the lemma
-   * @property mood the 'mood' morphological property
-   * @property tense the 'tense' morphological property
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
+   * @property mood the 'mood' grammatical property
+   * @property tense the 'tense' grammatical property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
    */
   class Modal(
     override val lemma: String,

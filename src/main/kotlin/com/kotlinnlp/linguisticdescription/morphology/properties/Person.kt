@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'person' morphology property.
+ * The 'person' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Person(override val annotation: String) : MorphologyProperty {
+enum class Person(override val annotation: String) : GrammaticalProperty {
   Undefined("_"), // Base, Infinite, Gerund and Participle verbs and some Adjectives and Pronouns
   First("1"),
   Second("2"),

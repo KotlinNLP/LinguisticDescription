@@ -24,7 +24,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'adversative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Adversative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvAdvers)
 
@@ -32,7 +32,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'comparative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Comparative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvCompar)
 
@@ -40,7 +40,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'concessive adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Concessive(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvConcess)
 
@@ -48,7 +48,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'deictic adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Deictic(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvDeict)
 
@@ -56,7 +56,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'indefinite adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Indefinite(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvIndef)
 
@@ -64,7 +64,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'indefinite subordinating adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class IndefiniteSubordinating(override val lemma: String, override val degree: Degree = Degree.Base)
     : Adverb(POS.AdvIndefSubord)
@@ -73,7 +73,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'interrogative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Interrogative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvInterr)
 
@@ -81,7 +81,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'limiting adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Limiting(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvLimit)
 
@@ -89,7 +89,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'locative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Locative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvLoc)
 
@@ -97,7 +97,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'modal adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Modal(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvModal), ContentWord
 
@@ -105,7 +105,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'negative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Negative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvNeg)
 
@@ -113,7 +113,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'adverbial phrase' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Phrase(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvPhras)
 
@@ -121,7 +121,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'quantitative adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Quantitative(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvQuant)
 
@@ -136,7 +136,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
      * The 'strength adverb' morphology.
      *
      * @property lemma the lemma
-     * @property degree the 'degree' morphological property
+     * @property degree the 'degree' grammatical property
      */
     class Base(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb.Strength(POS.AdvStreng)
 
@@ -144,7 +144,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
      * The 'negative strength adverb' morphology.
      *
      * @property lemma the lemma
-     * @property degree the 'degree' morphological property
+     * @property degree the 'degree' grammatical property
      */
     class Negative(override val lemma: String, override val degree: Degree = Degree.Base)
       : Adverb.Strength(POS.AdvStrengNeg)
@@ -154,7 +154,7 @@ sealed class Adverb(pos: POS) : SingleMorphology(pos), Relation, Gradable {
    * The 'time adverb' morphology.
    *
    * @property lemma the lemma
-   * @property degree the 'degree' morphological property
+   * @property degree the 'degree' grammatical property
    */
   class Time(override val lemma: String, override val degree: Degree = Degree.Base) : Adverb(POS.AdvTime)
 }

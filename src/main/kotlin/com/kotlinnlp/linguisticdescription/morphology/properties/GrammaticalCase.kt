@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'grammatical case' morphology property.
+ * The 'grammatical case' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class GrammaticalCase(override val annotation: String) : MorphologyProperty {
+enum class GrammaticalCase(override val annotation: String) : GrammaticalProperty {
   Undefined("_"),
   Unknown("UNKNOWN"),
   Nominative("SUBJ"),

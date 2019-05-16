@@ -27,11 +27,11 @@ sealed class Noun(pos: POS)
    * The 'noun' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Base(
     override val lemma: String,
@@ -53,11 +53,11 @@ sealed class Noun(pos: POS)
      * The 'common noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -72,11 +72,11 @@ sealed class Noun(pos: POS)
      * The 'common quantifying noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Quantifying(
       override val lemma: String,
@@ -91,11 +91,11 @@ sealed class Noun(pos: POS)
      * The 'common gerundive noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Gerundive(
       override val lemma: String,
@@ -118,11 +118,11 @@ sealed class Noun(pos: POS)
      * The 'proper noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -137,11 +137,11 @@ sealed class Noun(pos: POS)
      * The 'person proper noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Person(
       override val lemma: String,
@@ -156,11 +156,11 @@ sealed class Noun(pos: POS)
      * The 'organization proper noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Organization(
       override val lemma: String,
@@ -175,11 +175,11 @@ sealed class Noun(pos: POS)
      * The 'location proper noun' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Location(
       override val lemma: String,

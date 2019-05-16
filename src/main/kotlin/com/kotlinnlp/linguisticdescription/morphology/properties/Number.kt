@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'number' morphology property.
+ * The 'number' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Number(override val annotation: String) : MorphologyProperty {
+enum class Number(override val annotation: String) : GrammaticalProperty {
   Undefined("_"), // Base, Infinite, Gerund and Participle verbs and some Adjectives and Pronouns
   Singular("SING"),
   Plural("PL"),

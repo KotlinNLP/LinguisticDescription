@@ -34,9 +34,9 @@ sealed class Preposition(pos: POS) : SingleMorphology(pos), Relation {
    * The 'articulated preposition' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Articulated(
     override val lemma: String,

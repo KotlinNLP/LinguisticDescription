@@ -8,9 +8,9 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * A generic morphology property.
+ * A grammatical property.
  */
-interface MorphologyProperty {
+interface GrammaticalProperty {
 
   /**
    * The string used to annotate this property.

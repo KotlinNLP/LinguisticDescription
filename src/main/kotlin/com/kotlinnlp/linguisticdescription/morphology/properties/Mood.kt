@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'mood' morphology property.
+ * The 'mood' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Mood(override val annotation: String) : MorphologyProperty {
+enum class Mood(override val annotation: String) : GrammaticalProperty {
   Base("BASE"),
   Indicative("IND"),
   Conditional("COND"),

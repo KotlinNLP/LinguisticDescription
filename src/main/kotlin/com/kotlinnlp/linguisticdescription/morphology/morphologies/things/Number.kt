@@ -24,8 +24,8 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.Pers
  *  They should be created using a Morphological Analyzer.
  *
  * @property lemma the lemma (the standard representation of the number in digits)
- * @property gender the 'gender' morphological property
- * @property number the 'number' morphological property
+ * @property gender the 'gender' grammatical property
+ * @property number the 'number' grammatical property
  * @property numericForm the numeric value (default = null)
  */
 class Number(

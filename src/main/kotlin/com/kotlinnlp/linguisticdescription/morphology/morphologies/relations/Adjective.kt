@@ -26,11 +26,11 @@ sealed class Adjective(pos: POS)
    * The 'adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Base(
     override val lemma: String,
@@ -45,11 +45,11 @@ sealed class Adjective(pos: POS)
    * The 'comparative adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Comparative(
     override val lemma: String,
@@ -64,11 +64,11 @@ sealed class Adjective(pos: POS)
    * The 'deictic adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Deictic(
     override val lemma: String,
@@ -90,11 +90,11 @@ sealed class Adjective(pos: POS)
      * The 'demonstrative adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -109,11 +109,11 @@ sealed class Adjective(pos: POS)
      * The 'antecedent demonstrative adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Antecedent(
       override val lemma: String,
@@ -128,11 +128,11 @@ sealed class Adjective(pos: POS)
      * The 'successive demonstrative adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Successive(
       override val lemma: String,
@@ -148,11 +148,11 @@ sealed class Adjective(pos: POS)
    * The 'exclamative adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Exclamative(
     override val lemma: String,
@@ -174,11 +174,11 @@ sealed class Adjective(pos: POS)
      * The 'indefinite adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -193,11 +193,11 @@ sealed class Adjective(pos: POS)
      * The 'distributive indefinite adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Distributive(
       override val lemma: String,
@@ -212,11 +212,11 @@ sealed class Adjective(pos: POS)
      * The 'quantifying indefinite adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Quantifying(
       override val lemma: String,
@@ -231,11 +231,11 @@ sealed class Adjective(pos: POS)
      * The 'subordinating indefinite adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Subordinating(
       override val lemma: String,
@@ -251,11 +251,11 @@ sealed class Adjective(pos: POS)
    * The 'interrogative adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Interrogative(
     override val lemma: String,
@@ -270,11 +270,11 @@ sealed class Adjective(pos: POS)
    * The 'ordinal adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Ordinal(
     override val lemma: String,
@@ -289,11 +289,11 @@ sealed class Adjective(pos: POS)
    * The 'possessive adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Possessive(
     override val lemma: String,
@@ -315,11 +315,11 @@ sealed class Adjective(pos: POS)
      * The 'qualifying adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -334,11 +334,11 @@ sealed class Adjective(pos: POS)
      * The 'postpositive qualifying adjective' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property person the 'person' morphological property
-     * @property case the 'grammatical case' morphological property
-     * @property degree the 'degree' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property person the 'person' grammatical property
+     * @property case the 'grammatical case' grammatical property
+     * @property degree the 'degree' grammatical property
      */
     class Postpositive(
       override val lemma: String,
@@ -354,11 +354,11 @@ sealed class Adjective(pos: POS)
    * The 'relative adjective' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property person the 'person' morphological property
-   * @property case the 'grammatical case' morphological property
-   * @property degree the 'degree' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property person the 'person' grammatical property
+   * @property case the 'grammatical case' grammatical property
+   * @property degree the 'degree' grammatical property
    */
   class Relative(
     override val lemma: String,

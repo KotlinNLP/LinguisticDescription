@@ -8,7 +8,7 @@
 package com.kotlinnlp.linguisticdescription
 
 import com.kotlinnlp.linguisticdescription.morphology.POS
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalProperty
 
 /**
  * Raised when trying to create a Morphology without passing all required parameters.
@@ -31,19 +31,19 @@ class MissingMorphologyProperty(
 class InvalidPOS(annotation: String) : RuntimeException(annotation)
 
 /**
- * Raised when trying to get a [MorphologyProperty] by invalid name.
+ * Raised when trying to get a [GrammaticalProperty] by invalid name.
  *
- * @param propertyType the type string of a [MorphologyProperty]
+ * @param propertyType the type string of a [GrammaticalProperty]
  */
-class InvalidMorphologyPropertyName(propertyType: String) : RuntimeException(propertyType)
+class InvalidGrammaticalPropertyName(propertyType: String) : RuntimeException(propertyType)
 
 /**
- * Raised when trying to get a [MorphologyProperty] by invalid annotation.
+ * Raised when trying to get a [GrammaticalProperty] by invalid annotation.
  *
  * @param type the type of the property
  * @param annotation the annotation string of the missing property
  */
-class InvalidMorphologyPropertyAnnotation(type: String, annotation: String) : RuntimeException(
+class InvalidGrammaticalPropertyAnnotation(type: String, annotation: String) : RuntimeException(
   "'%s' invalid for %s".format(annotation, type)
 )
 

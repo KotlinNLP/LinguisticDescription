@@ -27,9 +27,9 @@ sealed class Article(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'article' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Base(
     override val lemma: String,
@@ -42,9 +42,9 @@ sealed class Article(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
    * The 'definite article' morphology.
    *
    * @property lemma the lemma
-   * @property gender the 'gender' morphological property
-   * @property number the 'number' morphological property
-   * @property case the 'grammatical case' morphological property
+   * @property gender the 'gender' grammatical property
+   * @property number the 'number' grammatical property
+   * @property case the 'grammatical case' grammatical property
    */
   class Definite(
     override val lemma: String,
@@ -64,9 +64,9 @@ sealed class Article(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite article' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Base(
       override val lemma: String,
@@ -79,9 +79,9 @@ sealed class Article(pos: POS) : SingleMorphology(pos), Thing, Genderable, Numer
      * The 'indefinite partitive article' morphology.
      *
      * @property lemma the lemma
-     * @property gender the 'gender' morphological property
-     * @property number the 'number' morphological property
-     * @property case the 'grammatical case' morphological property
+     * @property gender the 'gender' grammatical property
+     * @property number the 'number' grammatical property
+     * @property case the 'grammatical case' grammatical property
      */
     class Partitive(
       override val lemma: String,

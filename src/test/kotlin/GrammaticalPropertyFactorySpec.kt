@@ -7,8 +7,8 @@
 
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyName
+import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyAnnotation
+import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyName
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
@@ -20,13 +20,13 @@ import kotlin.test.assertTrue
 /**
  *
  */
-class MorphologyPropertyFactorySpec : Spek({
+class GrammaticalPropertyFactorySpec : Spek({
 
-  describe("a MorphologyPropertyFactory") {
+  describe("a GrammaticalPropertyFactory") {
 
     on("factory with correct parameters") {
 
-      val property = MorphologyPropertyFactory(propertyName = "gender", valueAnnotation = "M")
+      val property = GrammaticalPropertyFactory(propertyName = "gender", valueAnnotation = "M")
 
       it("should return the expected MorphologyProperty") {
         assertEquals(Gender.Masculine, property)
@@ -35,27 +35,27 @@ class MorphologyPropertyFactorySpec : Spek({
 
     on("factory with invalid property name") {
 
-      it("should raise an InvalidMorphologyPropertyName") {
+      it("should raise an InvalidGrammaticalPropertyName") {
 
-        assertFailsWith<InvalidMorphologyPropertyName> {
-          MorphologyPropertyFactory(propertyName = "invalid_name", valueAnnotation = "F")
+        assertFailsWith<InvalidGrammaticalPropertyName> {
+          GrammaticalPropertyFactory(propertyName = "invalid_name", valueAnnotation = "F")
         }
       }
     }
 
     on("factory with invalid annotation value") {
 
-      it("should raise an InvalidMorphologyPropertyAnnotation") {
+      it("should raise an InvalidGrammaticalPropertyAnnotation") {
 
-        assertFailsWith<InvalidMorphologyPropertyAnnotation> {
-          MorphologyPropertyFactory(propertyName = "gender", valueAnnotation = "T")
+        assertFailsWith<InvalidGrammaticalPropertyAnnotation> {
+          GrammaticalPropertyFactory(propertyName = "gender", valueAnnotation = "T")
         }
       }
     }
 
     on("factory of all possible MorphologiesProperties") {
 
-      val propertiesMap = mapOf<String, Map<String, MorphologyProperty>>(
+      val propertiesMap = mapOf<String, Map<String, GrammaticalProperty>>(
         "mood" to Mood.values().associateBy { it.annotation },
         "tense" to Tense.values().associateBy { it.annotation },
         "gender" to Gender.values().associateBy { it.annotation },
@@ -77,7 +77,7 @@ class MorphologyPropertyFactorySpec : Spek({
 
         assertTrue {
           allProperties.all {
-            val property = MorphologyPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
+            val property = GrammaticalPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
             property == propertiesMap[it.first]!![it.second] !!
           }
         }

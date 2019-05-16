@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'degree' morphology property.
+ * The 'degree' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Degree(override val annotation: String) : MorphologyProperty {
+enum class Degree(override val annotation: String) : GrammaticalProperty {
   Base("BASE"),
   Positive("POS"),
   Superlative("SUPER"),

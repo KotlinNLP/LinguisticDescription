@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.MissingMorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalCase
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.Person
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as LDNumber
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
@@ -47,7 +47,7 @@ abstract class SingleMorphology(val pos: POS) {
      */
     operator fun invoke(lemma: String,
                         pos: POS,
-                        properties: Map<String, MorphologyProperty> = mapOf(),
+                        properties: Map<String, GrammaticalProperty> = mapOf(),
                         numericForm: kotlin.Number? = null,
                         allowIncompleteProperties: Boolean = false): SingleMorphology {
 
@@ -193,17 +193,17 @@ abstract class SingleMorphology(val pos: POS) {
   /**
    * @return a map of properties names to values
    */
-  fun getProperties(): Map<String, MorphologyProperty> {
+  fun getProperties(): Map<String, GrammaticalProperty> {
 
     val paramsNames: Set<String> = this::class.primaryConstructor!!.parameters
       .asSequence()
-      .filter { it.type.isSubtypeOf(MorphologyProperty::class.starProjectedType) }
+      .filter { it.type.isSubtypeOf(GrammaticalProperty::class.starProjectedType) }
       .map { it.name!! }
       .toSet()
 
     return this::class.memberProperties
       .filter { it.name in paramsNames }
-      .associate { it.name to it.getter.call(this) as MorphologyProperty }
+      .associate { it.name to it.getter.call(this) as GrammaticalProperty }
   }
 
   /**

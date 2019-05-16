@@ -8,11 +8,11 @@
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
 /**
- * The 'tense' morphology property.
+ * The 'tense' grammatical property.
  *
  * @property annotation the string used to annotate this property
  */
-enum class Tense(override val annotation: String) : MorphologyProperty {
+enum class Tense(override val annotation: String) : GrammaticalProperty {
   Base("BASE"),
   Present("PRESENT"),
   Past("PAST"),

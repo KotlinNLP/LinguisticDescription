@@ -7,18 +7,18 @@
 
 package com.kotlinnlp.linguisticdescription.morphology.properties
 
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyAnnotation
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyPropertyName
+import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyAnnotation
+import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyName
 
 /**
- * The factory of a new [MorphologyProperty].
+ * The factory of a new [GrammaticalProperty].
  */
-object MorphologyPropertyFactory {
+object GrammaticalPropertyFactory {
 
   /**
-   * The map of morphology properties names to maps of annotations to morphology properties.
+   * The map of grammatical properties names to maps of annotations to morphology properties.
    */
-  private val propertiesMap = mapOf<String, Map<String, MorphologyProperty>>(
+  private val propertiesMap = mapOf<String, Map<String, GrammaticalProperty>>(
     "mood" to Mood.values().associateBy { it.annotation },
     "tense" to Tense.values().associateBy { it.annotation },
     "gender" to Gender.values().associateBy { it.annotation },
@@ -34,24 +34,24 @@ object MorphologyPropertyFactory {
   val propertyNames: List<String> = this.propertiesMap.keys.toList()
 
   /**
-   * Build a [MorphologyProperty] given its type and value annotation as strings.
+   * Build a [GrammaticalProperty] given its type and value annotation as strings.
    *
-   * @param propertyName the morphology property name (gender, number, etc...)
+   * @param propertyName the grammatical property name (gender, number, etc...)
    * @param valueAnnotation the annotation string of the value
    *
-   * @throws InvalidMorphologyPropertyName when the [propertyName] is not valid
-   * @throws InvalidMorphologyPropertyAnnotation when the [valueAnnotation] for the given [propertyName] is not valid
+   * @throws InvalidGrammaticalPropertyName when the [propertyName] is not valid
+   * @throws InvalidGrammaticalPropertyAnnotation when the [valueAnnotation] for the given [propertyName] is not valid
    *
-   * @return a morphology property
+   * @return a grammatical property
    */
-  operator fun invoke(propertyName: String, valueAnnotation: String): MorphologyProperty {
+  operator fun invoke(propertyName: String, valueAnnotation: String): GrammaticalProperty {
 
-    if (propertyName !in this.propertiesMap) throw InvalidMorphologyPropertyName(propertyName)
+    if (propertyName !in this.propertiesMap) throw InvalidGrammaticalPropertyName(propertyName)
 
-    val valuesMap: Map<String, MorphologyProperty> = this.propertiesMap.getValue(propertyName)
+    val valuesMap: Map<String, GrammaticalProperty> = this.propertiesMap.getValue(propertyName)
 
     if (valueAnnotation !in valuesMap)
-      throw InvalidMorphologyPropertyAnnotation(type = propertyName, annotation = valueAnnotation)
+      throw InvalidGrammaticalPropertyAnnotation(type = propertyName, annotation = valueAnnotation)
 
     return valuesMap.getValue(valueAnnotation)
   }
