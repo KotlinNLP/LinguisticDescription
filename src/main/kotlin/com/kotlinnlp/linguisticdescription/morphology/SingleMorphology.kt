@@ -259,7 +259,7 @@ abstract class SingleMorphology(val lemma: String) {
     val jsonObject = json {
       obj(
         "lemma" to this@SingleMorphology.lemma,
-        "pos" to this@SingleMorphology.pos.toString()
+        "pos" to this@SingleMorphology.pos.annotation
       )
     }
 
