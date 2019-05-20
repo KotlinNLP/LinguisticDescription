@@ -89,7 +89,7 @@ class SingleMorphologySpec : Spek({
             lemma = "x",
             pos = POS.ArtIndef,
             properties = mapOf("number" to Number.Singular, "case" to GrammaticalCase.Nominative),
-            allowIncompleteProperties = true)
+            allowDefaultValues = true)
 
           val expected = Article.Indefinite.Base(
             lemma = "x",
