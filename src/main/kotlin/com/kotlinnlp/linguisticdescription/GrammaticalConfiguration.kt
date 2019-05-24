@@ -101,6 +101,13 @@ data class GrammaticalConfiguration(val components: List<Component>) : Serializa
   }
 
   /**
+   * Check components size.
+   */
+  init {
+    require(this.components.isNotEmpty()) { "A GrammaticalConfiguration must contain at least 1 component." }
+  }
+
+  /**
    * Note: this method should be used only if this configuration contains 'Base' components only (not String).
    *
    * @param morphology a morphology
