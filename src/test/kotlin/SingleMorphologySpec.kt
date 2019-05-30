@@ -12,11 +12,8 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Articl
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.MissingMorphologyProperty
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
@@ -30,7 +27,7 @@ class SingleMorphologySpec : Spek({
 
     context("Morphology with properties") {
 
-      on("factory of an Indefinite Article with Masculine gender, Singular number and Subject case") {
+      context("factory of an Indefinite Article with Masculine gender, Singular number and Subject case") {
 
         val morpho = SingleMorphology(
           lemma = "x",
@@ -64,7 +61,7 @@ class SingleMorphologySpec : Spek({
         }
       }
 
-      on("factory of an Indefinite Article without the 'gender' property") {
+      context("factory of an Indefinite Article without the 'gender' property") {
 
         it("should raise a MissingMorphologyProperty") {
 
@@ -81,7 +78,7 @@ class SingleMorphologySpec : Spek({
         }
       }
 
-      on("factory of an Indefinite Article without the 'gender' property but allowing incomplete properties") {
+      context("factory of an Indefinite Article without the 'gender' property but allowing incomplete properties") {
 
         it("should build the expected morphology") {
 
@@ -105,7 +102,7 @@ class SingleMorphologySpec : Spek({
 
     context("Morphology without properties") {
 
-      on("factory of a Comparative Conjunction") {
+      context("factory of a Comparative Conjunction") {
 
         val morpho = SingleMorphology(lemma = "x", pos = POS.ConjCompar)
 
@@ -120,7 +117,7 @@ class SingleMorphologySpec : Spek({
         }
       }
 
-      on("factory of a Comparative Conjunction with extra unnecessary properties") {
+      context("factory of a Comparative Conjunction with extra unnecessary properties") {
 
         val morpho = SingleMorphology(
           lemma = "x",
@@ -149,7 +146,7 @@ class SingleMorphologySpec : Spek({
         "degree" to Degree.values().first()
       )
 
-      on("factory of all possible Morphologies") {
+      context("factory of all possible Morphologies") {
 
         it("should create Morphologies of the expected type") {
           assertTrue(POS.values().filterNot { it == POS.Num }.all {
@@ -161,7 +158,7 @@ class SingleMorphologySpec : Spek({
 
     context("Num morphology") {
 
-      on("factory") {
+      context("factory") {
 
         it("should raise an exception") {
           assertFailsWith<MissingMorphologyProperty> {

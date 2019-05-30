@@ -9,10 +9,8 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyAnnotation
 import com.kotlinnlp.linguisticdescription.InvalidGrammaticalPropertyName
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
@@ -24,7 +22,7 @@ class GrammaticalPropertyFactorySpec : Spek({
 
   describe("a GrammaticalPropertyFactory") {
 
-    on("factory with correct parameters") {
+    context("factory with correct parameters") {
 
       val property = GrammaticalPropertyFactory(propertyName = "gender", valueAnnotation = "M")
 
@@ -33,7 +31,7 @@ class GrammaticalPropertyFactorySpec : Spek({
       }
     }
 
-    on("factory with invalid property name") {
+    context("factory with invalid property name") {
 
       it("should raise an InvalidGrammaticalPropertyName") {
 
@@ -43,7 +41,7 @@ class GrammaticalPropertyFactorySpec : Spek({
       }
     }
 
-    on("factory with invalid annotation value") {
+    context("factory with invalid annotation value") {
 
       it("should raise an InvalidGrammaticalPropertyAnnotation") {
 
@@ -53,7 +51,7 @@ class GrammaticalPropertyFactorySpec : Spek({
       }
     }
 
-    on("factory of all possible MorphologiesProperties") {
+    context("factory of all possible MorphologiesProperties") {
 
       val propertiesMap = mapOf<String, Map<String, GrammaticalProperty>>(
         "mood" to Mood.values().associateBy { it.annotation },
