@@ -10,11 +10,8 @@ package datetime
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Date
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Offset
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Time
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
@@ -40,7 +37,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Date(startToken = 0, endToken = 0, units = 1, value = date)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-01T00:00:00", offset.isoFormat(ref))
@@ -63,7 +60,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Date(startToken = 0, endToken = 0, units = 2, value = date)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2019-08-12T00:00:00", offset.isoFormat(ref))
@@ -86,7 +83,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Date(startToken = 0, endToken = 0, units = 1, value = date)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-12T00:00:00", offset.isoFormat(ref))
@@ -109,7 +106,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Date(startToken = 0, endToken = 0, units = 1, value = date)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2019-03-03T00:00:00", offset.isoFormat(ref))
@@ -132,7 +129,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Date(startToken = 0, endToken = 0, units = 0, value = date)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-03-03T00:00:00", offset.isoFormat(ref))
@@ -158,7 +155,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:00:00", offset.isoFormat(ref))
@@ -181,7 +178,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:00:00", offset.isoFormat(ref))
@@ -204,7 +201,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T23:00:00", offset.isoFormat(ref))
@@ -227,7 +224,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:00:00", offset.isoFormat(ref))
@@ -250,7 +247,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:00", offset.isoFormat(ref))
@@ -273,7 +270,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 3, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-16T09:15:00", offset.isoFormat(ref))
@@ -296,7 +293,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -319,7 +316,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:11", offset.isoFormat(ref))
@@ -342,7 +339,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:00:00", offset.isoFormat(ref))
@@ -365,7 +362,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 0, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T23:00:00", offset.isoFormat(ref))
@@ -388,7 +385,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:00:00", offset.isoFormat(ref))
@@ -411,7 +408,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:00:00", offset.isoFormat(ref))
@@ -434,7 +431,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T23:00:00", offset.isoFormat(ref))
@@ -457,7 +454,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:00:00", offset.isoFormat(ref))
@@ -480,7 +477,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:00", offset.isoFormat(ref))
@@ -503,7 +500,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -3, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-11T09:15:00", offset.isoFormat(ref))
@@ -526,7 +523,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T09:15:10", offset.isoFormat(ref))
@@ -549,7 +546,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T09:15:11", offset.isoFormat(ref))
@@ -572,7 +569,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:00:00", offset.isoFormat(ref))
@@ -595,7 +592,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = -1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T23:00:00", offset.isoFormat(ref))
@@ -618,7 +615,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T09:00:00", offset.isoFormat(ref))
@@ -641,7 +638,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T07:00:00", offset.isoFormat(ref))
@@ -664,7 +661,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T23:00:00", offset.isoFormat(ref))
@@ -687,7 +684,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T09:00:00", offset.isoFormat(ref))
@@ -710,7 +707,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T09:15:00", offset.isoFormat(ref))
@@ -733,7 +730,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T09:15:10", offset.isoFormat(ref))
@@ -756,7 +753,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:11", offset.isoFormat(ref))
@@ -779,7 +776,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T07:00:00", offset.isoFormat(ref))
@@ -802,7 +799,7 @@ class OffsetSpec : Spek({
 
       val offset = Offset.Time(startToken = 0, endToken = 0, units = 1, value = time)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T23:00:00", offset.isoFormat(ref))
@@ -818,7 +815,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Hours(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -831,7 +828,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Hours(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T12:15:10", offset.isoFormat(ref))
@@ -844,7 +841,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 23, 15, 10)
       val offset = Offset.Hours(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T02:15:10", offset.isoFormat(ref))
@@ -857,7 +854,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Hours(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T06:15:10", offset.isoFormat(ref))
@@ -870,7 +867,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 1, 15, 10)
       val offset = Offset.Hours(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-12T22:15:10", offset.isoFormat(ref))
@@ -886,7 +883,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.HalfHours(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -899,7 +896,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.HalfHours(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T10:45:10", offset.isoFormat(ref))
@@ -912,7 +909,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.HalfHours(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:45:10", offset.isoFormat(ref))
@@ -928,7 +925,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.QuarterHours(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -941,7 +938,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.QuarterHours(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T10:00:10", offset.isoFormat(ref))
@@ -954,7 +951,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.QuarterHours(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T08:30:10", offset.isoFormat(ref))
@@ -970,7 +967,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Minutes(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -983,7 +980,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Minutes(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:18:10", offset.isoFormat(ref))
@@ -996,7 +993,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Minutes(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:12:10", offset.isoFormat(ref))
@@ -1012,7 +1009,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Seconds(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:10", offset.isoFormat(ref))
@@ -1025,7 +1022,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Seconds(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:13", offset.isoFormat(ref))
@@ -1038,7 +1035,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Seconds(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:07", offset.isoFormat(ref))
@@ -1054,7 +1051,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Days(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
@@ -1067,7 +1064,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Days(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-16T00:00:00", offset.isoFormat(ref))
@@ -1080,7 +1077,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Days(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-10T00:00:00", offset.isoFormat(ref))
@@ -1096,7 +1093,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weekends(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T00:00:00", offset.isoFormat(ref))
@@ -1109,7 +1106,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weekends(startToken = 0, endToken = 0, units = 1)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-14T00:00:00", offset.isoFormat(ref))
@@ -1122,7 +1119,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weekends(startToken = 0, endToken = 0, units = -1)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-07T00:00:00", offset.isoFormat(ref))
@@ -1138,7 +1135,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weeks(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
@@ -1151,7 +1148,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weeks(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-05-04T00:00:00", offset.isoFormat(ref))
@@ -1164,7 +1161,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Weeks(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-03-23T00:00:00", offset.isoFormat(ref))
@@ -1180,7 +1177,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Months(startToken = 0, endToken = 0, units = 0)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
@@ -1193,7 +1190,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Months(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-07-13T00:00:00", offset.isoFormat(ref))
@@ -1206,7 +1203,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 10, 13, 9, 15, 10)
       val offset = Offset.Months(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2019-01-13T00:00:00", offset.isoFormat(ref))
@@ -1219,7 +1216,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Months(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-01-13T00:00:00", offset.isoFormat(ref))
@@ -1232,7 +1229,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 2, 13, 9, 15, 10)
       val offset = Offset.Months(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-11-13T00:00:00", offset.isoFormat(ref))
@@ -1248,7 +1245,7 @@ class OffsetSpec : Spek({
       val offset = Offset.Years(startToken = 0, endToken = 0, units = 0)
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T00:00:00", offset.isoFormat(ref))
@@ -1261,7 +1258,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Years(startToken = 0, endToken = 0, units = 3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2021-04-13T00:00:00", offset.isoFormat(ref))
@@ -1274,7 +1271,7 @@ class OffsetSpec : Spek({
       val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
       val offset = Offset.Years(startToken = 0, endToken = 0, units = -3)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2015-04-13T00:00:00", offset.isoFormat(ref))

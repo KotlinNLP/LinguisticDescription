@@ -8,11 +8,8 @@
 package datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.*
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -55,7 +52,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -94,7 +91,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -133,7 +130,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -172,7 +169,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -211,7 +208,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -250,7 +247,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-31T00:00:00", dateOrdinal.isoFormat(ref))
@@ -289,7 +286,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(2))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-09T00:00:00", dateOrdinal.isoFormat(ref))
@@ -328,7 +325,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(6))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise a NotGregorianDateTime exception") {
           assertFailsWith<NotGregorianDateTime> { dateOrdinal.isoFormat(ref) }
@@ -367,7 +364,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-01-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -406,7 +403,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-12-31T00:00:00", dateOrdinal.isoFormat(ref))
@@ -445,7 +442,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(2))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-01-12T00:00:00", dateOrdinal.isoFormat(ref))
@@ -484,7 +481,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(15))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-04-13T00:00:00", dateOrdinal.isoFormat(ref))
@@ -523,7 +520,7 @@ class DateOrdinalSpec : Spek({
         value = unit,
         position = DateOrdinal.Position.Ordinal(60))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise a NotGregorianDateTime exception") {
           assertFailsWith<NotGregorianDateTime> { dateOrdinal.isoFormat(ref) }
@@ -554,7 +551,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-03T00:00:00", dateOrdinal.isoFormat(ref))
@@ -582,7 +579,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(32))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -610,7 +607,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-08-03T00:00:00", dateOrdinal.isoFormat(ref))
@@ -638,7 +635,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2016-02-29T00:00:00", dateOrdinal.isoFormat(ref))
@@ -666,7 +663,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-12-31T00:00:00", dateOrdinal.isoFormat(ref))
@@ -694,7 +691,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(366))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -725,7 +722,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-13T00:00:00", dateOrdinal.isoFormat(ref))
@@ -753,7 +750,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -781,7 +778,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-08-14T00:00:00", dateOrdinal.isoFormat(ref))
@@ -809,7 +806,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2016-02-29T00:00:00", dateOrdinal.isoFormat(ref))
@@ -837,7 +834,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-12-25T00:00:00", dateOrdinal.isoFormat(ref))
@@ -865,7 +862,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(54))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -896,7 +893,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-18T00:00:00", dateOrdinal.isoFormat(ref))
@@ -924,7 +921,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -952,7 +949,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-08-19T00:00:00", dateOrdinal.isoFormat(ref))
@@ -980,7 +977,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2016-02-27T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1008,7 +1005,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-12-30T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1036,7 +1033,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(55))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -1067,7 +1064,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-08-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1095,7 +1092,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-01-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1123,7 +1120,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -1151,7 +1148,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }
@@ -1179,7 +1176,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2016-02-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1207,7 +1204,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2017-12-01T00:00:00", dateOrdinal.isoFormat(ref))
@@ -1235,7 +1232,7 @@ class DateOrdinalSpec : Spek({
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(13))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should raise an InvalidDateTime exception") {
           assertFailsWith<InvalidDateTime> { dateOrdinal.isoFormat(ref) }

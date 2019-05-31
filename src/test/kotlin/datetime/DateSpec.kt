@@ -8,11 +8,8 @@
 package datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Date
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
@@ -35,7 +32,7 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -57,7 +54,7 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -79,7 +76,7 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -101,14 +98,14 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat()") {
+      context("isoFormat()") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-01-01T00:00:00", date.isoFormat())
         }
       }
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -130,14 +127,14 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat()") {
+      context("isoFormat()") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-01T00:00:00", date.isoFormat())
         }
       }
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -159,14 +156,14 @@ class DateSpec : Spek({
         yearAbbr = false,
         holiday = null)
 
-      on("isoFormat()") {
+      context("isoFormat()") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-12T00:00:00", date.isoFormat())
         }
       }
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -188,21 +185,21 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = null)
 
-      on("yearFull") {
+      context("yearFull") {
 
         it("should return the expected full year") {
           assertEquals(2018, date.yearFull)
         }
       }
 
-      on("isoFormat()") {
+      context("isoFormat()") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-12T00:00:00", date.isoFormat())
         }
       }
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -224,7 +221,7 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = Date.Holiday.Easter)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -233,7 +230,7 @@ class DateSpec : Spek({
         }
       }
 
-      on("isoFormat(ref) based on Wednesday 2019-01-16T09:15:10") {
+      context("isoFormat(ref) based on Wednesday 2019-01-16T09:15:10") {
 
         val ref = LocalDateTime.of(2019, 1, 16, 9, 15, 10)
 
@@ -255,7 +252,7 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = Date.Holiday.ChristmasEve)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 
@@ -277,7 +274,7 @@ class DateSpec : Spek({
         yearAbbr = true,
         holiday = Date.Holiday.Christmas)
 
-      on("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
+      context("isoFormat(ref) based on Friday 2018-04-13T09:15:10") {
 
         val ref = LocalDateTime.of(2018, 4, 13, 9, 15, 10)
 

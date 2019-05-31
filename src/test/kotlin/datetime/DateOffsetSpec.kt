@@ -8,11 +8,8 @@
 package datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.*
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
@@ -43,7 +40,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Weeks(startToken = 0, endToken = 0, units = 1))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-16T00:00:00", dateOffset.isoFormat(ref))
@@ -71,7 +68,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))
@@ -99,7 +96,7 @@ class DateOffsetSpec : Spek({
         dateTime = date,
         offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))

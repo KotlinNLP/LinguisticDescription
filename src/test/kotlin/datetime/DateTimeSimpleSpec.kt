@@ -10,11 +10,8 @@ package datetime
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Date
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTimeSimple
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Time
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
@@ -51,7 +48,7 @@ class DateTimeSimpleSpec : Spek({
           generic = null,
           timezone = null))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-09-12T10:35:00", dateTime.isoFormat(ref))

@@ -8,11 +8,8 @@
 package datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Time
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.test.assertEquals
@@ -38,7 +35,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:00:00", time.isoFormat(ref))
@@ -58,7 +55,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:09:00", time.isoFormat(ref))
@@ -78,7 +75,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:15:09", time.isoFormat(ref))
@@ -98,7 +95,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:12:00", time.isoFormat(ref))
@@ -118,7 +115,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:12:07", time.isoFormat(ref))
@@ -138,7 +135,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T09:12:07", time.isoFormat(ref))
@@ -158,7 +155,7 @@ class TimeSpec : Spek({
         generic = null,
         timezone = TimeZone.getTimeZone("CAT"))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T07:12:07", time.isoFormat(ref))
@@ -178,7 +175,7 @@ class TimeSpec : Spek({
         generic = Time.Generic.Afternoon,
         timezone = null)
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T15:00:00", time.isoFormat(ref))
@@ -198,7 +195,7 @@ class TimeSpec : Spek({
         generic = Time.Generic.Afternoon,
         timezone = TimeZone.getTimeZone("CAT"))
 
-      on("isoFormat(ref)") {
+      context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
           assertEquals("2018-04-13T13:00:00", time.isoFormat(ref))
