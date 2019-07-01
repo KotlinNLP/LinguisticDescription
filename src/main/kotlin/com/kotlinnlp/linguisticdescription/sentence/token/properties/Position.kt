@@ -13,7 +13,7 @@ import com.beust.klaxon.json
 /**
  * The position of an item.
  *
- * @property index the index of this item within a list of items
+ * @property index the index of this item
  * @property start the index of the starting char of this item within the original text
  * @property end the index of the ending char of this item within the original text
  */
