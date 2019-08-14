@@ -70,12 +70,7 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
    * @return the form of this entity
    */
   fun getForm(tokens: List<Token>): String = this.getRefTokens(tokens).joinToString(separator = " ") {
-    when (it) {
-      is Trace -> "-"
-      is Word -> it.form
-      is WordTrace -> it.form
-      else -> throw RuntimeException("Invalid token.")
-    }
+    if (it is FormToken) it.form else "-" // TODO: find a better way to represent non-form tokens
   }
 
   /**
