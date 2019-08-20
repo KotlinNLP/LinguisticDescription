@@ -38,7 +38,7 @@ interface Sentence<TokenType: Token> {
     val text = StringBuffer()
     var tokenShouldStart = (this as? RealSentence)?.position?.start ?: 0
 
-    this.tokens.filter { it is RealToken }.forEach { it as RealToken
+    this.tokens.filterIsInstance<RealToken>().forEach {
 
       text.append(TOKENS_SEPARATOR.repeat(it.position.start - tokenShouldStart)) // multi-spaces start token padding
       text.append(it.form)
