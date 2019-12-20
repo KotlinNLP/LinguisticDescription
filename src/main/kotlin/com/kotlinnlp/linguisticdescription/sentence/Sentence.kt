@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence
 
+import com.kotlinnlp.linguisticdescription.sentence.token.FormToken
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.linguisticdescription.sentence.token.Token
 
@@ -36,14 +37,17 @@ interface Sentence<TokenType: Token> {
   fun buildText(): String {
 
     val text = StringBuffer()
-    var tokenShouldStart = (this as? RealSentence)?.position?.start ?: 0
+    var tokenShouldStart = (this as? RealSentence)?.position?.start ?: 0 // the token start in case of no padding spaces
 
-    this.tokens.filterIsInstance<RealToken>().forEach {
+    this.tokens.filterIsInstance<FormToken>().forEachIndexed { i, it ->
 
-      text.append(TOKENS_SEPARATOR.repeat(it.position.start - tokenShouldStart)) // multi-spaces start token padding
+      val start: Int = if (it is RealToken) it.position.start else tokenShouldStart + (if (i == 0) 0 else 1)
+      val end: Int = if (it is RealToken) it.position.end else start + it.form.length - 1
+
+      text.append(TOKENS_SEPARATOR.repeat(start - tokenShouldStart)) // multi-spaces prefix padding
       text.append(it.form)
 
-      tokenShouldStart = it.position.end + 1
+      tokenShouldStart = end + 1
     }
 
     if (this is RealSentence) {
