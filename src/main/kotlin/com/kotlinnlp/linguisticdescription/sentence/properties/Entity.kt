@@ -17,8 +17,14 @@ import com.kotlinnlp.linguisticdescription.sentence.token.*
  * @property startToken the index of the first token of this numeric expression, within the input tokens list
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
  * @property type the entity type
+ * @property score the confidence score
  */
-data class Entity(override val startToken: Int, override val endToken: Int, val type: Type) : TokensRange {
+data class Entity(
+  override val startToken: Int,
+  override val endToken: Int,
+  val type: Type,
+  val score: Double
+) : TokensRange {
 
   /**
    * The entity type.
@@ -46,22 +52,25 @@ data class Entity(override val startToken: Int, override val endToken: Int, val 
    * @param startToken the index of the first token of this numeric expression, within the input tokens list
    * @param endToken the index of the last token of this numeric expression, within the input tokens list
    * @param typeAnnotation the annotation string of the type of this entity
+   * @param score the confidence score
    */
-  constructor(startToken: Int, endToken: Int, typeAnnotation: String): this(
+  constructor(startToken: Int, endToken: Int, typeAnnotation: String, score: Double): this(
     startToken = startToken,
     endToken = endToken,
-    type = annotationsToTypes.getValue(typeAnnotation)
+    type = annotationsToTypes.getValue(typeAnnotation),
+    score = score
   )
 
   /**
    * Build an [Entity] given an annotated segment.
    *
-   * @param s the annotated segment
+   * @param segment the annotated segment
    */
-  constructor(s: AnnotatedSegment): this(
-    startToken = s.startToken,
-    endToken = s.endToken,
-    type = annotationsToTypes.getValue(s.annotation)
+  constructor(segment: AnnotatedSegment): this(
+    startToken = segment.startToken,
+    endToken = segment.endToken,
+    type = annotationsToTypes.getValue(segment.annotation),
+    score = segment.score
   )
 
   /**

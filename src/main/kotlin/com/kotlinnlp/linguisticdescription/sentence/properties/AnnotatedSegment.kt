@@ -13,9 +13,11 @@ package com.kotlinnlp.linguisticdescription.sentence.properties
  * @property startToken the index of the first token of this segment, within the input tokens list
  * @property endToken the index of the last token of this segment, within the input tokens list
  * @property annotation the annotation
+ * @property score the confidence score
  */
 data class AnnotatedSegment(
   override val startToken: Int,
   override val endToken: Int,
-  val annotation: String
+  val annotation: String,
+  val score: Double
 ) : TokensRange
