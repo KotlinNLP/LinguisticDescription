@@ -21,4 +21,5 @@ private val languagesByIso: Map<String, Language> = Language.values().associateB
  *
  * @return the language with the given code
  */
-fun getLanguageByIso(isoCode: String): Language = languagesByIso[isoCode] ?: throw InvalidLanguageCode(isoCode)
+fun getLanguageByIso(isoCode: String): Language =
+  languagesByIso[isoCode.toLowerCase()] ?: throw InvalidLanguageCode(isoCode)
