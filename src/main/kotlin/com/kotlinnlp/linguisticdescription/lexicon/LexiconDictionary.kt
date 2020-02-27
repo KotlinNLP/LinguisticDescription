@@ -100,11 +100,11 @@ class LexiconDictionary : Serializable {
     fun load(filename: String): LexiconDictionary {
 
       val dictionary = LexiconDictionary()
-      val jsonParser = Parser()
+      val jsonParser = Klaxon()
 
       forEachLine(filename) { line ->
 
-        val entryObj: JsonObject = jsonParser.parse(StringBuilder(line)) as JsonObject
+        val entryObj: JsonObject = jsonParser.parseJsonObject(line.reader())
         val lemma: String = entryObj.string("lemma")!!
         val lexicon: Map<String, Any?> = entryObj.obj("properties")!!.toMap()
 
