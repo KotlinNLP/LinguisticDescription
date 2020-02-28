@@ -67,9 +67,7 @@ sealed class DateOrdinal : SingleDateTime {
    */
   private val hasYearReference: Boolean by lazy {
 
-    val refDateTime: DateTimeObj = this.dateTime
-
-    when (refDateTime) {
+    when (val refDateTime: DateTimeObj = this.dateTime) {
       is DateObj -> refDateTime.month == null
       is DateTimeSimple -> refDateTime.date.month == null
       is Offset.Date -> refDateTime.value.month == null
@@ -90,7 +88,7 @@ sealed class DateOrdinal : SingleDateTime {
    */
   override fun toStandardFormat(): String {
 
-    val dateUnit: String = (this as? DateOrdinal.Date)?.value?.toString() ?: this.dateUnit.toLowerCase()
+    val dateUnit: String = (this as? Date)?.value?.toString() ?: this.dateUnit.toLowerCase()
 
     return "the $position '$dateUnit' of '$dateTime'"
   }
@@ -110,7 +108,7 @@ sealed class DateOrdinal : SingleDateTime {
       )
     }
 
-    if (this is DateOrdinal.Date) {
+    if (this is Date) {
       jsonObject["date"] = this.value.toJSON()
     }
 
