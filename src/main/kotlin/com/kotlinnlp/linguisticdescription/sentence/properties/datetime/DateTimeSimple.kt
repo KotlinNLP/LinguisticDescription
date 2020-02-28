@@ -7,8 +7,6 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.json
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -42,18 +40,6 @@ data class DateTimeSimple(
    * @return a string representation of this date-time object
    */
   override fun toString(): String = "%s %s".format(this.date, this.time)
-
-  /**
-   * @return the JSON object that represents this date-time expression
-   */
-  override fun toJSON(): JsonObject = json {
-    obj(
-      "startToken" to this@DateTimeSimple.startToken,
-      "endToken" to this@DateTimeSimple.endToken,
-      "date" to this@DateTimeSimple.date.toJSON(),
-      "time" to this@DateTimeSimple.time.toJSON()
-    )
-  }
 
   /**
    * @param ref a reference date-time from which to take the missing properties (default = now)
