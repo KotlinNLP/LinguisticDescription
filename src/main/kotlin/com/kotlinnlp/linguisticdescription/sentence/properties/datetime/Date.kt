@@ -8,7 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
-import com.beust.klaxon.json
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -103,17 +102,9 @@ data class Date(
   /**
    * @return the JSON object that represents this date-time expression
    */
-  override fun toJSON(): JsonObject = json {
-    obj(
-      "startToken" to this@Date.startToken,
-      "endToken" to this@Date.endToken,
-      "day" to this@Date.day,
-      "weekDay" to this@Date.weekDay?.let { WEEK_DAYS[it - 1] },
-      "month" to this@Date.month,
-      "year" to this@Date.year,
-      "yearAbbr" to this@Date.yearAbbr,
-      "holiday" to this@Date.holiday?.toString()
-    )
+  override fun toJSON(): JsonObject = super.toJSON().apply {
+    set("weekDay", weekDay?.let { WEEK_DAYS[it - 1] })
+    set("holiday", holiday?.toString())
   }
 
   /**

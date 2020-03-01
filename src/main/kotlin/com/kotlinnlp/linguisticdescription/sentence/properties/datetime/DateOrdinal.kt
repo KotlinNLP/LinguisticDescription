@@ -8,7 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
-import com.beust.klaxon.json
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -96,23 +95,12 @@ sealed class DateOrdinal : SingleDateTime {
   /**
    * @return the JSON object that represents this date-time expression
    */
-  override fun toJSON(): JsonObject {
+  override fun toJSON(): JsonObject = super.toJSON().apply {
 
-    val jsonObject: JsonObject = json {
-      obj(
-        "startToken" to this@DateOrdinal.startToken,
-        "endToken" to this@DateOrdinal.endToken,
-        "position" to this@DateOrdinal.position.count,
-        "dateTime" to this@DateOrdinal.dateTime.toJSON(),
-        "unit" to this@DateOrdinal.dateUnit
-      )
-    }
+    set("position", position.count)
 
-    if (this is Date) {
-      jsonObject["date"] = this.value.toJSON()
-    }
-
-    return jsonObject
+    if (this@DateOrdinal is Date)
+      set("date", value.toJSON())
   }
 
   /**

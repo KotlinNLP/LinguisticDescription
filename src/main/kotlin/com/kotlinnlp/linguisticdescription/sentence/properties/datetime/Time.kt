@@ -8,7 +8,6 @@
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
 import com.beust.klaxon.JsonObject
-import com.beust.klaxon.json
 import java.time.*
 import java.util.*
 
@@ -74,17 +73,9 @@ data class Time(
   /**
    * @return the JSON object that represents this date-time expression
    */
-  override fun toJSON(): JsonObject = json {
-    obj(
-      "startToken" to this@Time.startToken,
-      "endToken" to this@Time.endToken,
-      "hour" to this@Time.hour,
-      "min" to this@Time.min,
-      "sec" to this@Time.sec,
-      "millisec" to this@Time.millisec,
-      "generic" to this@Time.generic?.toString(),
-      "timezone" to this@Time.timezone?.id
-    )
+  override fun toJSON(): JsonObject = super.toJSON().apply {
+    set("generic", generic?.toString())
+    set("timezone", timezone?.id)
   }
 
   /**
