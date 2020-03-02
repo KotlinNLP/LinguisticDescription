@@ -20,6 +20,19 @@ import java.time.LocalDateTime
 sealed class DateOrdinal : SingleDateTime {
 
   /**
+   * The date unit.
+   *
+   * @property annotation the annotation used for the JSON serialization
+   */
+  enum class Unit(val annotation: String) {
+    Date("DATE"),
+    Day("DAY"),
+    Week("WEEK"),
+    Weekend("WEEKEND"),
+    Month("MONTH")
+  }
+
+  /**
    * The position.
    *
    * @property count the number that represent the ordinal position (-1 = last, 1 = first, 2 = second, etc.)
@@ -52,6 +65,11 @@ sealed class DateOrdinal : SingleDateTime {
   }
 
   /**
+   * The date unit.
+   */
+  abstract val unit: Unit
+
+  /**
    * The ordinal position of the date unit.
    */
   abstract val position: Position
@@ -75,11 +93,6 @@ sealed class DateOrdinal : SingleDateTime {
   }
 
   /**
-   * The date unit as string.
-   */
-  val dateUnit: String get() = this::class.simpleName!!
-
-  /**
    * Get the string representing this ordinal date in the following standard format:
    *   the POSITION DATE_UNIT of DATE_TIME
    *
@@ -87,7 +100,7 @@ sealed class DateOrdinal : SingleDateTime {
    */
   override fun toStandardFormat(): String {
 
-    val dateUnit: String = (this as? Date)?.value?.toString() ?: this.dateUnit.toLowerCase()
+    val dateUnit: String = (this as? Date)?.value?.toString() ?: this.unit.toString().toLowerCase()
 
     return "the $position '$dateUnit' of '$dateTime'"
   }
@@ -166,6 +179,11 @@ sealed class DateOrdinal : SingleDateTime {
     override val type: DateTime.Type = DateTime.Type.OrdinalDate
 
     /**
+     * The date unit.
+     */
+    override val unit: Unit = Unit.Date
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -205,6 +223,11 @@ sealed class DateOrdinal : SingleDateTime {
     override val type: DateTime.Type = DateTime.Type.OrdinalDay
 
     /**
+     * The date unit.
+     */
+    override val unit: Unit = Unit.Day
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -240,6 +263,11 @@ sealed class DateOrdinal : SingleDateTime {
      * The type of date-time expression.
      */
     override val type: DateTime.Type = DateTime.Type.OrdinalWeek
+
+    /**
+     * The date unit.
+     */
+    override val unit: Unit = Unit.Week
 
     /**
      * @return a string representation of this date-time object
@@ -281,6 +309,11 @@ sealed class DateOrdinal : SingleDateTime {
     override val type: DateTime.Type = DateTime.Type.OrdinalWeekend
 
     /**
+     * The date unit.
+     */
+    override val unit: Unit = Unit.Weekend
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -320,6 +353,11 @@ sealed class DateOrdinal : SingleDateTime {
      * The type of date-time expression.
      */
     override val type: DateTime.Type = DateTime.Type.OrdinalMonth
+
+    /**
+     * The date unit.
+     */
+    override val unit: Unit = Unit.Month
 
     /**
      * @return a string representation of this date-time object
