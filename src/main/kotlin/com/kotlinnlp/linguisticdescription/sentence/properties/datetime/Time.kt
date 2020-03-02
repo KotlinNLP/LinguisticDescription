@@ -48,7 +48,7 @@ data class Time(
    * Check that at least one required property is defined.
    */
   init {
-    require(listOf(this.sec, this.min, this.hour, this.generic).any { it != null })
+    require(sequenceOf(this.sec, this.min, this.hour, this.generic).any { it != null })
   }
 
   /**

@@ -70,7 +70,7 @@ data class Date(
    * Check that at least one property is defined.
    */
   init {
-    require(listOf(this.day, this.weekDay, this.month, this.year, this.holiday).any { it != null })
+    require(sequenceOf(this.day, this.weekDay, this.month, this.year, this.holiday).any { it != null })
   }
 
   /**
