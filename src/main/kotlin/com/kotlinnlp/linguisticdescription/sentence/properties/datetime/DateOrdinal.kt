@@ -111,6 +111,7 @@ sealed class DateOrdinal : SingleDateTime {
   override fun toJSON(): JsonObject = super.toJSON().apply {
 
     set("position", position.count)
+    set("unit", unit.annotation)
 
     if (this@DateOrdinal is Date)
       set("date", value.toJSON())
