@@ -27,6 +27,11 @@ data class DateOffset(
 ) : SingleDateTime {
 
   /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.DateOffset
+
+  /**
    * Get the string representing this date-offset in the following standard format:
    *   DATE-TIME of OFFSET.
    *

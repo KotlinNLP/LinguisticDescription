@@ -29,6 +29,11 @@ data class DateTimeSimple(
 ) : SingleDateTime {
 
   /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.DateTime
+
+  /**
    * Get the string representing this date-time in the following standard formats:
    *   DD/MM/YYYY hh:mm:ss
    *

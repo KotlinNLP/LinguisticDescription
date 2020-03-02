@@ -53,6 +53,11 @@ sealed class Offset : SingleDateTime {
   ) : Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetDate
+
+    /**
      * Get the string representing this offset in the following standard format:
      *   (+|-) UNITS DATE.
      *
@@ -112,6 +117,11 @@ sealed class Offset : SingleDateTime {
     override val units: Int,
     val value: TimeObj
   ) : Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetTime
 
     /**
      * Get the string representing this offset in the following standard format:
@@ -182,6 +192,11 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetHours
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -206,6 +221,11 @@ sealed class Offset : SingleDateTime {
     override val endToken: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetQuarterHours
 
     /**
      * @return a string representation of this date-time object
@@ -234,6 +254,11 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetHalfHours
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -258,6 +283,11 @@ sealed class Offset : SingleDateTime {
     override val endToken: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetMinutes
 
     /**
      * @return a string representation of this date-time object
@@ -286,6 +316,11 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetSeconds
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -310,6 +345,11 @@ sealed class Offset : SingleDateTime {
     override val endToken: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetDays
 
     /**
      * @return a string representation of this date-time object
@@ -339,6 +379,11 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetWeeks
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -364,6 +409,11 @@ sealed class Offset : SingleDateTime {
     override val endToken: Int,
     override val units: Int
   ) : Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetWeekends
 
     /**
      * @return a string representation of this date-time object
@@ -397,6 +447,11 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetMonths
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -422,6 +477,11 @@ sealed class Offset : SingleDateTime {
     override val endToken: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OffsetYears
 
     /**
      * @return a string representation of this date-time object

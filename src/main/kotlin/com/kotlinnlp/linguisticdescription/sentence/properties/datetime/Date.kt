@@ -56,6 +56,11 @@ data class Date(
   }
 
   /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = if (this.holiday != null) DateTime.Type.Holiday else DateTime.Type.Date
+
+  /**
    * The full number of the year.
    * In case of abbreviation, from '0 to '50 it becomes 20XX, otherwise 19XX.
    */
@@ -103,8 +108,18 @@ data class Date(
    * @return the JSON object that represents this date-time expression
    */
   override fun toJSON(): JsonObject = super.toJSON().apply {
+
     set("weekDay", weekDay?.let { WEEK_DAYS[it - 1] })
-    set("holiday", holiday?.toString())
+
+    if (holiday != null) {
+      set("holiday", holiday.toString())
+      remove("day")
+      remove("weekDay")
+      remove("month")
+      remove("year")
+      remove("yearAbbr")
+      remove("yearFull")
+    }
   }
 
   /**

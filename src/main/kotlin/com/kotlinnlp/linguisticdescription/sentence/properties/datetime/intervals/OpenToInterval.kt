@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals
 
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.SingleDateTime
 
 /**
@@ -23,6 +24,11 @@ data class OpenToInterval(
   override val endToken: Int,
   override val from: SingleDateTime
 ) : LowerLimitedInterval {
+
+  /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.IntervalOpenTo
 
   /**
    * Get the string representing this interval in the following standard format:

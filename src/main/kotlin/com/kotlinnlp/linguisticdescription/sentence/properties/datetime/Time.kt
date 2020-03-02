@@ -45,6 +45,11 @@ data class Time(
   enum class Generic(val hour: Int) { Morning(6), Noon(12), Afternoon(15), Evening(18), Night(0) }
 
   /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.Time
+
+  /**
    * Check that at least one required property is defined.
    */
   init {

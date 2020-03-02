@@ -161,6 +161,11 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OrdinalDate
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -195,6 +200,11 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OrdinalDay
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -225,6 +235,11 @@ sealed class DateOrdinal : SingleDateTime {
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OrdinalWeek
 
     /**
      * @return a string representation of this date-time object
@@ -261,6 +276,11 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OrdinalWeekend
+
+    /**
      * @return a string representation of this date-time object
      */
     override fun toString(): String = this.toStandardFormat()
@@ -295,6 +315,11 @@ sealed class DateOrdinal : SingleDateTime {
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
+
+    /**
+     * The type of date-time expression.
+     */
+    override val type: DateTime.Type = DateTime.Type.OrdinalMonth
 
     /**
      * @return a string representation of this date-time object
