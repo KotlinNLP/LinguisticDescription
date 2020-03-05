@@ -65,6 +65,11 @@ sealed class DateOrdinal : SingleDateTime {
   }
 
   /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.Ordinal
+
+  /**
    * The date unit.
    */
   abstract val unit: Unit
@@ -219,11 +224,6 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
-     * The type of date-time expression.
-     */
-    override val type: DateTime.Type = DateTime.Type.OrdinalDay
-
-    /**
      * The date unit.
      */
     override val unit: Unit = Unit.Day
@@ -259,11 +259,6 @@ sealed class DateOrdinal : SingleDateTime {
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
-
-    /**
-     * The type of date-time expression.
-     */
-    override val type: DateTime.Type = DateTime.Type.OrdinalWeek
 
     /**
      * The date unit.
@@ -305,11 +300,6 @@ sealed class DateOrdinal : SingleDateTime {
   ) : DateOrdinal() {
 
     /**
-     * The type of date-time expression.
-     */
-    override val type: DateTime.Type = DateTime.Type.OrdinalWeekend
-
-    /**
      * The date unit.
      */
     override val unit: Unit = Unit.Weekend
@@ -349,11 +339,6 @@ sealed class DateOrdinal : SingleDateTime {
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
-
-    /**
-     * The type of date-time expression.
-     */
-    override val type: DateTime.Type = DateTime.Type.OrdinalMonth
 
     /**
      * The date unit.
