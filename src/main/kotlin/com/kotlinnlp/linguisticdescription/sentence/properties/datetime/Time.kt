@@ -42,7 +42,13 @@ data class Time(
    *
    * @property hour the hour representing this generic time
    */
-  enum class Generic(val hour: Int) { Morning(6), Noon(12), Afternoon(15), Evening(18), Night(0) }
+  enum class Generic(val annotation: String, val hour: Int) {
+    Morning("MORNING", 6),
+    Noon("NOON", 12),
+    Afternoon("AFTERNOON", 15),
+    Evening("EVENING", 18),
+    Night("NIGHT", 0)
+  }
 
   /**
    * The type of date-time expression.
@@ -79,7 +85,7 @@ data class Time(
    * @return the JSON object that represents this date-time expression
    */
   override fun toJSON(): JsonObject = super.toJSON().apply {
-    set("generic", generic?.toString())
+    set("generic", generic?.annotation)
     set("timezone", timezone?.id)
   }
 
