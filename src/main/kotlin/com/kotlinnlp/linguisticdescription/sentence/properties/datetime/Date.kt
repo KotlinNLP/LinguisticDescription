@@ -46,13 +46,14 @@ data class Date(
   /**
    * A holiday name.
    *
+   * @property annotation the annotation used for the JSON serialization
    * @property month the month of the holiday (can be null)
    * @property day the day of the holiday (can be null)
    */
-  enum class Holiday(val month: Int? = null, val day: Int? = null) {
-    Christmas(12, 25),
-    ChristmasEve(12, 24),
-    Easter
+  enum class Holiday(val annotation: String, val month: Int? = null, val day: Int? = null) {
+    Christmas("CHRISTMAS", 12, 25),
+    ChristmasEve("CHRISTMAS_EVE", 12, 24),
+    Easter("EASTER")
   }
 
   /**
@@ -112,7 +113,7 @@ data class Date(
     set("weekDay", weekDay?.let { WEEK_DAYS[it - 1] })
 
     if (holiday != null) {
-      set("holiday", holiday.toString())
+      set("holiday", holiday.annotation)
       remove("day")
       remove("weekDay")
       remove("month")
