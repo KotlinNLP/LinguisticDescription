@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -29,4 +30,11 @@ interface SingleDateTime : DateTime {
    */
   fun isoFormat(ref: LocalDateTime = LocalDateTime.now()): String =
     this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+
+  /**
+   * @return the JSON representation of this object
+   */
+  override fun toJSON(): JsonObject = super.toJSON().apply {
+    set("isoFormat", isoFormat())
+  }
 }
