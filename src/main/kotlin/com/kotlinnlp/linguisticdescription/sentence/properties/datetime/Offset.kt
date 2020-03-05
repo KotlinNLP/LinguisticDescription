@@ -25,17 +25,12 @@ sealed class Offset : SingleDateTime {
   abstract val units: Int
 
   /**
-   * The offset unit type.
-   */
-  val unitType: String get() = this::class.simpleName!!
-
-  /**
    * Get the string representing this offset in the following standard format:
    *   (+|-) UNITS OFFSET_TYPE.
    *
    * @return the string representing this offset
    */
-  override fun toStandardFormat(): String = "%+d %s".format(this.units, this.unitType.toLowerCase())
+  override fun toStandardFormat(): String = "%+d %s".format(this.units, this::class.simpleName!!.toLowerCase())
 
   /**
    * An offset of [DateObj].
