@@ -20,9 +20,39 @@ import java.time.LocalTime
 sealed class Offset : SingleDateTime {
 
   /**
-   * The count of offset units, in the range [0, +inf] (e.g. + 2 weeks).
+   * The type of the offset units.
+   *
+   * @property annotation the annotation used for the JSON serialization
+   */
+  enum class UnitType(val annotation: String) {
+    Date("DATE"),
+    Time("TIME"),
+    Hour("HOUR"),
+    QuarterHour("QUARTER_HOUR"),
+    HalfHour("HALF_HOUR"),
+    Minute("MINUTE"),
+    Second("SECOND"),
+    Day("DAY"),
+    Week("WEEK"),
+    Weekend("WEEKEND"),
+    Month("MONTH"),
+    Year("YEAR")
+  }
+
+  /**
+   * The type of date-time expression.
+   */
+  override val type: DateTime.Type = DateTime.Type.Offset
+
+  /**
+   * The count of the offset units, in the range [0, +inf] (e.g. + 2 weeks).
    */
   abstract val units: Int
+
+  /**
+   * The type of the offset units.
+   */
+  abstract val unitsType: UnitType
 
   /**
    * Get the string representing this offset in the following standard format:
@@ -51,6 +81,11 @@ sealed class Offset : SingleDateTime {
      * The type of date-time expression.
      */
     override val type: DateTime.Type = DateTime.Type.OffsetDate
+
+    /**
+     * The type of the offset units.
+     */
+    override val unitsType: UnitType = UnitType.Date
 
     /**
      * Get the string representing this offset in the following standard format:
@@ -117,6 +152,11 @@ sealed class Offset : SingleDateTime {
      * The type of date-time expression.
      */
     override val type: DateTime.Type = DateTime.Type.OffsetTime
+
+    /**
+     * The type of the offset units.
+     */
+    override val unitsType: UnitType = UnitType.Time
 
     /**
      * Get the string representing this offset in the following standard format:
@@ -187,9 +227,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetHours
+    override val unitsType: UnitType = UnitType.Hour
 
     /**
      * @return a string representation of this date-time object
@@ -218,9 +258,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetQuarterHours
+    override val unitsType: UnitType = UnitType.QuarterHour
 
     /**
      * @return a string representation of this date-time object
@@ -249,9 +289,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetHalfHours
+    override val unitsType: UnitType = UnitType.HalfHour
 
     /**
      * @return a string representation of this date-time object
@@ -280,9 +320,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetMinutes
+    override val unitsType: UnitType = UnitType.Minute
 
     /**
      * @return a string representation of this date-time object
@@ -311,9 +351,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetSeconds
+    override val unitsType: UnitType = UnitType.Second
 
     /**
      * @return a string representation of this date-time object
@@ -342,9 +382,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetDays
+    override val unitsType: UnitType = UnitType.Day
 
     /**
      * @return a string representation of this date-time object
@@ -374,9 +414,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetWeeks
+    override val unitsType: UnitType = UnitType.Week
 
     /**
      * @return a string representation of this date-time object
@@ -406,9 +446,9 @@ sealed class Offset : SingleDateTime {
   ) : Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetWeekends
+    override val unitsType: UnitType = UnitType.Weekend
 
     /**
      * @return a string representation of this date-time object
@@ -442,9 +482,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetMonths
+    override val unitsType: UnitType = UnitType.Month
 
     /**
      * @return a string representation of this date-time object
@@ -474,9 +514,9 @@ sealed class Offset : SingleDateTime {
   ) : SingleDateTime, Offset() {
 
     /**
-     * The type of date-time expression.
+     * The type of the offset units.
      */
-    override val type: DateTime.Type = DateTime.Type.OffsetYears
+    override val unitsType: UnitType = UnitType.Year
 
     /**
      * @return a string representation of this date-time object
