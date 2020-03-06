@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties.datetime
 
+import com.beust.klaxon.JsonObject
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -61,6 +62,13 @@ sealed class Offset : SingleDateTime {
    * @return the string representing this offset
    */
   override fun toStandardFormat(): String = "%+d %s".format(this.units, this::class.simpleName!!.toLowerCase())
+
+  /**
+   * @return the JSON object that represents this date-time expression
+   */
+  override fun toJSON(): JsonObject = super.toJSON().apply {
+    set("unitsType", unitsType.annotation)
+  }
 
   /**
    * An offset of [DateObj].
