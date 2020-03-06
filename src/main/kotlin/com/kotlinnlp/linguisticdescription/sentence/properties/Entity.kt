@@ -40,7 +40,7 @@ data class Entity(
     Person("PER"),
     GeoPolitical("GPE"),
     MISC("MISC"),
-    Undefined("")
+    Undefined("_")
   }
 
   companion object {
