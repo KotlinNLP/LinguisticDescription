@@ -27,6 +27,8 @@ class DateOffsetSpec : Spek({
       val date = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 1,
         month = null,
@@ -37,13 +39,15 @@ class DateOffsetSpec : Spek({
       val dateOffset = DateOffset(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = date,
-        offset = Offset.Weeks(startToken = 0, endToken = 0, units = 1))
+        offset = Offset.Weeks(startToken = 0, endToken = 0, startChar = 0, endChar = 0, units = 1))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-16T00:00:00", dateOffset.isoFormat(ref))
+          assertEquals("2018-04-16T00:00:00Z", dateOffset.isoFormat(ref))
         }
       }
     }
@@ -55,6 +59,8 @@ class DateOffsetSpec : Spek({
       val date = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = 12,
         weekDay = null,
         month = 9,
@@ -65,13 +71,15 @@ class DateOffsetSpec : Spek({
       val dateOffset = DateOffset(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = date,
-        offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
+        offset = Offset.Days(startToken = 0, endToken = 0, startChar = 0, endChar = 0, units = 3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))
+          assertEquals("2018-09-15T00:00:00Z", dateOffset.isoFormat(ref))
         }
       }
     }
@@ -83,6 +91,8 @@ class DateOffsetSpec : Spek({
       val date = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = 12,
         weekDay = null,
         month = 9,
@@ -93,13 +103,15 @@ class DateOffsetSpec : Spek({
       val dateOffset = DateOffset(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = date,
-        offset = Offset.Days(startToken = 0, endToken = 0, units = 3))
+        offset = Offset.Days(startToken = 0, endToken = 0, startChar = 0, endChar = 0, units = 3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-09-15T00:00:00", dateOffset.isoFormat(ref))
+          assertEquals("2018-09-15T00:00:00Z", dateOffset.isoFormat(ref))
         }
       }
     }

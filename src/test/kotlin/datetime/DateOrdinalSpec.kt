@@ -28,6 +28,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -38,6 +40,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -48,6 +52,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -67,6 +73,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -77,6 +85,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -87,6 +97,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -106,6 +118,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -116,6 +130,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = 12,
         weekDay = null,
         month = 8,
@@ -126,6 +142,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -145,6 +163,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -155,6 +175,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = 12,
         weekDay = null,
         month = 8,
@@ -165,6 +187,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -184,6 +208,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -194,6 +220,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 3,
         month = null,
@@ -204,6 +232,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -211,7 +241,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -223,6 +253,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -233,6 +265,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 5,
         month = null,
@@ -243,6 +277,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Last())
@@ -250,7 +286,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-31T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-31T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -262,6 +298,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -272,6 +310,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 4,
         month = null,
@@ -282,6 +322,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(2))
@@ -289,7 +331,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-09T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-09T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -301,6 +343,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -311,6 +355,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 4,
         month = null,
@@ -321,6 +367,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(6))
@@ -340,6 +388,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -350,6 +400,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 7,
         month = null,
@@ -360,6 +412,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(1))
@@ -367,7 +421,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-01-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-01-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -379,6 +433,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -389,6 +445,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 7,
         month = null,
@@ -399,6 +457,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Last())
@@ -406,7 +466,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-12-31T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-12-31T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -418,6 +478,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -428,6 +490,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 4,
         month = null,
@@ -438,6 +502,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(2))
@@ -445,7 +511,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-01-12T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-01-12T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -457,6 +523,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -467,6 +535,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 4,
         month = null,
@@ -477,6 +547,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(15))
@@ -484,7 +556,7 @@ class DateOrdinalSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-04-13T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-04-13T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -496,6 +568,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -506,6 +580,8 @@ class DateOrdinalSpec : Spek({
       val unit = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = 4,
         month = null,
@@ -516,6 +592,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         value = unit,
         position = DateOrdinal.Position.Ordinal(60))
@@ -538,6 +616,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -548,13 +628,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-03T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-03T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -566,6 +648,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -576,6 +660,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(32))
 
@@ -594,6 +680,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -604,13 +692,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-08-03T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-08-03T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -622,6 +712,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 2,
@@ -632,13 +724,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2016-02-29T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2016-02-29T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -650,6 +744,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -660,13 +756,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-12-31T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-12-31T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -678,6 +776,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -688,6 +788,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Day(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(366))
 
@@ -709,6 +811,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -719,13 +823,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-13T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-13T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -737,6 +843,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -747,6 +855,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
@@ -765,6 +875,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -775,13 +887,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-08-14T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-08-14T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -793,6 +907,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 2,
@@ -803,13 +919,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2016-02-29T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2016-02-29T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -821,6 +939,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -831,13 +951,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-12-25T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-12-25T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -849,6 +971,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -859,6 +983,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Week(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(54))
 
@@ -880,6 +1006,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -890,13 +1018,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-18T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-18T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -908,6 +1038,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -918,6 +1050,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
@@ -936,6 +1070,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -946,13 +1082,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-08-19T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-08-19T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -964,6 +1102,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 2,
@@ -974,13 +1114,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2016-02-27T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2016-02-27T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -992,6 +1134,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -1002,13 +1146,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-12-30T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-12-30T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -1020,6 +1166,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -1030,6 +1178,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Weekend(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(55))
 
@@ -1051,6 +1201,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -1061,13 +1213,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(1))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-08-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2018-08-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -1079,6 +1233,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -1089,13 +1245,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(1))
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-01-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-01-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -1107,6 +1265,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -1117,6 +1277,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(6))
 
@@ -1135,6 +1297,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 8,
@@ -1145,6 +1309,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(3))
 
@@ -1163,6 +1329,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = 2,
@@ -1173,13 +1341,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2016-02-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2016-02-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -1191,6 +1361,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -1201,13 +1373,15 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Last())
 
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2017-12-01T00:00:00", dateOrdinal.isoFormat(ref))
+          assertEquals("2017-12-01T00:00:00Z", dateOrdinal.isoFormat(ref))
         }
       }
     }
@@ -1219,6 +1393,8 @@ class DateOrdinalSpec : Spek({
       val dateRef = Date(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         day = null,
         weekDay = null,
         month = null,
@@ -1229,6 +1405,8 @@ class DateOrdinalSpec : Spek({
       val dateOrdinal = DateOrdinal.Month(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         dateTime = dateRef,
         position = DateOrdinal.Position.Ordinal(13))
 

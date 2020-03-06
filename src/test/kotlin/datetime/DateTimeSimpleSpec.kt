@@ -29,9 +29,13 @@ class DateTimeSimpleSpec : Spek({
       val dateTime = DateTimeSimple(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         date = Date(
           startToken = 0,
           endToken = 0,
+          startChar = 0,
+          endChar = 0,
           day = 12,
           weekDay = null,
           month = 9,
@@ -41,6 +45,8 @@ class DateTimeSimpleSpec : Spek({
         time = Time(
           startToken = 0,
           endToken = 0,
+          startChar = 0,
+          endChar = 0,
           hour = 10,
           min = 35,
           sec = null,
@@ -51,7 +57,7 @@ class DateTimeSimpleSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-09-12T10:35:00", dateTime.isoFormat(ref))
+          assertEquals("2018-09-12T10:35:00Z", dateTime.isoFormat(ref))
         }
       }
     }

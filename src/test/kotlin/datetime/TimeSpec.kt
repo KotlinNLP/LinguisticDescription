@@ -28,6 +28,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = 9,
         min = null,
         sec = null,
@@ -38,7 +40,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:00:00", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:00:00Z", time.isoFormat(ref))
         }
       }
     }
@@ -48,6 +50,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = null,
         min = 9,
         sec = null,
@@ -58,7 +62,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:09:00", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:09:00Z", time.isoFormat(ref))
         }
       }
     }
@@ -68,6 +72,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = null,
         min = null,
         sec = 9,
@@ -78,7 +84,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:15:09", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:15:09Z", time.isoFormat(ref))
         }
       }
     }
@@ -88,6 +94,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = 9,
         min = 12,
         sec = null,
@@ -98,7 +106,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:12:00", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:12:00Z", time.isoFormat(ref))
         }
       }
     }
@@ -108,6 +116,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = null,
         min = 12,
         sec = 7,
@@ -118,7 +128,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:12:07", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:12:07Z", time.isoFormat(ref))
         }
       }
     }
@@ -128,6 +138,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = 9,
         min = 12,
         sec = 7,
@@ -138,7 +150,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T09:12:07", time.isoFormat(ref))
+          assertEquals("2018-04-13T09:12:07Z", time.isoFormat(ref))
         }
       }
     }
@@ -148,6 +160,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = 9,
         min = 12,
         sec = 7,
@@ -158,7 +172,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T07:12:07", time.isoFormat(ref))
+          assertEquals("2018-04-13T07:12:07Z", time.isoFormat(ref))
         }
       }
     }
@@ -168,6 +182,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = null,
         min = null,
         sec = null,
@@ -178,7 +194,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T15:00:00", time.isoFormat(ref))
+          assertEquals("2018-04-13T15:00:00Z", time.isoFormat(ref))
         }
       }
     }
@@ -188,6 +204,8 @@ class TimeSpec : Spek({
       val time = Time(
         startToken = 0,
         endToken = 0,
+        startChar = 0,
+        endChar = 0,
         hour = null,
         min = null,
         sec = null,
@@ -198,7 +216,7 @@ class TimeSpec : Spek({
       context("isoFormat(ref)") {
 
         it("should return the expected string in ISO format") {
-          assertEquals("2018-04-13T13:00:00", time.isoFormat(ref))
+          assertEquals("2018-04-13T13:00:00Z", time.isoFormat(ref))
         }
       }
     }
