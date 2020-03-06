@@ -19,6 +19,8 @@ import java.util.*
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
+ * @property startChar the index of the first char of this expression
+ * @property endChar the index of the last char of this expression
  * @property hour the number of the hour in the range [0, 23] (can be null)
  * @property min the number of the minute in the range [0, 59] (can be null)
  * @property sec the number of the second in the range [0, 59] (can be null)
@@ -29,6 +31,8 @@ import java.util.*
 data class Time(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val hour: Int?,
   val min: Int?,
   val sec: Int?,

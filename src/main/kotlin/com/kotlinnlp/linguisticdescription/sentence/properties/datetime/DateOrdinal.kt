@@ -174,6 +174,8 @@ sealed class DateOrdinal : SingleDateTime {
   data class Date(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val position: Position,
     override val dateTime: DateTimeObj,
     val value: DateObj
@@ -219,6 +221,8 @@ sealed class DateOrdinal : SingleDateTime {
   data class Day(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
@@ -256,6 +260,8 @@ sealed class DateOrdinal : SingleDateTime {
   data class Week(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
@@ -295,6 +301,8 @@ sealed class DateOrdinal : SingleDateTime {
   data class Weekend(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {
@@ -336,6 +344,8 @@ sealed class DateOrdinal : SingleDateTime {
   data class Month(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
   ) : DateOrdinal() {

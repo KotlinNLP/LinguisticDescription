@@ -10,7 +10,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties
 import com.kotlinnlp.linguisticdescription.sentence.token.Token
 
 /**
- * A multi-words expression.
+ * A multi-word expression.
  */
 interface TokensRange {
 
@@ -25,7 +25,17 @@ interface TokensRange {
   val endToken: Int
 
   /**
+   * The index of the first char of the expression.
+   */
+  val startChar: Int
+
+  /**
+   * The index of the last char of the expression.
+   */
+  val endChar: Int
+
+  /**
    * @param tokens the list of all the sentence tokens in which to find the reference of this entity
    */
-  fun <T : Token>getRefTokens(tokens: List<T>): List<T> = tokens.subList(this.startToken, this.endToken + 1)
+  fun <T : Token> getRefTokens(tokens: List<T>): List<T> = tokens.subList(this.startToken, this.endToken + 1)
 }

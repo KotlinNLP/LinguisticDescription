@@ -17,12 +17,16 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.SingleDa
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
+ * @property startChar the index of the first char of this expression
+ * @property endChar the index of the last char of this expression
  * @property from the lower bound date-time
  * @property to the upper bound date-time
  */
 data class CloseInterval(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   override val from: SingleDateTime,
   override val to: SingleDateTime
 ) : LowerLimitedInterval, UpperLimitedInterval {

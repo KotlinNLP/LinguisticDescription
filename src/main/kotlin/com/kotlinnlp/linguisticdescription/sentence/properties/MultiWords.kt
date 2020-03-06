@@ -10,14 +10,18 @@ package com.kotlinnlp.linguisticdescription.sentence.properties
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 
 /**
- * A multi-words expression.
+ * A multi-word expression.
  *
  * @property startToken the index of the first token of the expression
  * @property endToken the index of the last token of the expression
+ * @property startChar the index of the first char of the expression
+ * @property endChar the index of the last char of the expression
  * @property morphologies the list of possible morphologies of the expression
  */
 data class MultiWords(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val morphologies: List<Morphology>
 ) : TokensRange

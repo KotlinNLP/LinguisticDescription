@@ -17,12 +17,16 @@ import com.kotlinnlp.utils.JSONSerializable
  *
  * @property startToken the index of the first token of this numeric expression, within the input tokens list
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
+ * @property startChar the index of the first char of the entity
+ * @property endChar the index of the last char of the entity
  * @property type the entity type
  * @property score the confidence score
  */
 data class Entity(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val type: Type,
   val score: Double
 ) : TokensRange, JSONSerializable {

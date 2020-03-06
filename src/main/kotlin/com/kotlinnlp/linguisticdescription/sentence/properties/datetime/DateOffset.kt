@@ -16,12 +16,16 @@ import java.time.LocalDateTime
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
+ * @property startChar the index of the first char of this expression
+ * @property endChar the index of the last char of this expression
  * @property dateTime the date-time
  * @property offset the offset of the [dateTime] (e.g. "next week", "tomorrow")
  */
 data class DateOffset(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val dateTime: SingleDateTime,
   val offset: Offset
 ) : SingleDateTime {

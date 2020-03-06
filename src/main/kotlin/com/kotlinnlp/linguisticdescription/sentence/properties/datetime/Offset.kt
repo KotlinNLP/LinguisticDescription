@@ -75,12 +75,16 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    * @property value the Date value
    */
   data class Date(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int,
     val value: DateObj
   ) : Offset() {
@@ -145,13 +149,17 @@ sealed class Offset : SingleDateTime {
    * An offset of [TimeObj].
    *
    * @property startToken the index of the first token of this expression
-   * @property endToken the index of the last token of this expressrosaion
+   * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    * @property value the Time value
    */
   data class Time(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int,
     val value: TimeObj
   ) : Offset() {
@@ -226,11 +234,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Hours(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -257,11 +269,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class QuarterHours(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -288,11 +304,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class HalfHours(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -319,11 +339,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Minutes(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -350,11 +374,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Seconds(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -381,11 +409,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Days(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -413,11 +445,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Weeks(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -445,11 +481,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Weekends(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : Offset() {
 
@@ -481,11 +521,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Months(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 
@@ -513,11 +557,15 @@ sealed class Offset : SingleDateTime {
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
+   * @property startChar the index of the first char of this expression
+   * @property endChar the index of the last char of this expression
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
   data class Years(
     override val startToken: Int,
     override val endToken: Int,
+    override val startChar: Int,
+    override val endChar: Int,
     override val units: Int
   ) : SingleDateTime, Offset() {
 

@@ -17,6 +17,8 @@ import java.time.LocalDateTime
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
+ * @property startChar the index of the first char of this expression
+ * @property endChar the index of the last char of this expression
  * @property day the number of the day in the range [1, 31] (can be null)
  * @property weekDay the number of the week day in the range [1, 7] (can be null)
  * @property month the number of the month in the range [1, 12] (can be null)
@@ -27,6 +29,8 @@ import java.time.LocalDateTime
 data class Date(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val day: Int?,
   val weekDay: Int?,
   val month: Int?,
