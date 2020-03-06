@@ -10,6 +10,7 @@ package com.kotlinnlp.linguisticdescription.sentence.properties
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.token.*
+import com.kotlinnlp.utils.JSONSerializable
 
 /**
  * An entity found as sequence of tokens.
@@ -24,7 +25,7 @@ data class Entity(
   override val endToken: Int,
   val type: Type,
   val score: Double
-) : TokensRange {
+) : TokensRange, JSONSerializable {
 
   /**
    * The entity type.
@@ -91,15 +92,4 @@ data class Entity(
     this.type,
     this.getForm(tokens)
   )
-
-  /**
-   * @return the JSON object that represents this entity
-   */
-  fun toJSON(): JsonObject = json {
-    obj(
-      "startToken" to this@Entity.startToken,
-      "endToken" to this@Entity.endToken,
-      "type" to this@Entity.type.toString()
-    )
-  }
 }
