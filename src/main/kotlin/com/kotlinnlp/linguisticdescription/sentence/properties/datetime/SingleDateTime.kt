@@ -26,10 +26,10 @@ interface SingleDateTime : DateTime {
   /**
    * @param ref a reference date-time from which to take the missing properties (default = now)
    *
-   * @return the representation of the date-time expression in the ISO format 'YYYY-MM-DDThh:mm:ss'
+   * @return the representation of the date-time expression in the 'TZ' ISO 8601 format 'YYYY-MM-DDThh:mm:ssZ'
    */
   fun isoFormat(ref: LocalDateTime = LocalDateTime.now()): String =
-    this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+    this.toLocalDateTime(ref).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "Z"
 
   /**
    * @return the JSON representation of this object
