@@ -7,8 +7,6 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.properties
 
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.json
 import com.kotlinnlp.linguisticdescription.sentence.token.*
 import com.kotlinnlp.utils.JSONSerializable
 
@@ -52,28 +50,15 @@ data class Entity(
   }
 
   /**
-   * Build an [Entity] given its list of tokens and its type annotation.
+   * Build an [Entity] from an annotated segment.
    *
-   * @param startToken the index of the first token of this numeric expression, within the input tokens list
-   * @param endToken the index of the last token of this numeric expression, within the input tokens list
-   * @param typeAnnotation the annotation string of the type of this entity
-   * @param score the confidence score
-   */
-  constructor(startToken: Int, endToken: Int, typeAnnotation: String, score: Double): this(
-    startToken = startToken,
-    endToken = endToken,
-    type = annotationsToTypes.getValue(typeAnnotation),
-    score = score
-  )
-
-  /**
-   * Build an [Entity] given an annotated segment.
-   *
-   * @param segment the annotated segment
+   * @param segment an annotated segment
    */
   constructor(segment: AnnotatedSegment): this(
     startToken = segment.startToken,
     endToken = segment.endToken,
+    startChar = segment.startChar,
+    endChar = segment.endChar,
     type = annotationsToTypes.getValue(segment.annotation),
     score = segment.score
   )
