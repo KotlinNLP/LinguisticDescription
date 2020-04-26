@@ -38,7 +38,7 @@ interface FormToken : Token {
   /**
    * Whether the form is a numeric values.
    */
-  val isPunctuation: Boolean get() = punctRegex.matches(this.form)
+  val isPunct: Boolean get() = punctRegex.matches(this.form)
 
   /**
    * Whether the form is a comma.
