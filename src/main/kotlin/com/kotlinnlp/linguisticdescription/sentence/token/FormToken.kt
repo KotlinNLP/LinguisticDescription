@@ -22,7 +22,7 @@ interface FormToken : Token {
     /**
      * A regex that matches a punctuation token.
      */
-    private val punctRegex = Regex("^[.,;:#!?|/\\\\$%&=~*\\-_\"“”‘'`^()\\[\\]{}]+$")
+    private val punctRegex = Regex("^[….,;:#!?|/\\\\$%&=~*\\-–_\"“”″‘'`^()<>«»\\[\\]{}]+$")
   }
 
   /**
