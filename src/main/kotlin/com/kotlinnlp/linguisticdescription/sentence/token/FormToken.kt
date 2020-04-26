@@ -7,23 +7,12 @@
 
 package com.kotlinnlp.linguisticdescription.sentence.token
 
+import com.kotlinnlp.utils.Regex
+
 /**
  * A token with a form.
  */
 interface FormToken : Token {
-
-  companion object {
-
-    /**
-     * Regex pattern for numeric values.
-     */
-    val numberRegex = Regex("^\\d+(?:[,.]\\d+)*(?:\\[.,]\\d+)?\$")
-
-    /**
-     * A regex that matches a punctuation token.
-     */
-    private val punctRegex = Regex("^[….,;:#!?|/\\\\$%&=~*\\-–_\"“”″‘'`^()<>«»\\[\\]{}]+$")
-  }
 
   /**
    * The form.
@@ -33,12 +22,12 @@ interface FormToken : Token {
   /**
    * Whether the form is a numeric values.
    */
-  val isNumber: Boolean get() = numberRegex.matches(this.form)
+  val isNumber: Boolean get() = Regex.numbers.matches(this.form)
 
   /**
    * Whether the form is a numeric values.
    */
-  val isPunct: Boolean get() = punctRegex.matches(this.form)
+  val isPunct: Boolean get() = Regex.punctuation.matches(this.form)
 
   /**
    * Whether the form is a comma.
