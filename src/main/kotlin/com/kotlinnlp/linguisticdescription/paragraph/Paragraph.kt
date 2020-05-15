@@ -8,22 +8,25 @@
 package com.kotlinnlp.linguisticdescription.paragraph
 
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
+import com.kotlinnlp.linguisticdescription.sentence.flattenTokens
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.Positionable
 import com.kotlinnlp.utils.forEachIndicesRange
 
 /**
+ * A paragraph of a text, as sequence of sentences.
+ *
  * @property sentences the list of sentences that compose this paragraph
  * @param index the index of this paragraph (default 0)
  */
 open class Paragraph<TokenType: RealToken, SentenceType: RealSentence<TokenType>>(
   val sentences: List<SentenceType>,
   index: Int = 0
-) : RealSentence<TokenType> {
+) : Positionable {
 
   /**
-   * The start is the position start of the first sentence.
-   * The end is the position end of the last sentence.
+   * The position of this paragraph within a text.
    */
   override val position = Position(
     index = index,
@@ -31,46 +34,51 @@ open class Paragraph<TokenType: RealToken, SentenceType: RealSentence<TokenType>
     end = this.sentences.last().position.end)
 
   /**
-   * The list of tokens.
+   * All the tokens in a flat list.
    */
-  override val tokens: List<TokenType> = this.sentences.flatMap { it.tokens }
+  val flattenTokens: List<TokenType> by lazy { this.sentences.flattenTokens() }
 
   /**
-   * Support structure to group the spans per sentence.
+   * Incremental sums of the sentences lengths.
    */
-  private val tokensSums: List<Int> = run {
-
-    val tokensSums = MutableList(size = this.sentences.size, init = { this.sentences[it].tokens.size } )
-
-    (1 until tokensSums.size).forEach { i ->
-      tokensSums[i] += tokensSums[i - 1]
-    }
-
-    tokensSums
-  }
-
-  /**
-   * @param k the max span length
-   */
-  fun forEachSpan(k: Int, action: (IntRange) -> Unit) =
-    this.tokens
-      .groupBy { tk -> this.tokensSums.first { tk.position.index < it }  }
-      .entries.forEachIndexed { sentenceIndex, (tokensSum, tokensGroup) ->
-
-      val tokensOffset = tokensSum - this.sentences[sentenceIndex].tokens.size
-
-      tokensGroup.forEachIndicesRange(min = 1, max = k) { span ->
-        action(IntRange(start = span.start + tokensOffset, endInclusive = span.endInclusive + tokensOffset))
+  private val tokensSums: List<Int> = this.sentences
+    .takeLast(this.sentences.size - 1)
+    .fold(mutableListOf(this.sentences.first().tokens.size)) { tokensSum, sentence ->
+      tokensSum.apply {
+        add(last() + sentence.tokens.size)
       }
     }
 
   /**
-   * @param k the max span length
+   * Iterate all the possible spans of this paragraph.
+   * Each span is a tokens sequence with a size between 1 and [maxSpanLength].
+   *
+   * @param maxSpanLength the max span length
+   * @param action the callback called for each span, passing it the indices range of the span tokens
    */
-  fun <R>mapSpans(k: Int, transformation: (IntRange) -> R): List<R> {
+  fun forEachSpan(maxSpanLength: Int, action: (IntRange) -> Unit) =
+    this.sentences.zip(this.tokensSums).forEach { (sentence, tokensSum) ->
+
+      val tokensOffset = tokensSum - sentence.tokens.size
+
+      sentence.tokens.forEachIndicesRange(min = 1, max = maxSpanLength) { span ->
+        action(IntRange(start = tokensOffset + span.first, endInclusive = tokensOffset + span.last))
+      }
+    }
+
+  /**
+   * Map all the possible spans of this paragraph with a transform function.
+   * Each span is a tokens sequence with a size between 1 and [maxSpanLength].
+   *
+   * @param maxSpanLength the max span length
+   * @param transform the transform function called for each span, passing it the indices range of the span tokens
+   */
+  fun <R> mapSpans(maxSpanLength: Int, transform: (IntRange) -> R): List<R> {
 
     val acc = mutableListOf<R>()
-    this.forEachSpan(k) { acc.add(transformation(it)) }
-    return acc
+
+    this.forEachSpan(maxSpanLength) { acc.add(transform(it)) }
+
+    return acc.toList()
   }
 }
