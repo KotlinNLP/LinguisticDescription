@@ -130,8 +130,6 @@ data class MorphoSynSentence(
     %-10s : %d
     %-10s : %.2f%%
     %-10s : %s
-    %-10s : %s
-    %-10s : %s
   """.trimIndent().format(
     "id", this.id,
     "confidence", 100.0 * this.confidence,
